@@ -1,0 +1,154 @@
+//
+//  ConstantHelp.h
+//  DevelopArchitecture
+//
+//  Created by Jeffrey on 15/1/20.
+//  Copyright (c) 2015年 Jeffrey. All rights reserved.
+//
+#import "JBuildConfig.h"
+
+#ifndef DevelopArchitecture_ConstantHelp_h
+#define DevelopArchitecture_ConstantHelp_h
+
+#define isZhHans ([[[NSLocale preferredLanguages] objectAtIndex:0] hasPrefix:@"zh-Han"])
+//判断是否为iPad
+#define IS_IPAD ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+
+#define NowVersionCode [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+#define XcodeAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000)>>16))/255.0 green:((float)((rgbValue & 0xFF00)>>8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define UIColorFromARGB(rgbValue,alphaValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000)>>16))/255.0 green:((float)((rgbValue & 0xFF00)>>8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:alphaValue]
+
+#define RGB(x,y,z,a) [UIColor colorWithRed:x/255.0 green:y/255.0 blue:z/255.0 alpha:a]
+#define krandomColor RGB((arc4random()%255), (arc4random()%255), (arc4random()%255), 1)
+
+#define LocalStr(x) NSLocalizedString((x), nil)
+#define LocalStrx(x,y) [NSString stringWithFormat:@"%@%@",NSLocalizedString((x), nil),y]
+#define LocalStry(x,y) [NSString stringWithFormat:@"%@%@",x,NSLocalizedString((y), nil)]
+
+#define KSafeAreaInsets ({\
+   UIEdgeInsets e = UIEdgeInsetsZero;\
+   if (@available(iOS 11.0, *)) {\
+       e = [[UIApplication sharedApplication].windows firstObject].safeAreaInsets;\
+   }\
+   e.top = MAX(CGRectGetHeight([UIApplication sharedApplication].statusBarFrame),e.top);\
+   (e);})
+
+#define KStatusBarHeight KSafeAreaInsets.top
+#define KFilletSubHeight KSafeAreaInsets.bottom  // iphonex 底部高度
+
+#if TARGET_OS_MACCATALYST
+  #define windowSceneSize ({ \
+    CGSize size = CGSizeMake(1050.0, 797.0); \
+    for(UIWindowScene *windowScene in [UIApplication sharedApplication].connectedScenes){ \
+        if(windowScene.activationState == UISceneActivationStateForegroundActive || [[UIApplication sharedApplication].connectedScenes count] == 1){ \
+            UIWindow*window = windowScene.windows.firstObject; \
+            size = window.bounds.size; \
+    } } (size);})
+
+  #define KWidth windowSceneSize.width
+  #define KHeight windowSceneSize.height
+#else
+
+  #define KWidth    [UIScreen mainScreen].bounds.size.width
+  #define KHeight   ([UIScreen mainScreen].bounds.size.height - KFilletSubHeight)
+
+#endif
+
+
+#define KNavigationBarHeight (([[[UIDevice currentDevice] systemVersion] floatValue]>=12.0 && IS_IPAD) ? 50.f : 44.f)  // 导航栏高度
+#define KNavigationBarBottom (KNavigationBarHeight+KStatusBarHeight)
+
+#define kWidth(x) (x)*KWidth/375.f
+#define KHeight64   (KHeight-KNavigationBarBottom)
+#define KWidthD   (IS_IPAD ? (KWidth - 375.f - 0.5f) : KWidth)
+#define KWidthM   (IS_IPAD ? 375.f : KWidth)
+#define KWidthMin    MIN(KWidth,KHeight)
+#define KHeightMax    MAX(KWidth,KHeight)
+
+
+#define KTabbarHeight (KFilletSubHeight+50.f)
+
+//图片宽高比例
+#define kImageViewHeight(x) ((x)*9.0/16)
+//数字 大于某值是使用w表示
+#define kNUMBERS(x) [NSString stringWithFormat:([x intValue]>=10000?@"%.1fw+":@"%.0f"),([x intValue]>=10000?[x intValue]/10000.0:[x intValue])]
+
+
+//弱引用/强引用
+#define LRWeakSelf(type)  __weak typeof(type) weak##type = type;
+#define LRStrongSelf(type)  __strong typeof(type) type = weak##type;
+
+//常用颜色 v2
+#define COLOR_CREAR            [UIColor clearColor]//无色
+#define COLOR_BLUE             UIColorFromRGB(0x3899ff)//状态栏的颜色 蓝色 /
+#define COLOR_WHITE            UIColorFromRGB(0xffffff)//白色
+#define COLOR_ORANGE           UIColorFromRGB(0xff8338)//橘色 /
+#define COLOR_SHALLOW_ORANGE           UIColorFromRGB(0xFCAA4B)//浅橘色 /
+#define COLOR_GREEN            UIColorFromRGB(0x33c764)//绿色 /
+#define COLOR_TEXT_BLACK       UIColorFromRGB(0x333333)//字体黑色 /
+#define COLOR_TEXT_GRAY        UIColorFromRGB(0x999999)//字体灰色 /
+#define COLOR_BG_LIGHTGRAY     UIColorFromRGB(0xf0f1f5)//灰色背景色 /
+#define COLOR_BG_SHALLOW_LIGHTGRAY   UIColorFromRGB(0xf7f7f8)//灰色浅背景色 /
+#define COLOR_RED UIColorFromRGB(0xf04d4d) //红色
+
+#define COLOR_LINE_GRAY        UIColorFromRGB(0xe1e1e1)//线色 /
+
+
+//常用字号大小
+
+
+#define PUBLIC_FONT_SIZE20        isZhHans?[UIFont systemFontOfSize:20]:[UIFont systemFontOfSize:18]
+#define PUBLIC_FONT_SIZE18        isZhHans?[UIFont systemFontOfSize:18]:[UIFont systemFontOfSize:16]
+#define PUBLIC_FONT_SIZE17        isZhHans?[UIFont systemFontOfSize:17]:[UIFont systemFontOfSize:15]
+#define PUBLIC_FONT_SIZE16        isZhHans?[UIFont systemFontOfSize:16]:[UIFont systemFontOfSize:14]
+#define PUBLIC_FONT_SIZE15        isZhHans?[UIFont systemFontOfSize:15]:[UIFont systemFontOfSize:13]
+#define PUBLIC_FONT_SIZE14        isZhHans?[UIFont systemFontOfSize:14]:[UIFont systemFontOfSize:12]
+#define PUBLIC_FONT_SIZE13        isZhHans?[UIFont systemFontOfSize:13]:[UIFont systemFontOfSize:12]
+#define PUBLIC_FONT_SIZE12        isZhHans?[UIFont systemFontOfSize:12]:[UIFont systemFontOfSize:12]
+#define PUBLIC_FONT_SIZE11        isZhHans?[UIFont systemFontOfSize:11]:[UIFont systemFontOfSize:11]
+#define PUBLIC_FONT_SIZE10        isZhHans?[UIFont systemFontOfSize:10]:[UIFont systemFontOfSize:10]
+
+#define PUBLIC_FONT_BOLDSIZE20        isZhHans?[UIFont boldSystemFontOfSize:20]:[UIFont systemFontOfSize:18]
+#define PUBLIC_FONT_BOLDSIZE17        isZhHans?[UIFont boldSystemFontOfSize:17]:[UIFont systemFontOfSize:15]
+#define PUBLIC_FONT_BOLDSIZE16        isZhHans?[UIFont boldSystemFontOfSize:16]:[UIFont systemFontOfSize:14]
+#define PUBLIC_FONT_BOLDSIZE15        isZhHans?[UIFont boldSystemFontOfSize:15]:[UIFont systemFontOfSize:13]
+#define PUBLIC_FONT_BOLDSIZE14        isZhHans?[UIFont boldSystemFontOfSize:14]:[UIFont systemFontOfSize:12]
+#define PUBLIC_FONT_BOLDSIZE13        isZhHans?[UIFont boldSystemFontOfSize:13]:[UIFont systemFontOfSize:12]
+#define PUBLIC_FONT_BOLDSIZE12        isZhHans?[UIFont boldSystemFontOfSize:12]:[UIFont systemFontOfSize:11]
+#define PUBLIC_FONT_BOLDSIZE11        isZhHans?[UIFont boldSystemFontOfSize:11]:[UIFont systemFontOfSize:10]
+#define PUBLIC_FONT_BOLDSIZE10        isZhHans?[UIFont boldSystemFontOfSize:10]:[UIFont systemFontOfSize:9]
+
+
+
+
+#endif
+
+#define maddProperyValue(m_dataArr,class)  \
+-(class*)m_dataArr{\
+    if(!_##m_dataArr){ \
+    _##m_dataArr =[[class alloc]init];\
+}\
+return _##m_dataArr;}
+
+
+#define addConfigSumBit(selfs,superView,left,top,width,title,cornerRadius,tag)({\
+    UIButton *sumBt=[UIButton funj_getButton:CGRectMake(left, top, width,45) :title :JTextFCMake(PUBLIC_FONT_SIZE17, COLOR_WHITE) :@[COLOR_WHITE] :selfs  :@"funj_selectSumbitTo:" :tag]; \
+    [(JButton*)sumBt funj_resetProhibitActionTime:2 e:NO];\
+    [superView addSubview:sumBt]; \
+    [sumBt funj_setViewCornerLayer:JFilletMake(0, cornerRadius, COLOR_WHITE)]; \
+    sumBt.layer.shadowColor = COLOR_BLUE.CGColor; \
+    [sumBt funj_setViewGradientLayer:YES :@[COLOR_ORANGE,COLOR_SHALLOW_ORANGE] :@[@0.4, @1]]; \
+    (sumBt);})
+
+
+
+#ifdef DEBUG
+    #define CLog(fmt, ...) NSLog((@"%s [Line: %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+    #define CLogwt(tag, fmt, ...) NSLog((@"[%@](%d) " fmt), tag, __LINE__, ##__VA_ARGS__)
+#else
+    #define CLog(fmt, ...)
+    #define CLogwt(tag, fmt, ...)
+#endif
