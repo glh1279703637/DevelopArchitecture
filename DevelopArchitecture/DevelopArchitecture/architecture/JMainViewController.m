@@ -95,7 +95,7 @@ static JMainViewController *mainVC=nil;
 //    }
 //    [self funj_reloadBaseViewParameter:CGRectZero :CGRectMake(0, 0, KWidth, KHeight64) :YES];
 //    [self funj_reloadTableViewToSolveData:^(BOOL isHead, BOOL isSearch, NSInteger page) {
-//        NSLog(@"-- -- %lu",page);
+//        NSLog(@"-- -- %zd",page);
 //        if(page >5){
 //            [self.m_tableView setM_currentPageType:2];
 //        }

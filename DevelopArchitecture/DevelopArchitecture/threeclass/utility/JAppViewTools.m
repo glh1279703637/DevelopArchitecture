@@ -209,7 +209,7 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
         self.m_isHasObserver = NO;
     }
     
-    self.m_saveBgImageOrColor = saveBgImage;
+    _m_saveBgImageOrColor = saveBgImage;
 }
 -(void)funj_resetProhibitActionTime:(CGFloat)time e:(BOOL)enable{
     self.m_addProhibitActionTime = time;

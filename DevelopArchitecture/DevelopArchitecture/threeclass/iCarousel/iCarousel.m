@@ -195,7 +195,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     _page.enabled=NO;
     _page.type=DDPageControlTypeOnFullOffEmpty;
     _page.currentPage=0;
-    _page.onColor=UIColorFromRGB(0x0099fff);
+    _page.onColor=UIColorFromARGB(0x0099fff,1);
     [self addSubview:_page];
 }
 

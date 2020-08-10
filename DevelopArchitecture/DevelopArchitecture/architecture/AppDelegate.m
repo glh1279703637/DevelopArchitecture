@@ -12,11 +12,10 @@
 #import "AFNetworkReachabilityManager.h"
 #import <UserNotifications/UserNotifications.h>
 
- @interface AppDelegate ()
+@interface AppDelegate ()
+@end
 
- @end
-
- @implementation AppDelegate
+@implementation AppDelegate
 //void UncaughtExceptionHandler(NSException *exception) {
 //    NSArray *arr = [exception callStackSymbols];
 //    NSString *reason = [exception reason];
@@ -30,22 +29,22 @@
 //    [[UIApplication sharedApplication] openURL:url];
 //}
 
- - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-     [self addRootMainViewController];
-     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self addRootMainViewController];
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
      
-     if (@available(iOS 11.0, *)) {
-         UITableView.appearance.estimatedRowHeight = 0;
-         UITableView.appearance.estimatedSectionFooterHeight = 0;
-         UITableView.appearance.estimatedSectionHeaderHeight = 0;
-     }
+    if (@available(iOS 11.0, *)) {
+        UITableView.appearance.estimatedRowHeight = 0;
+        UITableView.appearance.estimatedSectionFooterHeight = 0;
+        UITableView.appearance.estimatedSectionHeaderHeight = 0;
+    }
      
-     //     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(begainFullScreen) name:UIWindowDidBecomeVisibleNotification object:nil];//进入全屏
-     //
-     //     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endFullScreen) name:UIWindowDidBecomeHiddenNotification object:nil];//退出全屏
+//     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(begainFullScreen) name:UIWindowDidBecomeVisibleNotification object:nil];//进入全屏
+//
+//     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endFullScreen) name:UIWindowDidBecomeHiddenNotification object:nil];//退出全屏
      
- //    //IOS崩溃 异常处理
- //     NSSetUncaughtExceptionHandler (&UncaughtExceptionHandler);
+//    //IOS崩溃 异常处理
+//     NSSetUncaughtExceptionHandler (&UncaughtExceptionHandler);
      
 //     //本地通知
 //     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];//请求获取通知权限（角标，声音，弹框）
@@ -55,8 +54,8 @@
 //         }
 //     }];
  
-     return YES;
- }
+    return YES;
+}
 #pragma mark 如果没有stordboard 可以使用这个方法。
 -(void)addRootMainViewController{
      self.window.backgroundColor=[UIColor whiteColor];
@@ -89,21 +88,22 @@
 
 
 
- #pragma mark - UISceneSession lifecycle
+#pragma mark - UISceneSession lifecycle
 
 
- - (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options API_AVAILABLE(ios(13.0)) {
+- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options API_AVAILABLE(ios(13.0)) {
      // Called when a new scene session is being created.
      // Use this method to select a configuration to create the new scene with.
-     return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
- }
+    return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
+}
 
 
- - (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions  API_AVAILABLE(ios(13.0)) {
+- (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions  API_AVAILABLE(ios(13.0)) {
      // Called when the user discards a scene session.
      // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
      // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
- }
+}
 
 
- @end
+@end
+

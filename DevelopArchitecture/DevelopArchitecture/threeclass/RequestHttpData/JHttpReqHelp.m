@@ -151,7 +151,7 @@ static NSMutableDictionary *saveRequestDic = nil;
     //设置HTTPHeader
     [self.m_httpRequest setValue:content forHTTPHeaderField:@"Content-Type"];
     //设置Content-Length
-    [self.m_httpRequest setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[myRequestData length]] forHTTPHeaderField:@"Content-Length"];
+    [self.m_httpRequest setValue:[NSString stringWithFormat:@"%zd", (unsigned long)[myRequestData length]] forHTTPHeaderField:@"Content-Length"];
     
     //设置http body
     [self.m_httpRequest setHTTPMethod:@"POST"];
@@ -233,7 +233,7 @@ static NSMutableDictionary *saveRequestDic = nil;
     //设置HTTPHeader
     [self.m_httpRequest setValue:content forHTTPHeaderField:@"Content-Type"];
     //设置Content-Length
-    [self.m_httpRequest setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[myRequestData length]] forHTTPHeaderField:@"Content-Length"];
+    [self.m_httpRequest setValue:[NSString stringWithFormat:@"%zd", (unsigned long)[myRequestData length]] forHTTPHeaderField:@"Content-Length"];
     
     //设置http body
     [self.m_httpRequest setHTTPMethod:@"POST"];

@@ -121,7 +121,7 @@
 
 - (void)initControlBtn {
     UIButton *cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50.0f, 100, 50)];
-    cancelBtn.backgroundColor = UIColorFromRGB(0x43BC83);
+    cancelBtn.backgroundColor = UIColorFromARGB(0x43BC83,1);
     cancelBtn.titleLabel.textColor = [UIColor whiteColor];
     [cancelBtn setTitle:LocalStr(@"Cancel") forState:UIControlStateNormal];
     [cancelBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:18.0f]];
@@ -133,7 +133,7 @@
     [self.view addSubview:cancelBtn];
     
     UIButton *confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 100.0f, self.view.frame.size.height - 50.0f, 100, 50)];
-    confirmBtn.backgroundColor = UIColorFromRGB(0x43BC83);
+    confirmBtn.backgroundColor = UIColorFromARGB(0x43BC83,1);
     confirmBtn.titleLabel.textColor = [UIColor whiteColor];
     [confirmBtn setTitle:LocalStr(@"Confirm") forState:UIControlStateNormal];
     [confirmBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:18.0f]];

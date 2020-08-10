@@ -9,7 +9,6 @@
 #ifndef DevelopArchitecture_BuildConfig_h
 #define DevelopArchitecture_BuildConfig_h
 
-
 //测试服务器地址
 #define APP_URL_ROOT [NSString stringWithFormat:@"%@api/", [[[NSBundle  mainBundle]infoDictionary] objectForKey:@"APP_ROOT_URL"]]
 

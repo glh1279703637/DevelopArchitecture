@@ -100,7 +100,7 @@
             }
             [self.m_collectionView reloadData];
         }
-        self.title = [NSString stringWithFormat:@"%@(%lu/%lu)",self.m_dataString,self.m_dataArray.count,[JPhotosConfig share].m_maxCountPhotos];
+        self.title = [NSString stringWithFormat:@"%@(%zd/%zd)",self.m_dataString,self.m_dataArray.count,[JPhotosConfig share].m_maxCountPhotos];
         [self funj_solverDataModelSize];
         UIView *bottomBgView =[self.view viewWithTag:3023];
         UIButton *sumBt =[bottomBgView viewWithTag:3025];

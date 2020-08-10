@@ -86,7 +86,7 @@
     m_dataModel = data;
     [timeLabel setTitle:data.timeLength forState:UIControlStateNormal];
     [timeLabel funj_updateContentImageLayout:kRIGHT_IMAGECONTENT a:JAlignMake(0, 10, 0)];
-    countLabel.text = [NSString stringWithFormat:@"%lu",data.indexCount];
+    countLabel.text = [NSString stringWithFormat:@"%zd",data.indexCount];
     selectBt.selected = data.isSelected;
     countLabel.hidden = data.indexCount <=0;
     LRWeakSelf(self);
@@ -98,7 +98,7 @@
 }
 
 -(void)funj_reloadCountIndex:(NSInteger)index{
-    countLabel.text =[NSString stringWithFormat:@"%lu",index];
+    countLabel.text =[NSString stringWithFormat:@"%zd",index];
     countLabel.hidden = index <=0;
 }
 -(void)funj_selectToAdd:(UIButton*)sender{

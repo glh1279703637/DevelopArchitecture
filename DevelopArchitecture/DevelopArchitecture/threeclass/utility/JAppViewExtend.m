@@ -13,7 +13,7 @@
 @end
 @implementation UIResponder (JBaseResponder)
 -(void)funj_addNumberInputKeyAccesssoryTitleView{
-    UIView *inputAccessoryView =[UIView funj_getView:CGRectMake(0, 0, KWidth, 50) :UIColorFromRGB(0xD1D4D9)];
+    UIView *inputAccessoryView =[UIView funj_getView:CGRectMake(0, 0, KWidth, 50) :UIColorFromARGB(0xD1D4D9,1)];
     UIButton *sumBt =[UIButton funj_getButtonBlock:CGRectMake(KWidth-120, 0, 120, 50) :LocalStr(@"Confirm") :JTextFCMake(PUBLIC_FONT_BOLDSIZE17, COLOR_ORANGE) :nil  :0 :^(UIButton *button) {
         [[JAppViewTools funj_getKeyWindow] endEditing:YES];
     }];
@@ -42,7 +42,7 @@
         weakSelf.textFieldInsertTextInputType = string;
     }
     maxLength = maxLength > 0 ? maxLength : 1000;
-    weakSelf.textFieldMaxLengthKey = [NSString stringWithFormat:@"%lu",maxLength];
+    weakSelf.textFieldMaxLengthKey = [NSString stringWithFormat:@"%zd",maxLength];
 }
 -(void)textFiledEditChangedToSubLength:(NSNotification*)obj{
     JTextField *textField = (JTextField *)obj.object;
@@ -496,7 +496,7 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
     return backBarButtonItem;
 }
 + (UIBarButtonItem *)funj_getNavPublicButton:(id)target title:(NSString*)title action:(NSString*)action image:(NSString*)image :(clickCallBack) setButton {
-    UIButton *backButton=[UIButton funj_getButtons:CGRectMake(0, 0, 44, KNavigationBarHeight) :title :JTextFCMake([UIFont systemFontOfSize:14] , UIColorFromRGB(0x333333)) :image?@[image]:nil :target :action :0 :nil];
+    UIButton *backButton=[UIButton funj_getButtons:CGRectMake(0, 0, 44, KNavigationBarHeight) :title :JTextFCMake([UIFont systemFontOfSize:14] , UIColorFromARGB(0x333333,1)) :image?@[image]:nil :target :action :0 :nil];
     if(setButton)setButton(backButton);
     UIBarButtonItem* backBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:backButton];
     return backBarButtonItem;
@@ -602,7 +602,7 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
 
 +(UIImageView*)funj_getLineImageView:(CGRect)frame{
     UIImageView *lineView=[self funj_getImageView:frame image:nil];
-    lineView.backgroundColor=UIColorFromRGB(0xE1E1E1);
+    lineView.backgroundColor=UIColorFromARGB(0xE1E1E1,1);
     return lineView;
 }
 +(UIImageView*)funj_getBlackAlphaView:(CGRect)frame{

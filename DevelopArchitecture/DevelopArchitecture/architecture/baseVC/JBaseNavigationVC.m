@@ -31,11 +31,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
  
-     //navigation  增加右滑动返回手势
-    if(!IS_IPAD){
-        self.interactivePopGestureRecognizer.delegate = self;
-        self.delegate=self;
-    }
+    //navigation  增加右滑动返回手势
+    self.interactivePopGestureRecognizer.delegate = self;
+    self.delegate=self;
 
     UINavigationBar *bar = [UINavigationBar appearance];
     _m_barBottomLine =[UIImageView funj_getImageView:CGRectMake(0, bar.height, bar.width, 1) bgColor:COLOR_BLUE];
@@ -108,7 +106,7 @@
 - (void)navigationController:(UINavigationController *)navigationController
        didShowViewController:(JBaseViewController *)viewController
                     animated:(BOOL)animated{
-    if ([viewController isKindOfClass:[JBaseViewController class]]  && viewController.m_currentPushIsNeedinteractivePopGestureRecognizer && !IS_IPAD) {
+    if ([viewController isKindOfClass:[JBaseViewController class]]  && viewController.m_currentPushIsNeedinteractivePopGestureRecognizer) {
         if (viewController == navigationController.viewControllers[0]){
             navigationController.interactivePopGestureRecognizer.enabled = NO;
         }else{

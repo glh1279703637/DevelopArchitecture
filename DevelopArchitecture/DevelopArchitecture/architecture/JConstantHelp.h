@@ -14,10 +14,8 @@
 //判断是否为iPad
 #define IS_IPAD ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 
-#define NowVersionCode [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
-#define XcodeAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
-
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000)>>16))/255.0 green:((float)((rgbValue & 0xFF00)>>8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define kappVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+#define kappBuildCode [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
 #define UIColorFromARGB(rgbValue,alphaValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000)>>16))/255.0 green:((float)((rgbValue & 0xFF00)>>8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:alphaValue]
 
@@ -27,6 +25,12 @@
 #define LocalStr(x) NSLocalizedString((x), nil)
 #define LocalStrx(x,y) [NSString stringWithFormat:@"%@%@",NSLocalizedString((x), nil),y]
 #define LocalStry(x,y) [NSString stringWithFormat:@"%@%@",x,NSLocalizedString((y), nil)]
+//对参数进行base64加密过
+#define LocalStre(x) ({\
+    NSString*name = NSLocalizedString((x), nil);\
+    NSString*result =[JDESBase64 funj_decryptionFromBase64:name :@"DevelopArchitecture"];\
+    (result);\
+})
 
 #define KSafeAreaInsets ({\
    UIEdgeInsets e = UIEdgeInsetsZero;\
@@ -83,18 +87,18 @@
 
 //常用颜色 v2
 #define COLOR_CREAR            [UIColor clearColor]//无色
-#define COLOR_BLUE             UIColorFromRGB(0x3899ff)//状态栏的颜色 蓝色 /
-#define COLOR_WHITE            UIColorFromRGB(0xffffff)//白色
-#define COLOR_ORANGE           UIColorFromRGB(0xff8338)//橘色 /
-#define COLOR_SHALLOW_ORANGE           UIColorFromRGB(0xFCAA4B)//浅橘色 /
-#define COLOR_GREEN            UIColorFromRGB(0x33c764)//绿色 /
-#define COLOR_TEXT_BLACK       UIColorFromRGB(0x333333)//字体黑色 /
-#define COLOR_TEXT_GRAY        UIColorFromRGB(0x999999)//字体灰色 /
-#define COLOR_BG_LIGHTGRAY     UIColorFromRGB(0xf0f1f5)//灰色背景色 /
-#define COLOR_BG_SHALLOW_LIGHTGRAY   UIColorFromRGB(0xf7f7f8)//灰色浅背景色 /
-#define COLOR_RED UIColorFromRGB(0xf04d4d) //红色
+#define COLOR_BLUE             UIColorFromARGB(0x3899ff,1)//状态栏的颜色 蓝色 /
+#define COLOR_WHITE            UIColorFromARGB(0xffffff,1)//白色
+#define COLOR_ORANGE           UIColorFromARGB(0xff8338,1)//橘色 /
+#define COLOR_SHALLOW_ORANGE           UIColorFromARGB(0xFCAA4B,1)//浅橘色 /
+#define COLOR_GREEN            UIColorFromARGB(0x33c764,1)//绿色 /
+#define COLOR_TEXT_BLACK       UIColorFromARGB(0x333333,1)//字体黑色 /
+#define COLOR_TEXT_GRAY        UIColorFromARGB(0x999999,1)//字体灰色 /
+#define COLOR_BG_LIGHTGRAY     UIColorFromARGB(0xf0f1f5,1)//灰色背景色 /
+#define COLOR_BG_SHALLOW_LIGHTGRAY   UIColorFromARGB(0xf7f7f8,1)//灰色浅背景色 /
+#define COLOR_RED UIColorFromARGB(0xf04d4d,1) //红色
 
-#define COLOR_LINE_GRAY        UIColorFromRGB(0xe1e1e1)//线色 /
+#define COLOR_LINE_GRAY        UIColorFromARGB(0xe1e1e1,1)//线色 /
 
 
 //常用字号大小

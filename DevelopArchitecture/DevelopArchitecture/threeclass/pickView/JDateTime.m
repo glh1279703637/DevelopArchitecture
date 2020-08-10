@@ -134,7 +134,7 @@
     NSArray *nameArr = [JDateTime funj_getWeek:NO];
     NSInteger weekDay[7]={7,1,2,3,4,5,6};
     
-    return @{@"repeatDay":[NSString stringWithFormat:@"%lu",weekDay[[comps weekday]-1]],@"repeatDayName":nameArr[[comps weekday]-1]};
+    return @{@"repeatDay":[NSString stringWithFormat:@"%zd",weekDay[[comps weekday]-1]],@"repeatDayName":nameArr[[comps weekday]-1]};
 }
 +(NSArray*)funj_getWeek:(BOOL)sort{
     if(sort)return @[@"一",@"二",@"三",@"四",@"五",@"六",@"日"];

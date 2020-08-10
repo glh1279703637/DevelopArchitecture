@@ -199,7 +199,7 @@
         [data setObject:[JAppUtility funj_getDateTime:@"yyyyMMdd"] forKey:@"date"];
         NSInteger iscan =[[dic objectForKey:@"countPay"] integerValue];
         iscan ++;
-        [data setObject:[NSString stringWithFormat:@"%lu",iscan] forKey:@"countPay"];
+        [data setObject:[NSString stringWithFormat:@"%zd",iscan] forKey:@"countPay"];
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:userId];
     }
     [[NSUserDefaults standardUserDefaults]synchronize];

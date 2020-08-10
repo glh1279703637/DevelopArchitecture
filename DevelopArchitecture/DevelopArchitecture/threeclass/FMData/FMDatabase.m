@@ -461,7 +461,7 @@
                             arg = [NSNumber numberWithLong:va_arg(args, long)];
                         }
                         else if (next == 'u') {
-                            //%lu
+                            //%zd
                             arg = [NSNumber numberWithUnsignedLong:va_arg(args, unsigned long)];
                         }
                         else {
