@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0042DDE4239613AC00FC6A08 /* JMoreTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0042DDE2239613AC00FC6A08 /* JMoreTipView.m */; };
+		006C21EA24EF7D2D00820D0F /* JNetworkPingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 006C21E524EF7D2D00820D0F /* JNetworkPingManager.m */; };
+		006C21EB24EF7D2D00820D0F /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 006C21E824EF7D2D00820D0F /* AFNetworkReachabilityManager.m */; };
 		00728F7D237550CD0094EDD7 /* JRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00728F7A237550CD0094EDD7 /* JRefreshView.m */; };
 		00728F81237555700094EDD7 /* reloading_fresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00728F802375556F0094EDD7 /* reloading_fresh@2x.png */; };
 		00CC065523D009D600D5C766 /* JWhenTappedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CC065423D009D600D5C766 /* JWhenTappedView.m */; };
@@ -36,7 +38,6 @@
 		00DB81862341A863005E15EA /* JMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB809A2341A862005E15EA /* JMainViewController.m */; };
 		00DB81872341A863005E15EA /* JFileManageHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB80A12341A862005E15EA /* JFileManageHelp.m */; };
 		00DB81882341A863005E15EA /* JHttpReqHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB80A22341A862005E15EA /* JHttpReqHelp.m */; };
-		00DB81892341A863005E15EA /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB80A32341A862005E15EA /* AFNetworkReachabilityManager.m */; };
 		00DB818A2341A863005E15EA /* TWRDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB80A62341A862005E15EA /* TWRDownloadManager.m */; };
 		00DB818B2341A863005E15EA /* TWRDownloadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB80A72341A862005E15EA /* TWRDownloadObject.m */; };
 		00DB818C2341A863005E15EA /* XRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB80AB2341A862005E15EA /* XRefresh.m */; };
@@ -140,6 +141,10 @@
 /* Begin PBXFileReference section */
 		0042DDE2239613AC00FC6A08 /* JMoreTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMoreTipView.m; sourceTree = "<group>"; };
 		0042DDE3239613AC00FC6A08 /* JMoreTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMoreTipView.h; sourceTree = "<group>"; };
+		006C21E424EF7D2D00820D0F /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		006C21E524EF7D2D00820D0F /* JNetworkPingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNetworkPingManager.m; sourceTree = "<group>"; };
+		006C21E724EF7D2D00820D0F /* JNetworkPingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNetworkPingManager.h; sourceTree = "<group>"; };
+		006C21E824EF7D2D00820D0F /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
 		00728F7A237550CD0094EDD7 /* JRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRefreshView.m; sourceTree = "<group>"; };
 		00728F7B237550CD0094EDD7 /* JRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRefreshView.h; sourceTree = "<group>"; };
 		00728F802375556F0094EDD7 /* reloading_fresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reloading_fresh@2x.png"; sourceTree = "<group>"; };
@@ -192,11 +197,9 @@
 		00DB80992341A862005E15EA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		00DB809A2341A862005E15EA /* JMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMainViewController.m; sourceTree = "<group>"; };
 		00DB809B2341A862005E15EA /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		00DB809F2341A862005E15EA /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
 		00DB80A02341A862005E15EA /* JHttpReqHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHttpReqHelp.h; sourceTree = "<group>"; };
 		00DB80A12341A862005E15EA /* JFileManageHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFileManageHelp.m; sourceTree = "<group>"; };
 		00DB80A22341A862005E15EA /* JHttpReqHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHttpReqHelp.m; sourceTree = "<group>"; };
-		00DB80A32341A862005E15EA /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
 		00DB80A52341A862005E15EA /* TWRDownloadObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRDownloadObject.h; sourceTree = "<group>"; };
 		00DB80A62341A862005E15EA /* TWRDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRDownloadManager.m; sourceTree = "<group>"; };
 		00DB80A72341A862005E15EA /* TWRDownloadObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRDownloadObject.m; sourceTree = "<group>"; };
@@ -400,6 +403,17 @@
 			path = TipInfo;
 			sourceTree = "<group>";
 		};
+		006C21E324EF7D2D00820D0F /* NetworkToolKit */ = {
+			isa = PBXGroup;
+			children = (
+				006C21E424EF7D2D00820D0F /* AFNetworkReachabilityManager.h */,
+				006C21E824EF7D2D00820D0F /* AFNetworkReachabilityManager.m */,
+				006C21E724EF7D2D00820D0F /* JNetworkPingManager.h */,
+				006C21E524EF7D2D00820D0F /* JNetworkPingManager.m */,
+			);
+			path = NetworkToolKit;
+			sourceTree = "<group>";
+		};
 		00728F78237550CD0094EDD7 /* Refreshview */ = {
 			isa = PBXGroup;
 			children = (
@@ -586,12 +600,11 @@
 		00DB809E2341A862005E15EA /* RequestHttpData */ = {
 			isa = PBXGroup;
 			children = (
-				00DB809F2341A862005E15EA /* AFNetworkReachabilityManager.h */,
-				00DB80A32341A862005E15EA /* AFNetworkReachabilityManager.m */,
 				00DB80A92341A862005E15EA /* JFileManageHelp.h */,
 				00DB80A12341A862005E15EA /* JFileManageHelp.m */,
 				00DB80A02341A862005E15EA /* JHttpReqHelp.h */,
 				00DB80A22341A862005E15EA /* JHttpReqHelp.m */,
+				006C21E324EF7D2D00820D0F /* NetworkToolKit */,
 				00DB80A42341A862005E15EA /* TWRDownloadManager */,
 			);
 			path = RequestHttpData;
@@ -1103,6 +1116,7 @@
 				00DB81B72341A863005E15EA /* UIImage+MemoryCacheCost.m in Sources */,
 				00DB81872341A863005E15EA /* JFileManageHelp.m in Sources */,
 				00DB81C62341A863005E15EA /* UIView+MemoryLeak.m in Sources */,
+				006C21EB24EF7D2D00820D0F /* AFNetworkReachabilityManager.m in Sources */,
 				00DB81A22341A863005E15EA /* SDImageCoder.m in Sources */,
 				00DB81E32341A863005E15EA /* JPhotoPickerVC.m in Sources */,
 				00DB81AE2341A863005E15EA /* SDImageIOCoder.m in Sources */,
@@ -1116,7 +1130,7 @@
 				00DB81CC2341A863005E15EA /* UIViewController+MemoryLeak.m in Sources */,
 				00DB81BF2341A863005E15EA /* UIImage+Metadata.m in Sources */,
 				00DB81AF2341A863005E15EA /* SDDiskCache.m in Sources */,
-				00DB81892341A863005E15EA /* AFNetworkReachabilityManager.m in Sources */,
+				006C21EA24EF7D2D00820D0F /* JNetworkPingManager.m in Sources */,
 				00DB81A52341A863005E15EA /* SDImageLoader.m in Sources */,
 				00DB81842341A863005E15EA /* SceneDelegate.m in Sources */,
 				00DB81772341A863005E15EA /* JBaseView.m in Sources */,

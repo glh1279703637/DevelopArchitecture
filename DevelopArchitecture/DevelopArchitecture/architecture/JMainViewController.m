@@ -14,6 +14,7 @@
 #import "JPhotosPreviewsVC.h"
 #import <AuthenticationServices/AuthenticationServices.h>
 #import <UserNotifications/UserNotifications.h>
+#import "JNetworkPingManager.h"
 
 static JMainViewController *mainVC=nil;
 @interface JMainViewController ()
@@ -103,6 +104,8 @@ static JMainViewController *mainVC=nil;
 //    [self.m_tableView funj_addFooterWithCallback:^(NSInteger page) {
 //
 //    }];
+    
+//    [[JNetworkPingManager share] funj_startPing:1];
 }
 @end
 
