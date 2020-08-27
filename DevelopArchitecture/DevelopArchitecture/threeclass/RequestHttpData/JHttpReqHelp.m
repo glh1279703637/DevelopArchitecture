@@ -438,13 +438,13 @@ static NSMutableDictionary *saveRequestDic = nil;
         if(![object isKindOfClass:[NSNull class]]){
             if([object isKindOfClass:[NSDictionary class]]){
                 NSMutableDictionary *saveData1 =[self funj_createNewSolver:object];
-                [saveData setObject:saveData1 forKey:key];
+                if(saveData1)[saveData setObject:saveData1 forKey:key];
             }else if([object isKindOfClass:[NSArray class]]){
                 NSMutableArray*dataArr =[[NSMutableArray alloc]init];
                 NSArray *arr = (NSArray*)object;
                 for(NSInteger i =0;i<[arr count];i++){
                     NSMutableDictionary *saveData1 =[self funj_createNewSolver:arr[i]];
-                    [dataArr addObject:saveData1];
+                    if(saveData1)[dataArr addObject:saveData1];
                 }
                 [saveData setObject:dataArr forKey:key];
             }else{
