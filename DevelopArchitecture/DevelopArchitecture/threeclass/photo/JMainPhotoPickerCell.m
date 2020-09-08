@@ -50,12 +50,8 @@
     JPhotoPickerModel *m_dataModel;
 }
 -(void)funj_addBaseCollectionView{
-    CGFloat width =  0;
-    if(IS_IPAD){
-        width = (kphotoPickerViewWidth-5*5)/4;
-    }else{
-        width = (kphotoPickerViewWidth-4*5)/3;
-    }
+    CGFloat width =  self.width;
+
     coverImageView =[UIImageView funj_getImageView:CGRectMake(0,0,width, kImageViewHeight(width)) image:@""];
     coverImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:coverImageView];

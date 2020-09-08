@@ -11,7 +11,7 @@
 #import "JRefreshView.h"
 #import "JBaseTableViewCell.h"
 
-#define cellIndentifier @"cell"
+#define kCellIndentifier @"cellIndentifier"
 
 typedef void (^reloadToSolveDataCallback)(BOOL isHead,BOOL isSearch, NSInteger page);
 
@@ -58,7 +58,7 @@ UITableView*tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, KWidth,
     tableView.delegate=delegateVC;\
     tableView.dataSource=delegateVC;\
     tableView.separatorStyle=UITableViewCellSeparatorStyleNone;\
-    [tableView registerClass:[JBaseTableViewCell class] forCellReuseIdentifier:cellIndentifier];\
+    [tableView registerClass:[JBaseTableViewCell class] forCellReuseIdentifier:kCellIndentifier];\
     if (@available(iOS 11.0, *)) {\
        tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;\
     }\

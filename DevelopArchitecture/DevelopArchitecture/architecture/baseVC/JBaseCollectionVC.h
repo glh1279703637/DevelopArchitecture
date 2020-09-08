@@ -30,7 +30,7 @@ typedef void (^reloadToCollectionSolveDataCallback)(BOOL isHead,NSInteger page);
     collectionView.dataSource=delegateVC;\
                                        \
     collectionView.backgroundColor=[UIColor clearColor];\
-    [collectionView registerClass:[JBaseCollectionViewCell class] forCellWithReuseIdentifier:cellIndentifier];\
+    [collectionView registerClass:[JBaseCollectionViewCell class] forCellWithReuseIdentifier:kCellIndentifier];\
     [collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headsection"];\
     [collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footsection"];\
     collectionView.alwaysBounceVertical= YES; \

@@ -18,7 +18,7 @@
 +(void)funj_getPopoverPhotoPickerVC:(JBaseViewController*)controller :(setPopverBaseVC)callback{
     if(![JHttpReqHelp funj_checkNetworkType])return  ;
     JMainPhotoPickerVC *viewController=[[JMainPhotoPickerVC alloc]init];
-    viewController.m_delegate = (id<JMainPhotoPickerVCDelegate> )controller;
+    viewController.m_delegate = controller;
     JBaseNavigationVC *nav =[[JBaseNavigationVC alloc]initWithRootViewController:viewController];
     
     int setPrentView = 0;
@@ -34,7 +34,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.m_tableView registerClass:[JMainPhotoPickerCell class] forCellReuseIdentifier:cellIndentifier];
+    [self.m_tableView registerClass:[JMainPhotoPickerCell class] forCellReuseIdentifier:kCellIndentifier];
     [JPhotoPickerInterface funj_addConfigSubView:self];
      if (![JPhotoPickerInterface funj_authorizationStatusAuthorized]) {
          [NSTimer scheduledTimerWithTimeInterval:1 target:self  selector:@selector(funj_checkIsAuthorize:) userInfo:nil  repeats:YES];
@@ -94,7 +94,7 @@
 }
 //继承的此类的，要覆盖这个方法
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JMainPhotoPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+    JMainPhotoPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIndentifier];
     [cell funj_setBaseTableCellWithData:self.m_dataArr[indexPath.row]];
     return cell;
 }

@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #define kphotoPickerViewWidth (IS_IPAD ? KWidth-40 : KWidth)
-#define kphotoPickerViewHeight (KHeight-KNavigationBarHeight-30)
+#define kphotoPickerViewHeight (IS_IPAD ? KHeight-KNavigationBarHeight-30 : KHeight-KNavigationBarHeight-30)
 
 typedef void (^selectPhotoCallback)(NSArray*imageOrVideoArr,BOOL isVideo);
 @interface JPhotosConfig :NSObject
@@ -48,7 +48,7 @@ typedef void (^selectPhotoCallback)(NSArray*imageOrVideoArr,BOOL isVideo);
 
 @property(nonatomic,assign)NSInteger indexCount;
 //初始化照片模型
-+ (instancetype)modelWithAsset:(PHAsset*)asset type:(BOOL)isVideo timeLength:(nullable NSString *)timeLength;
++ (instancetype)modelWithAsset:(PHAsset*)asset type:(BOOL)isVideo timeLength:(NSString *)timeLength;
 
 @end
 

@@ -60,6 +60,10 @@
     return NO;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return NO;
+}
+
 - (void)initView {
     self.showImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight)];
     self.showImgView.contentMode = UIViewContentModeScaleAspectFit;
@@ -224,7 +228,9 @@
         CGRect newFrame = self.showImgView.frame;
         newFrame = [self handleScaleOverflow:newFrame];
         newFrame = [self handleBorderOverflow:newFrame];
+        LRWeakSelf(self);
         [UIView animateWithDuration:BOUNDCE_DURATION animations:^{
+            LRStrongSelf(self);
             self.showImgView.frame = newFrame;
             self.latestFrame = newFrame;
         }];

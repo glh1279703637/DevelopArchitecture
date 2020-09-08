@@ -22,7 +22,7 @@
      UICollectionViewFlowLayout*flowfayout =(UICollectionViewFlowLayout*)self.m_collectionView.collectionViewLayout;
     flowfayout.minimumLineSpacing=5;
     flowfayout.minimumInteritemSpacing=5;
-    [self.m_collectionView registerClass:[JPhotoPickerCell class] forCellWithReuseIdentifier:cellIndentifier];
+    [self.m_collectionView registerClass:[JPhotoPickerCell class] forCellWithReuseIdentifier:kCellIndentifier];
     [self funj_sortResultImagesData];
     [self funj_addSubBottomBgView];
     
@@ -73,7 +73,7 @@
 
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-     JPhotoPickerCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellIndentifier forIndexPath:indexPath];
+     JPhotoPickerCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:kCellIndentifier forIndexPath:indexPath];
     
      [cell funj_setBaseCollectionData:self.m_dataArr[indexPath.row]];
     LRWeakSelf(self);
@@ -111,9 +111,9 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath  {
     CGFloat width = 0;
     if(IS_IPAD){
-        width = (kphotoPickerViewWidth-5*5)/4;
+        width = (collectionView.width-5*5)/4;
     }else{
-        width = (kphotoPickerViewWidth-4*5)/3;
+        width = (collectionView.width-4*5)/3;
     }
     return CGSizeMake(width, kImageViewHeight(width));
 }
@@ -174,10 +174,8 @@
 }
 
 -(void)funj_selectFinishTo:(UIButton*)sender{
-    if(self.m_dataArray.count<=0)return;
-
     __block NSMutableDictionary *saveImageDic =[[NSMutableDictionary alloc]init];
-    [self funj_showProgressView:nil];
+    if(self.m_dataArray.count)[self funj_showProgressView:nil];
     LRWeakSelf(self);
     for(NSInteger i =0;i<self.m_dataArray.count;i++){
         JPhotoPickerModel*model =self.m_dataArray[i];
@@ -207,7 +205,7 @@
     }else{
         if(!self.m_isOrigalImage){
             //得到图片的data
-            NSData* data = [JAppUtility funj_compressImageWithMaxLength:image :-1];
+            NSData* data =[JAppUtility funj_compressImageWithMaxLength:image :-1];
             image =[UIImage imageWithData:data];
         }
          if(image)[saveImageDic setObject:image forKey:@(index)];

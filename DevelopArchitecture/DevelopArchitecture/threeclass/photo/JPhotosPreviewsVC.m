@@ -26,7 +26,7 @@ maddProperyValue(m_selectDataArr, NSMutableArray)
     flowfayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     flowfayout.minimumInteritemSpacing=0;
     self.m_collectionView.pagingEnabled = YES;
-    [self.m_collectionView registerClass:[JPhotosPreviewsCell class] forCellWithReuseIdentifier:cellIndentifier];
+    [self.m_collectionView registerClass:[JPhotosPreviewsCell class] forCellWithReuseIdentifier:kCellIndentifier];
     [self funj_addSubBottomBgView];
     self.m_collectionView.alwaysBounceVertical = NO;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -68,7 +68,7 @@ maddProperyValue(m_selectDataArr, NSMutableArray)
   return [self.m_dataArray count];
 }
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-     JPhotosPreviewsCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellIndentifier forIndexPath:indexPath];
+     JPhotosPreviewsCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:kCellIndentifier forIndexPath:indexPath];
     self.m_defaultImageView.hidden = YES;
     if(self.m_scrollIndex == -1 || indexPath.row == self.m_scrollIndex){
         self.m_scrollIndex = -1;
@@ -82,13 +82,10 @@ maddProperyValue(m_selectDataArr, NSMutableArray)
     }
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath  {
-    return CGSizeMake(kphotoPickerViewWidth,self.m_collectionView.height);
+    return CGSizeMake(collectionView.width,self.m_collectionView.height);
 }
 
-- (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
-    return NO;
-}
--(BOOL)presentationControllerShouldDismiss:(UIPresentationController *)presentationController{
+- (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController{
     return NO;
 }
 -(void)viewDidLayoutSubviews{

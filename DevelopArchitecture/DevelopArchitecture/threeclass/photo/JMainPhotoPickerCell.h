@@ -10,13 +10,13 @@
 #import "JBaseCollectionViewCell.h"
 @class  JPhotoPickerModel;
 NS_ASSUME_NONNULL_BEGIN
-typedef void (^selectItemCallback)(UIButton*sender ,JPhotoPickerModel*model);
+typedef void (^selectPhotoItemCallback)(UIButton*sender ,JPhotoPickerModel*model);
 
 @interface JMainPhotoPickerCell : JBaseTableViewCell
 
 @end
 @interface JPhotoPickerCell : JBaseCollectionViewCell
-@property(nonatomic,copy)selectItemCallback m_selectItemCallback;
+@property(nonatomic,copy)selectPhotoItemCallback m_selectItemCallback;
 -(void)funj_reloadCountIndex:(NSInteger)index;
 @end
 NS_ASSUME_NONNULL_END

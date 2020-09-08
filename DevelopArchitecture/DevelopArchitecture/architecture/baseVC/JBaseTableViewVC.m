@@ -164,7 +164,7 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
 }
 //继承的此类的，要覆盖这个方法
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIndentifier];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

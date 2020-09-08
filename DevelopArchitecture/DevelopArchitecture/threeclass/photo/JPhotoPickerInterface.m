@@ -25,7 +25,7 @@ static JPhotosConfig *config = nil;
 
 @end
 @implementation JPhotoPickerModel
-+ (instancetype)modelWithAsset:(PHAsset*)asset type:(BOOL)isVideo timeLength:(nullable NSString *)timeLength {
++ (instancetype)modelWithAsset:(PHAsset*)asset type:(BOOL)isVideo timeLength:(NSString *)timeLength {
     JPhotoPickerModel *model = [[JPhotoPickerModel alloc] init];
     model.asset = asset;
     model.isSelected = NO;
@@ -117,32 +117,17 @@ static JPhotosConfig *config = nil;
     __block NSInteger dataLength = 0;
     [photoArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         JPhotoPickerModel *model = photoArray[idx];
-#if TARGET_OS_MACCATALYST
-            [[PHImageManager defaultManager]requestImageDataAndOrientationForAsset:model.asset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, CGImagePropertyOrientation orientation, NSDictionary * _Nullable info) {
-                 if (!model.currentIsVideo) {
-                     dataLength += imageData.length;
-                 }
-                 if (idx >= photoArray.count - 1) {
-                     NSString *bytes = [self funj_getBytesFromDataLength:dataLength];
-                     if (completion) {
-                         completion(bytes);
-                     }
-                 }
-             }];
-#else
-            [[PHImageManager defaultManager] requestImageDataForAsset:model.asset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-                if (!model.currentIsVideo) {
-                    dataLength += imageData.length;
+        [[PHImageManager defaultManager] requestImageDataForAsset:model.asset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+            if (!model.currentIsVideo) {
+                dataLength += imageData.length;
+            }
+            if (idx >= photoArray.count - 1) {
+                NSString *bytes = [self funj_getBytesFromDataLength:dataLength];
+                if (completion) {
+                    completion(bytes);
                 }
-                if (idx >= photoArray.count - 1) {
-                    NSString *bytes = [self funj_getBytesFromDataLength:dataLength];
-                    if (completion) {
-                        completion(bytes);
-                    }
-                }
-            }];
-#endif
-        
+            }
+        }];
     }];
 }
 
@@ -176,7 +161,7 @@ static JPhotosConfig *config = nil;
 }
 +(void)funj_addConfigSubView:(UIViewController*)vc{
     UIButton *backBt =[[vc.navigationItem.leftBarButtonItems firstObject] customView];
-    [backBt setImage:[UIImage imageNamed:@"navi_back"] forState:UIControlStateNormal];
+    [backBt setImage:[UIImage imageNamed:@"backBt2"] forState:UIControlStateNormal];
     [backBt funj_updateContentImageLayout:kLEFT_CONTENTIMAGE a:JAlignMake(0, 0, 0)];
 }
 

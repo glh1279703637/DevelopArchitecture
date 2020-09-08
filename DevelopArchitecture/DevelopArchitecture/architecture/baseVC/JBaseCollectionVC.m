@@ -39,7 +39,7 @@
 }
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    JBaseCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellIndentifier forIndexPath:indexPath];
+    JBaseCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:kCellIndentifier forIndexPath:indexPath];
     
     cell.backgroundColor = [UIColor colorWithRed:((255-10 * indexPath.row) / 255.0) green:((255-20 * indexPath.row)/255.0) blue:((30 * indexPath.row)/255.0) alpha:1.0f];
     return cell;
