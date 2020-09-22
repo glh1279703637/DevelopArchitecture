@@ -19,7 +19,7 @@
     headImageView.layer.masksToBounds = YES;
     headImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:headImageView];
-    titleLabel =[UILabel funj_getLabel:CGRectMake(headImageView.right+10, headImageView.top, kphotoPickerViewWidth-headImageView.right-40, headImageView.height) :JTextFCMake(PUBLIC_FONT_SIZE15, COLOR_TEXT_BLACK)];
+    titleLabel =[UILabel funj_getLabel:CGRectMake(headImageView.right+10, headImageView.top, kphotoPickerViewWidth-headImageView.right-40, headImageView.height) :JTextFCMake(PUBLIC_FONT_SIZE15, COLOR_TEXT_BLACK_DARK)];
     [self addSubview:titleLabel];
     
     UIImageView *line =[UIImageView funj_getLineImageView:CGRectMake(headImageView.right+10, headImageView.bottom+9, kphotoPickerViewWidth-30-headImageView.right-10, 1)];
@@ -27,7 +27,7 @@
 }
 -(void)funj_setBaseTableCellWithData:(JPhotosDataModel *)data{
     m_dataModel = data;
-    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:data.name attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:[UIColor blackColor]}];
+    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:data.name attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:COLOR_TEXT_BLACK_DARK}];
     NSAttributedString *countString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"  (%zd)", data.count] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
     [nameString appendAttributedString:countString];
     titleLabel.attributedText = nameString;

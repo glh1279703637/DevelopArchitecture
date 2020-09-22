@@ -66,9 +66,9 @@ typedef void (^clickCallBack)(UIButton*button);
 @end
 
 // UIAlertController
-@interface UIAlertController(Nonrotating)
-- (BOOL)shouldAutorotate;
+@interface JAlertController : UIAlertController
 @end
+
 @interface JTextField : UITextField
 @property(nonatomic,copy)NSString* textFieldMaxLengthKey;
 @property(nonatomic,copy)NSString* textFieldInsertLengthKey;

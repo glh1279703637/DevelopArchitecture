@@ -53,7 +53,7 @@ maddProperyValue(m_mbProgressHUD, JProgressHUD)
         }];
         self.navigationItem.leftBarButtonItems = @[backBt];
     }
-    self.view.backgroundColor=[UIColor whiteColor];
+    self.view.backgroundColor=COLOR_WHITE_DARK;
     [self setNeedsStatusBarAppearanceUpdate];
     //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(funj_keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 

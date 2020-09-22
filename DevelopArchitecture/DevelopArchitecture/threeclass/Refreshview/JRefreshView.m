@@ -39,7 +39,7 @@ static char *refreshPageDic = "jrefreshPageDic";
 }
 -(void)setM_isHead:(BOOL)m_isHead{
     _m_isHead = m_isHead;
-    _m_arrowLabel =[UILabel funj_getLabel:CGRectMake(_m_arrowImageView.right+10, _m_arrowImageView.top, 0, _m_arrowImageView.height) :JTextFCMake(PUBLIC_FONT_SIZE12, COLOR_TEXT_GRAY)];
+    _m_arrowLabel =[UILabel funj_getLabel:CGRectMake(_m_arrowImageView.right+10, _m_arrowImageView.top, 0, _m_arrowImageView.height) :JTextFCMake(PUBLIC_FONT_SIZE12, COLOR_TEXT_GRAY_DARK)];
     [self addSubview:self.m_arrowLabel];
 }
 -(void)setM_state:(JRefreshState)m_state{

@@ -326,6 +326,8 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
         self.selected = NO;
     });
 }
+-(void)funj_addNormalDarkImage:(NSString*)image{}
+
 //图片，文本 排列方式
 -(void)funj_updateContentImageLayout:(ButtonContentImageLayout)layout s:(CGFloat)spacing{
     [self funj_updateContentImageLayout:layout a:JAlignMake(0, spacing , 0)];
@@ -606,8 +608,8 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
     return lineView;
 }
 +(UIImageView*)funj_getBlackAlphaView:(CGRect)frame{
-    UIImageView *lineView=[self funj_getImageView:frame bgColor:COLOR_TEXT_BLACK];
-    lineView.alpha = 0.5;
+    UIImageView *lineView=[self funj_getImageView:frame bgColor:COLOR_TEXT_BLACK_DARK];
+    lineView.alpha = 0.3;
     lineView.userInteractionEnabled = YES;
     return lineView;
 }
@@ -658,7 +660,8 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
     
     if(configCallback)configCallback(config);
     WKWebView* webView=[[WKWebView alloc]initWithFrame:frame configuration:config];
-    //webView.opaque = NO; //不设置这个值 页面背景始终是白色 设置webview clearColor时使用
+    webView.opaque = NO; //不设置这个值 页面背景始终是白色 设置webview clearColor时使用
+    webView.backgroundColor = COLOR_WHITE_DARK;
     webView.navigationDelegate = delegate;
     webView.scrollView.delegate = delegate;
     webView.scrollView.showsVerticalScrollIndicator = NO;

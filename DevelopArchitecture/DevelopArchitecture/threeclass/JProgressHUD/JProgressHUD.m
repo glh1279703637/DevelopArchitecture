@@ -121,6 +121,8 @@ static JMProgressHUD *mprogressHUD =nil;
 }
 -(void)funj_addblackView{
     _m_blackAlphaView =[UIImageView funj_getBlackAlphaView:CGRectZero];
+    _m_blackAlphaView.backgroundColor = COLOR_TEXT_BLACK;
+    _m_blackAlphaView.alpha = 0.7;
     [self addSubview:_m_blackAlphaView];
     [_m_blackAlphaView funj_setViewCornerLayer:JFilletMake(1, 10, COLOR_CREAR)];
 }
@@ -163,6 +165,9 @@ static JMProgressHUD *mprogressHUD =nil;
         }else{
             self.frame = CGRectMake((self.m_superView.width-100)/2, (self.m_superView.height-100)/2, 100, 100);
             self.m_activityView.top = (self.height-self.m_activityView.height)/2;
+        }
+        if(kcurrentUserInterfaceStyleModel == 2/*UIUserInterfaceStyleDark*/){
+            [self.m_activityView setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhite];
         }
         [self.m_activityView startAnimating];
         self.m_activityView.left = (self.width-self.m_activityView.width)/2;

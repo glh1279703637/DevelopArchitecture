@@ -17,10 +17,24 @@
 #define kappVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
 #define kappBuildCode [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
+//当前app 的模式 深色模式 还是浅色模式
+#define kcurrentUserInterfaceStyleModel ({ NSInteger model = 0; \
+    if(@available(iOS 12.0, *)){model = [JAppViewTools funj_getTopViewcontroller].traitCollection.userInterfaceStyle;}\
+    (model);})
+
 #define UIColorFromARGB(rgbValue,alphaValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000)>>16))/255.0 green:((float)((rgbValue & 0xFF00)>>8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:alphaValue]
 
 #define RGB(x,y,z,a) [UIColor colorWithRed:x/255.0 green:y/255.0 blue:z/255.0 alpha:a]
 #define krandomColor RGB((arc4random()%255), (arc4random()%255), (arc4random()%255), 1)
+
+#define COLOR_DARK(x,y) ({ UIColor *color= x;\
+    if(@available(iOS 13.0, *)){\
+        color= [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) { if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){return y;}else{return x;}}]; \
+    }else if(@available(iOS 12.0, *)){\
+      if(kcurrentUserInterfaceStyleModel == UIUserInterfaceStyleDark){color = y;} \
+    }(color);})
+
+
 
 #define LocalStr(x) NSLocalizedString((x), nil)
 #define LocalStrx(x,y) [NSString stringWithFormat:@"%@%@",NSLocalizedString((x), nil),y]
@@ -86,19 +100,27 @@
 #define LRStrongSelf(type)  __strong typeof(type) type = weak##type;
 
 //常用颜色 v2
-#define COLOR_CREAR            [UIColor clearColor]//无色
-#define COLOR_BLUE             UIColorFromARGB(0x3899ff,1)//状态栏的颜色 蓝色 /
-#define COLOR_WHITE            UIColorFromARGB(0xffffff,1)//白色
-#define COLOR_ORANGE           UIColorFromARGB(0xff8338,1)//橘色 /
-#define COLOR_SHALLOW_ORANGE           UIColorFromARGB(0xFCAA4B,1)//浅橘色 /
-#define COLOR_GREEN            UIColorFromARGB(0x33c764,1)//绿色 /
-#define COLOR_TEXT_BLACK       UIColorFromARGB(0x333333,1)//字体黑色 /
-#define COLOR_TEXT_GRAY        UIColorFromARGB(0x999999,1)//字体灰色 /
-#define COLOR_BG_LIGHTGRAY     UIColorFromARGB(0xf0f1f5,1)//灰色背景色 /
-#define COLOR_BG_SHALLOW_LIGHTGRAY   UIColorFromARGB(0xf7f7f8,1)//灰色浅背景色 /
-#define COLOR_RED UIColorFromARGB(0xf04d4d,1) //红色
+#define COLOR_CREAR                        [UIColor clearColor]//无色
+#define COLOR_BLUE                          UIColorFromARGB(0x3899ff,1)//状态栏的颜色 蓝色
+#define COLOR_WHITE                         UIColorFromARGB(0xffffff,1)//白色
+#define COLOR_WHITE_DARK                    COLOR_DARK(UIColorFromARGB(0xffffff,1),UIColorFromARGB(0x5a5a5a,1))//白色
+#define COLOR_ORANGE                        UIColorFromARGB(0xff8338,1)//橘色
+#define COLOR_SHALLOW_ORANGE                UIColorFromARGB(0xFCAA4B,1)//浅橘色
+#define COLOR_GREEN                         UIColorFromARGB(0x33c764,1)//绿色
+#define COLOR_TEXT_BLACK                    UIColorFromARGB(0x333333,1)//字体黑色
+#define COLOR_TEXT_BLACK_DARK               COLOR_DARK(UIColorFromARGB(0x333333,1),UIColorFromARGB(0xffffff,1))//字体黑色
+#define COLOR_TEXT_GRAY                     UIColorFromARGB(0x999999,1)//字体灰色
+#define COLOR_TEXT_GRAY_DARK                COLOR_DARK(UIColorFromARGB(0x999999,1),UIColorFromARGB(0xbcbcbc,1))//字体灰色
+#define COLOR_BG_LIGHTGRAY                  UIColorFromARGB(0xf0f1f5,1)//灰色背景色
+#define COLOR_BG_LIGHTGRAY_DARK             COLOR_DARK(UIColorFromARGB(0xf0f1f5,1),UIColorFromARGB(0x9e9e9e,1))//灰色背景色
+#define COLOR_BG_SHALLOW_LIGHTGRAY          UIColorFromARGB(0xf7f7f8,1)//灰色浅背景色
+#define COLOR_BG_SHALLOW_LIGHTGRAY_DARK     COLOR_DARK(UIColorFromARGB(0xf7f7f8,1),UIColorFromARGB(0x8a8a8a,1))//灰色浅背景色
+#define COLOR_RED                           UIColorFromARGB(0xf04d4d,1) //红色
 
-#define COLOR_LINE_GRAY        UIColorFromARGB(0xe1e1e1,1)//线色 /
+#define COLOR_BG_DARK                       COLOR_DARK(COLOR_CREAR,UIColorFromARGB(0x5a5a5a,1))//dark 深色模式
+
+#define COLOR_LINE_GRAY                     UIColorFromARGB(0xe1e1e1,1)//线色
+#define COLOR_LINE_GRAY_DARK                COLOR_DARK(UIColorFromARGB(0xe1e1e1,1),UIColorFromARGB(0x9e9e9e,1))//线色
 
 
 //常用字号大小
@@ -136,6 +158,11 @@
     _##m_dataArr =[[class alloc]init];\
 }\
 return _##m_dataArr;}
+
+#define maddShareValue(shareObj,class)  \
+   +(instancetype)share{ \
+      if(!shareObj) shareObj =[[class alloc]init];\
+      return shareObj;}
 
 
 #define addConfigSumBit(selfs,superView,left,top,width,title,cornerRadius,tag)({\

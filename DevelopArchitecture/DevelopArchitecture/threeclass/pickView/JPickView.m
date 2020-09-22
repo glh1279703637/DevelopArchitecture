@@ -34,7 +34,7 @@
           m_m_blackImageView.tag = 70;
         [self addSubview:m_m_blackImageView];
         _m_resultDic=[[NSMutableDictionary alloc]init];
-        m_bgPickView=[UIView funj_getView:CGRectZero : [UIColor whiteColor] ];
+        m_bgPickView=[UIView funj_getView:CGRectZero : COLOR_WHITE_DARK ];
         [self addSubview:m_bgPickView];m_bgPickView.tag = 71;
         [self  funj_addToolBar];
     }
@@ -90,7 +90,7 @@
     self.frame=CGRectMake(0, 0, KWidth, KHeight-KStatusBarHeight);
     CGFloat toolViewW = [UIScreen mainScreen].bounds.size.width;
     m_bgPickView.frame = CGRectMake(toolViewX, toolViewY, toolViewW, toolViewH);
-    m_bgPickView .backgroundColor = [UIColor whiteColor];
+    m_bgPickView .backgroundColor = COLOR_WHITE_DARK;
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:m_bgPickView.bounds byRoundingCorners:UIRectCornerTopRight | UIRectCornerTopLeft cornerRadii:CGSizeMake(10, 10)];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
     maskLayer.frame = m_bgPickView.bounds;
@@ -103,7 +103,7 @@
     m_contentKey = contentName;m_idKey = contentId;
 }
 -(void)funj_addToolBar{
-    UILabel *titleLabel =[UILabel funj_getLabel:CGRectMake(80, 0, KWidth-80*2, kToobarHeight) :JTextFCMakeAlign(PUBLIC_FONT_SIZE17, COLOR_TEXT_BLACK, NSTextAlignmentCenter)];
+    UILabel *titleLabel =[UILabel funj_getLabel:CGRectMake(80, 0, KWidth-80*2, kToobarHeight) :JTextFCMakeAlign(PUBLIC_FONT_SIZE17, COLOR_TEXT_BLACK_DARK, NSTextAlignmentCenter)];
     [m_bgPickView addSubview:titleLabel];titleLabel.tag =3902;
     
     UIButton *closeBt =[UIButton funj_getButtons:CGRectMake(KWidth-80, 0, 80, kToobarHeight) :nil  :JTextFCZero() :@[@"backBt2_h"] :self  :@"remove" :74 :^(UIButton *button) {
@@ -119,7 +119,7 @@
     _m_pickerView.backgroundColor=[UIColor lightGrayColor];
     _m_pickerView.delegate=self;
     _m_pickerView.dataSource=self;
-    _m_pickerView.backgroundColor=[UIColor whiteColor];
+    _m_pickerView.backgroundColor=COLOR_WHITE_DARK;
     _m_pickerView.frame=CGRectMake(0, kToobarHeight,KWidth, _m_pickerView.frame.size.height);
     [m_bgPickView addSubview:_m_pickerView];
     [_m_pickerView reloadAllComponents];

@@ -75,7 +75,7 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
     title=title?title:NSLocalizedString(@"Info",nil);
     msgtxt=(!msgtxt || [msgtxt isKindOfClass:[NSNull class]]) ?@"":msgtxt;
     
-    UIAlertController *alertController=[UIAlertController alertControllerWithTitle:title message:msgtxt preferredStyle:UIAlertControllerStyleAlert];
+    JAlertController *alertController=[JAlertController alertControllerWithTitle:title message:msgtxt preferredStyle:UIAlertControllerStyleAlert];
     LRWeakSelf(delegate);
     for(int i=0;i<[button count];i++){
         UIAlertAction *action =  [UIAlertAction actionWithTitle:button[i] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -83,7 +83,7 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
             if(callback)callback(delegate,i);
         }] ;
         if(button.count ==2){
-            if(i == 0 )[action setValue:COLOR_TEXT_GRAY forKey:@"titleTextColor"];
+            if(i == 0 )[action setValue:COLOR_TEXT_GRAY_DARK forKey:@"titleTextColor"];
             else [action setValue:COLOR_ORANGE forKey:@"titleTextColor"];
         }
         [alertController addAction:action];
@@ -97,7 +97,7 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
 }
 +(void)funj_showSheetBlock:(id)target :(UIView*)sourceView :(NSString*)title :(NSArray *)buttonArr block:(alertBlockCallback)callback{
     UIAlertControllerStyle type = sourceView ? UIAlertControllerStyleActionSheet : (IS_IPAD ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet);
-    UIAlertController *alertController=[UIAlertController alertControllerWithTitle:title message:nil preferredStyle:type];
+    JAlertController *alertController=[JAlertController alertControllerWithTitle:title message:nil preferredStyle:type];
     LRWeakSelf(target);
     for(int i=0;i<[buttonArr count];i++){
         [alertController addAction:[UIAlertAction actionWithTitle:buttonArr[i] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -183,6 +183,8 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
 @property(nonatomic,copy) clickCallBack m_clickBack;
 @property(nonatomic,assign)BOOL m_isHasObserver, m_isCanAction;
 @property(nonatomic,assign)NSTimeInterval m_upSelectTime;
+
+@property(nonatomic,strong)UIImage *m_saveNormalDarkImage,*m_saveDarkImage;
 @end
 @implementation JButton
 
@@ -218,6 +220,13 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
 -(void)funj_setBlockToButton:(NSArray*)saveBgImageOrColor :(clickCallBack)block{
     self.m_clickBack=block;
     [self setM_saveBgImageOrColor:saveBgImageOrColor];
+}
+-(void)funj_addNormalDarkImage:(NSString*)image{
+    self.m_saveNormalDarkImage = [self imageForState:UIControlStateNormal];
+    self.m_saveDarkImage =[UIImage imageNamed:image];
+    if(kcurrentUserInterfaceStyleModel == 2){
+        [self setImage:self.m_saveDarkImage forState:UIControlStateNormal];
+    }
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [super touchesBegan:touches withEvent:event];
@@ -291,6 +300,15 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
     }
     return NO;
 }
+-(void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection{
+    if(!(self.m_saveDarkImage && self.m_saveNormalDarkImage))return;
+    if(kcurrentUserInterfaceStyleModel == 2){
+        [self setImage:self.m_saveDarkImage forState:UIControlStateNormal];
+    }else{
+        [self setImage:self.m_saveNormalDarkImage forState:UIControlStateNormal];
+    }
+}
+
 -(void)dealloc{
     if(_m_isHasObserver){
         [self removeObserver:self forKeyPath:@"selected"];
@@ -299,10 +317,15 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
 @end
 
 //UIAlertController
-@implementation UIAlertController(Nonrotating)
+@implementation JAlertController
 
 - (BOOL)shouldAutorotate {
     return NO;
+}
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    self.view.backgroundColor = COLOR_WHITE_DARK;
+    [self.view funj_setViewCornerRadius:15];
 }
 @end
 @implementation JTextField
@@ -366,7 +389,7 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
         [_m_cancelButton setTitle:LocalStr(@"Cancel") forState:UIControlStateNormal];
         _m_cancelButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         [_m_cancelButton addTarget:self action:NSSelectorFromString(@"funj_searchCancelButtonClicked:") forControlEvents:UIControlEventTouchUpInside];
-        _m_cancelButton.backgroundColor = COLOR_WHITE;
+        _m_cancelButton.backgroundColor = COLOR_WHITE_DARK;
         _m_cancelButton.hidden = YES;
         [self addSubview:_m_cancelButton];
     }

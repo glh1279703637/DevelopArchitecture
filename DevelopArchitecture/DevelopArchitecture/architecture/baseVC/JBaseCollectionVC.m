@@ -52,7 +52,7 @@
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     JBaseCollectionViewCell * cell = (JBaseCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor=[UIColor whiteColor];
+    cell.backgroundColor=COLOR_WHITE_DARK;
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(0, 0);//特别注意 横向滚动时，这两个值可能相反 导致第一页空格页

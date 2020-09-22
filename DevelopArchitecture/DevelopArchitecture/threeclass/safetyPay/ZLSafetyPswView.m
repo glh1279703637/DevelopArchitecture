@@ -49,8 +49,8 @@
     }
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
-        
+        self.backgroundColor = COLOR_WHITE_DARK;
+
         [self setupWithPswTextField];
     }
     return self;

@@ -20,6 +20,7 @@
     JMainPhotoPickerVC *viewController=[[JMainPhotoPickerVC alloc]init];
     viewController.m_delegate = controller;
     JBaseNavigationVC *nav =[[JBaseNavigationVC alloc]initWithRootViewController:viewController];
+    nav.m_currentNavColor = kCURRENTISWHITENAV_TAG;
     
     int setPrentView = 0;
     if(callback)callback(viewController,&setPrentView);
@@ -77,7 +78,6 @@
          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
              LRStrongSelf(self);
              [self funj_closeLoadingProgressView];
-
              [self.m_dataArr removeAllObjects];
              [self.m_dataArr addObjectsFromArray:dataArr];
              [self.m_tableView reloadData];

@@ -42,7 +42,6 @@ static JMainViewController *mainVC=nil;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=COLOR_WHITE;
 
     UIButton *buttonBt =[UIButton funj_getButtonBlock:CGRectMake(50, 80, 80, 50) :@"点击" :JTextFCMake(PUBLIC_FONT_SIZE15, COLOR_ORANGE) :@[COLOR_BLUE] :0 :^(UIButton *button) {
 //        self.m_currentIsLoadMultPhoto = YES;

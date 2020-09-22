@@ -36,7 +36,7 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
 
 -(UIView*)m_topView{
     if(!_m_topView){
-        _m_topView =[UIView funj_getView:CGRectMake(0, 0, KWidth, 0) :[UIColor whiteColor]];
+        _m_topView =[UIView funj_getView:CGRectMake(0, 0, KWidth, 0) :COLOR_WHITE_DARK];
         [self.view addSubview: _m_topView];
         _m_topTableViewLine =[UIImageView funj_getLineImageView:CGRectMake(0, 0, KWidth, 1)];
         [_m_topView addSubview:_m_topTableViewLine];
@@ -47,7 +47,7 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
     if(!_m_searchBar){
         _m_searchBar = [[JSearchBar alloc] initWithFrame:CGRectMake(0,0,KWidth,37)];
         _m_searchBar.searchDelegate = self;
-        _m_searchBar.m_filletValue = JFilletMake(0.5, 37/2, COLOR_LINE_GRAY);
+        _m_searchBar.m_filletValue = JFilletMake(0.5, 37/2, COLOR_LINE_GRAY_DARK);
         _m_searchBar.hidden = YES;
         [_m_searchBar funj_reloadSearchState:YES :YES];
         [_m_topView addSubview:_m_searchBar];
@@ -99,7 +99,7 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
 -(void)addNoDataDefaultView{
      m_defaultImageView=[UIImageView funj_getImageView:CGRectZero image:@"uu_tableview_default_icon"];
     
-    UILabel *contentLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 200, 20) :LocalStr(@"Here is a wilderness ...Nothing left") :JTextFCMakeAlign(PUBLIC_FONT_SIZE17,COLOR_TEXT_GRAY,NSTextAlignmentCenter)];
+    UILabel *contentLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 200, 20) :LocalStr(@"Here is a wilderness ...Nothing left") :JTextFCMakeAlign(PUBLIC_FONT_SIZE17,COLOR_TEXT_GRAY_DARK,NSTextAlignmentCenter)];
     [m_defaultImageView addSubview:contentLabel];
     contentLabel.tag = 9993;
 }

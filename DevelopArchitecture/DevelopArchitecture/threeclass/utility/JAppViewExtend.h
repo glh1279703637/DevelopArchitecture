@@ -109,6 +109,7 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot);
 //图片，文本 排列方式
 -(void)funj_updateContentImageLayout:(ButtonContentImageLayout)layout s:(CGFloat)spacing;
 -(void)funj_updateContentImageLayout:(ButtonContentImageLayout)layout a:(AlignValue)align;
+-(void)funj_addNormalDarkImage:(NSString*)image;
 
 //获取button 控件
 +(UIButton*)funj_getButton:(CGRect)frame :(NSString*)title :(TextFC)textFC :(NSArray*)bgImageOrColor :(id)delegate :(NSString*)action :(NSInteger)tags;

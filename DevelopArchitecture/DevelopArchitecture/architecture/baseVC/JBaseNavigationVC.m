@@ -18,7 +18,7 @@
 
 -(id)initWithRootViewController:(JBaseViewController *)rootViewController{
     if (self = [super initWithRootViewController:rootViewController]) {
-        _m_currentNavColor = kCURRENTISBLUENAV_TAG;
+        _m_currentNavColor = kCURRENTISWHITENAV_TAG;
     }
     if([rootViewController isKindOfClass:[JBaseViewController class]]){
         if(rootViewController.m_pushOrPresentAnimateClass){
@@ -56,15 +56,15 @@
         }break;
         case kCURRENTISWHITENAV_TAG:{
             [bar setTitleTextAttributes:@{
-                                          NSForegroundColorAttributeName : COLOR_TEXT_BLACK,NSFontAttributeName:PUBLIC_FONT_BOLDSIZE20}];
-            self.navigationBar.barTintColor=COLOR_WHITE;
-            _m_barBottomLine.backgroundColor = COLOR_LINE_GRAY;
+                                          NSForegroundColorAttributeName : COLOR_TEXT_BLACK_DARK,NSFontAttributeName:PUBLIC_FONT_BOLDSIZE20}];
+            self.navigationBar.barTintColor=COLOR_WHITE_DARK;
+            _m_barBottomLine.backgroundColor = COLOR_LINE_GRAY_DARK;
         }break;
         case kCURRENTISGRAYNAV_TAG:{
-            [self.navigationBar setBackgroundImage:[JAppUtility funj_imageWithColor:COLOR_BG_LIGHTGRAY :CGSizeMake(1, 1)] forBarMetrics:UIBarMetricsDefault];
-            [self.navigationBar setShadowImage:[JAppUtility funj_imageWithColor:COLOR_BG_LIGHTGRAY  :CGSizeMake(1, 1)]];
+            [self.navigationBar setBackgroundImage:[JAppUtility funj_imageWithColor:COLOR_BG_LIGHTGRAY_DARK :CGSizeMake(1, 1)] forBarMetrics:UIBarMetricsDefault];
+            [self.navigationBar setShadowImage:[JAppUtility funj_imageWithColor:COLOR_BG_LIGHTGRAY_DARK  :CGSizeMake(1, 1)]];
             [self.navigationBar setTitleTextAttributes:@{ NSForegroundColorAttributeName : COLOR_TEXT_BLACK,NSFontAttributeName:PUBLIC_FONT_BOLDSIZE20}];
-            _m_barBottomLine.backgroundColor = COLOR_BG_LIGHTGRAY;
+            _m_barBottomLine.backgroundColor = COLOR_BG_LIGHTGRAY_DARK;
         }break;
         default:
             break;
@@ -72,8 +72,7 @@
 }
 
 
-- (BOOL)shouldAutorotate
-{
+- (BOOL)shouldAutorotate{
     return [[self.viewControllers lastObject] shouldAutorotate];
 }
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{

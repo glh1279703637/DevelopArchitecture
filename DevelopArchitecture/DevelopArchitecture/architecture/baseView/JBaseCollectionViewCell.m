@@ -11,6 +11,7 @@
 @implementation JBaseCollectionViewCell
 -(id)initWithFrame:(CGRect)frame{
     if(self=[super initWithFrame:frame]){
+        self.backgroundColor = COLOR_BG_DARK;
         [self funj_addBaseCollectionView];
     }
     return self;

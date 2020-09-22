@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface JMainPhotoPickerVC : JBaseTableViewVC
-@property(nonatomic,weak,nullable)id<JMainPhotoPickerVCDelegate> m_delegate;
-+(void)funj_getPopoverPhotoPickerVC:(JBaseViewController*)controller :(setPopverBaseVC)callback;
+@property(nonatomic,weak)id<JMainPhotoPickerVCDelegate> m_delegate;
+ +(void)funj_getPopoverPhotoPickerVC:(JBaseViewController*)controller :(setPopverBaseVC)callback;
 
 -(void)funj_reloadDefaultItems:(BOOL)isVideo :(BOOL)isMulti :(NSInteger)maxPhotos;
 @end

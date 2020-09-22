@@ -10,12 +10,8 @@
 static JPhotosConfig *config = nil;
 @implementation JPhotosConfig
 
-+(JPhotosConfig*)share{
-    if(!config){
-        config =[[JPhotosConfig alloc]init];
-    }
-    return config;
-}
+maddShareValue(config, JPhotosConfig)
+
 +(void)m_deallocPhotoConfig{
     config = nil;
 }
@@ -25,7 +21,7 @@ static JPhotosConfig *config = nil;
 
 @end
 @implementation JPhotoPickerModel
-+ (instancetype)modelWithAsset:(PHAsset*)asset type:(BOOL)isVideo timeLength:(NSString *)timeLength {
++ (instancetype)modelWithAsset:(PHAsset*)asset type:(BOOL)isVideo timeLength:(nullable NSString *)timeLength {
     JPhotoPickerModel *model = [[JPhotoPickerModel alloc] init];
     model.asset = asset;
     model.isSelected = NO;

@@ -50,7 +50,7 @@
 }
 -(UIView*)m_bgViews{
     if(!_m_bgViews){
-        _m_bgViews =[UIView funj_getView:CGRectMake(0,0,KWidth,KHeight) :COLOR_WHITE];
+        _m_bgViews =[UIView funj_getView:CGRectMake(0,0,KWidth,KHeight) :COLOR_WHITE_DARK];
         [_m_bgViews funj_whenTouchedDown:^(UIView *sender) {
             [sender endEditing:YES];
         }];
@@ -80,11 +80,11 @@
     
     [self.view addSubview:self.m_bgViews];
 
-    _m_titleLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 0, 40)  :JTextFCMakeAlign(PUBLIC_FONT_SIZE17,COLOR_TEXT_BLACK,NSTextAlignmentCenter)];
+    _m_titleLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 0, 40)  :JTextFCMakeAlign(PUBLIC_FONT_SIZE17,COLOR_TEXT_BLACK_DARK,NSTextAlignmentCenter)];
     [self.m_bgViews addSubview:_m_titleLabel];
     
     __weak typeof(self) weakSelf = self;
-    _m_sumbitBt =[UIButton funj_getButtonBlocks:CGRectMake(0, 0, 80, 40) :nil :JTextFCMake(PUBLIC_FONT_SIZE14, COLOR_TEXT_GRAY) : nil  :50 :nil  :^(UIButton *button) {
+    _m_sumbitBt =[UIButton funj_getButtonBlocks:CGRectMake(0, 0, 80, 40) :nil :JTextFCMake(PUBLIC_FONT_SIZE14, COLOR_TEXT_GRAY_DARK) : nil  :50 :nil  :^(UIButton *button) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf funj_clickBackButton:button];
     }];
@@ -119,8 +119,9 @@
     }
     if(!deleteStr && !deleteImage) deleteImage = @"coursecenter_delete_n";
     if(deleteImage)[_m_sumbitBt setImage:[UIImage imageNamed:deleteImage] forState:UIControlStateNormal];
+    [_m_sumbitBt funj_addNormalDarkImage:@"ic_close_n"];
     _m_titleLabel.font = self.m_currentShowVCModel == kCURRENTISPOPOVER ?PUBLIC_FONT_SIZE17:PUBLIC_FONT_BOLDSIZE20;
-    _m_titleLabel.textColor =self.m_currentShowVCModel == kCURRENTISPOPOVER ? COLOR_TEXT_BLACK :COLOR_WHITE;
+    _m_titleLabel.textColor =self.m_currentShowVCModel == kCURRENTISPOPOVER ? COLOR_TEXT_BLACK_DARK :COLOR_WHITE;
     _m_line.top = _m_titleLabel.bottom;_m_line.width = _m_titleLabel.width;
     
     if(!CGRectEqualToRect(contentFrame, CGRectZero)){
@@ -138,7 +139,7 @@
 
 }
 -(UIView*)topNavView{
-    UIView *topNavView =[UIView funj_getView:CGRectMake(0, 0, KWidth, KNavigationBarBottom) :COLOR_WHITE];
+    UIView *topNavView =[UIView funj_getView:CGRectMake(0, 0, KWidth, KNavigationBarBottom) :COLOR_WHITE_DARK];
     [self.m_bgViews insertSubview:topNavView belowSubview:_m_titleLabel];
     return topNavView;
 }
