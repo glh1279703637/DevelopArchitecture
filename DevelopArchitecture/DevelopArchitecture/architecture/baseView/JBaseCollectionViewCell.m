@@ -17,7 +17,7 @@
     return self;
 }
 -(void)funj_addBaseCollectionView{
-    
+//    self.contentView addSubview:
 }
 -(void)funj_setBaseCollectionData:(NSDictionary*)data{
     

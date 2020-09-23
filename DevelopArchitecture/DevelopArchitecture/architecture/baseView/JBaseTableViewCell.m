@@ -23,7 +23,7 @@
     return self;
 }
 -(void)funj_addBaseTableSubView{
-    
+    //    self.contentView addSubview:
 }
 -(void)funj_autoAdjustLabelPosition:(NSArray<UILabel*>*)labelArr s:(CGFloat)addInterval a:(CGFloat)addSub{
     CGFloat left = NSNotFound;
