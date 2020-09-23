@@ -104,10 +104,10 @@
     for(UIButton*button in self.subviews){
         if([button isKindOfClass:[UIButton class]]){
             button.selected = index+30 == button.tag;
-            if(self->m_type == kSegmentTypeBottomLine ){
-                self->selectBgForBt.width =[JAppUtility funj_getTextWidthWithView:button] ;
-            }
             if(button.selected){
+                if(self->m_type == kSegmentTypeBottomLine ){
+                    self->selectBgForBt.width =[JAppUtility funj_getTextWidthWithView:button] ;
+                }
                 self->selectBgForBt.center = CGPointMake(button.center.x, self->selectBgForBt.center.y);
             }
         }

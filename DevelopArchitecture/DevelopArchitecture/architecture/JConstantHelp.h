@@ -110,11 +110,11 @@
 #define COLOR_TEXT_BLACK                    UIColorFromARGB(0x333333,1)//字体黑色
 #define COLOR_TEXT_BLACK_DARK               COLOR_DARK(UIColorFromARGB(0x333333,1),UIColorFromARGB(0xffffff,1))//字体黑色
 #define COLOR_TEXT_GRAY                     UIColorFromARGB(0x999999,1)//字体灰色
-#define COLOR_TEXT_GRAY_DARK                COLOR_DARK(UIColorFromARGB(0x999999,1),UIColorFromARGB(0xbcbcbc,1))//字体灰色
+#define COLOR_TEXT_GRAY_DARK                COLOR_DARK(UIColorFromARGB(0x999999,1),UIColorFromARGB(0xcccccc,1))//字体灰色
 #define COLOR_BG_LIGHTGRAY                  UIColorFromARGB(0xf0f1f5,1)//灰色背景色
 #define COLOR_BG_LIGHTGRAY_DARK             COLOR_DARK(UIColorFromARGB(0xf0f1f5,1),UIColorFromARGB(0x9e9e9e,1))//灰色背景色
 #define COLOR_BG_SHALLOW_LIGHTGRAY          UIColorFromARGB(0xf7f7f8,1)//灰色浅背景色
-#define COLOR_BG_SHALLOW_LIGHTGRAY_DARK     COLOR_DARK(UIColorFromARGB(0xf7f7f8,1),UIColorFromARGB(0x8a8a8a,1))//灰色浅背景色
+#define COLOR_BG_SHALLOW_LIGHTGRAY_DARK     COLOR_DARK(UIColorFromARGB(0xf7f7f8,1),UIColorFromARGB(0x797979,1))//灰色浅背景色
 #define COLOR_RED                           UIColorFromARGB(0xf04d4d,1) //红色
 
 #define COLOR_BG_DARK                       COLOR_DARK(COLOR_CREAR,UIColorFromARGB(0x5a5a5a,1))//dark 深色模式
