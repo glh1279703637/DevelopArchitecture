@@ -25,13 +25,13 @@
     imageView =[UIImageView funj_getImageView:self.bounds image:nil];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     if([JPhotosConfig share].m_currentIsVideo){
-         [self addSubview:imageView];
+         [self.contentView addSubview:imageView];
         playButton =[UIButton funj_getButtons:self.bounds :nil  :JTextFCZero() :@[@"MMVideoPreviewPlay"] :self  :@"funj_selectToPlay:" :0 :nil];
-         [self addSubview:playButton];
+         [self.contentView addSubview:playButton];
         [playButton funj_updateButtonSelectStyle:NO  :NO];
     }else{
         m_bgScrollView =[UIScrollView funj_getScrollView:self.bounds :nil];
-        [self addSubview:m_bgScrollView];
+        [self.contentView addSubview:m_bgScrollView];
         m_bgScrollView.bouncesZoom = YES;
         m_bgScrollView.maximumZoomScale = 2.5;
         m_bgScrollView.minimumZoomScale = 1.0;

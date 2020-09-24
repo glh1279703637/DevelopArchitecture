@@ -147,6 +147,7 @@
 		00728F7A237550CD0094EDD7 /* JRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRefreshView.m; sourceTree = "<group>"; };
 		00728F7B237550CD0094EDD7 /* JRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRefreshView.h; sourceTree = "<group>"; };
 		00728F802375556F0094EDD7 /* reloading_fresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reloading_fresh@2x.png"; sourceTree = "<group>"; };
+		0075312E251C4CD6001E0B6D /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
 		00CC065323D009D600D5C766 /* JWhenTappedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWhenTappedView.h; sourceTree = "<group>"; };
 		00CC065423D009D600D5C766 /* JWhenTappedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWhenTappedView.m; sourceTree = "<group>"; };
 		00D19D592373FF3A0080AE80 /* DevelopArchitecture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DevelopArchitecture.entitlements; sourceTree = "<group>"; };
@@ -422,6 +423,14 @@
 			path = Refreshview;
 			sourceTree = "<group>";
 		};
+		0075312D251C4CD6001E0B6D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0075312E251C4CD6001E0B6D /* PhotosUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		00CC064F23D0099500D5C766 /* JWhenTapped */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +445,7 @@
 			children = (
 				00DB805323418C88005E15EA /* DevelopArchitecture */,
 				00DB805223418C88005E15EA /* Products */,
+				0075312D251C4CD6001E0B6D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

@@ -294,7 +294,7 @@
     [label setAdjustsFontSizeToFitWidth:YES];
     return label;
 }
--(void)funj_updateAttributedText:(NSString*)title{
+-(NSMutableAttributedString*)funj_updateAttributedText:(NSString*)title{
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 5;
     paragraphStyle.alignment = self.textAlignment;
@@ -303,6 +303,7 @@
     if(self.numberOfLines != 0)paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     NSMutableAttributedString *attri =[[NSMutableAttributedString alloc]initWithString:title attributes:@{NSFontAttributeName:self.font,NSForegroundColorAttributeName:self.textColor,NSParagraphStyleAttributeName:paragraphStyle}];
     self.attributedText = attri;
+    return attri;
 }
 @end
 

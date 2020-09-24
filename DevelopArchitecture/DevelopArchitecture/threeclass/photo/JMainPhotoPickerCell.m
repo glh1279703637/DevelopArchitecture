@@ -18,12 +18,12 @@
     headImageView =[UIImageView funj_getImageView:CGRectMake(10, 10, (90+IS_IPAD*40), kImageViewHeight(90+IS_IPAD*40)) image:@""];
     headImageView.layer.masksToBounds = YES;
     headImageView.contentMode = UIViewContentModeScaleAspectFill;
-    [self addSubview:headImageView];
+    [self.contentView addSubview:headImageView];
     titleLabel =[UILabel funj_getLabel:CGRectMake(headImageView.right+10, headImageView.top, kphotoPickerViewWidth-headImageView.right-40, headImageView.height) :JTextFCMake(PUBLIC_FONT_SIZE15, COLOR_TEXT_BLACK_DARK)];
-    [self addSubview:titleLabel];
+    [self.contentView addSubview:titleLabel];
     
     UIImageView *line =[UIImageView funj_getLineImageView:CGRectMake(headImageView.right+10, headImageView.bottom+9, kphotoPickerViewWidth-30-headImageView.right-10, 1)];
-    [self addSubview:line];
+    [self.contentView addSubview:line];
 }
 -(void)funj_setBaseTableCellWithData:(JPhotosDataModel *)data{
     m_dataModel = data;
@@ -54,7 +54,7 @@
 
     coverImageView =[UIImageView funj_getImageView:CGRectMake(0,0,width, kImageViewHeight(width)) image:@""];
     coverImageView.contentMode = UIViewContentModeScaleAspectFill;
-    [self addSubview:coverImageView];
+    [self.contentView addSubview:coverImageView];
     coverImageView.layer.masksToBounds = YES;
     
     //VideoSendIcon
@@ -62,18 +62,18 @@
         timeLabel =[UIButton funj_getButtons:CGRectMake(30, coverImageView.height-20, coverImageView.width-40, 15) :@"00:00"  :JTextFCMake(PUBLIC_FONT_SIZE10, [UIColor grayColor]) :@[@"VideoSendIcon"] :nil  :nil  :0 :^(UIButton *button) {
             [button funj_updateContentImageLayout:kRIGHT_IMAGECONTENT a:JAlignMake(0, 10, 0)];
         }];
-        [self addSubview:timeLabel];
+        [self.contentView addSubview:timeLabel];
     }
     
     selectBt =[UIButton funj_getButtons:CGRectMake(coverImageView.width-60, 0, 60, 60) :nil  :JTextFCZero() :@[@"photo_def_photoPickerVc",@"photo_sel_photoPickerVc"] :self  :@"funj_selectToAdd:" :0 :nil];
-    [self addSubview:selectBt];
+    [self.contentView addSubview:selectBt];
     selectBt.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     selectBt.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
     [selectBt funj_updateButtonSelectStyle:NO  :NO];
     
     if([JPhotosConfig share].m_isMultiplePhotos){
         countLabel =[UILabel funj_getOneLabel:CGRectMake(5, coverImageView.height-20, 15, 15) :JTextFCMakeAlign(PUBLIC_FONT_SIZE10, COLOR_WHITE,NSTextAlignmentCenter)];
-        [self addSubview:countLabel];
+        [self.contentView addSubview:countLabel];
         [countLabel funj_setViewCornerLayer:JFilletMake(0, 15/2, COLOR_CREAR)];
         countLabel.backgroundColor = [UIColor redColor];
     }

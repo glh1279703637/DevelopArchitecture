@@ -11,7 +11,7 @@
 #import "JPhotoPickerVC.h"
 @interface JMainPhotoPickerVC ()
 @property(nonatomic,strong)UILabel* m_tipLabel;
-
+@property(nonatomic,strong)NSTimer *m_timer;
 @end
 
 @implementation JMainPhotoPickerVC
@@ -37,17 +37,34 @@
     [super viewDidLoad];
     [self.m_tableView registerClass:[JMainPhotoPickerCell class] forCellReuseIdentifier:kCellIndentifier];
     [JPhotoPickerInterface funj_addConfigSubView:self];
-     if (![JPhotoPickerInterface funj_authorizationStatusAuthorized]) {
-         [NSTimer scheduledTimerWithTimeInterval:1 target:self  selector:@selector(funj_checkIsAuthorize:) userInfo:nil  repeats:YES];
+    self.m_defaultImageView.userInteractionEnabled = YES;
+    UILabel *contentLabel =[self.m_defaultImageView viewWithTag:9993];
+    [contentLabel funj_whenTapped:^(UIView * _Nonnull sender) {
+        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        [[UIApplication sharedApplication] openURL:url  options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @NO} completionHandler:nil];
+    }];
+    PHAuthorizationStatus statusAuthorized = [JPhotoPickerInterface funj_authorizationStatusAuthorized];
+     if (statusAuthorized != PHAuthorizationStatusAuthorized) {
+         self.m_timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self  selector:@selector(funj_checkIsAuthorize:) userInfo:nil  repeats:YES];
          
          NSString *appName = [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleDisplayName"];
          if (!appName) appName = [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleName"];
-          NSString *text = [NSString stringWithFormat:NSLocalizedString(@"In %@ \'Settings - privacy - photo \' option,  \r  please allow %@ to access your phone album", nil),[UIDevice currentDevice].model, appName];
+         NSString *text = [NSString stringWithFormat:LocalStr(@"Please allow %@ to access all photos"), appName];
          
+         NSInteger lo = [text rangeOfString:appName].location;
          UILabel *contentLabel =[self.m_defaultImageView viewWithTag:9993];
-         contentLabel.height = 50;
-         contentLabel.text = text;
-         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) { }];
+         NSMutableAttributedString *attri = [contentLabel funj_updateAttributedText:text];
+         [attri addAttributes:@{NSForegroundColorAttributeName:COLOR_ORANGE} range:NSMakeRange(lo, appName.length)];
+         contentLabel.attributedText = attri;
+         if(statusAuthorized == PHAuthorizationStatusNotDetermined){
+             self.m_tipLabel.hidden = NO;
+         }
+         
+         if (@available(iOS 14.0, *)) {
+             [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelReadWrite handler:^(PHAuthorizationStatus status) {}];
+         } else {
+             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {}];
+         }
      }else{
          [self funj_getAllPhotosArray];
      }
@@ -61,13 +78,25 @@
 }
 
 -(void)funj_checkIsAuthorize:(NSTimer*)timer{
-    if([JPhotoPickerInterface funj_authorizationStatusAuthorized]){
+    PHAuthorizationStatus statusAuthorized = [JPhotoPickerInterface funj_authorizationStatusAuthorized];
+    if(statusAuthorized == PHAuthorizationStatusAuthorized){
         if([timer isValid]){
             [timer invalidate];timer = nil;
         }
-        dispatch_main_async_safe(^{
+        LRWeakSelf(self);
+        dispatch_main_async_safe(^{LRStrongSelf(self);
             [self.m_defaultImageView removeFromSuperview];
             [self funj_getAllPhotosArray];
+            [self->_m_tipLabel removeFromSuperview];
+            self->_m_tipLabel = nil;
+        });
+    }else if(statusAuthorized == PHAuthorizationStatusNotDetermined && _m_tipLabel){
+        [JAppUtility funj_shakeAnimationForView:_m_tipLabel :CGSizeMake(0, 8)];
+    }else{
+        LRWeakSelf(self);
+        dispatch_main_async_safe(^{LRStrongSelf(self);
+            [self->_m_tipLabel removeFromSuperview];
+            self->_m_tipLabel = nil;
         });
     }
 }
@@ -113,14 +142,27 @@
     [super viewDidLayoutSubviews];
     [self funj_reloadBaseViewParameter:CGRectZero :CGRectMake(0, 0, self.view.width, self.view.height-KFilletSubHeight) :YES];
     UILabel *contentLabel =[self.m_defaultImageView viewWithTag:9993];
-    contentLabel.width = self.view.width-20;
-    contentLabel.left = -self.m_defaultImageView.left+10;
-    
+    contentLabel.frame = CGRectMake(-self.m_defaultImageView.left+10, self.m_defaultImageView.height-40, self.view.width-20, 40);
+    _m_tipLabel.top = self.view.height - 60;
+    _m_tipLabel.left = (self.view.width - 200)/2;
 }
 -(void)funj_reloadDefaultItems:(BOOL)isVideo :(BOOL)isMulti :(NSInteger)maxPhotos{
     [JPhotosConfig share].m_currentIsVideo = isVideo;
     [JPhotosConfig share].m_isMultiplePhotos = isMulti;
     [JPhotosConfig share].m_maxCountPhotos = isMulti?maxPhotos:1;
+}
+-(UILabel *)m_tipLabel{
+    if(!_m_tipLabel){
+        _m_tipLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 200, 30) :@"建议请优先选择所有照片" :JTextFCMakeAlign(PUBLIC_FONT_SIZE14, COLOR_ORANGE,NSTextAlignmentCenter)];
+        [self.view addSubview:_m_tipLabel];
+    }
+    return _m_tipLabel;
+}
+-(void)funj_clickBackButton:(UIButton *)sender{
+    if([self.m_timer isValid]){
+        [self.m_timer invalidate];self.m_timer = nil;
+    }
+    [super funj_clickBackButton:sender];
 }
 -(void)dealloc{
     [JPhotosConfig m_deallocPhotoConfig];

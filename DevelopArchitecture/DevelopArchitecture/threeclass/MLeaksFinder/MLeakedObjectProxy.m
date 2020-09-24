@@ -72,7 +72,7 @@ static NSMutableSet *leakedObjectPtrs;
     NSArray *viewStack = _viewStack;
     dispatch_async(dispatch_get_main_queue(), ^{
         [leakedObjectPtrs removeObject:objectPtr];
-        [JAppViewTools funj_showAlertBlock:self :@"Object Deallocated" :[NSString stringWithFormat:@"%@", viewStack] :@[@"Retain Cycle"] :nil];
+        [JAppViewTools funj_showAlertBlock:[JAppViewTools funj_getTopViewcontroller] :@"Object Deallocated" :[NSString stringWithFormat:@"%@", viewStack] :@[@"Retain Cycle"] :nil];
     });
 }
 

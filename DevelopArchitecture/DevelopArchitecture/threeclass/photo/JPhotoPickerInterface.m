@@ -31,11 +31,12 @@ maddShareValue(config, JPhotosConfig)
 }
 @end
 @implementation JPhotoPickerInterface
-+(BOOL)funj_authorizationStatusAuthorized{
-    if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
-        return YES;
++(PHAuthorizationStatus)funj_authorizationStatusAuthorized{
+    if (@available(iOS 14.0, *)) {
+        return [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
+    } else {
+        return [PHPhotoLibrary authorizationStatus];
     }
-    return NO;
 }
 #pragma mark - 获得相册/相册数组
 + (void)funj_getAllAlbums:(BOOL)isGetVideo completion:(void (^)(NSArray<JPhotosDataModel *> *))completion {

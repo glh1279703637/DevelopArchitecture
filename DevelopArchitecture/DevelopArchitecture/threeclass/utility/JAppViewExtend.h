@@ -70,7 +70,7 @@ typedef NS_ENUM(NSInteger,TEXTFINPUT_TYPE) {
 
 + (UILabel *)funj_getOneLabel:(CGRect)frame  :(TextFC)textFC;
 
--(void)funj_updateAttributedText:(NSString*)title;
+-(NSMutableAttributedString*)funj_updateAttributedText:(NSString*)title;
 @end
 
 #pragma mark button

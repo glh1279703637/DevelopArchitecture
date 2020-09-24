@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 Jeffrey. All rights reserved.
 //
 
-#import "JBaseTableViewVC.h"
+#import "JBaseImageViewVC.h"
  
-@interface JMainViewController : JBaseTableViewVC
+@interface JMainViewController : JBaseImageViewVC
 
 +(id)shareMainVC;
 @end

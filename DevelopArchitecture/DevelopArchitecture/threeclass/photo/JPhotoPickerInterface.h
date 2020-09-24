@@ -54,8 +54,8 @@ typedef void (^selectPhotoCallback)(NSArray*imageOrVideoArr,BOOL isVideo);
 
 
 @interface JPhotoPickerInterface : JBaseInterfaceManager
-//返回YES如果得到了授权
-+(BOOL)funj_authorizationStatusAuthorized;
+//返回1如果得到了授权  0:没有得到权限 1：得到，2受限制
++(PHAuthorizationStatus)funj_authorizationStatusAuthorized;
 
 //获得相册/相册数组
 + (void)funj_getAllAlbums:(BOOL)isGetVideo completion:(void (^)(NSArray<JPhotosDataModel *> *))completion;

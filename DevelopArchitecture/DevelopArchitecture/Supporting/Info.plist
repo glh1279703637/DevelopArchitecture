@@ -115,5 +115,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>
+	<true/>
+	<key>CFBundleDisplayName</key>
+	<string>开发模板</string>
 </dict>
 </plist>
