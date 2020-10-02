@@ -1,0 +1,15 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.0'
+inhibit_all_warnings!
+
+targetsArray = ['DeveloperArchitecture']
+
+targetsArray.each do |t|
+    target t do
+        use_frameworks!
+
+        pod 'ReachabilitySwift'
+#        pod 'MLeaksFinder'
+    end
+end
+
