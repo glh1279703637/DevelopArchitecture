@@ -110,6 +110,7 @@ extension JCryptHelp{
             return nil
         }
         let strData = encode ? string!.data(using: .utf8) : Data(base64Encoded: string!)
+        if strData == nil { return nil}
         // 创建数据编码后的指针
         let dataPointer = UnsafeRawPointer((strData! as NSData).bytes)
         // 获取转码后数据的长度

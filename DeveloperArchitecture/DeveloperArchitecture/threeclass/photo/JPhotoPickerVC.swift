@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 class JPhotoPickerVC : JBaseCollectionVC {
     var m_dataModel : JPhotosDataModel?
@@ -39,13 +40,13 @@ extension JPhotoPickerVC {
         let line = UIImageView(i_line: CGRect(x: 0, y: 0, width: KWidth, height: 1))
         bottomBgView.addSubview(line)
         
-        if JPhotosConfig.shared?.m_currentIsVideo ?? false {
-            let origareBt = UIButton(i: CGRect(x: 0, y: 0, width: 100, height:50 ), title:kLocalStre(str: "Original") , textFC: JTextFC(f: FONT_SIZE13, c: COLOR_TEXT_BLACK_DARK))
+        if JPhotosConfig.shared?.m_currentIsVideo ?? false == false {
+            let origareBt = UIButton(i: CGRect(x: 0, y: 0, width: 100, height:50 ), title:kLocalStr("Original") , textFC: JTextFC(f: FONT_SIZE13, c: COLOR_TEXT_BLACK_DARK))
                 .funj_add(autoSelect: false)
                 .funj_updateContentImage(layout: .kLEFT_IMAGECONTENT, a: JAlignValue(h: 10, s: 10, f: 0))
             bottomBgView.addSubview(origareBt)
         }
-        let sumBt = UIButton(i: CGRect(x: self.view.width - 100 , y: 0, width: 100, height: 50), title: kLocalStre(str: "Confirm"), textFC: JTextFC(f: FONT_SIZE13, c: COLOR_TEXT_BLACK_DARK))
+        let sumBt = UIButton(i: CGRect(x: self.view.width - 100 , y: 0, width: 100, height: 50), title: kLocalStr("Confirm"), textFC: JTextFC(f: FONT_SIZE13, c: COLOR_TEXT_BLACK_DARK))
             .funj_add(targe: self, action: "funj_selectFinishTo:", tag: 3025)
             .funj_updateContentImage(layout: .kRIGHT_CONTENTIMAGE, a: JAlignValue(h: 10, s: 0, f: 20))
         bottomBgView.addSubview(sumBt)
@@ -70,15 +71,45 @@ extension JPhotoPickerVC {
             }
         }
     }
+    @objc func funj_selectFinishTo(_ sender : UIButton) {
+        if self.m_dataArray.count > 0 { self .funj_showProgressView()}
+        
+        for i in 0..<self.m_dataArray.count {
+            let model = self.m_dataArray[i] as! JPhotoPickerModel
+            if JPhotosConfig.shared?.m_currentIsVideo ?? false {
+                JPhotoPickerInterface.funj_getVideoWithAsset(asset: model.m_asset!) { [weak self] (item, dic) in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+//                        self?.funj_getDetailInfo(<#T##saveImageDic: [AnyHashable : Any]##[AnyHashable : Any]#>, image: <#T##UIImage#>, dic: <#T##[String : Any]#>, isDegraded: <#T##Bool#>, item: <#T##<<error type>>#>, index: <#T##Int#>)
+                    }
+                }
+            } else {
+                JPhotoPickerInterface.funj_getPhotoWithAsset(phAsset: model.m_asset, deliveryMode: .highQualityFormat, width: KWidth) { [weak self] (image, dic, isDegraded) in
+                    if isDegraded == true { return }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+//                        self.funj_getdeta
+                    }
+                }
+            }
+        }
+    }
+    func funj_getDetailInfo(_ saveImageDic : [AnyHashable : Any] ,image : UIImage , dic : [String : Any] , isDegraded : Bool , item : AVPlayerItem , index : Int){
+        var saveImageDic : [AnyHashable : Any] = [:]
+        if JPhotosConfig.shared?.m_currentIsVideo ?? false {
+            if item != nil { saveImageDic["\(index)"] = item }
+            
+        }
+    }
     
     override func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
         return false
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.funj_reloadTableView(CGRectZero, table: CGRect(x: 0, y: 0, width: self.view.width, height: self.view.height - 50 - KFilletSubHeight))
+        let vc = self.navigationController?.viewControllers.first as? JBaseViewController
+        let sub = KFilletSubHeight * (vc?.m_currentShowVCModel != .kCURRENTISPOPOVER ? 1 : 0)
+        self.funj_reloadTableView(CGRectZero, table: CGRect(x: 0, y: 0, width: self.view.width, height: self.view.height - 50 - sub))
         let bottomBgView = self.view.viewWithTag(3023)
-        bottomBgView?.top = self.view.height - 50 - KFilletSubHeight
+        bottomBgView?.top = self.view.height - 50 - sub
         bottomBgView?.width = self.view.width
         let sumBt = bottomBgView?.viewWithTag(3025)
         sumBt?.left = (bottomBgView?.width ?? 0) - 100
@@ -120,8 +151,10 @@ extension JPhotoPickerVC {
                 }
                 self?.m_collectionView.reloadData()
             }
-            self?.title = "\(self?.m_dataString)(\(self?.m_dataArray.count)/\([JPhotosConfig.shared?.m_maxCountPhotos]))"
-//            funj_solverDataModelSize()
+            self?.title = "\(String(describing: self?.m_dataString))(\(String(describing: self?.m_dataArray.count))/\([JPhotosConfig.shared?.m_maxCountPhotos]))"
+            self?.funj_solverDataModelSize()
+            let sumBt = self?.view.viewWithTag(3023) as? UIButton
+            sumBt?.isEnabled = self?.m_dataArray.count ?? 0 > 0 ? true : false
         }
         
         return cell

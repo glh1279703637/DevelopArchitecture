@@ -11,11 +11,11 @@ typealias ksetBaseVC = ((_ vc : UIViewController) ->())
 typealias ksetPopverBaseVC = ((_ vc : UIViewController , _ isPresentView : inout Bool) ->())
 
 enum SHOWMODELTYPE {
-    case kCURRENTISNONE
-    case kCURRENTISPUSH
-    case kCURRENTISPRENTVIEW
-    case kCURRENTISSHOWDETAIL
-    case kCURRENTISPOPOVER
+    case kCURRENTISNONE //无
+    case kCURRENTISPUSH // nav push
+    case kCURRENTISPRENTVIEW //present
+    case kCURRENTISSHOWDETAIL // split detail
+    case kCURRENTISPOPOVER // pop
 }
 
 public class JBaseViewController : UIViewController ,UIPopoverPresentationControllerDelegate {
@@ -184,7 +184,15 @@ extension JBaseViewController {
         }
     }
     func funj_backViewController() {
-        self.dismiss(animated: true, completion: nil)
+        if(self.m_currentShowVCModel == .kCURRENTISPUSH){
+            self.navigationController?.popViewController(animated: true)
+        }else if(self.m_currentShowVCModel == .kCURRENTISPRENTVIEW){
+            self.dismiss(animated: true, completion: nil)
+        }else if(self.m_currentShowVCModel == .kCURRENTISSHOWDETAIL){
+            
+        }else if(self.m_currentShowVCModel == .kCURRENTISPOPOVER){
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     func funj_disMissViewController(_ presentedVC : UIViewController?) {
         if (presentedVC == self || presentedVC == self.navigationController ) == false {

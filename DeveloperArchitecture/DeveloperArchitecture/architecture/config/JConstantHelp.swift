@@ -22,7 +22,7 @@ let kappBuildCode = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersi
 
 let kLocalStr = { (_ str:String) -> String in  NSLocalizedString(str, comment: "") }
 //对参数进行base64加密过  此两个方法多注意点，原理同样
-func kLocalStre(str:String) -> String? {
+func kLocalStre(_ str:String) -> String? {
     let name = NSLocalizedString(str, comment: "")
     let result = JCryptHelp.funj_scaCrypt(string: name, cryptType: .DES3, key: "DeveloperArchitecture", encode: false)
     return result

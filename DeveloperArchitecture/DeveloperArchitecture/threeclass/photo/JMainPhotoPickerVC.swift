@@ -134,6 +134,7 @@ extension JMainPhotoPickerVC {
                 self?.m_dataArr.removeAll()
                 self?.m_dataArr += dataArr
                 self?.m_tableView.reloadData()
+                self?.m_tipLabel.isHidden = self?.m_dataArr.count ?? 0 > 0
             }
         }
     }
