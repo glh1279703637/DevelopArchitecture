@@ -44,41 +44,20 @@ static JMainViewController *mainVC=nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIButton *buttonBt =[UIButton funj_getButtonBlock:CGRectMake(50, 80, 80, 50) :@"点击" :JTextFCMake(PUBLIC_FONT_SIZE15, COLOR_ORANGE) :@[COLOR_BLUE] :0 :^(UIButton *button) {
-        self.m_currentIsLoadMultPhoto = YES;
-        self.m_currentCanSelectMaxImageCount = 10;
-        self.m_cropFrame = CGRectMake((KWidth/2/2), KHeight/2/2, KWidth/2, KHeight/2);
-        [self funj_editPortraitImageView:button];
-        
-//        if (@available(iOS 14, *)) {
-        NSLog(@"-- -- %@",self);
-//            [[PHPhotoLibrary sharedPhotoLibrary] presentLimitedLibraryPickerFromViewController:self];
-//        } else {
-//            // Fallback on earlier versions
-//        }
+//    UIButton *buttonBt =[UIButton funj_getButtonBlock:CGRectMake(50, 80, 80, 50) :@"点击" :JTextFCMake(PUBLIC_FONT_SIZE15, COLOR_ORANGE) :@[COLOR_BLUE] :0 :^(UIButton *button) {
+//        self.m_currentIsLoadMultPhoto = YES;
+//        self.m_currentCanSelectMaxImageCount = 10;
+//        self.m_cropFrame = CGRectMake((KWidth/2/2), KHeight/2/2, KWidth/2, KHeight/2);
+//        [self funj_editPortraitImageView:button];
+//    }];
+//    [self.view addSubview:buttonBt];
 
-//        [self funj_getPresentVCWithController:@"JQRScanCodeVC" title:nil  :nil :NO];
-        
-//        PHPickerConfiguration *configuration = [[PHPickerConfiguration alloc] init];
-//        configuration.filter = [PHPickerFilter videosFilter]; // 可配置查询用户相册中文件的类型，支持三种
-//      configuration.selectionLimit = 0; // 默认为1，为0时表示可多选。
-//
-//        PHPickerViewController *picker = [[PHPickerViewController alloc] initWithConfiguration:configuration];
-//        picker.delegate = self;
-//        // picker vc，在选完图片后需要在回调中手动 dismiss
-//      [self presentViewController:picker animated:YES completion:^{
-//
-//        }];
-    }];
-    [self.view addSubview:buttonBt];
+    UIButton *buttonBt2 = [UIButton funj_getButtons:CGRectMake(100, 100, 100, 30) :@"idididid" :JTextFCMake(PUBLIC_FONT_SIZE14, COLOR_ORANGE) :@[@"main_search_n"] :nil :nil :0 :nil ];
+    buttonBt2.backgroundColor = COLOR_BLUE;
+    [self.view addSubview:buttonBt2];
+    [buttonBt2 funj_updateContentImageLayout:kCENTER_IMAGECONTENT a:JAlignMake(0, 5, 0)];
     
-    LRWeakSelf(self);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        LRStrongSelf(self);
-        UILabel *titleLabel =[UILabel funj_getLabel:CGRectMake(0, 330, 200, 40) :JTextFCMake(PUBLIC_FONT_SIZE16, COLOR_ORANGE)];
-        [self.view addSubview:titleLabel];
-        titleLabel.text = NSLocalizedString(@"Get verification code", nil);
-    });
+    [buttonBt2 funj_setViewGradientLayer:YES :@[COLOR_RED,COLOR_ORANGE] :@[@(0),@(1)]];
 
 }
 - (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results{

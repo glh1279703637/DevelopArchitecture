@@ -12,8 +12,58 @@
 		003B5DFC2523041F00838F02 /* JLoginUserMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B5DFB2523041F00838F02 /* JLoginUserMessage.swift */; };
 		003B5E092523083900838F02 /* JBaseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B5E082523083900838F02 /* JBaseDataModel.swift */; };
 		003B5E0D252310C100838F02 /* JAppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B5E0C252310C100838F02 /* JAppUtility.swift */; };
-		00B6CE4C2525C92200884D52 /* JA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B6CE4B2525C92200884D52 /* JA.swift */; };
-		00B6CE4F2525C92D00884D52 /* JB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B6CE4E2525C92D00884D52 /* JB.swift */; };
+		003C8C952556C10500B44812 /* JMainPhotoPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003C8C942556C10500B44812 /* JMainPhotoPickerCell.swift */; };
+		003C8C9A2556C13000B44812 /* JPhotoPickerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003C8C992556C13000B44812 /* JPhotoPickerInterface.swift */; };
+		003C8C9E2556C16D00B44812 /* JPhotoPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003C8C9D2556C16D00B44812 /* JPhotoPickerVC.swift */; };
+		003C8CA22556C19100B44812 /* JPhotosPreviewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003C8CA12556C19100B44812 /* JPhotosPreviewsVC.swift */; };
+		003C8CA52556C1BD00B44812 /* JPhotosPreviewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003C8CA42556C1BD00B44812 /* JPhotosPreviewsCell.swift */; };
+		003C8CA82556C25100B44812 /* JPhotoPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003C8CA72556C25100B44812 /* JPhotoPickerCell.swift */; };
+		003C8CAB2556C31E00B44812 /* JPhotoPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003C8CAA2556C31E00B44812 /* JPhotoPickerModel.swift */; };
+		004EC28C2553871100FD8385 /* JCryptHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC28B2553871100FD8385 /* JCryptHelp.swift */; };
+		004EC34A2553CB2500FD8385 /* ThreadsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC33A2553CB2500FD8385 /* ThreadsManager.swift */; };
+		004EC34B2553CB2500FD8385 /* STXImageCache+ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC33B2553CB2500FD8385 /* STXImageCache+ImageViewExtensions.swift */; };
+		004EC34C2553CB2500FD8385 /* StorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC33C2553CB2500FD8385 /* StorageProvider.swift */; };
+		004EC34D2553CB2500FD8385 /* STXImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC33D2553CB2500FD8385 /* STXImageCache.swift */; };
+		004EC34E2553CB2500FD8385 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC33E2553CB2500FD8385 /* ImageDownloader.swift */; };
+		004EC34F2553CB2500FD8385 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC33F2553CB2500FD8385 /* NetworkProvider.swift */; };
+		004EC3502553CB2500FD8385 /* STXImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC3402553CB2500FD8385 /* STXImageOperation.swift */; };
+		004EC3512553CB2500FD8385 /* Providing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC3412553CB2500FD8385 /* Providing.swift */; };
+		004EC3532553CB2500FD8385 /* MemoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC3432553CB2500FD8385 /* MemoryProvider.swift */; };
+		004EC3542553CB2500FD8385 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC3442553CB2500FD8385 /* Typealiases.swift */; };
+		004EC3552553CB2500FD8385 /* STXCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC3452553CB2500FD8385 /* STXCacheManager.swift */; };
+		004EC3562553CB2500FD8385 /* STXMemoryCacheConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC3462553CB2500FD8385 /* STXMemoryCacheConfig.swift */; };
+		004EC3572553CB2500FD8385 /* STXImageCache+UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC3472553CB2500FD8385 /* STXImageCache+UIButtonExtensions.swift */; };
+		004EC3582553CB2500FD8385 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC3482553CB2500FD8385 /* Task.swift */; };
+		004EC3592553CB2500FD8385 /* STXDiskCacheConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC3492553CB2500FD8385 /* STXDiskCacheConfig.swift */; };
+		004EC3602553DE8400FD8385 /* JMainPhotoPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC35F2553DE8400FD8385 /* JMainPhotoPickerVC.swift */; };
+		004EC3642553E3F600FD8385 /* JBaseTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EC3632553E3F600FD8385 /* JBaseTransition.swift */; };
+		007677722552807F00C226A2 /* JMoreTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007677712552807F00C226A2 /* JMoreTipView.swift */; };
+		0076777625528C3D00C226A2 /* JSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0076777525528C3D00C226A2 /* JSegmentedControl.swift */; };
+		0076777B2552A22700C226A2 /* segment_bg_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 007677792552A22700C226A2 /* segment_bg_icon@2x.png */; };
+		0076777C2552A22700C226A2 /* segment_selectbg_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0076777A2552A22700C226A2 /* segment_selectbg_icon@2x.png */; };
+		007D641825246FAC004C7FCE /* JBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007D641725246FAC004C7FCE /* JBaseViewController.swift */; };
+		007D641E25246FC7004C7FCE /* JBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007D641D25246FC7004C7FCE /* JBaseView.swift */; };
+		007DCF8C254BB6E000694F59 /* JProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DCF8B254BB6E000694F59 /* JProgressHUD.swift */; };
+		007DCF91254BB72D00694F59 /* reloadProgress_center@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 007DCF8F254BB72D00694F59 /* reloadProgress_center@3x.png */; };
+		007DCF92254BB72D00694F59 /* reloadProgress_route@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 007DCF90254BB72D00694F59 /* reloadProgress_route@3x.png */; };
+		007DCFA8254C0C2700694F59 /* JBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DCFA7254C0C2700694F59 /* JBaseCollectionViewCell.swift */; };
+		007DCFAB254C0C4300694F59 /* JBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DCFAA254C0C4300694F59 /* JBaseTableViewCell.swift */; };
+		007DCFAE254C0C5B00694F59 /* JCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DCFAD254C0C5B00694F59 /* JCollectionViewFlowLayout.swift */; };
+		007DCFB1254C0CC200694F59 /* JBaseCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DCFB0254C0CC200694F59 /* JBaseCollectionVC.swift */; };
+		007DCFB4254C0CCE00694F59 /* JBaseImageViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DCFB3254C0CCE00694F59 /* JBaseImageViewVC.swift */; };
+		007DCFB7254C0CDA00694F59 /* JBaseNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DCFB6254C0CD900694F59 /* JBaseNavigationVC.swift */; };
+		007DCFBA254C0CE400694F59 /* JBasePoperVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DCFB9254C0CE400694F59 /* JBasePoperVC.swift */; };
+		007DCFBD254C0CF200694F59 /* JBaseTableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DCFBC254C0CF200694F59 /* JBaseTableViewVC.swift */; };
+		007DCFC0254C0D0C00694F59 /* JBaseInterfaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DCFBF254C0D0C00694F59 /* JBaseInterfaceManager.swift */; };
+		007DCFC3254C0D1700694F59 /* JTableDataArrModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DCFC2254C0D1700694F59 /* JTableDataArrModel.swift */; };
+		007DCFC7254C0D3D00694F59 /* JWhenTappedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DCFC6254C0D3D00694F59 /* JWhenTappedView.swift */; };
+		007F657C255240CC00194FD6 /* JRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F657B255240CC00194FD6 /* JRefreshView.swift */; };
+		007F6580255240D800194FD6 /* reloading_fresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 007F657F255240D800194FD6 /* reloading_fresh@2x.png */; };
+		00861340255037D400183E12 /* JHttpReqHelp+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086133F255037D400183E12 /* JHttpReqHelp+Model.swift */; };
+		00EA79FB2531B609008DECA9 /* JAppViewTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EA79FA2531B609008DECA9 /* JAppViewTools.swift */; };
+		00EA79FE2531B62B008DECA9 /* JAppViewExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EA79FD2531B62B008DECA9 /* JAppViewExtend.swift */; };
+		00EBA966254E661D00728657 /* JHttpReqHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EBA965254E661D00728657 /* JHttpReqHelp.swift */; };
+		00EF74EA2549704100194F0B /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00EF74E92549704100194F0B /* config.plist */; };
 		00EFADDA251ED32800EB1B60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFADD9251ED32800EB1B60 /* AppDelegate.swift */; };
 		00EFADE1251ED32800EB1B60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00EFADDF251ED32800EB1B60 /* Main.storyboard */; };
 		00EFADE3251ED32B00EB1B60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00EFADE2251ED32B00EB1B60 /* Assets.xcassets */; };
@@ -33,8 +83,59 @@
 		003B5DFB2523041F00838F02 /* JLoginUserMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JLoginUserMessage.swift; sourceTree = "<group>"; };
 		003B5E082523083900838F02 /* JBaseDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBaseDataModel.swift; sourceTree = "<group>"; };
 		003B5E0C252310C100838F02 /* JAppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JAppUtility.swift; sourceTree = "<group>"; };
-		00B6CE4B2525C92200884D52 /* JA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JA.swift; sourceTree = "<group>"; };
-		00B6CE4E2525C92D00884D52 /* JB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JB.swift; sourceTree = "<group>"; };
+		003C8C9125563D4D00B44812 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		003C8C942556C10500B44812 /* JMainPhotoPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JMainPhotoPickerCell.swift; sourceTree = "<group>"; };
+		003C8C992556C13000B44812 /* JPhotoPickerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPhotoPickerInterface.swift; sourceTree = "<group>"; };
+		003C8C9D2556C16D00B44812 /* JPhotoPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPhotoPickerVC.swift; sourceTree = "<group>"; };
+		003C8CA12556C19100B44812 /* JPhotosPreviewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPhotosPreviewsVC.swift; sourceTree = "<group>"; };
+		003C8CA42556C1BD00B44812 /* JPhotosPreviewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPhotosPreviewsCell.swift; sourceTree = "<group>"; };
+		003C8CA72556C25100B44812 /* JPhotoPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPhotoPickerCell.swift; sourceTree = "<group>"; };
+		003C8CAA2556C31E00B44812 /* JPhotoPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPhotoPickerModel.swift; sourceTree = "<group>"; };
+		004EC28B2553871100FD8385 /* JCryptHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCryptHelp.swift; sourceTree = "<group>"; };
+		004EC33A2553CB2500FD8385 /* ThreadsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadsManager.swift; sourceTree = "<group>"; };
+		004EC33B2553CB2500FD8385 /* STXImageCache+ImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STXImageCache+ImageViewExtensions.swift"; sourceTree = "<group>"; };
+		004EC33C2553CB2500FD8385 /* StorageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageProvider.swift; sourceTree = "<group>"; };
+		004EC33D2553CB2500FD8385 /* STXImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STXImageCache.swift; sourceTree = "<group>"; };
+		004EC33E2553CB2500FD8385 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		004EC33F2553CB2500FD8385 /* NetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		004EC3402553CB2500FD8385 /* STXImageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STXImageOperation.swift; sourceTree = "<group>"; };
+		004EC3412553CB2500FD8385 /* Providing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Providing.swift; sourceTree = "<group>"; };
+		004EC3432553CB2500FD8385 /* MemoryProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryProvider.swift; sourceTree = "<group>"; };
+		004EC3442553CB2500FD8385 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		004EC3452553CB2500FD8385 /* STXCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STXCacheManager.swift; sourceTree = "<group>"; };
+		004EC3462553CB2500FD8385 /* STXMemoryCacheConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STXMemoryCacheConfig.swift; sourceTree = "<group>"; };
+		004EC3472553CB2500FD8385 /* STXImageCache+UIButtonExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STXImageCache+UIButtonExtensions.swift"; sourceTree = "<group>"; };
+		004EC3482553CB2500FD8385 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		004EC3492553CB2500FD8385 /* STXDiskCacheConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STXDiskCacheConfig.swift; sourceTree = "<group>"; };
+		004EC35F2553DE8400FD8385 /* JMainPhotoPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JMainPhotoPickerVC.swift; sourceTree = "<group>"; };
+		004EC3632553E3F600FD8385 /* JBaseTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBaseTransition.swift; sourceTree = "<group>"; };
+		007677712552807F00C226A2 /* JMoreTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JMoreTipView.swift; sourceTree = "<group>"; };
+		0076777525528C3D00C226A2 /* JSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSegmentedControl.swift; sourceTree = "<group>"; };
+		007677792552A22700C226A2 /* segment_bg_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "segment_bg_icon@2x.png"; path = "../../../../DevelopArchitecture/DevelopArchitecture/threeclass/JSegmentedControl/segment_bg_icon@2x.png"; sourceTree = "<group>"; };
+		0076777A2552A22700C226A2 /* segment_selectbg_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "segment_selectbg_icon@2x.png"; path = "../../../../DevelopArchitecture/DevelopArchitecture/threeclass/JSegmentedControl/segment_selectbg_icon@2x.png"; sourceTree = "<group>"; };
+		007D641725246FAC004C7FCE /* JBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBaseViewController.swift; sourceTree = "<group>"; };
+		007D641D25246FC7004C7FCE /* JBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBaseView.swift; sourceTree = "<group>"; };
+		007DCF8B254BB6E000694F59 /* JProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JProgressHUD.swift; sourceTree = "<group>"; };
+		007DCF8F254BB72D00694F59 /* reloadProgress_center@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reloadProgress_center@3x.png"; path = "../../../../DevelopArchitecture/DevelopArchitecture/threeclass/JProgressHUD/reloadProgress_center@3x.png"; sourceTree = "<group>"; };
+		007DCF90254BB72D00694F59 /* reloadProgress_route@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reloadProgress_route@3x.png"; path = "../../../../DevelopArchitecture/DevelopArchitecture/threeclass/JProgressHUD/reloadProgress_route@3x.png"; sourceTree = "<group>"; };
+		007DCFA7254C0C2700694F59 /* JBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		007DCFAA254C0C4300694F59 /* JBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBaseTableViewCell.swift; sourceTree = "<group>"; };
+		007DCFAD254C0C5B00694F59 /* JCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		007DCFB0254C0CC200694F59 /* JBaseCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBaseCollectionVC.swift; sourceTree = "<group>"; };
+		007DCFB3254C0CCE00694F59 /* JBaseImageViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBaseImageViewVC.swift; sourceTree = "<group>"; };
+		007DCFB6254C0CD900694F59 /* JBaseNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBaseNavigationVC.swift; sourceTree = "<group>"; };
+		007DCFB9254C0CE400694F59 /* JBasePoperVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBasePoperVC.swift; sourceTree = "<group>"; };
+		007DCFBC254C0CF200694F59 /* JBaseTableViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBaseTableViewVC.swift; sourceTree = "<group>"; };
+		007DCFBF254C0D0C00694F59 /* JBaseInterfaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBaseInterfaceManager.swift; sourceTree = "<group>"; };
+		007DCFC2254C0D1700694F59 /* JTableDataArrModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTableDataArrModel.swift; sourceTree = "<group>"; };
+		007DCFC6254C0D3D00694F59 /* JWhenTappedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWhenTappedView.swift; sourceTree = "<group>"; };
+		007F657B255240CC00194FD6 /* JRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JRefreshView.swift; sourceTree = "<group>"; };
+		007F657F255240D800194FD6 /* reloading_fresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reloading_fresh@2x.png"; path = "../../../../DevelopArchitecture/DevelopArchitecture/threeclass/Refreshview/reloading_fresh@2x.png"; sourceTree = "<group>"; };
+		0086133F255037D400183E12 /* JHttpReqHelp+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JHttpReqHelp+Model.swift"; sourceTree = "<group>"; };
+		00EA79FA2531B609008DECA9 /* JAppViewTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JAppViewTools.swift; sourceTree = "<group>"; };
+		00EA79FD2531B62B008DECA9 /* JAppViewExtend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JAppViewExtend.swift; sourceTree = "<group>"; };
+		00EBA965254E661D00728657 /* JHttpReqHelp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JHttpReqHelp.swift; sourceTree = "<group>"; };
+		00EF74E92549704100194F0B /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		00EFADD6251ED32800EB1B60 /* DeveloperArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeveloperArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00EFADD9251ED32800EB1B60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00EFADE0251ED32800EB1B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				003B5E082523083900838F02 /* JBaseDataModel.swift */,
+				007DCFBF254C0D0C00694F59 /* JBaseInterfaceManager.swift */,
+				007DCFC2254C0D1700694F59 /* JTableDataArrModel.swift */,
 			);
 			path = baseObject;
 			sourceTree = "<group>";
@@ -89,8 +192,141 @@
 			isa = PBXGroup;
 			children = (
 				003B5E0C252310C100838F02 /* JAppUtility.swift */,
+				00EA79FA2531B609008DECA9 /* JAppViewTools.swift */,
+				00EA79FD2531B62B008DECA9 /* JAppViewExtend.swift */,
 			);
 			path = utility;
+			sourceTree = "<group>";
+		};
+		003C8C932556C0F400B44812 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				003C8C942556C10500B44812 /* JMainPhotoPickerCell.swift */,
+				003C8CA72556C25100B44812 /* JPhotoPickerCell.swift */,
+				003C8CA42556C1BD00B44812 /* JPhotosPreviewsCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		003C8C982556C12300B44812 /* interface */ = {
+			isa = PBXGroup;
+			children = (
+				003C8CAA2556C31E00B44812 /* JPhotoPickerModel.swift */,
+				003C8C992556C13000B44812 /* JPhotoPickerInterface.swift */,
+			);
+			path = interface;
+			sourceTree = "<group>";
+		};
+		004EC28A2553871100FD8385 /* crypt */ = {
+			isa = PBXGroup;
+			children = (
+				004EC28B2553871100FD8385 /* JCryptHelp.swift */,
+			);
+			path = crypt;
+			sourceTree = "<group>";
+		};
+		004EC3392553CB2500FD8385 /* STXImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				004EC33E2553CB2500FD8385 /* ImageDownloader.swift */,
+				004EC3432553CB2500FD8385 /* MemoryProvider.swift */,
+				004EC33F2553CB2500FD8385 /* NetworkProvider.swift */,
+				004EC3412553CB2500FD8385 /* Providing.swift */,
+				004EC33C2553CB2500FD8385 /* StorageProvider.swift */,
+				004EC3452553CB2500FD8385 /* STXCacheManager.swift */,
+				004EC3492553CB2500FD8385 /* STXDiskCacheConfig.swift */,
+				004EC33D2553CB2500FD8385 /* STXImageCache.swift */,
+				004EC33B2553CB2500FD8385 /* STXImageCache+ImageViewExtensions.swift */,
+				004EC3472553CB2500FD8385 /* STXImageCache+UIButtonExtensions.swift */,
+				004EC3402553CB2500FD8385 /* STXImageOperation.swift */,
+				004EC3462553CB2500FD8385 /* STXMemoryCacheConfig.swift */,
+				004EC3482553CB2500FD8385 /* Task.swift */,
+				004EC33A2553CB2500FD8385 /* ThreadsManager.swift */,
+				004EC3442553CB2500FD8385 /* Typealiases.swift */,
+			);
+			path = STXImageCache;
+			sourceTree = "<group>";
+		};
+		004EC35E2553DE7400FD8385 /* photo */ = {
+			isa = PBXGroup;
+			children = (
+				004EC35F2553DE8400FD8385 /* JMainPhotoPickerVC.swift */,
+				003C8C9D2556C16D00B44812 /* JPhotoPickerVC.swift */,
+				003C8CA12556C19100B44812 /* JPhotosPreviewsVC.swift */,
+				003C8C982556C12300B44812 /* interface */,
+				003C8C932556C0F400B44812 /* cell */,
+			);
+			path = photo;
+			sourceTree = "<group>";
+		};
+		0076777425528C2800C226A2 /* segmentControl */ = {
+			isa = PBXGroup;
+			children = (
+				007677792552A22700C226A2 /* segment_bg_icon@2x.png */,
+				0076777A2552A22700C226A2 /* segment_selectbg_icon@2x.png */,
+				0076777525528C3D00C226A2 /* JSegmentedControl.swift */,
+			);
+			path = segmentControl;
+			sourceTree = "<group>";
+		};
+		007D641625246F91004C7FCE /* baseVC */ = {
+			isa = PBXGroup;
+			children = (
+				007D641725246FAC004C7FCE /* JBaseViewController.swift */,
+				007DCFB0254C0CC200694F59 /* JBaseCollectionVC.swift */,
+				007DCFB3254C0CCE00694F59 /* JBaseImageViewVC.swift */,
+				007DCFB6254C0CD900694F59 /* JBaseNavigationVC.swift */,
+				007DCFB9254C0CE400694F59 /* JBasePoperVC.swift */,
+				007DCFBC254C0CF200694F59 /* JBaseTableViewVC.swift */,
+			);
+			path = baseVC;
+			sourceTree = "<group>";
+		};
+		007D641B25246FB2004C7FCE /* baseView */ = {
+			isa = PBXGroup;
+			children = (
+				007D641D25246FC7004C7FCE /* JBaseView.swift */,
+				007DCFAA254C0C4300694F59 /* JBaseTableViewCell.swift */,
+				007DCFA7254C0C2700694F59 /* JBaseCollectionViewCell.swift */,
+				007DCFAD254C0C5B00694F59 /* JCollectionViewFlowLayout.swift */,
+				004EC3632553E3F600FD8385 /* JBaseTransition.swift */,
+			);
+			path = baseView;
+			sourceTree = "<group>";
+		};
+		007DCF8A254BB6C500694F59 /* progressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				007DCF8B254BB6E000694F59 /* JProgressHUD.swift */,
+				007DCF8F254BB72D00694F59 /* reloadProgress_center@3x.png */,
+				007DCF90254BB72D00694F59 /* reloadProgress_route@3x.png */,
+			);
+			path = progressHUD;
+			sourceTree = "<group>";
+		};
+		007DCFC5254C0D2E00694F59 /* whenTapped */ = {
+			isa = PBXGroup;
+			children = (
+				007DCFC6254C0D3D00694F59 /* JWhenTappedView.swift */,
+			);
+			path = whenTapped;
+			sourceTree = "<group>";
+		};
+		007F657A255240B300194FD6 /* RefreshView */ = {
+			isa = PBXGroup;
+			children = (
+				007F657F255240D800194FD6 /* reloading_fresh@2x.png */,
+				007F657B255240CC00194FD6 /* JRefreshView.swift */,
+			);
+			path = RefreshView;
+			sourceTree = "<group>";
+		};
+		00EBCA9A25527EFB009FD233 /* TipInfo */ = {
+			isa = PBXGroup;
+			children = (
+				007677712552807F00C226A2 /* JMoreTipView.swift */,
+			);
+			path = TipInfo;
 			sourceTree = "<group>";
 		};
 		00EFADCD251ED32800EB1B60 = {
@@ -122,13 +358,13 @@
 		00EFADED251ED34D00EB1B60 /* architecture */ = {
 			isa = PBXGroup;
 			children = (
+				007D641B25246FB2004C7FCE /* baseView */,
+				007D641625246F91004C7FCE /* baseVC */,
 				003B5E072523082200838F02 /* baseObject */,
 				003B5DFA252303C400838F02 /* loginitem */,
 				00EFADEE251ED35D00EB1B60 /* appdelegate */,
 				00EFADF5251ED38100EB1B60 /* config */,
 				00EFADFA251ED3A500EB1B60 /* JMainViewController.swift */,
-				00B6CE4B2525C92200884D52 /* JA.swift */,
-				00B6CE4E2525C92D00884D52 /* JB.swift */,
 			);
 			path = architecture;
 			sourceTree = "<group>";
@@ -156,9 +392,17 @@
 		00EFADFC251ED4A600EB1B60 /* threeclass */ = {
 			isa = PBXGroup;
 			children = (
+				004EC35E2553DE7400FD8385 /* photo */,
+				004EC28A2553871100FD8385 /* crypt */,
+				0076777425528C2800C226A2 /* segmentControl */,
+				00EBCA9A25527EFB009FD233 /* TipInfo */,
+				007F657A255240B300194FD6 /* RefreshView */,
+				007DCFC5254C0D2E00694F59 /* whenTapped */,
+				007DCF8A254BB6C500694F59 /* progressHUD */,
 				003B5E0B252310B100838F02 /* utility */,
 				003B5DF22523022700838F02 /* coreDate */,
 				00EFADFE251ED4EE00EB1B60 /* http */,
+				004EC3392553CB2500FD8385 /* STXImageCache */,
 			);
 			path = threeclass;
 			sourceTree = "<group>";
@@ -166,11 +410,13 @@
 		00EFADFD251ED4BD00EB1B60 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				003C8C9125563D4D00B44812 /* Podfile */,
 				003B5DF62523038200838F02 /* DatasaseModel.xcdatamodeld */,
 				00EFADDF251ED32800EB1B60 /* Main.storyboard */,
 				00EFADE2251ED32B00EB1B60 /* Assets.xcassets */,
 				00EFADE4251ED32B00EB1B60 /* LaunchScreen.storyboard */,
 				00EFADE7251ED32B00EB1B60 /* Info.plist */,
+				00EF74E92549704100194F0B /* config.plist */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -179,6 +425,8 @@
 			isa = PBXGroup;
 			children = (
 				00EFADFF251ED4F500EB1B60 /* Reachability.swift */,
+				00EBA965254E661D00728657 /* JHttpReqHelp.swift */,
+				0086133F255037D400183E12 /* JHttpReqHelp+Model.swift */,
 			);
 			path = http;
 			sourceTree = "<group>";
@@ -241,9 +489,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0076777C2552A22700C226A2 /* segment_selectbg_icon@2x.png in Resources */,
+				00EF74EA2549704100194F0B /* config.plist in Resources */,
+				007DCF92254BB72D00694F59 /* reloadProgress_route@3x.png in Resources */,
+				007F6580255240D800194FD6 /* reloading_fresh@2x.png in Resources */,
 				00EFADE6251ED32B00EB1B60 /* LaunchScreen.storyboard in Resources */,
 				00EFADE3251ED32B00EB1B60 /* Assets.xcassets in Resources */,
 				00EFADE1251ED32800EB1B60 /* Main.storyboard in Resources */,
+				0076777B2552A22700C226A2 /* segment_bg_icon@2x.png in Resources */,
+				007DCF91254BB72D00694F59 /* reloadProgress_center@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,21 +508,65 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00861340255037D400183E12 /* JHttpReqHelp+Model.swift in Sources */,
+				007F657C255240CC00194FD6 /* JRefreshView.swift in Sources */,
+				007DCFBA254C0CE400694F59 /* JBasePoperVC.swift in Sources */,
+				004EC3592553CB2500FD8385 /* STXDiskCacheConfig.swift in Sources */,
+				004EC3552553CB2500FD8385 /* STXCacheManager.swift in Sources */,
+				007DCFB7254C0CDA00694F59 /* JBaseNavigationVC.swift in Sources */,
 				00EFADF3251ED36B00EB1B60 /* AppDelegate+Config.swift in Sources */,
 				00EFADF8251ED38100EB1B60 /* JConstantHelp.swift in Sources */,
+				004EC34D2553CB2500FD8385 /* STXImageCache.swift in Sources */,
 				00EFADDA251ED32800EB1B60 /* AppDelegate.swift in Sources */,
+				007DCFC3254C0D1700694F59 /* JTableDataArrModel.swift in Sources */,
+				003C8CA82556C25100B44812 /* JPhotoPickerCell.swift in Sources */,
+				004EC3572553CB2500FD8385 /* STXImageCache+UIButtonExtensions.swift in Sources */,
+				004EC3582553CB2500FD8385 /* Task.swift in Sources */,
+				00EBA966254E661D00728657 /* JHttpReqHelp.swift in Sources */,
+				0076777625528C3D00C226A2 /* JSegmentedControl.swift in Sources */,
+				004EC34F2553CB2500FD8385 /* NetworkProvider.swift in Sources */,
+				004EC3602553DE8400FD8385 /* JMainPhotoPickerVC.swift in Sources */,
+				007DCFAB254C0C4300694F59 /* JBaseTableViewCell.swift in Sources */,
+				004EC3532553CB2500FD8385 /* MemoryProvider.swift in Sources */,
+				004EC3502553CB2500FD8385 /* STXImageOperation.swift in Sources */,
 				003B5E092523083900838F02 /* JBaseDataModel.swift in Sources */,
+				007D641E25246FC7004C7FCE /* JBaseView.swift in Sources */,
+				00EA79FB2531B609008DECA9 /* JAppViewTools.swift in Sources */,
+				003C8CA52556C1BD00B44812 /* JPhotosPreviewsCell.swift in Sources */,
+				004EC34C2553CB2500FD8385 /* StorageProvider.swift in Sources */,
+				004EC3642553E3F600FD8385 /* JBaseTransition.swift in Sources */,
 				00EFADFB251ED3A600EB1B60 /* JMainViewController.swift in Sources */,
 				003B5DFC2523041F00838F02 /* JLoginUserMessage.swift in Sources */,
+				004EC3562553CB2500FD8385 /* STXMemoryCacheConfig.swift in Sources */,
+				007677722552807F00C226A2 /* JMoreTipView.swift in Sources */,
+				004EC34A2553CB2500FD8385 /* ThreadsManager.swift in Sources */,
+				004EC34B2553CB2500FD8385 /* STXImageCache+ImageViewExtensions.swift in Sources */,
+				003C8CAB2556C31E00B44812 /* JPhotoPickerModel.swift in Sources */,
 				00EFADF9251ED38100EB1B60 /* JBuildConfig.swift in Sources */,
+				003C8C952556C10500B44812 /* JMainPhotoPickerCell.swift in Sources */,
+				004EC3542553CB2500FD8385 /* Typealiases.swift in Sources */,
+				007DCF8C254BB6E000694F59 /* JProgressHUD.swift in Sources */,
 				003B5E0D252310C100838F02 /* JAppUtility.swift in Sources */,
-				00B6CE4F2525C92D00884D52 /* JB.swift in Sources */,
-				00B6CE4C2525C92200884D52 /* JA.swift in Sources */,
+				003C8C9E2556C16D00B44812 /* JPhotoPickerVC.swift in Sources */,
+				004EC3512553CB2500FD8385 /* Providing.swift in Sources */,
+				007DCFAE254C0C5B00694F59 /* JCollectionViewFlowLayout.swift in Sources */,
+				007DCFB4254C0CCE00694F59 /* JBaseImageViewVC.swift in Sources */,
+				004EC34E2553CB2500FD8385 /* ImageDownloader.swift in Sources */,
 				00EFADF2251ED36B00EB1B60 /* SceneDelegate.swift in Sources */,
+				007DCFB1254C0CC200694F59 /* JBaseCollectionVC.swift in Sources */,
+				007DCFC0254C0D0C00694F59 /* JBaseInterfaceManager.swift in Sources */,
 				00EFAE00251ED4F500EB1B60 /* Reachability.swift in Sources */,
 				003B5DF82523038200838F02 /* DatasaseModel.xcdatamodeld in Sources */,
 				003B5DF42523022F00838F02 /* JCoreDataManager.swift in Sources */,
+				00EA79FE2531B62B008DECA9 /* JAppViewExtend.swift in Sources */,
+				007DCFBD254C0CF200694F59 /* JBaseTableViewVC.swift in Sources */,
+				007DCFC7254C0D3D00694F59 /* JWhenTappedView.swift in Sources */,
+				004EC28C2553871100FD8385 /* JCryptHelp.swift in Sources */,
+				007D641825246FAC004C7FCE /* JBaseViewController.swift in Sources */,
+				003C8C9A2556C13000B44812 /* JPhotoPickerInterface.swift in Sources */,
+				007DCFA8254C0C2700694F59 /* JBaseCollectionViewCell.swift in Sources */,
 				00EFADF4251ED36B00EB1B60 /* AppDelegate+Notifaction.swift in Sources */,
+				003C8CA22556C19100B44812 /* JPhotosPreviewsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

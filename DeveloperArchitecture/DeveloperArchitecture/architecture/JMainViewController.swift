@@ -7,38 +7,28 @@
 
 import UIKit
 
+var mprogressHUD1 : JMainViewController? = nil
 
 @objcMembers
-class JMainViewController: UIViewController,UITableViewDelegate{
+class JMainViewController: UIViewController {
+
     let indexArr : String? = "323"
     let indexArr2 : String? = "323"
+    open class var shared1: JMainViewController {
+        get {
+            if mprogressHUD1 == nil {
+                mprogressHUD1 = JMainViewController()
+            }
+            return mprogressHUD1!
+        }
+    }
+    static let shared2 = JCoreDataManager()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        _ = UserLoginDB ()
-        
-//        JAA.funj_bike()
-        funj_bike()
-        
-        
-//
-//        JLoginUserMessage.funj_insertLoginUserMessage(["userId":123,"nickName":"1233"])
-//        JLoginUserMessage.funj_insertLoginUserMessage(["userId":1231,"nickName":"123313"])
-//        JLoginUserMessage.funj_insertLoginUserMessage(["userId":1232,"nickName":"123324"])
-//        JLoginUserMessage.funj_insertLoginUserMessage(["userId":1233,"nickName":"123335"])
-
-        let login = JLoginUserMessage.funj_getLastLoginUserMessage()
-        
-        print(login)
-        type(of: self)
-        let ss = self.classForCoder
-        print(UIButton.classForCoder())
-        print(self.classForCoder)
-
+        let dic = ["nameStr" : "name","sexStr" : "M" , "ageInt" : "18"] as [String : Any]
         
     }
-
-
 }
-

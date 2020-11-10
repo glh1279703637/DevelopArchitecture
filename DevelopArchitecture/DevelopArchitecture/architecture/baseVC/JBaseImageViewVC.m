@@ -8,6 +8,7 @@
 
 #import "JBaseImageViewVC.h"
 #import "JMainPhotoPickerVC.h"
+#import <Photos/Photos.h>
 
 @interface JBaseImageViewVC ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,VPImageCropperDelegate>
 
@@ -35,7 +36,16 @@
     [JAppViewTools funj_showSheetBlock:self  :button :LocalStr(@"Choose photos") :@[LocalStr(@"Photo"),LocalStr(@"Select from album")] block:^(JBaseImageViewVC* strongSelf, NSInteger buttonIndex) {
         if (buttonIndex == 0) {// 拍照
             if ([strongSelf funj_isCameraAvailable] && [strongSelf funj_doesCameraSupportTakingPhotos]) {
-                [strongSelf funj_recallSystemCameraOrPhotoLabrary:UIImagePickerControllerSourceTypeCamera];
+                AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+                if (authStatus == AVAuthorizationStatusRestricted || authStatus ==AVAuthorizationStatusDenied){
+                    [JAppViewTools funj_showAlertBlock:strongSelf :nil :LocalStr(@"Please set APP to access your camera \nSettings> Privacy> Camera") :@[LocalStr(@"Confirm")] :^(JBaseImageViewVC* strongSelf, NSInteger index) {
+                        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                        [[UIApplication sharedApplication] openURL:url  options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @NO} completionHandler:nil];
+                        [strongSelf funj_clickBackButton:nil];
+                    }];
+                }else{
+                    [strongSelf funj_recallSystemCameraOrPhotoLabrary:UIImagePickerControllerSourceTypeCamera];
+                }
             }
             
         } else if (buttonIndex == 1) {

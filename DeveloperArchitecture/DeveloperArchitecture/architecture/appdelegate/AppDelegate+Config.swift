@@ -21,7 +21,9 @@ extension AppDelegate {
             // 第一次使用 出现引导页
             
         }
-        funj_setupReachability()
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            self.funj_setupReachability()
+        }
     }
     func funj_isFirstLoadUserView() ->Bool{
         if UserDefaults.standard.bool(forKey: "everLaunched") {

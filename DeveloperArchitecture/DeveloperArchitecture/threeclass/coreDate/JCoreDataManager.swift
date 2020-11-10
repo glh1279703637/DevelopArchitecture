@@ -53,9 +53,7 @@ public class JCoreDataManager: NSObject {
     
 
     private func funj_saveMessageContext() {
-        do{
-            try context.save()
-        } catch {
+        do{ try context.save() } catch {
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }

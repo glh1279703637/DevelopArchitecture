@@ -11,9 +11,8 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     public var m_reachability: Reachability?
-    let m_hostNames = [nil, "google.com", "invalidhost"]
-    var m_hostIndex = 0
-    
+    public var window : UIWindow?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         

@@ -83,7 +83,10 @@
     if(device){
         AVCaptureDeviceInput * input = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
         if(!input) {// Handling the error appropriately.
-            [JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] message:LocalStr(@"Please set APP to access your camera \nSettings> Privacy> Camera")];
+            [JAppViewTools funj_showAlertBlock:self :nil :LocalStr(@"Please set APP to access your camera \nSettings> Privacy> Camera") :@[LocalStr(@"Confirm")] :^(id strongSelf, NSInteger index) {
+                NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                [[UIApplication sharedApplication] openURL:url  options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @NO} completionHandler:nil];
+            }];
             return;
         }
         AVCaptureMetadataOutput * output = [[AVCaptureMetadataOutput alloc]init];

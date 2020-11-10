@@ -20,8 +20,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate{
             }
         }
         UIApplication.shared.registerForRemoteNotifications()
-        
-        print("ididid - -- ")
     }
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let device = NSData(data: deviceToken)

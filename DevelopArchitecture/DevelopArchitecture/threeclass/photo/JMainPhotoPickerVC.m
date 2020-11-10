@@ -9,7 +9,8 @@
 #import "JMainPhotoPickerVC.h"
 #import "JPhotoPickerInterface.h"
 #import "JPhotoPickerVC.h"
-@interface JMainPhotoPickerVC ()
+#import <PhotosUI/PhotosUI.h>
+@interface JMainPhotoPickerVC ()<PHPhotoLibraryChangeObserver>
 @property(nonatomic,strong)UILabel* m_tipLabel;
 @property(nonatomic,strong)NSTimer *m_timer;
 @end
@@ -52,12 +53,22 @@
          NSString *text = [NSString stringWithFormat:LocalStr(@"Please allow %@ to access all photos"), appName];
          
          NSInteger lo = [text rangeOfString:appName].location;
-         UILabel *contentLabel =[self.m_defaultImageView viewWithTag:9993];
          NSMutableAttributedString *attri = [contentLabel funj_updateAttributedText:text];
          [attri addAttributes:@{NSForegroundColorAttributeName:COLOR_ORANGE} range:NSMakeRange(lo, appName.length)];
          contentLabel.attributedText = attri;
          if(statusAuthorized == PHAuthorizationStatusNotDetermined){
              self.m_tipLabel.hidden = NO;
+         }
+         if(statusAuthorized == 4/*PHAuthorizationStatusLimited*/){
+             contentLabel.hidden = YES;
+             LRWeakSelf(self);
+             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                 LRStrongSelf(self);
+                 if(self.m_dataArr.count <=0){
+                     UILabel *contentLabel =[self.m_defaultImageView viewWithTag:9993];
+                     contentLabel.hidden = NO;
+                 }
+             });
          }
          
          if (@available(iOS 14.0, *)) {
@@ -65,7 +76,8 @@
          } else {
              [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {}];
          }
-     }else{
+     }
+     if(statusAuthorized == PHAuthorizationStatusAuthorized || statusAuthorized == 4/*PHAuthorizationStatusLimited*/){
          [self funj_getAllPhotosArray];
      }
     LRWeakSelf(self);
@@ -75,6 +87,16 @@
             [self.m_delegate funj_selectPhotosFinishToCallback:imageArr t:isVideo];
         }
     } ];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+
+    [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
 }
 
 -(void)funj_checkIsAuthorize:(NSTimer*)timer{
@@ -163,6 +185,14 @@
         [self.m_timer invalidate];self.m_timer = nil;
     }
     [super funj_clickBackButton:sender];
+}
+- (void)photoLibraryDidChange:(PHChange *)changeInstance{
+    LRWeakSelf(self);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        LRStrongSelf(self);
+        [self.m_dataArr removeAllObjects];
+        [self funj_getAllPhotosArray];
+    });
 }
 -(void)dealloc{
     [JPhotosConfig m_deallocPhotoConfig];
