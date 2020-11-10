@@ -164,7 +164,7 @@ class JScrollViewModel : NSObject {
 
 class JRefreshView: JBaseView {
     lazy var m_arrowImageView : UIImageView = {
-        let arrowImageView = UIImageView(CGRect(x: (frame.width - 30)/2, y: (frame.height - 30)/2, width: 30, height: 30), image: "reloading_fresh")
+        let arrowImageView = UIImageView(i: CGRect(x: (frame.width - 30)/2, y: (frame.height - 30)/2, width: 30, height: 30), image: "reloading_fresh")
         self.addSubview(arrowImageView)
         return arrowImageView
     }()
@@ -172,7 +172,7 @@ class JRefreshView: JBaseView {
     var m_refreshHeadle : JRefreshHeadle?
     var m_isHead : Bool = false {
         willSet {if newValue == true {
-            m_arrowLabel = UILabel(CGRect(x: m_arrowImageView.right + 10, y: m_arrowImageView.top, width: 0, height: m_arrowImageView.height), textFC: JTextFC(f: FONT_SIZE12, c: COLOR_TEXT_GRAY_DARK))
+            m_arrowLabel = UILabel(i: CGRect(x: m_arrowImageView.right + 10, y: m_arrowImageView.top, width: 0, height: m_arrowImageView.height), textFC: JTextFC(f: FONT_SIZE12, c: COLOR_TEXT_GRAY_DARK))
                 self.addSubview(m_arrowLabel!)
         }}}
     var m_state : JRefreshState =  .kRefreshStateNone {

@@ -58,7 +58,7 @@ class JBaseNavigationVC : UINavigationController, UINavigationControllerDelegate
         self.delegate = self
         
         let bar = UINavigationBar.appearance()
-        m_barBottomLine = UIImageView(CGRect(x: 0, y: bar.height, width: bar.width, height: 1), bgColor: COLOR_BLUE)
+        m_barBottomLine = UIImageView(i: CGRect(x: 0, y: bar.height, width: bar.width, height: 1), bgColor: COLOR_BLUE)
         bar.addSubview(m_barBottomLine!)
     }
     override func viewWillAppear(_ animated: Bool) {

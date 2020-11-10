@@ -39,7 +39,7 @@ public class JBaseViewController : UIViewController ,UIPopoverPresentationContro
     var m_pushOrPresentAnimateClass : JBaseTransition.Type?
     
     func funj_addBackButton(image : String?) -> UIButton{
-        let backBt = UIButton(CGRect(x: 0, y: KStatusBarHeight, width: 50, height: 44), title: nil, textFC: JTextFC())
+        let backBt = UIButton(i: CGRect(x: 0, y: KStatusBarHeight, width: 50, height: 44), title: nil, textFC: JTextFC())
             .funj_add(bgImageOrColor: image != nil ? [image as Any] : ["backBt"], isImage: true)
             .funj_add(targe: self, action: "funj_clickBackButton:", tag: 8800)
         self.view.addSubview(backBt)
@@ -210,7 +210,7 @@ extension JBaseViewController {
                 icon = "backBt2"
             }
 
-            let backBt = UIBarButtonItem(nil, image: icon, setButton: { (button) in
+            let backBt = UIBarButtonItem(i: nil, image: icon, setButton: { (button) in
                 button.contentHorizontalAlignment = .left
             }, target: self, action: "funj_clickBackButton:")
             self.navigationItem.leftBarButtonItems = [backBt]

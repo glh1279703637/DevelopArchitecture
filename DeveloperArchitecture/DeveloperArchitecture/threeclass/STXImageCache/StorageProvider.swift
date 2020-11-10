@@ -96,10 +96,10 @@ struct StorageProvider: Providing {
         }
         var path = url.absoluteString
         if let scheme = url.scheme, path.hasPrefix(scheme) {
-            path = path.substring(from: scheme.endIndex)
+            path = String(path[scheme.endIndex...])
             let prefix = "://"
             if path.hasPrefix(prefix) {
-                path = path.substring(from: prefix.endIndex)
+                path = String(path[prefix.endIndex...])
             }
         }
         if url.isFileURL {

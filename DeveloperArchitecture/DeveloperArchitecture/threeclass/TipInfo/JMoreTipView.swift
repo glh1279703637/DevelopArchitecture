@@ -35,7 +35,7 @@ class JMoreTipView : JBaseView {
         let size = JAppUtility.funj_getTextW_Height(title, textFont: FONT_SIZE14, layoutwidth: CGFloat(MAXFLOAT), layoutheight: 60)
         let frame = CGRect(x: 0, y: 0, width: size.width + 50, height: 60)
         super.init(frame: frame)
-        let titleLabel = UILabel(CGRect(x: 10, y: 10, width: size.width + 30, height: 40), title: title, textFC: JTextFC(f: FONT_SIZE14, c: COLOR_WHITE, a: .center))
+        let titleLabel = UILabel(i: CGRect(x: 10, y: 10, width: size.width + 30, height: 40), title: title, textFC: JTextFC(f: FONT_SIZE14, c: COLOR_WHITE, a: .center))
         self.addSubview(titleLabel)
         superV.addSubview(self)
     }

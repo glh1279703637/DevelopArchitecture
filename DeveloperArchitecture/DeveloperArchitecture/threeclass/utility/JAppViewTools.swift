@@ -312,11 +312,8 @@ class JAppViewTools : NSObject {
     }
 
     //显示toast文字
-    class func funj_showTextToast(_ superView : UIView? ,message : String , time : TimeInterval){
-        self.funj_showTextToast(superView, message: message,time: 2, complete: nil)
-    }
-    class func funj_showTextToast(_ superView1 : UIView? ,message : String ,time : TimeInterval ,complete : kcompleteCallback? ){
-        var superView = superView1
+    class func funj_showTextToast(_ superView : UIView? ,message : String ,time : TimeInterval = 2,complete : kcompleteCallback? = nil ){
+        var superView = superView
         if superView == nil {
             superView = JAppViewTools.funj_getKeyWindow()
             if superView == nil { return }

@@ -27,8 +27,8 @@ struct kTEXTFINPUT_TYPE: OptionSet {
 
 extension UIResponder {//解决数字键盘无返回按钮的问题
     func funj_addNumberInputKeyAccesssoryTitleView() {
-        let inputAccessoryView = UIView(CGRect(x: 0, y: 0, width: KWidth, height: 50), bg: kARGBHex(0xD1D4D9, 1))
-        let sumBt = UIButton(CGRect(x: KWidth - 120 , y: 0, width: 120 , height: 50), title: kLocalStr("Confirm"), textFC: JTextFC(f: FONT_SIZE17, c: COLOR_ORANGE))
+        let inputAccessoryView = UIView(i: CGRect(x: 0, y: 0, width: KWidth, height: 50), bg: kARGBHex(0xD1D4D9, 1))
+        let sumBt = UIButton(i:CGRect(x: KWidth - 120 , y: 0, width: 120 , height: 50), title: kLocalStr("Confirm"), textFC: JTextFC(f: FONT_SIZE17, c: COLOR_ORANGE))
             .funj_updateContentImage(layout: .kRIGHT_CONTENTIMAGE, a: JAlignValue(h: 0, s: 0, f: 20))
             .funj_addblock { (button) in
                 JAppViewTools.funj_getKeyWindow()?.endEditing(true)
@@ -170,7 +170,7 @@ extension UIView {
     }
 }
 extension UIView {
-    convenience init(_ frame : CGRect ,bg bgColor : UIColor){
+    convenience init(i frame : CGRect ,bg bgColor : UIColor){
         self.init(frame: frame)
         self.backgroundColor = bgColor
     }
@@ -199,7 +199,7 @@ extension UIView {
     }
 }
 extension UILabel {
-    convenience init(_ frame : CGRect ,title : String? = nil,textFC : JTextFC? ){
+    convenience init(i frame : CGRect ,title : String? = nil,textFC : JTextFC? ){
         self.init(frame:frame)
         self.font = textFC?.m_textFont ?? FONT_SIZE13
         self.textColor = textFC?.m_textColor ?? COLOR_TEXT_BLACK
@@ -236,7 +236,7 @@ extension UITextField {
         get { return objc_getAssociatedObject(self, &ktextFieldInsertTextInputType) as? [kTEXTFINPUT_TYPE] }
         set {objc_setAssociatedObject(self, &ktextFieldInsertTextInputType, newValue, .OBJC_ASSOCIATION_ASSIGN)}}
     
-    convenience init(_ frame : CGRect ,placeholder : String? ,textFC : JTextFC? ){
+    convenience init(i frame : CGRect ,placeholder : String? ,textFC : JTextFC? ){
         self.init(frame:frame)
         self.font = textFC?.m_textFont ?? FONT_SIZE13
         self.textColor = textFC?.m_textColor ?? COLOR_TEXT_BLACK
@@ -273,14 +273,14 @@ extension UITextView {
         get { return objc_getAssociatedObject(self, &ktextFieldInsertTextInputType) as? [kTEXTFINPUT_TYPE] }
         set {objc_setAssociatedObject(self, &ktextFieldInsertTextInputType, newValue, .OBJC_ASSOCIATION_ASSIGN)}}
     
-    convenience init(_ frame : CGRect ,textFC : JTextFC? ){
+    convenience init(i frame : CGRect ,textFC : JTextFC? ){
         self.init(frame:frame)
         self.font = textFC?.m_textFont ?? FONT_SIZE13
         self.textColor = textFC?.m_textColor ?? COLOR_TEXT_BLACK
         self.textAlignment = textFC?.m_alignment ?? .left
         self.backgroundColor = .clear
     }
-    convenience init(linkAttriWithframe : CGRect ,content : String? ,attrs : Dictionary<NSAttributedString.Key,AnyObject> , selectArr : [NSRange] , target : AnyObject){
+    convenience init(i_linkAttri linkAttriWithframe : CGRect ,content : String? ,attrs : Dictionary<NSAttributedString.Key,AnyObject> , selectArr : [NSRange] , target : AnyObject){
         self.init(frame: linkAttriWithframe)
         self.isScrollEnabled = false
         self.isEditable = false
@@ -315,21 +315,21 @@ extension UITextView {
 }
 
 extension UIImageView {
-    convenience init(_ frame : CGRect ,image : String?){
+    convenience init(i frame : CGRect ,image : String?){
         self.init(frame:frame)
         if image != nil {
             self.image = UIImage(named: image!)
         }
     }
-    convenience init(_ frame : CGRect ,bgColor : UIColor?){
+    convenience init(i frame : CGRect ,bgColor : UIColor?){
         self.init(frame:frame)
         self.backgroundColor = bgColor
     }
-    convenience init(lineframe : CGRect){
+    convenience init(i_line lineframe : CGRect){
         self.init(frame:lineframe)
         self.backgroundColor = kARGBHex(0xE1E1E1, 1)
     }
-    convenience init(blackAlphaFrame : CGRect){
+    convenience init(i_blackAlpha blackAlphaFrame: CGRect){
         self.init(frame:blackAlphaFrame)
         self.backgroundColor = COLOR_TEXT_BLACK_DARK
         self.alpha = 0.3
@@ -338,7 +338,7 @@ extension UIImageView {
 }
 
 extension UIButton {
-    convenience init(_ frame : CGRect ,title : String? ,textFC : JTextFC){
+    convenience init(i frame : CGRect ,title : String? ,textFC : JTextFC){
         self.init(frame:frame)
         if title != nil {
             self.setTitle(title, for: .normal)
@@ -473,7 +473,7 @@ extension UIButton {
 }
 
 extension UIScrollView {
-    convenience init(_ frame : CGRect ,delegate : UIScrollViewDelegate?){
+    convenience init(i frame : CGRect ,delegate : UIScrollViewDelegate?){
         self.init(frame:frame)
         if #available(iOS 11.0, *) {
             self.contentInsetAdjustmentBehavior = .never
@@ -485,7 +485,7 @@ extension UIScrollView {
 }
 
 extension WKWebView {
-    convenience init(_ frame : CGRect ,delegate : AnyObject? ,url :String?,callback configCallback : ((_ config : WKWebViewConfiguration)->())? = nil ){
+    convenience init(i frame : CGRect ,delegate : AnyObject? ,url :String?,callback configCallback : ((_ config : WKWebViewConfiguration)->())? = nil ){
         let config = WKWebViewConfiguration()
         
         let jScript = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'); document.getElementsByTagName('head')[0].appendChild(meta);" //禁止缩放
@@ -533,17 +533,17 @@ extension WKWebView {
 }
 
 extension UIBarButtonItem {
-    convenience init(_ title :String? = nil ,image : String? ,setButton setButtonCallback : kclickCallBack? = nil ,callback :kclickCallBack?) {
+    convenience init(i title :String? = nil ,image : String? ,setButton setButtonCallback : kclickCallBack? = nil ,callback :kclickCallBack?) {
         let imageArr = image != nil ? [image!] : nil
-        let backButton = UIButton(CGRect(x: 0, y: 0, width: 44, height: KNavigationBarHeight), title: title, textFC: JTextFC(f: FONT_SIZE14, c: kARGBHex(0x333333, 1.0)))
+        let backButton = UIButton(i: CGRect(x: 0, y: 0, width: 44, height: KNavigationBarHeight), title: title, textFC: JTextFC(f: FONT_SIZE14, c: kARGBHex(0x333333, 1.0)))
             .funj_add(bgImageOrColor:imageArr , isImage: true)
             .funj_addblock(block: callback)
         setButtonCallback?(backButton)
         self.init(customView : backButton)
     }
-    convenience init(_ title :String? = nil ,image : String? ,setButton setButtonCallback : kclickCallBack? = nil ,target :Any ,action : String) {
+    convenience init(i title :String? = nil ,image : String? ,setButton setButtonCallback : kclickCallBack? = nil ,target :Any ,action : String) {
         let imageArr = image != nil ? [image!] : nil
-        let backButton = UIButton(CGRect(x: 0, y: 0, width: 44, height: KNavigationBarHeight), title: title, textFC: JTextFC(f: FONT_SIZE14, c: kARGBHex(0x333333, 1.0)))
+        let backButton = UIButton(i: CGRect(x: 0, y: 0, width: 44, height: KNavigationBarHeight), title: title, textFC: JTextFC(f: FONT_SIZE14, c: kARGBHex(0x333333, 1.0)))
             .funj_add(bgImageOrColor:imageArr , isImage: true)
             .funj_add(targe: target, action: action, tag: 0)
         setButtonCallback?(backButton)

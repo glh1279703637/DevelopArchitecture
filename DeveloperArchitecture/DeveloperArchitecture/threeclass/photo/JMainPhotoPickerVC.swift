@@ -18,7 +18,7 @@ class JMainPhotoPickerVC : JBaseTableViewVC, PHPhotoLibraryChangeObserver {
     var m_delegate : JMainPhotoPickerVCDelegate?
     
     lazy var m_tipLabel : UILabel = {
-        let tipLabel = UILabel(CGRect(x: 0, y: 0, width: 200, height: 30), title: "建议请优先选择所有照片", textFC: JTextFC(f: FONT_SIZE14, c: COLOR_ORANGE, a: .center))
+        let tipLabel = UILabel(i: CGRect(x: 0, y: 0, width: 200, height: 30), title: "建议请优先选择所有照片", textFC: JTextFC(f: FONT_SIZE14, c: COLOR_ORANGE, a: .center))
         self.view.addSubview(tipLabel)
         return tipLabel
     }()
@@ -26,7 +26,6 @@ class JMainPhotoPickerVC : JBaseTableViewVC, PHPhotoLibraryChangeObserver {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = krandomColor
         self.funj_addTableContentView()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -155,13 +154,16 @@ extension JMainPhotoPickerVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableviewCell = tableView.dequeueReusableCell(withIdentifier: kCellIndentifier) as? JMainPhotoPickerCell
-        tableviewCell?.backgroundColor = krandomColor
         tableviewCell?.funj_setBaseTableCellWithData( self.m_dataArr[indexPath.row])
         return tableviewCell!
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let model = self.m_dataArr[indexPath.row] as! JPhotosDataModel
+        _ = self.funj_getPushVC(className: JPhotoPickerVC.self, title: model.m_name, data: model.m_name) { (vc) in
+            let vcs = vc as! JPhotoPickerVC
+            vcs.m_dataModel = model
+        }
     }
 }
 extension JMainPhotoPickerVC {

@@ -14,16 +14,16 @@ class JProgressHUD: UIView {
     var progressImageView : UIImageView?
     
     lazy var m_titleLabel : UILabel = {
-        let titleLabel = UILabel(CGRect(x: 0, y: 0, width: 0, height: 30), title: nil, textFC: JTextFC(f: FONT_SIZE17, c: COLOR_TEXT_BLACK, a: .center))
+        let titleLabel = UILabel(i: CGRect(x: 0, y: 0, width: 0, height: 30), title: nil, textFC: JTextFC(f: FONT_SIZE17, c: COLOR_TEXT_BLACK, a: .center))
         self.addSubview(titleLabel)
         return titleLabel
     }()
     override init(frame: CGRect) {
         super.init(frame: CGRect(x: 0, y: 0, width: KWidth, height: KHeight))
         self.backgroundColor = COLOR_CREAR
-        progressBgImageView = UIImageView(CGRect(x: (KWidth-202/2.5)/2, y: (KHeight-202/2.5)/2, width: 202/2.5, height: 202/2.5), image: "reloadProgress_center")
+        progressBgImageView = UIImageView(i: CGRect(x: (KWidth-202/2.5)/2, y: (KHeight-202/2.5)/2, width: 202/2.5, height: 202/2.5), image: "reloadProgress_center")
         self.addSubview(progressBgImageView!)
-        progressImageView = UIImageView(CGRect(x: (progressBgImageView!.frame.size.width-188/2.5)/2, y: (progressBgImageView!.frame.size.height-188/2.5)/2, width: 188/2.5, height: 188/2.5), image: "reloadProgress_route")
+        progressImageView = UIImageView(i: CGRect(x: (progressBgImageView!.frame.size.width-188/2.5)/2, y: (progressBgImageView!.frame.size.height-188/2.5)/2, width: 188/2.5, height: 188/2.5), image: "reloadProgress_route")
         progressBgImageView?.addSubview(progressImageView!)
         self.tag = NSNotFound - 1
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(funj_stopProgressView))
@@ -80,7 +80,7 @@ class JMProgressHUD : UIView {
     var m_timerIsStart : Bool = false
     
     lazy var m_titleLabel : UILabel = {
-        let titleLabel = UILabel(CGRectZero, title: nil, textFC: JTextFC(f: FONT_SIZE15, c: COLOR_WHITE, a: .center))
+        let titleLabel = UILabel(i: CGRectZero, title: nil, textFC: JTextFC(f: FONT_SIZE15, c: COLOR_WHITE, a: .center))
         self.addSubview(titleLabel)
         titleLabel.numberOfLines = 2
         return titleLabel
@@ -110,7 +110,7 @@ class JMProgressHUD : UIView {
     }
     
     func funj_addblackView (){
-        m_blackAlphaView = UIImageView(self.bounds, bg: COLOR_TEXT_BLACK)
+        m_blackAlphaView = UIImageView(i: self.bounds, bg: COLOR_TEXT_BLACK)
             .funj_addCornerLayer(JFilletValue(w: 0, r: 10, c: COLOR_CREAR)) as? UIImageView
         m_blackAlphaView?.alpha = 0.7
         self.addSubview(m_blackAlphaView!)

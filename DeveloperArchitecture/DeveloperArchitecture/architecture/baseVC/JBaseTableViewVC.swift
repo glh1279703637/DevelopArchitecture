@@ -15,9 +15,9 @@ let kCellIndentifier = "cellIndentifier"
 
 class JBaseTableViewVC : JBaseViewController, JSearchBarDelegate, UITableViewDelegate,UITableViewDataSource {
     lazy var m_topView : UIView = {
-        let topView = UIView(CGRect(x: 0, y: 0, width: KWidth, height: 0), bg: COLOR_WHITE_DARK)
+        let topView = UIView(i: CGRect(x: 0, y: 0, width: KWidth, height: 0), bg: COLOR_WHITE_DARK)
         self.view.addSubview(topView)
-        m_topTableViewLine = UIImageView(lineframe: CGRect(x: 0, y: 0, width: KWidth, height: 1))
+        m_topTableViewLine = UIImageView(i_line: CGRect(x: 0, y: 0, width: KWidth, height: 1))
         topView.addSubview(m_topTableViewLine!)
         return topView
     }()
@@ -44,7 +44,7 @@ class JBaseTableViewVC : JBaseViewController, JSearchBarDelegate, UITableViewDel
         searchBar.funj_reloadSearchState(needIcon: true, needCancel: true)
         m_topView.addSubview(searchBar)
         
-        m_blackImageView = UIImageView(blackAlphaFrame: CGRect(x: 0, y: 0, width: KWidth, height: KHeight))
+        m_blackImageView = UIImageView(i_blackAlpha: CGRect(x: 0, y: 0, width: KWidth, height: KHeight))
         m_blackImageView?.isHidden = true
         self.view.addSubview(m_blackImageView!)
         m_blackImageView?.funj_whenLongPressed({ (view) in
@@ -59,8 +59,8 @@ class JBaseTableViewVC : JBaseViewController, JSearchBarDelegate, UITableViewDel
         return tableView
     }()
     lazy var m_defaultImageView : UIImageView = {
-        let defaultImageView = UIImageView(CGRectZero, image: "uu_tableview_default_icon")
-        let contentLabel = UILabel(CGRect(x: 0, y: 0, width: 200, height: 20), title: "Here is a wilderness ...Nothing left", textFC: JTextFC(f: FONT_SIZE17, c: COLOR_TEXT_GRAY_DARK, a: .center))
+        let defaultImageView = UIImageView(i: CGRectZero, image: "uu_tableview_default_icon")
+        let contentLabel = UILabel(i: CGRect(x: 0, y: 0, width: 200, height: 20), title: "Here is a wilderness ...Nothing left", textFC: JTextFC(f: FONT_SIZE17, c: COLOR_TEXT_GRAY_DARK, a: .center))
         defaultImageView.addSubview(contentLabel)
         contentLabel.tag = 9993
         return defaultImageView

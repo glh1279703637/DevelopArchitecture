@@ -14,10 +14,9 @@ extension JBasePoperVC {
         
         let controller = self.init()
 
-        if let controller = controller as? JBaseViewController {
-            controller.funj_setBaseControllerData(data)
-            controller.m_currentShowVCModel = .kCURRENTISPRENTVIEW
-        }
+        controller.funj_setBaseControllerData(data)
+        controller.m_currentShowVCModel = .kCURRENTISPRENTVIEW
+        
         var setPresentView = false
         callback?(controller , &setPresentView)
         controller.modalPresentationStyle = .overCurrentContext
@@ -41,14 +40,14 @@ extension JBasePoperVC {
 
 class JBasePoperVC : JBaseViewController {
     lazy var m_bgView : UIView = {
-        let bgView = UIView(CGRect(x: 0, y: 0, width: KWidth, height: KHeight), bg: COLOR_WHITE)
+        let bgView = UIView(i: CGRect(x: 0, y: 0, width: KWidth, height: KHeight), bg: COLOR_WHITE)
         bgView.funj_whenTouchedDown { (sender) in
             sender.endEditing(true)
         }
         return bgView
     }()
     lazy var m_bgScrollView : UIScrollView = {
-        let bgScrollView = UIScrollView(self.m_bgView.bounds, delegate: nil)
+        let bgScrollView = UIScrollView(i: self.m_bgView.bounds, delegate: nil)
         self.m_bgView.addSubview(bgScrollView)
         return bgScrollView
     }()
@@ -61,7 +60,7 @@ class JBasePoperVC : JBaseViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.clear
         
-        m_bgImageView = UIImageView(blackAlphaFrame: self.view.bounds)
+        m_bgImageView = UIImageView(i_blackAlpha: self.view.bounds)
         self.view.addSubview(m_bgImageView!)
         m_bgImageView?.funj_whenTapped { [weak self ] ( _ ) in
             if self?.m_clickOutRectToBack ?? false { self?.funj_clickBackButton() }

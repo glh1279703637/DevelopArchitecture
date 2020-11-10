@@ -101,7 +101,7 @@ class JPhotoPickerInterface : JBaseInterfaceManager {
         option.isNetworkAccessAllowed = true
         PHImageManager.default().requestPlayerItem(forVideo: asset, options: option, resultHandler: callback)
     }
-    func funj_getPhotoBytesWithPhotoArray(photoArray : [JPhotoPickerModel] , callback : kgetPhotoBytesCallback?) {
+    class func funj_getPhotoBytesWithPhotoArray(photoArray : [JPhotoPickerModel] , callback : kgetPhotoBytesCallback?) {
         var dataLength = 0.0
         for model in photoArray {
             PHImageManager.default().requestImageData(for: model.m_asset!, options: nil) { (imageData, dataUTI, orientation, info) in
@@ -113,7 +113,7 @@ class JPhotoPickerInterface : JBaseInterfaceManager {
         let bytes = funj_getBytesFromDataLength(dataLength: dataLength)
         callback?(bytes)
     }
-    func funj_getBytesFromDataLength(dataLength : Double ) -> String{
+    class func funj_getBytesFromDataLength(dataLength : Double ) -> String{
         var bytes = ""
         if (dataLength >= (0.1 * 1024 * 1024)) {
             bytes += String(format: "%.2fM", dataLength / 1024 / 1024 )
@@ -137,6 +137,6 @@ extension JPhotoPickerInterface {
     class func funj_addConfigSubView(_ vc : UIViewController) {
         let backBt = vc.navigationItem.leftBarButtonItems?.first?.customView as? UIButton
         backBt?.setImage(UIImage(named: "backBt2"), for: .normal)
-        backBt?.funj_updateContentImage(layout: .kLEFT_CONTENTIMAGE, a: JAlignValue(h: 0, s: 0, f: 0))
+        _ = backBt?.funj_updateContentImage(layout: .kLEFT_CONTENTIMAGE, a: JAlignValue(h: 0, s: 0, f: 0))
     }
 }
