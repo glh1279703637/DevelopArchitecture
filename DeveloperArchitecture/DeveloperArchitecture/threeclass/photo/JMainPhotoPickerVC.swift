@@ -150,7 +150,7 @@ extension JMainPhotoPickerVC {
         return m_dataArr.count
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return kImageViewHeight(100 + (kIS_IPAD ? 1 : 0) * 20 ) + 20
+        return kImageViewHeight(100 + kIS_IPAD_1 * 20 ) + 20
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

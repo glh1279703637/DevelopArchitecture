@@ -73,13 +73,14 @@ typealias kcompleteCallback = (() -> ())
 private var kbuttonAttribute = "kbuttonAttribute"
 
 class ButtonAttribute : NSObject {
-    var m_addProhibitActionTime : TimeInterval = 2.0 // 设置连续事件点击间隔时间 ，防止重复点击
+    var m_addProhibitActionTime : TimeInterval = 1.0 // 设置连续事件点击间隔时间 ，防止重复点击
     var m_addProhibitActionTimeIsEnable : Bool = true // 设置连续事件点击 防止重复点击,YES:enable,NO:noenable
     var m_saveBgColor : [UIColor]?
     var m_clickBackCallback : kclickCallBack?
     var m_isCanAction : Bool = false
     var m_isDefalutNeedToSelectChange : Bool = true //是否需要改变点击后状态
     var m_upSelectTime : TimeInterval = 0.0 //上次选择时间
+    var m_upSelectTimestamp : TimeInterval? //上次选择时间
     var m_saveNormalDarkImage : UIImage? //正常图片 深色模式
     var m_saveDarkImage : UIImage?
 }
@@ -128,19 +129,13 @@ extension UIButton {
     open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         if m_attribute?.m_isCanAction == false { return }
-        if m_attribute?.m_isDefalutNeedToSelectChange != true {self.isSelected = !self.isSelected}
+        if m_attribute?.m_isDefalutNeedToSelectChange == true {self.isSelected = !self.isSelected}
         if m_attribute?.m_clickBackCallback != nil { m_attribute?.m_clickBackCallback?(self) }
         if m_attribute?.m_addProhibitActionTimeIsEnable == false {
             self.isEnabled = false
-            DispatchQueue.main.asyncAfter(deadline: .now()+1) {self.isEnabled = true}
+            DispatchQueue.main.asyncAfter(deadline: .now() + (self.m_attribute?.m_addProhibitActionTime ?? 0.5) ) {self.isEnabled = true}
         }}
-    open override var isHighlighted: Bool{
-        get{ let isHighlighte = super.isHighlighted
-            if m_attribute?.m_addProhibitActionTime ?? 0 <= 0  { return isHighlighte }
-            if m_attribute?.m_isCanAction == true { return isHighlighte }
-            return false}
-        set { super.isHighlighted = newValue }
-    }
+
     open override func sendAction(_ action: Selector, to target: Any?, for event: UIEvent?) {
         if m_attribute?.m_isCanAction == false { return }
         super.sendAction(action, to: target, for: event)
@@ -149,6 +144,16 @@ extension UIButton {
         if m_attribute?.m_saveDarkImage == nil  || m_attribute?.m_saveNormalDarkImage == nil { return }
         if kcurrentUserInterfaceStyleModel == 2 {self.setImage(m_attribute?.m_saveDarkImage, for: .normal)
         }else {self.setImage(m_attribute?.m_saveNormalDarkImage, for: .normal)}
+    }
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let now = NSDate().timeIntervalSince1970
+        if now - m_attribute!.m_upSelectTime < m_attribute!.m_addProhibitActionTime {
+            if (event?.timestamp ?? 0) - (self.m_attribute?.m_upSelectTimestamp ?? 0) > 0.5 {
+                return nil
+            }
+        }
+        self.m_attribute?.m_upSelectTimestamp = event?.timestamp
+        return super.hitTest(point, with: event)
     }
 }
 

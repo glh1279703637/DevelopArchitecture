@@ -96,22 +96,28 @@ class JPhotoPickerInterface : JBaseInterfaceManager {
             }
         }
     }
-    class func funj_getVideoWithAsset(asset : PHAsset , callback : @escaping kgetPickVideoCallback) {
+    class func funj_getVideoWithAsset(asset : PHAsset? , callback : @escaping kgetPickVideoCallback) {
+        if asset == nil { return }
         let option = PHVideoRequestOptions()
         option.isNetworkAccessAllowed = true
-        PHImageManager.default().requestPlayerItem(forVideo: asset, options: option, resultHandler: callback)
+        PHImageManager.default().requestPlayerItem(forVideo: asset!, options: option, resultHandler: callback)
     }
     class func funj_getPhotoBytesWithPhotoArray(photoArray : [JPhotoPickerModel] , callback : kgetPhotoBytesCallback?) {
         var dataLength = 0.0
+        var dataCount = 0
         for model in photoArray {
             PHImageManager.default().requestImageData(for: model.m_asset!, options: nil) { (imageData, dataUTI, orientation, info) in
                 if model.m_currentIsVideo == false {
                     dataLength += Double(imageData?.count ?? 0)
                 }
+                dataCount += 1
+                if dataCount >= photoArray.count {
+                    let bytes = funj_getBytesFromDataLength(dataLength: dataLength)
+                    callback?(bytes)
+                }
             }
         }
-        let bytes = funj_getBytesFromDataLength(dataLength: dataLength)
-        callback?(bytes)
+
     }
     class func funj_getBytesFromDataLength(dataLength : Double ) -> String{
         var bytes = ""

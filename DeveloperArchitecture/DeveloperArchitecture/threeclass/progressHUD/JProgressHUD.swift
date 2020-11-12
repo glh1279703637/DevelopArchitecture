@@ -42,7 +42,7 @@ class JProgressHUD: UIView {
         rotationAnimation.duration = 0.6
         rotationAnimation.isCumulative = true
         rotationAnimation.repeatCount = HUGE
-        progressBgImageView?.layer.add(rotationAnimation, forKey: "rotationAnimation")
+        progressImageView?.layer.add(rotationAnimation, forKey: "rotationAnimation")
     }
     
     func funj_showProgressView(_ title : String? = nil) {

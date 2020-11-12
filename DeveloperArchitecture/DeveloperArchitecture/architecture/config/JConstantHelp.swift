@@ -13,6 +13,8 @@ var kisZhHans : Bool { NSLocale.preferredLanguages[0].hasPrefix("zh-Han") }
 
 // 是否是ipad 模式
 let kIS_IPAD = UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad
+let kIS_IPAD_1 = (kIS_IPAD ? CGFloat(1.0) : CGFloat(0.0))
+
 
 @available(iOS 14.0, *)
 let kisMAC = UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.mac
@@ -20,7 +22,7 @@ let kisMAC = UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.mac
 let kappVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 let kappBuildCode = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
 
-let kLocalStr = { (_ str:String) -> String in  NSLocalizedString(str, comment: "") }
+func kLocalStr(_ str:String) -> String { return NSLocalizedString(str, comment: "")  }
 //对参数进行base64加密过  此两个方法多注意点，原理同样
 func kLocalStre(_ str:String) -> String? {
     let name = NSLocalizedString(str, comment: "")

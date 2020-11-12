@@ -57,7 +57,7 @@ extension JBaseViewController {
         if let data = data as? String {
             m_dataString += data
         }else if let data = data as? [Any] {
-            m_dataArray.append(data)
+            m_dataArray += data as [Any]
         }else if let data = data as? [String : Any]  {
             data.forEach {[weak self] (k,v) in
                 self?.m_dataDic[k] = v

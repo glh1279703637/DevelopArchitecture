@@ -97,6 +97,47 @@ public class JAppUtility : JBaseDataModel {
         textSize = attri?.boundingRect(with: textSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).size ?? CGSize(width: 0, height: 0)
         return min(textSize.height + 3, maxHeight ==  -1 ? CGFloat(MAXFLOAT) : maxHeight)
     }
+    //图片 压缩算法 上传时候处理
+    class func funj_compressImage(_ image : UIImage? , sizeM : CGFloat) -> Data?{
+        // Compress by quality
+        if image == nil { return nil}
+        var sizeM = sizeM
+        if sizeM == -1 { sizeM = 0.4 + kIS_IPAD_1 * 0.3}
+        let maxLength = 1024 * 1024 * sizeM
+        
+        var compression : CGFloat = 1
+        var data = image?.jpegData(compressionQuality: compression)
+        if CGFloat(data?.count ?? 0) < maxLength { return data}
+        
+        var max : CGFloat = 1 ; var min : CGFloat = 0
+        for _ in 0..<6 {
+            compression = max + min
+            data = image?.jpegData(compressionQuality: compression)
+            
+            if CGFloat(data?.count ?? 0) > maxLength * 0.8 {
+                min = compression
+            } else if CGFloat(data?.count ?? 0) > maxLength {
+                max = compression
+            } else { break}
+        }
+        if CGFloat(data?.count ?? 0) < maxLength || data == nil { return data }
+        var resultImage = UIImage.init(data: data!)
+        if resultImage == nil { return nil}
+        var lastDataLength  = 0
+        while CGFloat(data?.count ?? 0) > maxLength && data?.count ?? 0 != lastDataLength {
+            lastDataLength = data?.count ?? 0
+            let radio = Float(maxLength) / Float(data?.count ?? 1)
+            let size = CGSize(width: resultImage!.size.width * CGFloat(sqrtf(radio)) , height: resultImage!.size.height * CGFloat(sqrtf(radio)))
+            
+            UIGraphicsBeginImageContext(size)
+            resultImage?.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            resultImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            data = image?.jpegData(compressionQuality: compression)
+        }
+        Cprint("After compressing size loop, image size = \(data?.count ?? 0 / 1024) KB")
+        return data
+    }
     class func funj_imageWithColor(_ color : UIColor ,size : CGSize) -> UIImage?{
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)

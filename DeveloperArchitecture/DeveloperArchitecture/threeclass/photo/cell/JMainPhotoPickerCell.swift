@@ -17,7 +17,7 @@ class JMainPhotoPickerCell : JBaseTableViewCell {
     override func funj_addBaseTableSubView() {
         self.accessoryType = .disclosureIndicator
         
-        m_imageView = UIImageView(i: CGRect(x: 20, y: 10, width: 90, height: kImageViewHeight(100 + (kIS_IPAD ? 1 : 0) * 20 )), image: nil)
+        m_imageView = UIImageView(i: CGRect(x: 20, y: 10, width: 90, height: kImageViewHeight(100 + kIS_IPAD_1 * 20 )), image: nil)
         self.contentView.addSubview(m_imageView!)
         m_imageView?.contentMode = .scaleAspectFill
         m_imageView?.layer.masksToBounds = true
