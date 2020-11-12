@@ -1,0 +1,60 @@
+/* 
+  Localizable.strings
+  DeveloperArchitecture
+
+  Created by Jeffrey on 2020/11/12.
+  Copyright © 2020 Jeffery. All rights reserved.
+*/
+
+
+//JappUitility
+"Get verification code" = "获取验证码";
+"Resend" = "重新发送";
+"You are not logged in" = "您尚未登录，请登录后查看";
+"Please input account with 6-17 letters and numbers" = "请输入6-17位字母与数字的账号";
+"Please input the answer" = "请输入问题的答案";
+"Please input password between 6 and 16 bits" = "请输入6-16位密码";
+"Confirm" = "确定";
+"Cancel" = "取消";
+"Delete" = "删除";
+"Enter search content" = "请输入搜索内容";
+"Please click to confirm the user agreement" = "请点击确认用户协议";
+"Please input the answer" = "请输入问题的答案";
+"Password is not consistent" = "密码不一致";
+"Please input password between 6 and 16 bits" = "请输入6-16位密码";
+"Please input correct verification number" = "请输入正确的验证码";
+"Please input correct New verification number" = "请输入正确的新验证码";
+"Please input correct Original verification number" = "请输入正确的原验证码";
+"Old and new mobile cannot be the same" = "新旧手机号不能相同";
+"Please input correct mobile" = "请输入正确手机号";
+"Please input correct New mobile" = "请输入正确新手机号";
+"Mobile is required" = "手机号不能为空";
+"Please input correct mobile" = "请输入正确手机号";
+"Please input correct Original mobile" = "请输入正确原手机号";
+"Original" = "原";
+"New" = "新";
+"Please input correct email" = "请输入正确邮箱";
+"Please input account with 6-17 letters and numbers" = "请输入6-17位字母与数字的账号";
+
+"Pull up to load more"="上拉加载更多数据";
+"Release to load more"="松开加载更多数据";
+"Refresh..."="刷新中...";
+"Loading..." = "加载中...";
+"Refresh finished" = "刷新结束";
+"Pull down to refresh"="下拉加载更新数据";
+"Release to refreshing"="松开加载更新数据";
+
+"You can only choose %zd photos" = "你最多只能选择%zd张照片";
+"Please allow %@ to access all photos" = "请先允许%@访问所有照片";
+"Scan the frame to the two-dimensional code, you can automatically scan" = "将扫描框对准二维码，即可自动扫描";
+"Do you want to delete? " = "是否确认删除? ";
+
+"Photo" = "拍照";
+"Select from album" = "从相册中选择";
+"Choose photos" = "选择照片";
+"The number of images has reached the maximum limit" = "图片的数量已经最大达到上限";
+
+
+// request
+"The current network is not available, please check your network settings" = "当前网络不可用，请检查您的网络设置";
+"The server is abnormal. Please try again later" = "服务器异常，请稍后再试";
