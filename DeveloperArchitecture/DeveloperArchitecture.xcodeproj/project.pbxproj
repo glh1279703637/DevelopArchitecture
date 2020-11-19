@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		003B5DF42523022F00838F02 /* JCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B5DF32523022F00838F02 /* JCoreDataManager.swift */; };
 		003B5DF82523038200838F02 /* DatasaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 003B5DF62523038200838F02 /* DatasaseModel.xcdatamodeld */; };
-		003B5DFC2523041F00838F02 /* JLoginUserMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B5DFB2523041F00838F02 /* JLoginUserMessage.swift */; };
+		003B5DFC2523041F00838F02 /* JLoginUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B5DFB2523041F00838F02 /* JLoginUserModel.swift */; };
 		003B5E092523083900838F02 /* JBaseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B5E082523083900838F02 /* JBaseDataModel.swift */; };
 		003B5E0D252310C100838F02 /* JAppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B5E0C252310C100838F02 /* JAppUtility.swift */; };
 		003C8C952556C10500B44812 /* JMainPhotoPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003C8C942556C10500B44812 /* JMainPhotoPickerCell.swift */; };
@@ -90,7 +90,7 @@
 /* Begin PBXFileReference section */
 		003B5DF32523022F00838F02 /* JCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCoreDataManager.swift; sourceTree = "<group>"; };
 		003B5DF72523038200838F02 /* DatasaseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DatasaseModel.xcdatamodel; sourceTree = "<group>"; };
-		003B5DFB2523041F00838F02 /* JLoginUserMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JLoginUserMessage.swift; sourceTree = "<group>"; };
+		003B5DFB2523041F00838F02 /* JLoginUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JLoginUserModel.swift; sourceTree = "<group>"; };
 		003B5E082523083900838F02 /* JBaseDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBaseDataModel.swift; sourceTree = "<group>"; };
 		003B5E0C252310C100838F02 /* JAppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JAppUtility.swift; sourceTree = "<group>"; };
 		003C8C9125563D4D00B44812 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
@@ -193,7 +193,7 @@
 		003B5DFA252303C400838F02 /* loginitem */ = {
 			isa = PBXGroup;
 			children = (
-				003B5DFB2523041F00838F02 /* JLoginUserMessage.swift */,
+				003B5DFB2523041F00838F02 /* JLoginUserModel.swift */,
 			);
 			path = loginitem;
 			sourceTree = "<group>";
@@ -617,7 +617,7 @@
 				004EC34C2553CB2500FD8385 /* StorageProvider.swift in Sources */,
 				004EC3642553E3F600FD8385 /* JBaseTransition.swift in Sources */,
 				00EFADFB251ED3A600EB1B60 /* JMainViewController.swift in Sources */,
-				003B5DFC2523041F00838F02 /* JLoginUserMessage.swift in Sources */,
+				003B5DFC2523041F00838F02 /* JLoginUserModel.swift in Sources */,
 				004EC3562553CB2500FD8385 /* STXMemoryCacheConfig.swift in Sources */,
 				007677722552807F00C226A2 /* JMoreTipView.swift in Sources */,
 				004EC34A2553CB2500FD8385 /* ThreadsManager.swift in Sources */,

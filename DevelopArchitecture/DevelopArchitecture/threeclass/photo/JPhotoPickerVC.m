@@ -51,7 +51,9 @@
     [bottomBgView addSubview:sumBt];
 }
 -(void)funj_sortResultImagesData{
+    LRWeakSelf(self);
     [self.m_dataModel.fetchResult enumerateObjectsUsingBlock:^(PHAsset*  _Nonnull asset, NSUInteger idx, BOOL * _Nonnull stop) {
+        LRStrongSelf(self);
         if (asset.mediaType == PHAssetMediaTypeVideo) {
             int min = asset.duration / 60;
             int ss = asset.duration - min*60;
@@ -61,7 +63,6 @@
             [self.m_dataArr addObject:[JPhotoPickerModel modelWithAsset:asset type:NO timeLength:nil]];
         }
     }];
-    LRWeakSelf(self);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         LRStrongSelf(self);
         CGFloat height = self.m_collectionView.contentSize.height - self.m_collectionView.height;
