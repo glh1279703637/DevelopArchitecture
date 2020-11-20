@@ -1,5 +1,5 @@
 //
-//  JLoginUserMessage.swift
+//  JLoginUserModel.swift
 //  DeveloperArchitecture
 //
 //  Created by Jeffrey on 2020/9/29.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-public class JLoginUserMessage : JBaseDataModel {
+public class JLoginUserModel : JBaseDataModel {
     static var m_userModel : UserLoginDB? = nil
 
     class func funj_insertLoginUserMessage(_ data : Dictionary<String,Any>) {
@@ -18,7 +18,7 @@ public class JLoginUserMessage : JBaseDataModel {
             return
         }
         
-        let properyList = UserLoginDB.funj_propertyList()
+        let properyList = UserLoginDB.funj_allPropertyList()
         var dict : Dictionary<String,String> = Dictionary()
         for (k,v) in data {
             if properyList.contains(k) {
@@ -47,13 +47,13 @@ public class JLoginUserMessage : JBaseDataModel {
     }
     class func funj_getLastLoginTokenMessage() -> String {
         var token : String = ""
-        let loginModel = JLoginUserMessage.funj_getLastLoginUserMessage()
+        let loginModel = JLoginUserModel.funj_getLastLoginUserMessage()
         token = loginModel?.token ?? ""
         return token
     }
     class func funj_getIsLogining() -> Bool {
         var isLogining : Bool = false
-        let loginModel = JLoginUserMessage.funj_getLastLoginUserMessage()
+        let loginModel = JLoginUserModel.funj_getLastLoginUserMessage()
         isLogining = loginModel?.isLogining == "1" ? true : false
         return isLogining
     }

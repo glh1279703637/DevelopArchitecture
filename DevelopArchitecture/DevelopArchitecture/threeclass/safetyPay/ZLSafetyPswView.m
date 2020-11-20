@@ -8,7 +8,7 @@
 
 #import "ZLSafetyPswView.h"
 #import "JAppViewTools.h"
-#import "JLoginUserMessage.h"
+#import "JLoginUserModel.h"
 #define kDotSize CGSizeMake (10, 10) // 密码点的大小
 #define kDotCount 6  // 密码个数
 #define K_Field_Height self.frame.size.height  // 每一个输入框的高度等于当前view的高度
@@ -168,7 +168,7 @@
     [self.pswTextField resignFirstResponder];
 }
 +(NSInteger)canInputPayPassword{
-    NSDictionary *userDic =[JLoginUserMessage funj_getLastLoginUserMessage];
+    NSDictionary *userDic =[JLoginUserModel funj_getLastLoginUserMessage];
     NSString *userId =[NSString stringWithFormat:@"errorPayPasswordCount%@",userDic[@"userId"]];
 
     NSDictionary *dic = [[NSUserDefaults standardUserDefaults] valueForKey:userId];
@@ -183,7 +183,7 @@
     return 0;
 }
 +(void)setLastErrorPayPasswordCount:(BOOL)iserror{
-    NSDictionary *userDic =[JLoginUserMessage funj_getLastLoginUserMessage];
+    NSDictionary *userDic =[JLoginUserModel funj_getLastLoginUserMessage];
     NSString *userId =[NSString stringWithFormat:@"errorPayPasswordCount%@",userDic[@"userId"]];
     NSDictionary *dic = [[NSUserDefaults standardUserDefaults] valueForKey:userId];
     if(dic && [[dic objectForKey:@"date"] isEqualToString:[JAppUtility funj_getDateTime:@"yyyyMMdd"]]){

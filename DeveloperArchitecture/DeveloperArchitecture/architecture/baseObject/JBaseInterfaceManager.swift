@@ -39,9 +39,9 @@ class JBaseInterfaceManager: NSObject {
         return false
     }
     class func funj_didLogoutAccount() {
-        let loginModel = JLoginUserMessage.funj_getLastLoginUserMessage()
+        let loginModel = JLoginUserModel.funj_getLastLoginUserMessage()
         if loginModel?.isLogining == "1" {
-            JLoginUserMessage.funj_insertLoginUserMessage(["userId":loginModel!.userId! ,"isLogining" : "0"])
+            JLoginUserModel.funj_insertLoginUserMessage(["userId":loginModel!.userId! ,"isLogining" : "0"])
         }
         
     }

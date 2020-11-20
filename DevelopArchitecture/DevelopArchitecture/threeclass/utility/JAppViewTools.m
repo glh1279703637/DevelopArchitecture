@@ -313,6 +313,7 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
     if(_m_isHasObserver){
         [self removeObserver:self forKeyPath:@"selected"];
     }
+    _m_clickBack = nil;
 }
 @end
 
@@ -448,7 +449,9 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
     if(!isShow)[self endEditing:YES];
     if(!_m_cancelButton)return;
     self.m_cancelButton.hidden = self.m_cancelAlreadyShow?NO:!isShow;
+    LRWeakSelf(self);
     [UIView animateWithDuration:0.2 animations:^{
+        LRStrongSelf(self);
         self.m_searchTF.frame = CGRectMake(self.m_searchTF.frame.origin.x, self.m_searchTF.frame.origin.y, self.frame.size.width-(self.m_cancelButton.frame.size.width+4)*isShow , self.m_searchTF.frame.size.height);
      }];
 }

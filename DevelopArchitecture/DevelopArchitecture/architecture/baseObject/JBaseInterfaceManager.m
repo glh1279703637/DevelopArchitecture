@@ -47,10 +47,10 @@
 
 //退出登陆状态
 +(void)funj_didLogoutAccount:(id)viewController{
-    NSDictionary *dic=[JLoginUserMessage funj_getLastLoginUserMessage];
+    NSDictionary *dic=[JLoginUserModel funj_getLastLoginUserMessage];
     if([dic count]>0 && [dic integerWithKey:@"isLogining"]==1){
-        NSMutableDictionary *dic2 =[JLoginUserMessage funj_getLastLoginTokenMessage];
-        [JLoginUserMessage funj_insertLoginUserMessage:@{@"userId":[dic objectForKey:@"userId"],@"isLogining":@"0"}];
+        NSMutableDictionary *dic2 =[JLoginUserModel funj_getLastLoginTokenMessage];
+        [JLoginUserModel funj_insertLoginUserMessage:@{@"userId":[dic objectForKey:@"userId"],@"isLogining":@"0"}];
 //        [[NSNotificationCenter defaultCenter]postNotificationName:kUpdateUserIdentityNoti object:@"out"];
         UIViewController *vcs =[JAppViewTools funj_getTopViewcontroller];
         [[JHttpReqHelp share]funj_requestMessageToServer:vcs url:@"usr/loginOut" values:dic2 success:^(JBaseViewController* vc,NSArray *dataArr, NSDictionary *dataDic) {

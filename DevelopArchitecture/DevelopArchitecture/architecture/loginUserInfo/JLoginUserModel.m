@@ -1,21 +1,21 @@
 //
-//  JLoginUserMessage.m
+//  JLoginUserModel.m
 //  DevelopArchitecture
 //
 //  Created by Jeffrey on 15/1/23.
 //  Copyright (c) 2015年 Jeffrey. All rights reserved.
 //
 
-#import "JLoginUserMessage.h"
+#import "JLoginUserModel.h"
 #import "JConstantHelp.h"
 #import "JAppUtility.h"
 #import "JOperationDB.h"
 #import "NSDictionary+JSON.h"
 
 static NSMutableDictionary * userDic =nil;
-@interface JLoginUserMessage()
+@interface JLoginUserModel()
 @end
-@implementation JLoginUserMessage
+@implementation JLoginUserModel
 
 +(void)funj_setUserDicData:(BOOL)isReload{
     if(!userDic){

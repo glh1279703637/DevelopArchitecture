@@ -93,7 +93,7 @@ extension JMainPhotoPickerVC {
         if statusAuthorized != .authorized {
             m_timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(funj_checkIsAuthorize(_ :)), userInfo: nil, repeats: true)
             let appName = ( Bundle.main.infoDictionary?["CFBundleDisplayName"] ?? Bundle.main.infoDictionary?["CFBundleName"] ) as? String
-            let text = kLocalStr(String(format: "Please allow %@ to access all photos", appName as! CVarArg))
+            let text = kLocalStr(String(format: "Please allow %@ to access all photos", appName!))
             let lo = (text as NSString).range(of: appName!).location
             let attri = contentLabel?.funj_updateAttributedText(text)
             attri?.addAttributes([NSAttributedString.Key.foregroundColor : COLOR_ORANGE], range: NSRange(location: lo, length: appName!.count))

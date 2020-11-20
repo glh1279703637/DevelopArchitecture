@@ -18,7 +18,7 @@ public class JBaseDataModel : NSObject,Codable {
         funj_resetJSonToModel(json)
     }
     func funj_resetJSonToModel(_ json : [String : Any]?){
-        let propertyArr = JBaseDataModel.funj_propertyList()
+        let propertyArr = JBaseDataModel.funj_allPropertyList()
         for varName in propertyArr { // 类似Int 的属性无法获取 ，需要注意
             if let name = json?[varName] {
                 let propertyName = "m_" + varName
@@ -64,13 +64,11 @@ public class JBaseDataModel : NSObject,Codable {
 
 
 extension NSObject {
-    class func funj_propertyList() ->[String] {
+    //获取对象所有属性名
+    class func funj_allPropertyList() ->[String] {
         var m_count: UInt32 = 0
         var m_propertyList: [String] = []
-
         let list = class_copyPropertyList(self, &m_count)
-        
-        
         for i in 0..<Int(m_count) {
             let property = list?[i]
             let cName = property_getName(property!)
@@ -79,4 +77,50 @@ extension NSObject {
         }
         return m_propertyList
     }
+    //获取对象所有属性名和属性值
+    func funj_allPropertyAndNameList() -> [String : Any] {
+        var count: UInt32 = 0
+        let properties = class_copyPropertyList(self.classForCoder, &count)
+        var resultDict: [String: Any] = [:]
+        for i in 0..<Int(count) {
+            let property = properties?[i]
+            let name = property_getName(property!) // 取得属性名
+            if let propertyName = String(utf8String: name) {
+                if let propertyValue = self.value(forKey: propertyName) {// 取得属性值
+                    resultDict[propertyName] = propertyValue as Any
+                }
+            }
+        }
+        return resultDict
+    }
+    //获取对象的所有方法名
+    class func funj_allMethods() -> [String] {
+        var count: UInt32 = 0
+        let methods = class_copyMethodList(self, &count)
+        var propertyList: [String] = []
+        for i in 0..<Int(count) {
+            guard let method = methods?[i] else { continue }
+            let sel = method_getName(method)
+            propertyList.append(NSStringFromSelector(sel))
+//            let methodName = sel_getName(sel)
+//            let argument = method_getNumberOfArguments(method!)
+//            print("name: \(NSStringFromSelector(sel)), arguemtns: \(argument)")
+        }
+        return propertyList
+    }
+    //获取对象的成员变量名称
+    class func funj_allMemberVariables() ->[String] {
+        var count:UInt32 = 0
+        let ivars = class_copyIvarList(self, &count)
+        var result: [String] = []
+        for i in 0..<Int(count) {
+            guard let ivar = ivars?[i] else { continue }
+            guard let name = ivar_getName(ivar) else { continue }
+            if let varName = String(utf8String: name) {
+                result.append(varName)
+            }
+        }
+        return result
+    }
+
 }

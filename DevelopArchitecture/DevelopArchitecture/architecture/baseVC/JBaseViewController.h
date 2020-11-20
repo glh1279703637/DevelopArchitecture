@@ -13,7 +13,7 @@
 #import "JReloadImageView.h"
 #import "JBaseNavigationVC.h"
 #import "JHttpReqHelp.h"
-#import "JLoginUserMessage.h"
+#import "JLoginUserModel.h"
 
 
 typedef NS_ENUM(NSInteger,SHOWMODELTYPE){
