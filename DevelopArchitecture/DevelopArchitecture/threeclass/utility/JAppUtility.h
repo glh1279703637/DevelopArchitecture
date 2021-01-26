@@ -112,5 +112,20 @@
  *-- content -- contentRightImage
  */
 +(void)funj_postLocalNotifation:(NSString*)title s:(NSString*)subtitle b:(NSString*)body i:(NSString*)contentRightImage;
+
+//冒泡排序
+-(void)funj_bubbleSortWithArray:(NSMutableArray*)array;
+//快速排序
+-(void) funj_quickSortArray:(NSMutableArray*)array l:(NSInteger)left r:(NSInteger)right;
+//直接选择排序
+-(void)funj_selectSortWithArray:(NSMutableArray*)array;
+//堆排序
+-(void)funj_heapSortWithArray:(NSMutableArray*)array ;
+//插入排序
+-(void)funj_insertSortWithArray:(NSMutableArray*)array ;
+//归并排序 有问题
+-(void)funj_mergeSortWithArray:(NSMutableArray*)array l:(NSInteger)left r:(NSInteger)right ;
+//基数排序
+- (void)funj_radixAscendingOrderSort:(NSMutableArray *)ascendingArr ;
 @end
 
