@@ -152,6 +152,7 @@ extension JHttpReqHelp {
                 }
             }
         })
+        m_dataTask?.resume()
     }
 }
 extension JHttpReqHelp {
