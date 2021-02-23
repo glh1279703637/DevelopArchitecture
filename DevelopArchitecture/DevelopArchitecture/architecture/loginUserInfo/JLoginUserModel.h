@@ -1,5 +1,5 @@
 //
-//  JLoginUserMessage.h
+//  JLoginUserModel.h
 //  DevelopArchitecture
 //
 //  Created by Jeffrey on 15/1/23.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JBaseDataModel.h"
 #import "JOperationDB.h"
-@interface JLoginUserMessage : JBaseDataModel
+@interface JLoginUserModel : JBaseDataModel
 +(void)funj_insertLoginUserMessage:(NSDictionary*)data;
 +(NSDictionary*)funj_getLastLoginUserMessage;
 +(NSMutableDictionary*)funj_getLastLoginTokenMessage;//这个方法是只得到Token

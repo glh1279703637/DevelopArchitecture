@@ -32,7 +32,7 @@
 		00DB81802341A863005E15EA /* JBaseDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB808F2341A862005E15EA /* JBaseDataModel.m */; };
 		00DB81812341A863005E15EA /* JBaseInterfaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB80912341A862005E15EA /* JBaseInterfaceManager.m */; };
 		00DB81822341A863005E15EA /* JTableDataArrModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB80932341A862005E15EA /* JTableDataArrModel.m */; };
-		00DB81832341A863005E15EA /* JLoginUserMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB80962341A862005E15EA /* JLoginUserMessage.m */; };
+		00DB81832341A863005E15EA /* JLoginUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB80962341A862005E15EA /* JLoginUserModel.m */; };
 		00DB81842341A863005E15EA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB80972341A862005E15EA /* SceneDelegate.m */; };
 		00DB81852341A863005E15EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB80992341A862005E15EA /* AppDelegate.m */; };
 		00DB81862341A863005E15EA /* JMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DB809A2341A862005E15EA /* JMainViewController.m */; };
@@ -190,8 +190,8 @@
 		00DB80912341A862005E15EA /* JBaseInterfaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBaseInterfaceManager.m; sourceTree = "<group>"; };
 		00DB80922341A862005E15EA /* JBaseDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBaseDataModel.h; sourceTree = "<group>"; };
 		00DB80932341A862005E15EA /* JTableDataArrModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTableDataArrModel.m; sourceTree = "<group>"; };
-		00DB80952341A862005E15EA /* JLoginUserMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLoginUserMessage.h; sourceTree = "<group>"; };
-		00DB80962341A862005E15EA /* JLoginUserMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLoginUserMessage.m; sourceTree = "<group>"; };
+		00DB80952341A862005E15EA /* JLoginUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLoginUserModel.h; sourceTree = "<group>"; };
+		00DB80962341A862005E15EA /* JLoginUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLoginUserModel.m; sourceTree = "<group>"; };
 		00DB80972341A862005E15EA /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		00DB80982341A862005E15EA /* JConstantHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JConstantHelp.h; sourceTree = "<group>"; };
 		00DB80992341A862005E15EA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -564,8 +564,8 @@
 		00DB80942341A862005E15EA /* loginUserInfo */ = {
 			isa = PBXGroup;
 			children = (
-				00DB80952341A862005E15EA /* JLoginUserMessage.h */,
-				00DB80962341A862005E15EA /* JLoginUserMessage.m */,
+				00DB80952341A862005E15EA /* JLoginUserModel.h */,
+				00DB80962341A862005E15EA /* JLoginUserModel.m */,
 			);
 			path = loginUserInfo;
 			sourceTree = "<group>";
@@ -1062,7 +1062,7 @@
 				00DB81A82341A863005E15EA /* SDImageCodersManager.m in Sources */,
 				00DB81852341A863005E15EA /* AppDelegate.m in Sources */,
 				00DB81782341A863005E15EA /* JBaseCollectionViewCell.m in Sources */,
-				00DB81832341A863005E15EA /* JLoginUserMessage.m in Sources */,
+				00DB81832341A863005E15EA /* JLoginUserModel.m in Sources */,
 				00DB81B32341A863005E15EA /* SDImageFrame.m in Sources */,
 				00DB81D42341A863005E15EA /* MarqueeLabel.m in Sources */,
 				00DB81A32341A863005E15EA /* SDWebImageManager.m in Sources */,

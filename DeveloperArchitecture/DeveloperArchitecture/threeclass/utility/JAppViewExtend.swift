@@ -63,7 +63,7 @@ extension UIResponder {//解决数字键盘无返回按钮的问题
                 regexStr += "0-9"
             case .kALLLETTER_TAG:
                 regexStr += "a-zA-Z"
-            case .kALLLETTER_TAG:
+            case .kALLCHINESE_TAG:
                 regexStr += "\\u4E00-\\u9FC2"
             case .kALLINPUTPUNCTUATION_TAG:
                 regexStr += ".,~`!@#$%^&*\\(\\)|\\{\\}\\[\\];:'\"/\\\\_"
@@ -75,7 +75,7 @@ extension UIResponder {//解决数字键盘无返回按钮的问题
         if regexStr.count > 0 {
             regexStr = "[^\(regexStr)]"
             let regex = try! NSRegularExpression(pattern: regexStr, options: .caseInsensitive)
-            toBeString = regex.stringByReplacingMatches(in: regexStr, options: [], range: NSRange(location: 0, length: toBeString!.count), withTemplate: "")
+            toBeString = regex.stringByReplacingMatches(in: toBeString!, options: [], range: NSRange(location: 0, length: toBeString!.count), withTemplate: "")
         }
         let numbers = weakTV?.m_textFieldMaxLengthKey ?? weakTF?.m_textFieldMaxLengthKey
         if numbers ?? 0 <= 0 {
@@ -83,50 +83,49 @@ extension UIResponder {//解决数字键盘无返回按钮的问题
         }
         let lang = UIApplication.shared.textInputMode?.primaryLanguage
         if lang?.hasPrefix("zh-Han") == true { //简体中文输入，包括简体拼音，健体五笔，简体手写
-            let selectedRange = weakTV?.markedTextRange ?? weakTF?.markedTextRange
-            let position = weakTV?.position(from: selectedRange!.start, offset: 0) ?? weakTF?.position(from: selectedRange!.start, offset: 0)
+            let selectedRange = (weakTV?.markedTextRange ?? weakTF?.markedTextRange) ?? UITextRange()
+            let position = weakTV?.position(from: selectedRange.start, offset: 0) ?? weakTF?.position(from: selectedRange.start, offset: 0)
             if position == nil {//没有高亮选择的字，则对已输入的文字进行字数统计和限制
-                var localIndex = weakTV?.m_textFieldInsertLengthKey ?? weakTF?.m_textFieldInsertLengthKey
-                localIndex = localIndex ?? 0
+                let localIndex = (weakTV?.m_textFieldInsertLengthKey ?? weakTF?.m_textFieldInsertLengthKey) ?? 0
                 if toBeString!.count > numbers! {
-                    if localIndex ?? 0 < 0 {
-                        let firstStr = (toBeString as NSString?)?.substring(to: abs(localIndex!))
-                        let endStr = (toBeString as NSString?)?.substring(with: NSRange(location: toBeString!.count - (numbers! - abs(localIndex!)), length: numbers! - abs(localIndex!)))
-                        weakTF?.text = firstStr ?? "" + (endStr ?? "")
-                        weakTV?.text = firstStr ?? "" + (endStr ?? "")
+                    if localIndex < 0 {
+                        let firstStr = (toBeString as NSString?)?.substring(to: abs(localIndex))
+                        let endStr = (toBeString as NSString?)?.substring(with: NSRange(location: toBeString!.count - (numbers! - abs(localIndex)), length: numbers! - abs(localIndex)))
+                        weakTF?.text = (firstStr ?? "") + (endStr ?? "")
+                        weakTV?.text = (firstStr ?? "") + (endStr ?? "")
                     } else {
-                        let endStr = (toBeString as NSString?)?.substring(with: NSRange(location: localIndex!, length: numbers! - localIndex!))
-                        let firstStr = (toBeString as NSString?)?.substring(to: localIndex!)
-                        weakTF?.text = firstStr ?? "" + (endStr ?? "")
-                        weakTV?.text = firstStr ?? "" + (endStr ?? "")
+                        let endStr = (toBeString as NSString?)?.substring(with: NSRange(location: localIndex, length: numbers! - localIndex))
+                        let firstStr = (toBeString as NSString?)?.substring(to: localIndex)
+                        weakTF?.text = (firstStr ?? "") + (endStr ?? "")
+                        weakTV?.text = (firstStr ?? "") + (endStr ?? "")
                     }
                 } else {
                     weakTF?.text = toBeString ?? ""
                     weakTV?.text = toBeString ?? ""
                 }
             } else if weakTF?.beginningOfDocument != nil || weakTV?.beginningOfDocument != nil { //有高亮选择的字符串，则暂不对文字进行统计和限制
-                let localIndex = weakTF?.offset(from: (weakTF?.beginningOfDocument)!, to: position!) ?? weakTV?.offset(from: (weakTV?.beginningOfDocument)!, to: position!)
-                weakTV?.m_textFieldInsertLengthKey = localIndex! * (localIndex! == numbers ? 1 : -1)
-                weakTF?.m_textFieldInsertLengthKey = localIndex! * (localIndex! == numbers ? 1 : -1)
+                guard let localIndex = weakTF?.offset(from: (weakTF?.beginningOfDocument)!, to: position!) ?? weakTV?.offset(from: (weakTV?.beginningOfDocument)!, to: position!) else { return }
+                weakTV?.m_textFieldInsertLengthKey = localIndex * (localIndex == numbers ? 1 : -1)
+                weakTF?.m_textFieldInsertLengthKey = localIndex * (localIndex == numbers ? 1 : -1)
             }
         }else{
             if toBeString!.count > numbers! && (weakTF?.selectedTextRange?.start != nil || weakTV?.selectedTextRange?.start != nil) {
-                let localIndex = weakTF?.offset(from: (weakTF?.beginningOfDocument)!, to: (weakTF?.selectedTextRange?.start)!) ?? weakTV?.offset(from: (weakTV?.beginningOfDocument)!, to: (weakTV?.selectedTextRange?.start)!)
-                if localIndex! < toBeString!.count {
-                    let firstStr = (toBeString as NSString?)?.substring(to: localIndex! - 1)
-                    let endStr = (toBeString as NSString?)?.substring(with: NSRange(location: toBeString!.count - (numbers! - localIndex! + 1), length: numbers! - localIndex! + 1))
-                    weakTF?.text = firstStr ?? "" + (endStr ?? "")
-                    weakTV?.text = firstStr ?? "" + (endStr ?? "")
+                guard let localIndex = weakTF?.offset(from: (weakTF?.beginningOfDocument)!, to: (weakTF?.selectedTextRange?.start)!) ?? weakTV?.offset(from: (weakTV?.beginningOfDocument)!, to: (weakTV?.selectedTextRange?.start)!) else { return }
+                if localIndex < toBeString!.count {
+                    let firstStr = (toBeString as NSString?)?.substring(to: localIndex - 1)
+                    let endStr = (toBeString as NSString?)?.substring(with: NSRange(location: toBeString!.count - (numbers! - localIndex + 1), length: numbers! - localIndex + 1))
+                    weakTF?.text = (firstStr ?? "") + (endStr ?? "")
+                    weakTV?.text = (firstStr ?? "") + (endStr ?? "")
                 } else {
-                    var maxLength = numbers! - localIndex!
+                    var maxLength = numbers! - localIndex
                     maxLength = maxLength < 0 ? 0 : maxLength
                     var endStr : String? = nil
-                    if localIndex! + maxLength < toBeString!.count {
-                        endStr = (toBeString as NSString?)?.substring(with: NSRange(location: localIndex!, length: maxLength))
+                    if localIndex + maxLength < toBeString!.count {
+                        endStr = (toBeString as NSString?)?.substring(with: NSRange(location: localIndex, length: maxLength))
                     }
                     let firstStr = (toBeString as NSString?)?.substring(to: numbers!)
-                    weakTF?.text = firstStr ?? "" + (endStr ?? "")
-                    weakTV?.text = firstStr ?? "" + (endStr ?? "")
+                    weakTF?.text = (firstStr ?? "") + (endStr ?? "")
+                    weakTV?.text = (firstStr ?? "") + (endStr ?? "")
                 }
             }else {
                 weakTF?.text = toBeString
@@ -234,7 +233,7 @@ extension UITextField {
         set {objc_setAssociatedObject(self, &ktextFieldInsertLengthKey, newValue, .OBJC_ASSOCIATION_ASSIGN)}}
     var m_textFieldInsertTextInputType : [kTEXTFINPUT_TYPE]? {
         get { return objc_getAssociatedObject(self, &ktextFieldInsertTextInputType) as? [kTEXTFINPUT_TYPE] }
-        set {objc_setAssociatedObject(self, &ktextFieldInsertTextInputType, newValue, .OBJC_ASSOCIATION_ASSIGN)}}
+        set {objc_setAssociatedObject(self, &ktextFieldInsertTextInputType, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)}}
     
     convenience init(i frame : CGRect ,placeholder : String? ,textFC : JTextFC? ){
         self.init(frame:frame)

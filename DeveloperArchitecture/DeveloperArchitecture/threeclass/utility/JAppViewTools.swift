@@ -222,9 +222,9 @@ class JSearchBar : UIView, UITextFieldDelegate {
         if isShow == false { self.endEditing(true) }
         if m_cancelButton == nil { return }
         self.m_cancelButton?.isHidden = self.m_cancelAlreadyShow ? false : !isShow
-        UIView.animate(withDuration: 0.2) {
-            let frame = self.m_searchTF?.frame ?? CGRect(x: 0, y: 0, width: 0, height: 0)
-            self.m_searchTF?.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: self.frame.size.width - ((frame.size.width + 4) * (isShow ? 1 : 0)), height: frame.size.height)
+        UIView.animate(withDuration: 0.2) {[weak self] in
+            let frame = self?.m_searchTF?.frame ?? CGRect(x: 0, y: 0, width: 0, height: 0)
+            self?.m_searchTF?.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: (self?.frame.size.width ?? 0) - ((frame.size.width + 4) * (isShow ? 1 : 0)), height: frame.size.height)
         }
     }
     override func layoutSubviews() {

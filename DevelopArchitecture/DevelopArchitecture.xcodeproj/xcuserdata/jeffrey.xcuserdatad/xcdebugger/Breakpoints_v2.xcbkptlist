@@ -116,34 +116,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "1F1FA624-D4D1-4DF5-97D8-0633A3CD02F1 - 921e1bc8fe44f3c7"
+                  uuid = "1F1FA624-D4D1-4DF5-97D8-0633A3CD02F1 - e95040884e1dd0b5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[UIButton(JButtons) funj_updateContentImageLayout:a:]"
                   moduleName = "DevelopArchitecture"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jeffrey/Documents/project/DevelopArchitecture/DevelopArchitecture/DevelopArchitecture/DevelopArchitecture/threeclass/utility/JAppViewExtend.m"
+                  urlString = "file:///Users/jeffrey/Documents/project/DevelopArchitecture/DevelopArchitecture2/DevelopArchitecture/DevelopArchitecture/threeclass/utility/JAppViewExtend.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "359"
                   endingLineNumber = "359"
-                  offsetFromSymbolStart = "2107">
+                  offsetFromSymbolStart = "1364">
                </Location>
                <Location
-                  uuid = "1F1FA624-D4D1-4DF5-97D8-0633A3CD02F1 - 921e1bc8fe44f3c7"
+                  uuid = "1F1FA624-D4D1-4DF5-97D8-0633A3CD02F1 - e95040884e1dd0b5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[UIButton(JButtons) funj_updateContentImageLayout:a:]"
                   moduleName = "DevelopArchitecture"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jeffrey/Documents/project/DevelopArchitecture/DevelopArchitecture/DevelopArchitecture/DevelopArchitecture/threeclass/utility/JAppViewExtend.m"
+                  urlString = "file:///Users/jeffrey/Documents/project/DevelopArchitecture/DevelopArchitecture2/DevelopArchitecture/DevelopArchitecture/threeclass/utility/JAppViewExtend.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "359"
                   endingLineNumber = "359"
-                  offsetFromSymbolStart = "2252">
+                  offsetFromSymbolStart = "1468">
                </Location>
             </Locations>
          </BreakpointContent>
