@@ -140,7 +140,7 @@
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate event
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
     if (metadataObjects.count > 0) {
-        AudioServicesDisposeSystemSoundID (1108);
+        AudioServicesPlayAlertSound (1108);
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex:0];
         AVMetadataObject *transformCode = [self.m_preLayer transformedMetadataObjectForMetadataObject:metadataObject];
         self.m_scanResutRectImageView.center = CGPointMake(transformCode.bounds.origin.x + transformCode.bounds.size.width/2, transformCode.bounds.origin.y + transformCode.bounds.size.height/2);

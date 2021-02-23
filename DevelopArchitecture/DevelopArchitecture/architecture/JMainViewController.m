@@ -51,17 +51,6 @@ static JMainViewController *mainVC=nil;
 //        [self funj_editPortraitImageView:button];
 //    }];
 //    [self.view addSubview:buttonBt];
-
-    UIButton *buttonBt2 = [UIButton funj_getButtons:CGRectMake(100, 100, 100, 30) :@"idididid" :JTextFCMake(PUBLIC_FONT_SIZE14, COLOR_ORANGE) :@[@"main_search_n"] :nil :nil :0 :nil ];
-    buttonBt2.backgroundColor = COLOR_BLUE;
-    [self.view addSubview:buttonBt2];
-    [buttonBt2 funj_updateContentImageLayout:kCENTER_IMAGECONTENT a:JAlignMake(0, 5, 0)];
-    
-    [buttonBt2 funj_setViewGradientLayer:YES :@[COLOR_RED,COLOR_ORANGE] :@[@(0),@(1)]];
-
-}
-- (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results{
-    
 }
 @end
 

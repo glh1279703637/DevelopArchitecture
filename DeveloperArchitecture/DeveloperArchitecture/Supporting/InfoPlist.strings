@@ -1,0 +1,25 @@
+/* 
+  InfoPlist.strings
+  DeveloperArchitecture
+
+  Created by Jeffrey on 2020/11/12.
+  Copyright © 2020 Jeffery. All rights reserved.
+*/
+CFBundleDisplayName = "Jeffrey";
+
+NSBluetoothPeripheralUsageDescription = "App需要您同意使用蓝牙，才能连接蓝牙手写板进行书写操作";
+NSCameraUsageDescription = "App需要您同意使用相机，才能使用拍照、扫描二维码功能";
+NSLocationAlwaysUsageDescription = "App需要通过您的地理位置信息为您推荐您周边的课程、课件相关信息";
+NSLocationWhenInUseUsageDescription = "App需要通过您的地理位置信息为您推荐您周边的课程、课件相关信息";
+NSMicrophoneUsageDescription = "App需要您同意使用麦克风,才能进行语音讲课交流";
+NSPhotoLibraryAddUsageDescription = "App需要您的同意,才能保存截图图片到您的相册";
+NSPhotoLibraryUsageDescription = "App需要您的同意，才能将本地相册的照片上传做头像或封面";
+
+//CFBundleDisplayName = "Jeffrey";
+//NSBluetoothPeripheralUsageDescription = "Please allow Bluetooth to access then you can write with Bluetooth Tablet .";
+//NSCameraUsageDescription = "Please allow camera to access then you can take photo or scan QR Code.";
+//NSLocationAlwaysUsageDescription = "Please allow Location to access then we can recommend courses and informations.";
+//NSLocationWhenInUseUsageDescription = "Please allow Location to access then we can recommend courses and informations.";
+//NSMicrophoneUsageDescription = "Please allow Microphone to access then you can chat.";
+//NSPhotoLibraryAddUsageDescription = "Please allow camera to access then you can save screenshot to photos.";
+//NSPhotoLibraryUsageDescription = "Please allow photos to access while using in user's photo or cover.";

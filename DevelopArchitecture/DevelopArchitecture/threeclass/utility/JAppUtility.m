@@ -635,9 +635,15 @@
                 for(NSDictionary *dic in [receiveDic objectForKey:@"results"]){
                     NSString *newVersion = [dic stringWithKey:@"version"];
                     if([localVersion compare:newVersion] < 0){
-                        [JAppViewTools funj_showAlertBlocks:[JAppViewTools funj_getTopViewcontroller] :nil :dic[@"releaseNotes"] :^(id strongSelf, NSInteger index) {
-                            if(index == 1){
-//                                                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:AppstoreURL] options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @NO} completionHandler:nil];
+                        NSString *releaseNotes = dic[@"releaseNotes"];
+                        NSArray *sumbitArr = @[@"取消",@"确定"];
+                        if([releaseNotes rangeOfString:@";;。"].length > 0){ //如果更新日志中，有;;。 则会强制更新
+                            sumbitArr = @[@"确定"];
+                        }
+                        NSInteger indexCount = sumbitArr.count - 1;
+                        [JAppViewTools funj_showAlertBlock:[JAppViewTools funj_getTopViewcontroller] :nil :releaseNotes :sumbitArr :^(id strongSelf, NSInteger index) {
+                            if(index == indexCount){
+//                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:AppstoreURL] options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @NO} completionHandler:nil];
                             }
                         }];
                         return;
@@ -683,4 +689,237 @@
         CLog(@"Error:%@",error);
     }];
 }
+//冒泡排序
+-(void)funj_bubbleSortWithArray:(NSMutableArray*)array{
+    static int iiiid = 0;
+    for(int i=0;i<array.count - 1 ;i++){
+        for(int j=0;j<array.count -1 -i ;j++){
+            if([array[j] intValue] > [array[j+1]intValue]){
+                [array exchangeObjectAtIndex:j withObjectAtIndex:j+1];
+                NSLog(@"-- -- -- %d",iiiid ++ );
+            }
+        }
+    }
+    NSLog(@"-- - -- %@",array);
+}
+//快速排序
+-(void) funj_quickSortArray:(NSMutableArray*)array l:(NSInteger)left r:(NSInteger)right{
+    static int iiiid = 0;
+    if(left > right ) return;
+    
+    NSInteger i = left ,j = right;
+    //记录基数pivoty
+    NSInteger key = [array[i] integerValue];
+    while (i < j ) {
+        while (i < j && key <= [array[j] integerValue]) {
+            j -- ;
+        }
+        if(i < j ){
+            array[i] = array[j];
+        }
+        while (i < j && [array[i] integerValue] <= key) {
+            i ++;
+        }
+        if(i < j) {
+            array[j] = array[i];
+        }
+    }
+    array[i] = [NSString stringWithFormat:@"%zd",key];
+    [self funj_quickSortArray:array l:left r:i -  1];
+    [self funj_quickSortArray:array l: i + 1 r:right];
+//    NSLog(@"-- - -- %@",array);
+    NSLog(@"-- -- -- %d",iiiid ++ );
+}
+//直接选择排序
+-(void)funj_selectSortWithArray:(NSMutableArray*)array{
+    static int iiiid = 0;
+    for(int i=0;i<array.count;i++){
+        for(int j=i+1;j<array.count;j++){
+            if(array[i] > array[j]){
+                NSLog(@"-- -- -- %d",iiiid ++ );
+                [array exchangeObjectAtIndex:i withObjectAtIndex:j];
+            }
+        }
+    }
+}
+//堆排序
+-(void)funj_heapSortWithArray:(NSMutableArray*)array {
+    static int iiiid = 0;
+    //循环建立初始堆
+    for(NSInteger i = array.count / 2 ;i>=0;i--){
+        [self funj_heapAdjustWithArray:array p:i l:array.count];
+    }
+    for(NSInteger j=array.count - 1;j>0;j--){
+        //最后一个元素和第一个元素进行交换
+        [array exchangeObjectAtIndex:j withObjectAtIndex:0];
+        //筛选R[0]结点，得到i-1个结点的堆
+        [self funj_heapAdjustWithArray:array p:0 l:j];
+        NSLog(@"-- -- -- %d",iiiid ++ );
+    }
+    NSLog(@"-- - -- %@",array);
+}
+-(void)funj_heapAdjustWithArray:(NSMutableArray*)array p:(NSInteger)parentIndex l:(NSInteger)length {
+    NSInteger temp = [array[parentIndex] integerValue];
+    NSInteger child = 2 * parentIndex + 1 ; //左孩子
+    while (child < length) {
+        //如果有右孩子结点，并且右孩子结点的值大于左孩子结点，则选取右孩子结点
+        if(child + 1 < length && [array[child] integerValue] < [array[child + 1] integerValue]){
+            child ++ ;
+        }
+        //如果父结点的值已经大于孩子结点的值，则直接结束
+        if(temp >= [array[child] integerValue]){
+            break;
+        }
+        //把孩子结点的值赋值给父结点
+        array[parentIndex] = array[child];
+        
+        //选取孩子结点的左孩子结点，继续向下筛选
+        parentIndex = child;
+        child = 2 * child + 1;
+    }
+    array[parentIndex] = [NSString stringWithFormat:@"%zd",temp];
+}
+-(void)funj_insertSortWithArray:(NSMutableArray*)array {
+    static int iiiid = 0;
+    NSInteger j ;
+    for(NSInteger i = 1;i<array.count;i++){
+        NSInteger temp = [array[i] integerValue];
+        for(j= i - 1;j>=0 && temp < [array[j] integerValue];j --){
+            array[j + 1] = array[j];
+            array[j] = [NSString stringWithFormat:@"%zd",temp];
+            NSLog(@"-- -- -- %d",iiiid ++ );
+        }
+    }
+    NSLog(@"-- - -- %@",array);
+}
+
+-(void)funj_mergeSortWithArray:(NSMutableArray*)array l:(NSInteger)left r:(NSInteger)right {
+    if(left >= right) return;
+    NSInteger middle = (left + right) / 2;
+    [self funj_mergeSortWithArray:array l:left r:middle];
+    [self funj_mergeSortWithArray:array l:middle + 1 r:right];
+    [self funj_mergeSortWithArray:array l:left m:middle r:right];
+    
+    NSLog(@"-- - -- %@",array);
+}
+-(void)funj_mergeSortWithArray:(NSMutableArray*)array l:(NSInteger)left m:(NSInteger)middle r:(NSInteger)right{
+    NSMutableArray *copyArray = [NSMutableArray arrayWithCapacity:right - left + 1];
+    [copyArray addObjectsFromArray:[array subarrayWithRange:NSMakeRange(left, right - left + 1)]];
+    NSInteger i = left , j = middle + 1;
+    //循环从left开始到right区间内给数组重新赋值，注意赋值的时候也是从left开始的，不要习惯写成了从0开始，还有都是闭区间
+    for(NSInteger k = left;k<=right;k++){
+        if(i > middle){
+            array[k] = copyArray[j - left];
+            j ++ ;
+        }else if(j > right){
+            array[k] = copyArray[i - left];
+            i ++;
+        }else if (copyArray[i - left] > copyArray[j - left]){
+            array[k] = copyArray[j - left];
+            j ++;
+        }else {
+            array[k] = copyArray[i - left];
+            i ++;
+        }
+    }
+}
+//基数排序
+- (void)funj_radixAscendingOrderSort:(NSMutableArray *)ascendingArr {
+    NSMutableArray *buckt = [self createBucket];
+    NSNumber *maxnumber = [self listMaxItem:ascendingArr];
+    NSInteger maxLength = numberLength(maxnumber);
+    for (int digit = 1; digit <= maxLength; digit++) {
+        // 入桶
+        for (NSNumber *item in ascendingArr) {
+            NSInteger baseNumber = [self fetchBaseNumber:item digit:digit];
+            NSMutableArray *mutArray = buckt[baseNumber];
+            [mutArray addObject:item];
+        }
+        NSInteger index = 0;
+        for (int i = 0; i < buckt.count; i++) {
+            NSMutableArray *array = buckt[i];
+            while (array.count != 0) {
+                NSNumber *number = [array objectAtIndex:0];
+                ascendingArr[index] = number;
+                [array removeObjectAtIndex:0];
+                index++;
+            }
+        }
+    }
+    NSLog(@"希尔升序排序结果：%@", ascendingArr);
+}
+
+- (NSMutableArray *)createBucket {
+    NSMutableArray *bucket = [NSMutableArray array];
+    for (int index = 0; index < 10; index++) {
+        NSMutableArray *array = [NSMutableArray array];
+        [bucket addObject:array];
+    }
+    return bucket;
+}
+
+- (NSNumber *)listMaxItem:(NSArray *)list {
+    NSNumber *maxNumber = list[0];
+    for (NSNumber *number in list) {
+        if ([maxNumber integerValue] < [number integerValue]) {
+            maxNumber = number;
+        }
+    }
+    return maxNumber;
+}
+
+NSInteger numberLength(NSNumber *number) {
+    NSString *string = [NSString stringWithFormat:@"%ld", (long)[number integerValue]];
+    return string.length;
+}
+
+- (NSInteger)fetchBaseNumber:(NSNumber *)number digit:(NSInteger)digit {
+    if (digit > 0 && digit <= numberLength(number)) {
+        NSMutableArray *numbersArray = [NSMutableArray array];
+        NSString *string = [NSString stringWithFormat:@"%ld", [number integerValue]];
+        for (int index = 0; index < numberLength(number); index++) {
+            [numbersArray addObject:[string substringWithRange:NSMakeRange(index, 1)]];
+        }
+        NSString *str = numbersArray[numbersArray.count - digit];
+        return [str integerValue];
+    }
+    return 0;
+}
+@end
+
+@implementation JAppUtility (JClearCache)
+//内存的清理
+-(void)funj_startToclearCach:(NSInteger)section{
+//    [self funj_showProgressView];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSInteger typeArr[2] = {NSCachesDirectory,NSDocumentDirectory};
+        for(int i=0;i<2;i++){
+            NSString *cachPath = [NSSearchPathForDirectoriesInDomains(typeArr[i],NSUserDomainMask, YES) objectAtIndex:0];
+            [self funj_solveclearCach:cachPath];
+        }
+        [self performSelectorOnMainThread:@selector(funj_clearCacheSuccess:) withObject:[NSString stringWithFormat:@"%zd",section] waitUntilDone:YES];
+    });
+}
+-(void)funj_solveclearCach:(NSString*)cachPath{
+    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachPath];
+    for (NSString *p in files) {
+        if(!([cachPath rangeOfString:@"Caches"].length > 0 || ([cachPath rangeOfString:@"Documents"].length > 0 && ([p hasPrefix:@"log"] || [p hasPrefix:@"NIMSDK"])))) continue;
+        NSString *path = [cachPath stringByAppendingPathComponent:p];
+        BOOL isDir = NO;
+        [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
+        if(isDir){
+            [self funj_solveclearCach:path];
+        }else{
+            if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+                [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+            }
+        }
+    }
+}
+//清除成功
+-(void)funj_clearCacheSuccess:(NSString*)section{
+//    [self funj_closeLoadingProgressView];
+//    [self.m_tableView reloadData];
+}
+
 @end
