@@ -122,5 +122,4 @@ extension NSObject {
         }
         return result
     }
-
 }

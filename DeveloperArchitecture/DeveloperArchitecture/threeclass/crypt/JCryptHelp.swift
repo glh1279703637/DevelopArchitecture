@@ -58,20 +58,20 @@ class JCryptHelp : JBaseDataModel {
     }
     //md5 加密
     class func funj_encryptMD5(_ content : String?) -> String?{
-        return funj_shaCrypt(string: content, cryptType: .MD5, key: funj_getEncryptKey(nil), lower: true)
+        return funj_shaCrypt(string: content, cryptType: .MD5, key: funj_getEncryptKey(nil), lower: true ,base64: false)
     }
 
     class private func funj_getEncryptKey(_ key1 : String?) -> String? {
         var key = key1 ?? "DevelopArchitecture"
         key += "DevelopArchitecture"
-        var dataStr = funj_shaCrypt(string: key, cryptType: .MD5, key: nil, lower: true)
+        var dataStr = funj_shaCrypt(string: key, cryptType: .MD5, key: nil, lower: true ,base64: false)
         dataStr = (dataStr ?? "") +  "O(#_@+KDOW(@>DI(!||{#(@12"
-        return funj_shaCrypt(string: dataStr, cryptType: .MD5, key: nil, lower: true)
+        return funj_shaCrypt(string: dataStr, cryptType: .MD5, key: nil, lower: true ,base64: false)
     }
 }
 extension JCryptHelp{
     // MD5 SHA1 SHA256 SHA512 这4种本质都是摘要函数，不通在于长度  MD5 是 128 位，SHA1  是 160 位 ，SHA256  是 256 位
-    public static func funj_shaCrypt(string: String?, cryptType: kSHAType, key: String?, lower: Bool) -> String? {
+    public static func funj_shaCrypt(string: String?, cryptType: kSHAType, key: String?, lower: Bool ,base64 : Bool) -> String? {
         guard let cStr = string?.cString(using: String.Encoding.utf8) else {
             return nil
         }
@@ -94,11 +94,16 @@ extension JCryptHelp{
             case .SHA512:   CC_SHA512(cStr, (CC_LONG)(strlen(cStr)), buffer)
             }
         }
-        for i in 0..<digLen {
-            if lower {
-                hash.appendFormat("%02x", buffer[i])
-            } else {
-                hash.appendFormat("%02X", buffer[i])
+        if(base64){
+            let data = Data(bytes: buffer, count: Int(digLen))
+            hash.appending(data.base64EncodedString())
+        }else{
+            for i in 0..<digLen {
+                if lower {
+                    hash.appendFormat("%02x", buffer[i])
+                } else {
+                    hash.appendFormat("%02X", buffer[i])
+                }
             }
         }
         free(buffer)
@@ -189,3 +194,4 @@ extension JCryptHelp{
  //        let dd = decodedString.data(using: .utf8)?.base64EncodedData()
  //        let d = String(data: dd!, encoding: .utf8)
  */
+

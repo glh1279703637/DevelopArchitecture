@@ -99,6 +99,7 @@ class JMProgressHUD : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        funj_addblackView()
     }
     convenience init(superView : UIView , type : MprogressType) {
         self.init(frame : CGRect(x: 0, y: 0, width: 0, height: 0))
