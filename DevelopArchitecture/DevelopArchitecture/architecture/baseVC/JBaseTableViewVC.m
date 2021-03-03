@@ -36,34 +36,34 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
 
 -(UIView*)m_topView{
     if(!_m_topView){
-        _m_topView =[UIView funj_getView:CGRectMake(0, 0, KWidth, 0) :COLOR_WHITE_DARK];
+        _m_topView =[UIView funj_getView:CGRectMake(0, 0, kWidth, 0) :kColor_White_Dark];
         [self.view addSubview: _m_topView];
-        _m_topTableViewLine =[UIImageView funj_getLineImageView:CGRectMake(0, 0, KWidth, 1)];
+        _m_topTableViewLine =[UIImageView funj_getLineImageView:CGRectMake(0, 0, kWidth, 1)];
         [_m_topView addSubview:_m_topTableViewLine];
      }
     return _m_topView;
 }
 -(JSearchBar*)m_searchBar{
     if(!_m_searchBar){
-        _m_searchBar = [[JSearchBar alloc] initWithFrame:CGRectMake(0,0,KWidth,37)];
+        _m_searchBar = [[JSearchBar alloc] initWithFrame:CGRectMake(0,0,kWidth,37)];
         _m_searchBar.searchDelegate = self;
-        _m_searchBar.m_filletValue = JFilletMake(0.5, 37/2, COLOR_LINE_GRAY_DARK);
+        _m_searchBar.m_filletValue = JFilletMake(0.5, 37/2, kColor_Line_Gray_Dark);
         _m_searchBar.hidden = YES;
         [_m_searchBar funj_reloadSearchState:YES :YES];
         [_m_topView addSubview:_m_searchBar];
         
-        _m_blackImageView=[UIImageView funj_getBlackAlphaView:CGRectMake(0, 0, KWidth, KHeight)];
-        _m_blackImageView.hidden=YES;
-        [self.view addSubview:_m_blackImageView];
+        _m_BlackImageView=[UIImageView funj_getBlackAlphaView:CGRectMake(0, 0, kWidth, kHeight)];
+        _m_BlackImageView.hidden=YES;
+        [self.view addSubview:_m_BlackImageView];
         __weak typeof(self) weakSelf = self;
-        [_m_blackImageView  funj_whenTouchedDown:^(UIView *sender) {
+        [_m_BlackImageView  funj_whenTouchedDown:^(UIView *sender) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             [strongSelf.m_searchBar endEditing:YES];
             [strongSelf funj_searchBarState:NO];
             strongSelf.m_isSearchTableViewList=NO;
             [strongSelf funj_reloadData];
         }];
-        [self.view addSubview:_m_blackImageView];
+        [self.view addSubview:_m_BlackImageView];
     }
     return _m_searchBar;
 }
@@ -99,7 +99,7 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
 -(void)addNoDataDefaultView{
      m_defaultImageView=[UIImageView funj_getImageView:CGRectZero image:@"uu_tableview_default_icon"];
     
-    UILabel *contentLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 200, 20) :LocalStr(@"Here is a wilderness ...Nothing left") :JTextFCMakeAlign(PUBLIC_FONT_SIZE17,COLOR_TEXT_GRAY_DARK,NSTextAlignmentCenter)];
+    UILabel *contentLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 200, 20) :LocalStr(@"Here is a wilderness ...Nothing left") :JTextFCMakeAlign(kFont_Size17,kColor_Text_Gray_Dark,NSTextAlignmentCenter)];
     [m_defaultImageView addSubview:contentLabel];
     contentLabel.tag = 9993;
 }
@@ -115,7 +115,7 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
         self.m_searchBar.hidden = searchBarHidden;
         _m_searchBar.width = m_topViewFrame.size.width;
         CGPoint point = [self.view convertPoint:_m_searchBar.origin fromView:_m_searchBar];
-        self.m_blackImageView.frame=CGRectMake(_m_blackImageView.left, point.y+_m_searchBar.height  , _m_topView.width, CGRectGetHeight(tableViewFrame)+(CGRectGetMinY(tableViewFrame)-_m_topTableViewLine.top));
+        self.m_BlackImageView.frame=CGRectMake(_m_BlackImageView.left, point.y+_m_searchBar.height  , _m_topView.width, CGRectGetHeight(tableViewFrame)+(CGRectGetMinY(tableViewFrame)-_m_topTableViewLine.top));
     }
  
     CGFloat width = IS_IPAD ? 300 : 200;
@@ -258,7 +258,7 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
 }
 
 -(void)funj_searchBarState:(BOOL)isShowBlack{
-     _m_blackImageView.hidden=!isShowBlack;
+     _m_BlackImageView.hidden=!isShowBlack;
 }
 -(void)funj_solverToSetData:(NSArray*)data :(NSMutableSet*)targetArr{
     if(!targetArr){

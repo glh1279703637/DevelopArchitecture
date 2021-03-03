@@ -31,21 +31,21 @@
     self.navigationItem.rightBarButtonItem =[UIBarButtonItem funj_getNavPublicButton:nil title:@"" action:nil  image:nil  :^(UIButton *button) {
     }];
     
-    UIView *bottomBgView =[UIView funj_getView:CGRectMake(0, self.view.height-50, self.view.width, 50) :COLOR_WHITE_DARK];
+    UIView *bottomBgView =[UIView funj_getView:CGRectMake(0, self.view.height-50, self.view.width, 50) :kColor_White_Dark];
     [self.view addSubview:bottomBgView];bottomBgView.tag = 3023;
     
-    UIImageView *line =[UIImageView funj_getLineImageView:CGRectMake(0, 0, KWidth, 1)];
+    UIImageView *line =[UIImageView funj_getLineImageView:CGRectMake(0, 0, kWidth, 1)];
     [bottomBgView addSubview:line];
     
     if(![JPhotosConfig share].m_currentIsVideo){
-        UIButton *origareBt =[UIButton funj_getButtons:CGRectMake(0, 0, 100, 50) :LocalStr(@"Original") :JTextFCMake(PUBLIC_FONT_SIZE13, COLOR_TEXT_BLACK_DARK) :@[@"photo_original_def",@"photo_original_sel"] :self  :@"funj_selectItemTo:" :3024 :^(UIButton *button) {
+        UIButton *origareBt =[UIButton funj_getButtons:CGRectMake(0, 0, 100, 50) :LocalStr(@"Original") :JTextFCMake(kFont_Size13, kColor_Text_Black_Dark) :@[@"photo_original_def",@"photo_original_sel"] :self  :@"funj_selectItemTo:" :3024 :^(UIButton *button) {
             [button funj_updateContentImageLayout:kLEFT_IMAGECONTENT a:JAlignMake(10, 10, 0)];
             [button funj_updateButtonSelectStyle:NO  :NO];
         }];
         [bottomBgView addSubview:origareBt];
     }
     
-    UIButton *sumBt =[UIButton funj_getButtons:CGRectMake(self.view.width-100, 0, 100, 50) :LocalStr(@"Confirm") :JTextFCMake(PUBLIC_FONT_SIZE13, COLOR_TEXT_BLACK_DARK) : nil :self  :@"funj_selectFinishTo:" :3025 :^(UIButton *button) {
+    UIButton *sumBt =[UIButton funj_getButtons:CGRectMake(self.view.width-100, 0, 100, 50) :LocalStr(@"Confirm") :JTextFCMake(kFont_Size13, kColor_Text_Black_Dark) : nil :self  :@"funj_selectFinishTo:" :3025 :^(UIButton *button) {
         [button funj_updateContentImageLayout:kRIGHT_CONTENTIMAGE a:JAlignMake(10, 0, 20)];
     }];
     [bottomBgView addSubview:sumBt];
@@ -145,9 +145,9 @@
 }
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    [self funj_reloadBaseViewParameter:CGRectZero :CGRectMake(0, 0, self.view.width, self.view.height-50-KFilletSubHeight) :YES];
+    [self funj_reloadBaseViewParameter:CGRectZero :CGRectMake(0, 0, self.view.width, self.view.height-50-kFilletSubHeight) :YES];
     UIView *bottomBgView =[self.view viewWithTag:3023];
-    bottomBgView.top = self.view.height-50-KFilletSubHeight;
+    bottomBgView.top = self.view.height-50-kFilletSubHeight;
     bottomBgView.width = self.view.width;
     UIButton *sumBt =[bottomBgView viewWithTag:3025];
     sumBt.left = bottomBgView.width - 100;
@@ -189,7 +189,7 @@
                 });
             }];
         }else{
-            [JPhotoPickerInterface funj_getPhotoWithAsset:model.asset :PHImageRequestOptionsDeliveryModeHighQualityFormat  photoWidth:KWidth completion:^(UIImage * _Nonnull image, NSDictionary * _Nonnull dic, BOOL isDegraded) {
+            [JPhotoPickerInterface funj_getPhotoWithAsset:model.asset :PHImageRequestOptionsDeliveryModeHighQualityFormat  photoWidth:kWidth completion:^(UIImage * _Nonnull image, NSDictionary * _Nonnull dic, BOOL isDegraded) {
                 LRStrongSelf(self);
                 if (isDegraded) {
                     return;

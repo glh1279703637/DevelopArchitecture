@@ -44,12 +44,12 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    if(frame.origin.x + frame.size.width >KWidth){
-        frame.size.width = KWidth- frame.origin.x-2;
+    if(frame.origin.x + frame.size.width >kWidth){
+        frame.size.width = kWidth- frame.origin.x-2;
     }
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = COLOR_WHITE_DARK;
+        self.backgroundColor = kColor_White_Dark;
 
         [self setupWithPswTextField];
     }

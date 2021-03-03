@@ -14,14 +14,14 @@ class JProgressHUD: UIView {
     var progressImageView : UIImageView?
     
     lazy var m_titleLabel : UILabel = {
-        let titleLabel = UILabel(i: CGRect(x: 0, y: 0, width: 0, height: 30), title: nil, textFC: JTextFC(f: FONT_SIZE17, c: COLOR_TEXT_BLACK, a: .center))
+        let titleLabel = UILabel(i: CGRect(x: 0, y: 0, width: 0, height: 30), title: nil, textFC: JTextFC(f: kFont_Size17, c: kColor_Text_Black, a: .center))
         self.addSubview(titleLabel)
         return titleLabel
     }()
     override init(frame: CGRect) {
-        super.init(frame: CGRect(x: 0, y: 0, width: KWidth, height: KHeight))
-        self.backgroundColor = COLOR_CREAR
-        progressBgImageView = UIImageView(i: CGRect(x: (KWidth-202/2.5)/2, y: (KHeight-202/2.5)/2, width: 202/2.5, height: 202/2.5), image: "reloadProgress_center")
+        super.init(frame: CGRect(x: 0, y: 0, width: kWidth, height: kHeight))
+        self.backgroundColor = kColor_Clear
+        progressBgImageView = UIImageView(i: CGRect(x: (kWidth-202/2.5)/2, y: (kHeight-202/2.5)/2, width: 202/2.5, height: 202/2.5), image: "reloadProgress_center")
         self.addSubview(progressBgImageView!)
         progressImageView = UIImageView(i: CGRect(x: (progressBgImageView!.frame.size.width-188/2.5)/2, y: (progressBgImageView!.frame.size.height-188/2.5)/2, width: 188/2.5, height: 188/2.5), image: "reloadProgress_route")
         progressBgImageView?.addSubview(progressImageView!)
@@ -49,8 +49,8 @@ class JProgressHUD: UIView {
         let supView = JAppViewTools.funj_getKeyWindow()
         let upProgressView = superview?.viewWithTag(NSNotFound - 1)
         (upProgressView as? JProgressHUD)?.funj_stopProgressView()
-        self.frame = CGRect(x: 0,y: 0,width: KWidth,height: KHeight)
-        progressBgImageView?.frame = CGRect(x: (KWidth-202/2.5)/2, y: (KHeight-202/2.5)/2, width: 202/2.5, height: 202/2.5)
+        self.frame = CGRect(x: 0,y: 0,width: kWidth,height: kHeight)
+        progressBgImageView?.frame = CGRect(x: (kWidth-202/2.5)/2, y: (kHeight-202/2.5)/2, width: 202/2.5, height: 202/2.5)
         
         if title != nil {
             m_titleLabel.frame = CGRect(x: progressBgImageView!.frame.origin.x-20, y: progressBgImageView!.frame.size.height+progressBgImageView!.frame.origin.y, width: progressBgImageView!.frame.size.width+40, height: 30)
@@ -80,7 +80,7 @@ class JMProgressHUD : UIView {
     var m_timerIsStart : Bool = false
     
     lazy var m_titleLabel : UILabel = {
-        let titleLabel = UILabel(i: CGRectZero, title: nil, textFC: JTextFC(f: FONT_SIZE15, c: COLOR_WHITE, a: .center))
+        let titleLabel = UILabel(i: CGRectZero, title: nil, textFC: JTextFC(f: kFont_Size15, c: kColor_White, a: .center))
         self.addSubview(titleLabel)
         titleLabel.numberOfLines = 2
         return titleLabel
@@ -110,8 +110,8 @@ class JMProgressHUD : UIView {
     }
     
     func funj_addblackView (){
-        m_blackAlphaView = UIImageView(i: self.bounds, bg: COLOR_TEXT_BLACK)
-            .funj_addCornerLayer(JFilletValue(w: 0, r: 10, c: COLOR_CREAR)) as? UIImageView
+        m_blackAlphaView = UIImageView(i: self.bounds, bg: kColor_Text_Black)
+        _ = m_blackAlphaView?.funj_addCornerLayer(JFilletValue(w: 0, r: 10, c: kColor_Clear))
         m_blackAlphaView?.alpha = 0.7
         self.addSubview(m_blackAlphaView!)
     }
@@ -142,10 +142,10 @@ class JMProgressHUD : UIView {
                 top = m_activityView.bottom
             } else {
                 var width = JAppUtility.funj_getTextWidthWithView(m_titleLabel) + 40
-                if kIS_IPAD {
-                    width = min(KWidth / 3 * 2, width)
+                if kis_IPad {
+                    width = min(kWidth / 3 * 2, width)
                 } else {
-                    width = KWidth > KHeight ? min(KWidth / 3 * 2, width) : min(KWidth - 60 , width)
+                    width = kWidth > kHeight ? min(kWidth / 3 * 2, width) : min(kWidth - 60 , width)
                 }
                 self.frame = CGRect(x: ((m_superView?.width ?? 0) - width) / 2, y: ((m_superView?.height ?? 0) - 70 ) / 2, width: width, height: 70)
             }

@@ -17,7 +17,7 @@
 }
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]){        self.selectionStyle=UITableViewCellSelectionStyleNone;
-        self.backgroundColor = COLOR_BG_DARK;
+        self.backgroundColor = kColor_Bg_Dark;
         [self funj_addBaseTableSubView];
     }
     return self;
@@ -47,12 +47,12 @@
 }
 -(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
     if(self.selectionStyle != UITableViewCellSelectionStyleNone){
-        self.backgroundColor = (highlighted?COLOR_BG_LIGHTGRAY_DARK:COLOR_CREAR);
+        self.backgroundColor = (highlighted?kColor_Bg_LightGray_Dark:kColor_Clear);
     }
 }
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated{
     if(self.selectionStyle != UITableViewCellSelectionStyleNone){
-        self.backgroundColor = (selected?COLOR_BG_LIGHTGRAY_DARK:COLOR_CREAR);
+        self.backgroundColor = (selected?kColor_Bg_LightGray_Dark:kColor_Clear);
     }
 }
 

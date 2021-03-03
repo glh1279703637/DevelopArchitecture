@@ -21,17 +21,17 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         JMoreTipView *moreTip =[[JMoreTipView alloc]initWithTitle:@"上滑查看更多课程" :superView];
-        [moreTip funj_reloadType:kshowTopPostion :CGPointMake(KWidth/2, KHeight-50-70) :0];
+        [moreTip funj_reloadType:kshowTopPostion :CGPointMake(kWidth/2, kHeight-50-70) :0];
         [moreTip funj_addAutoHiddenViews];
     });
 }
 -(id)initWithTitle:(NSString*)title :(UIView*)superView{
-    CGFloat width = [JAppUtility funj_getTextWidth:title textFont:PUBLIC_FONT_SIZE14];
+    CGFloat width = [JAppUtility funj_getTextWidth:title textFont:kFont_Size14];
     
     CGRect frame = CGRectMake(0, 0, width+50, 60);
     if(self =[super initWithFrame:frame]){
-        [self funj_setViewGradientLayer:YES :@[COLOR_ORANGE,COLOR_WHITE] :@[@(0.f), @(1.f)]];
-        UILabel *titleLabel= [UILabel funj_getLabel:CGRectMake(10, 10, width+30, 40) :title :JTextFCMakeAlign(PUBLIC_FONT_SIZE14, COLOR_WHITE, NSTextAlignmentCenter)];
+        [self funj_setViewGradientLayer:YES :@[kColor_Orange,kColor_White] :@[@(0.f), @(1.f)]];
+        UILabel *titleLabel= [UILabel funj_getLabel:CGRectMake(10, 10, width+30, 40) :title :JTextFCMakeAlign(kFont_Size14, kColor_White, NSTextAlignmentCenter)];
         [self addSubview:titleLabel];
         [superView addSubview:self];
         

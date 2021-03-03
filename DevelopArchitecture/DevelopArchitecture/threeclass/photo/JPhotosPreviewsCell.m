@@ -11,7 +11,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 @implementation JPhotosPreviewsCell{
-    UIScrollView *m_bgScrollView;
+    UIScrollView *m_BgScrollView;
      UIImageView *imageView;
     AVPlayer *player;
     AVPlayerLayer *playerLayer;
@@ -30,20 +30,20 @@
          [self.contentView addSubview:playButton];
         [playButton funj_updateButtonSelectStyle:NO  :NO];
     }else{
-        m_bgScrollView =[UIScrollView funj_getScrollView:self.bounds :nil];
-        [self.contentView addSubview:m_bgScrollView];
-        m_bgScrollView.bouncesZoom = YES;
-        m_bgScrollView.maximumZoomScale = 2.5;
-        m_bgScrollView.minimumZoomScale = 1.0;
-        m_bgScrollView.multipleTouchEnabled = YES;
-        m_bgScrollView.delegate = self;
-        m_bgScrollView.scrollsToTop = NO;
-        m_bgScrollView.showsHorizontalScrollIndicator = NO;
-        m_bgScrollView.showsVerticalScrollIndicator = NO;
-        m_bgScrollView.delaysContentTouches = NO;
-        m_bgScrollView.canCancelContentTouches = YES;
-        m_bgScrollView.alwaysBounceVertical = NO;
-        [m_bgScrollView addSubview:imageView];
+        m_BgScrollView =[UIScrollView funj_getScrollView:self.bounds :nil];
+        [self.contentView addSubview:m_BgScrollView];
+        m_BgScrollView.bouncesZoom = YES;
+        m_BgScrollView.maximumZoomScale = 2.5;
+        m_BgScrollView.minimumZoomScale = 1.0;
+        m_BgScrollView.multipleTouchEnabled = YES;
+        m_BgScrollView.delegate = self;
+        m_BgScrollView.scrollsToTop = NO;
+        m_BgScrollView.showsHorizontalScrollIndicator = NO;
+        m_BgScrollView.showsVerticalScrollIndicator = NO;
+        m_BgScrollView.delaysContentTouches = NO;
+        m_BgScrollView.canCancelContentTouches = YES;
+        m_BgScrollView.alwaysBounceVertical = NO;
+        [m_BgScrollView addSubview:imageView];
     }
 
     
@@ -63,7 +63,7 @@
 }
 -(void)funj_setBaseCollectionData:(JPhotoPickerModel*)data {
     m_data = data;
-    [m_bgScrollView setZoomScale:1.0 animated:NO];
+    [m_BgScrollView setZoomScale:1.0 animated:NO];
     LRWeakSelf(self);
     [JPhotoPickerInterface funj_getPhotoWithAsset:data.asset :PHImageRequestOptionsDeliveryModeOpportunistic photoWidth:imageView.width  completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
         LRStrongSelf(self);

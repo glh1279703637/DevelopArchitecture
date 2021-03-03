@@ -32,7 +32,7 @@ class JBaseTransition : JBaseView ,UIViewControllerAnimatedTransitioning {
 //            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
 //                let isAddX = arc4random() % 3
 //                let isAddY = arc4random() % 2
-//                fromVC?.view.transform = fromVC?.view.transform.translatedBy(x: (1 - isAddX) * KWidth , y: (1 - isAddY) * KHeight)
+//                fromVC?.view.transform = fromVC?.view.transform.translatedBy(x: (1 - isAddX) * kWidth , y: (1 - isAddY) * kHeight)
 //                toVC?.view.transform = CGAffineTransform(scaleX: 1, y: 1)
 //            }
         } completion: { (completion) in

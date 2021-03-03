@@ -27,7 +27,7 @@
 #define RGB(x,y,z,a) [UIColor colorWithRed:x/255.0 green:y/255.0 blue:z/255.0 alpha:a]
 #define krandomColor RGB((arc4random()%255), (arc4random()%255), (arc4random()%255), 1)
 
-#define COLOR_DARK(x,y) ({ UIColor *color= x;\
+#define kColor_Dark(x,y) ({ UIColor *color= x;\
     if(@available(iOS 13.0, *)){\
         color= [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) { if(traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){return y;}else{return x;}}]; \
     }else if(@available(iOS 12.0, *)){\
@@ -46,7 +46,7 @@
     (result);\
 })
 
-#define KSafeAreaInsets ({\
+#define kSafeAreaInsets ({\
    UIEdgeInsets e = UIEdgeInsetsZero;\
    if (@available(iOS 11.0, *)) {\
        e = [[UIApplication sharedApplication].windows firstObject].safeAreaInsets;\
@@ -54,8 +54,8 @@
    e.top = MAX(CGRectGetHeight([UIApplication sharedApplication].statusBarFrame),e.top);\
    (e);})
 
-#define KStatusBarHeight KSafeAreaInsets.top
-#define KFilletSubHeight KSafeAreaInsets.bottom  // iphonex 底部高度
+#define kStatusBarHeight kSafeAreaInsets.top
+#define kFilletSubHeight kSafeAreaInsets.bottom  // iphonex 底部高度
 
 #if TARGET_OS_MACCATALYST
   #define windowSceneSize ({ \
@@ -66,28 +66,28 @@
             size = window.bounds.size; \
     } } (size);})
 
-  #define KWidth windowSceneSize.width
-  #define KHeight windowSceneSize.height
+  #define kWidth windowSceneSize.width
+  #define kHeight windowSceneSize.height
 #else
 
-  #define KWidth    [UIScreen mainScreen].bounds.size.width
-  #define KHeight   ([UIScreen mainScreen].bounds.size.height - KFilletSubHeight)
+  #define kWidth    [UIScreen mainScreen].bounds.size.width
+  #define kHeight   ([UIScreen mainScreen].bounds.size.height - kFilletSubHeight)
 
 #endif
 
 
-#define KNavigationBarHeight (([[[UIDevice currentDevice] systemVersion] floatValue]>=12.0 && IS_IPAD) ? 50.f : 44.f)  // 导航栏高度
-#define KNavigationBarBottom (KNavigationBarHeight+KStatusBarHeight)
+#define kNavigationBarHeight (([[[UIDevice currentDevice] systemVersion] floatValue]>=12.0 && IS_IPAD) ? 50.f : 44.f)  // 导航栏高度
+#define kNavigationBarBottom (kNavigationBarHeight+kStatusBarHeight)
 
-#define kWidth(x) (x)*KWidth/375.f
-#define KHeight64   (KHeight-KNavigationBarBottom)
-#define KWidthD   (IS_IPAD ? (KWidth - 375.f - 0.5f) : KWidth)
-#define KWidthM   (IS_IPAD ? 375.f : KWidth)
-#define KWidthMin    MIN(KWidth,KHeight)
-#define KHeightMax    MAX(KWidth,KHeight)
+//#define kWidth(x) (x) * kWidth / 375.f
+#define kHeight64   (kHeight - kNavigationBarBottom)
+#define kWidthD   (IS_IPAD ? (kWidth - 375.f - 0.5f) : kWidth)
+#define kWidthM   (IS_IPAD ? 375.f : kWidth)
+#define kWidthMin    MIN(kWidth,kHeight)
+#define kHeightMax    MAX(kWidth,kHeight)
 
 
-#define KTabbarHeight (KFilletSubHeight+50.f)
+#define kTabbarHeight (kFilletSubHeight+50.f)
 
 //图片宽高比例
 #define kImageViewHeight(x) ((x)*9.0/16)
@@ -100,52 +100,52 @@
 #define LRStrongSelf(type)  __strong typeof(type) type = weak##type;
 
 //常用颜色 v2
-#define COLOR_CREAR                        [UIColor clearColor]//无色
-#define COLOR_BLUE                          UIColorFromARGB(0x3899ff,1)//状态栏的颜色 蓝色
-#define COLOR_WHITE                         UIColorFromARGB(0xffffff,1)//白色
-#define COLOR_WHITE_DARK                    COLOR_DARK(UIColorFromARGB(0xffffff,1),UIColorFromARGB(0x5a5a5a,1))//白色
-#define COLOR_ORANGE                        UIColorFromARGB(0xff8338,1)//橘色
-#define COLOR_SHALLOW_ORANGE                UIColorFromARGB(0xFCAA4B,1)//浅橘色
-#define COLOR_GREEN                         UIColorFromARGB(0x33c764,1)//绿色
-#define COLOR_TEXT_BLACK                    UIColorFromARGB(0x333333,1)//字体黑色
-#define COLOR_TEXT_BLACK_DARK               COLOR_DARK(UIColorFromARGB(0x333333,1),UIColorFromARGB(0xffffff,1))//字体黑色
-#define COLOR_TEXT_GRAY                     UIColorFromARGB(0x999999,1)//字体灰色
-#define COLOR_TEXT_GRAY_DARK                COLOR_DARK(UIColorFromARGB(0x999999,1),UIColorFromARGB(0xcccccc,1))//字体灰色
-#define COLOR_BG_LIGHTGRAY                  UIColorFromARGB(0xf0f1f5,1)//灰色背景色
-#define COLOR_BG_LIGHTGRAY_DARK             COLOR_DARK(UIColorFromARGB(0xf0f1f5,1),UIColorFromARGB(0x9e9e9e,1))//灰色背景色
-#define COLOR_BG_SHALLOW_LIGHTGRAY          UIColorFromARGB(0xf7f7f8,1)//灰色浅背景色
-#define COLOR_BG_SHALLOW_LIGHTGRAY_DARK     COLOR_DARK(UIColorFromARGB(0xf7f7f8,1),UIColorFromARGB(0x797979,1))//灰色浅背景色
-#define COLOR_RED                           UIColorFromARGB(0xf04d4d,1) //红色
+#define kColor_Clear                        [UIColor clearColor]//无色
+#define kColor_Blue                          UIColorFromARGB(0x3899ff,1)//状态栏的颜色 蓝色
+#define kColor_White                         UIColorFromARGB(0xffffff,1)//白色
+#define kColor_White_Dark                    kColor_Dark(UIColorFromARGB(0xffffff,1),UIColorFromARGB(0x5a5a5a,1))//白色
+#define kColor_Orange                        UIColorFromARGB(0xff8338,1)//橘色
+#define kColor_Shallow_Orange                UIColorFromARGB(0xFCAA4B,1)//浅橘色
+#define kColor_Green                         UIColorFromARGB(0x33c764,1)//绿色
+#define kColor_Text_Black                    UIColorFromARGB(0x333333,1)//字体黑色
+#define kColor_Text_Black_Dark               kColor_Dark(UIColorFromARGB(0x333333,1),UIColorFromARGB(0xffffff,1))//字体黑色
+#define kColor_Text_Gray                     UIColorFromARGB(0x999999,1)//字体灰色
+#define kColor_Text_Gray_Dark                kColor_Dark(UIColorFromARGB(0x999999,1),UIColorFromARGB(0xcccccc,1))//字体灰色
+#define kColor_Bg_LightGray                  UIColorFromARGB(0xf0f1f5,1)//灰色背景色
+#define kColor_Bg_LightGray_Dark             kColor_Dark(UIColorFromARGB(0xf0f1f5,1),UIColorFromARGB(0x9e9e9e,1))//灰色背景色
+#define kColor_Bg_Shallow_LightGray          UIColorFromARGB(0xf7f7f8,1)//灰色浅背景色
+#define kColor_Bg_Shallow_LightGray_Dark     kColor_Dark(UIColorFromARGB(0xf7f7f8,1),UIColorFromARGB(0x797979,1))//灰色浅背景色
+#define kColor_RED                           UIColorFromARGB(0xf04d4d,1) //红色
 
-#define COLOR_BG_DARK                       COLOR_DARK(COLOR_CREAR,UIColorFromARGB(0x5a5a5a,1))//dark 深色模式
+#define kColor_Bg_Dark                       kColor_Dark(kColor_Clear,UIColorFromARGB(0x5a5a5a,1))//dark 深色模式
 
-#define COLOR_LINE_GRAY                     UIColorFromARGB(0xe1e1e1,1)//线色
-#define COLOR_LINE_GRAY_DARK                COLOR_DARK(UIColorFromARGB(0xe1e1e1,1),UIColorFromARGB(0x9e9e9e,1))//线色
+#define kColor_Line_Gray                     UIColorFromARGB(0xe1e1e1,1)//线色
+#define kColor_Line_Gray_Dark                kColor_Dark(UIColorFromARGB(0xe1e1e1,1),UIColorFromARGB(0x9e9e9e,1))//线色
 
 
 //常用字号大小
 
 
-#define PUBLIC_FONT_SIZE20        isZhHans?[UIFont systemFontOfSize:20]:[UIFont systemFontOfSize:18]
-#define PUBLIC_FONT_SIZE18        isZhHans?[UIFont systemFontOfSize:18]:[UIFont systemFontOfSize:16]
-#define PUBLIC_FONT_SIZE17        isZhHans?[UIFont systemFontOfSize:17]:[UIFont systemFontOfSize:15]
-#define PUBLIC_FONT_SIZE16        isZhHans?[UIFont systemFontOfSize:16]:[UIFont systemFontOfSize:14]
-#define PUBLIC_FONT_SIZE15        isZhHans?[UIFont systemFontOfSize:15]:[UIFont systemFontOfSize:13]
-#define PUBLIC_FONT_SIZE14        isZhHans?[UIFont systemFontOfSize:14]:[UIFont systemFontOfSize:12]
-#define PUBLIC_FONT_SIZE13        isZhHans?[UIFont systemFontOfSize:13]:[UIFont systemFontOfSize:12]
-#define PUBLIC_FONT_SIZE12        isZhHans?[UIFont systemFontOfSize:12]:[UIFont systemFontOfSize:12]
-#define PUBLIC_FONT_SIZE11        isZhHans?[UIFont systemFontOfSize:11]:[UIFont systemFontOfSize:11]
-#define PUBLIC_FONT_SIZE10        isZhHans?[UIFont systemFontOfSize:10]:[UIFont systemFontOfSize:10]
+#define kFont_Size20        isZhHans?[UIFont systemFontOfSize:20]:[UIFont systemFontOfSize:18]
+#define kFont_Size18        isZhHans?[UIFont systemFontOfSize:18]:[UIFont systemFontOfSize:16]
+#define kFont_Size17        isZhHans?[UIFont systemFontOfSize:17]:[UIFont systemFontOfSize:15]
+#define kFont_Size16        isZhHans?[UIFont systemFontOfSize:16]:[UIFont systemFontOfSize:14]
+#define kFont_Size15        isZhHans?[UIFont systemFontOfSize:15]:[UIFont systemFontOfSize:13]
+#define kFont_Size14        isZhHans?[UIFont systemFontOfSize:14]:[UIFont systemFontOfSize:12]
+#define kFont_Size13        isZhHans?[UIFont systemFontOfSize:13]:[UIFont systemFontOfSize:12]
+#define kFont_Size12        isZhHans?[UIFont systemFontOfSize:12]:[UIFont systemFontOfSize:12]
+#define kFont_Size11        isZhHans?[UIFont systemFontOfSize:11]:[UIFont systemFontOfSize:11]
+#define kFont_Size10        isZhHans?[UIFont systemFontOfSize:10]:[UIFont systemFontOfSize:10]
 
-#define PUBLIC_FONT_BOLDSIZE20        isZhHans?[UIFont boldSystemFontOfSize:20]:[UIFont systemFontOfSize:18]
-#define PUBLIC_FONT_BOLDSIZE17        isZhHans?[UIFont boldSystemFontOfSize:17]:[UIFont systemFontOfSize:15]
-#define PUBLIC_FONT_BOLDSIZE16        isZhHans?[UIFont boldSystemFontOfSize:16]:[UIFont systemFontOfSize:14]
-#define PUBLIC_FONT_BOLDSIZE15        isZhHans?[UIFont boldSystemFontOfSize:15]:[UIFont systemFontOfSize:13]
-#define PUBLIC_FONT_BOLDSIZE14        isZhHans?[UIFont boldSystemFontOfSize:14]:[UIFont systemFontOfSize:12]
-#define PUBLIC_FONT_BOLDSIZE13        isZhHans?[UIFont boldSystemFontOfSize:13]:[UIFont systemFontOfSize:12]
-#define PUBLIC_FONT_BOLDSIZE12        isZhHans?[UIFont boldSystemFontOfSize:12]:[UIFont systemFontOfSize:11]
-#define PUBLIC_FONT_BOLDSIZE11        isZhHans?[UIFont boldSystemFontOfSize:11]:[UIFont systemFontOfSize:10]
-#define PUBLIC_FONT_BOLDSIZE10        isZhHans?[UIFont boldSystemFontOfSize:10]:[UIFont systemFontOfSize:9]
+#define kFont_BoldSize20        isZhHans?[UIFont boldSystemFontOfSize:20]:[UIFont systemFontOfSize:18]
+#define kFont_BoldSize17        isZhHans?[UIFont boldSystemFontOfSize:17]:[UIFont systemFontOfSize:15]
+#define kFont_BoldSize16        isZhHans?[UIFont boldSystemFontOfSize:16]:[UIFont systemFontOfSize:14]
+#define kFont_BoldSize15        isZhHans?[UIFont boldSystemFontOfSize:15]:[UIFont systemFontOfSize:13]
+#define kFont_BoldSize14        isZhHans?[UIFont boldSystemFontOfSize:14]:[UIFont systemFontOfSize:12]
+#define kFont_BoldSize13        isZhHans?[UIFont boldSystemFontOfSize:13]:[UIFont systemFontOfSize:12]
+#define kFont_BoldSize12        isZhHans?[UIFont boldSystemFontOfSize:12]:[UIFont systemFontOfSize:11]
+#define kFont_BoldSize11        isZhHans?[UIFont boldSystemFontOfSize:11]:[UIFont systemFontOfSize:10]
+#define kFont_BoldSize10        isZhHans?[UIFont boldSystemFontOfSize:10]:[UIFont systemFontOfSize:9]
 
 
 
@@ -166,12 +166,12 @@ return _##m_dataArr;}
 
 
 #define addConfigSumBit(selfs,superView,left,top,width,title,cornerRadius,tag)({\
-    UIButton *sumBt=[UIButton funj_getButton:CGRectMake(left, top, width,45) :title :JTextFCMake(PUBLIC_FONT_SIZE17, COLOR_WHITE) :@[COLOR_WHITE] :selfs  :@"funj_selectSumbitTo:" :tag]; \
+    UIButton *sumBt=[UIButton funj_getButton:CGRectMake(left, top, width,45) :title :JTextFCMake(kFont_Size17, kColor_White) :@[kColor_White] :selfs  :@"funj_selectSumbitTo:" :tag]; \
     [(JButton*)sumBt funj_resetProhibitActionTime:2 e:NO];\
     [superView addSubview:sumBt]; \
-    [sumBt funj_setViewCornerLayer:JFilletMake(0, cornerRadius, COLOR_WHITE)]; \
-    sumBt.layer.shadowColor = COLOR_BLUE.CGColor; \
-    [sumBt funj_setViewGradientLayer:YES :@[COLOR_ORANGE,COLOR_SHALLOW_ORANGE] :@[@0.4, @1]]; \
+    [sumBt funj_setViewCornerLayer:JFilletMake(0, cornerRadius, kColor_White)]; \
+    sumBt.layer.shadowColor = kColor_Blue.CGColor; \
+    [sumBt funj_setViewGradientLayer:YES :@[kColor_Orange,kColor_Shallow_Orange] :@[@0.4, @1]]; \
     (sumBt);})
 
 

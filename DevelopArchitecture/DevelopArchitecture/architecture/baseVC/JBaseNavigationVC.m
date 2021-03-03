@@ -36,7 +36,7 @@
     self.delegate=self;
 
     UINavigationBar *bar = [UINavigationBar appearance];
-    _m_barBottomLine =[UIImageView funj_getImageView:CGRectMake(0, bar.height, bar.width, 1) bgColor:COLOR_BLUE];
+    _m_barBottomLine =[UIImageView funj_getImageView:CGRectMake(0, bar.height, bar.width, 1) bgColor:kColor_Blue];
     [bar addSubview:_m_barBottomLine];
  }
 -(void)viewWillAppear:(BOOL)animated{
@@ -50,21 +50,21 @@
     switch (_m_currentNavColor) {
         case kCURRENTISBLUENAV_TAG:{
             [bar setTitleTextAttributes:@{
-                                          NSForegroundColorAttributeName : COLOR_WHITE,NSFontAttributeName:PUBLIC_FONT_BOLDSIZE20}];
-            self.navigationBar.barTintColor=COLOR_BLUE;
-            _m_barBottomLine.backgroundColor = COLOR_BLUE;
+                                          NSForegroundColorAttributeName : kColor_White,NSFontAttributeName:kFont_BoldSize20}];
+            self.navigationBar.barTintColor=kColor_Blue;
+            _m_barBottomLine.backgroundColor = kColor_Blue;
         }break;
         case kCURRENTISWHITENAV_TAG:{
             [bar setTitleTextAttributes:@{
-                                          NSForegroundColorAttributeName : COLOR_TEXT_BLACK_DARK,NSFontAttributeName:PUBLIC_FONT_BOLDSIZE20}];
-            self.navigationBar.barTintColor=COLOR_WHITE_DARK;
-            _m_barBottomLine.backgroundColor = COLOR_LINE_GRAY_DARK;
+                                          NSForegroundColorAttributeName : kColor_Text_Black_Dark,NSFontAttributeName:kFont_BoldSize20}];
+            self.navigationBar.barTintColor=kColor_White_Dark;
+            _m_barBottomLine.backgroundColor = kColor_Line_Gray_Dark;
         }break;
         case kCURRENTISGRAYNAV_TAG:{
-            [self.navigationBar setBackgroundImage:[JAppUtility funj_imageWithColor:COLOR_BG_LIGHTGRAY_DARK :CGSizeMake(1, 1)] forBarMetrics:UIBarMetricsDefault];
-            [self.navigationBar setShadowImage:[JAppUtility funj_imageWithColor:COLOR_BG_LIGHTGRAY_DARK  :CGSizeMake(1, 1)]];
-            [self.navigationBar setTitleTextAttributes:@{ NSForegroundColorAttributeName : COLOR_TEXT_BLACK,NSFontAttributeName:PUBLIC_FONT_BOLDSIZE20}];
-            _m_barBottomLine.backgroundColor = COLOR_BG_LIGHTGRAY_DARK;
+            [self.navigationBar setBackgroundImage:[JAppUtility funj_imageWithColor:kColor_Bg_LightGray_Dark :CGSizeMake(1, 1)] forBarMetrics:UIBarMetricsDefault];
+            [self.navigationBar setShadowImage:[JAppUtility funj_imageWithColor:kColor_Bg_LightGray_Dark  :CGSizeMake(1, 1)]];
+            [self.navigationBar setTitleTextAttributes:@{ NSForegroundColorAttributeName : kColor_Text_Black,NSFontAttributeName:kFont_BoldSize20}];
+            _m_barBottomLine.backgroundColor = kColor_Bg_LightGray_Dark;
         }break;
         default:
             break;

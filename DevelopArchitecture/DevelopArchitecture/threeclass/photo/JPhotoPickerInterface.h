@@ -11,8 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define kphotoPickerViewWidth (IS_IPAD ? KWidth-40 : KWidth)
-#define kphotoPickerViewHeight (IS_IPAD ? KHeight-KNavigationBarHeight-30 : KHeight-KNavigationBarHeight-30)
+#define kphotoPickerViewWidth (IS_IPAD ? kWidth-40 : kWidth)
+#define kphotoPickerViewHeight (IS_IPAD ? kHeight-kNavigationBarHeight-30 : kHeight-kNavigationBarHeight-30)
 
 typedef void (^selectPhotoCallback)(NSArray*imageOrVideoArr,BOOL isVideo);
 @interface JPhotosConfig :NSObject

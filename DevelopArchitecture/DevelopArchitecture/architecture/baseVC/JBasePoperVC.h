@@ -18,12 +18,12 @@
 @property(nonatomic,assign)BOOL m_currentIsUpState;
 @property(nonatomic,strong) UILabel *m_titleLabel;
 @property(nonatomic,strong) UIButton *m_sumbitBt;
-@property(nonatomic,strong) UIImageView *m_line;
-@property(nonatomic,strong) UIScrollView *m_bgContentView;
+@property(nonatomic,strong) UIImageView *m_Line;
+@property(nonatomic,strong) UIScrollView *m_BgContentView;
 
 @property(nonatomic,assign) BOOL m_isShouldDismissPopover;
 @property(nonatomic,weak) UIView *m_currentSelectTextField;// 只是为了textfield 或者textviewb附值
-@property(nonatomic,strong)UIView *m_bgViews; //弹出中心整个背影 包括（nav + line +  bgContentView)
+@property(nonatomic,strong)UIView *m_BgViews; //弹出中心整个背影 包括（nav + line +  bgContentView)
 -(void)funj_reloadBgViewFrames:(CGSize)size;
 
 

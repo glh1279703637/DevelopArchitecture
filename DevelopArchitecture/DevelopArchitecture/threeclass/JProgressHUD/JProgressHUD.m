@@ -19,9 +19,9 @@ static JProgressHUD *progressHUD =nil;
 }
 -(id)init{
     if(self =[super init]){
-        self.frame = CGRectMake(0,0,KWidth,KHeight);
-        self.backgroundColor = COLOR_CREAR;
-        progressBgImageView =[UIImageView funj_getImageView:CGRectMake((KWidth-202/2.5)/2, (KHeight-202/2.5)/2, 202/2.5, 202/2.5) image:@"reloadProgress_center"];
+        self.frame = CGRectMake(0,0,kWidth,kHeight);
+        self.backgroundColor = kColor_Clear;
+        progressBgImageView =[UIImageView funj_getImageView:CGRectMake((kWidth-202/2.5)/2, (kHeight-202/2.5)/2, 202/2.5, 202/2.5) image:@"reloadProgress_center"];
         [self addSubview:progressBgImageView];
         progressImageView =[UIImageView funj_getImageView:CGRectMake((progressBgImageView.frame.size.width-188/2.5)/2, (progressBgImageView.frame.size.height-188/2.5)/2, 188/2.5, 188/2.5) image:@"reloadProgress_route"];
         [progressBgImageView addSubview:progressImageView];
@@ -35,7 +35,7 @@ static JProgressHUD *progressHUD =nil;
 
 -(UILabel*)m_titleLabel{
     if(!_m_titleLabel){
-        _m_titleLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 0, 30) :JTextFCMakeAlign(PUBLIC_FONT_SIZE17, COLOR_TEXT_BLACK, NSTextAlignmentCenter)];
+        _m_titleLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 0, 30) :JTextFCMakeAlign(kFont_Size17, kColor_Text_Black, NSTextAlignmentCenter)];
         [self addSubview:_m_titleLabel];
     }
     return _m_titleLabel;
@@ -66,8 +66,8 @@ static JProgressHUD *progressHUD =nil;
     if([upProgressView isKindOfClass:[JProgressHUD class]]){
         [(JProgressHUD*)upProgressView funj_stopProgressAnimate];
     }
-    self.frame = CGRectMake(0,0,KWidth,KHeight);
-    progressBgImageView.frame = CGRectMake((KWidth-202/2.5)/2, (KHeight-202/2.5)/2, 202/2.5, 202/2.5);
+    self.frame = CGRectMake(0,0,kWidth,kHeight);
+    progressBgImageView.frame = CGRectMake((kWidth-202/2.5)/2, (kHeight-202/2.5)/2, 202/2.5, 202/2.5);
     [supView addSubview:self];
     [self funj_addProgressAnimate];
 }
@@ -77,8 +77,8 @@ static JProgressHUD *progressHUD =nil;
     if([upProgressView isKindOfClass:[JProgressHUD class]]){
         [(JProgressHUD*)upProgressView funj_stopProgressAnimate];
     }
-    self.frame = CGRectMake(0,0,KWidth,KHeight);
-    progressBgImageView.frame = CGRectMake((KWidth-202/2.5)/2, (KHeight-202/2.5)/2, 202/2.5, 202/2.5);
+    self.frame = CGRectMake(0,0,kWidth,kHeight);
+    progressBgImageView.frame = CGRectMake((kWidth-202/2.5)/2, (kHeight-202/2.5)/2, 202/2.5, 202/2.5);
     self.m_titleLabel.frame = CGRectMake(progressBgImageView.frame.origin.x-20, progressBgImageView.frame.size.height+progressBgImageView.frame.origin.y, progressBgImageView.frame.size.width+40, 30);
     self.m_titleLabel.text = title;
     [supView addSubview:self];
@@ -97,7 +97,7 @@ static JMProgressHUD *mprogressHUD =nil;
 @property(nonatomic,strong)UILabel* m_titleLabel;
 @property(nonatomic,strong)NSTimer *m_timer;
 @property(nonatomic,strong)UIActivityIndicatorView *m_activityView;
-@property(nonatomic,strong)UIImageView *m_blackAlphaView;
+@property(nonatomic,strong)UIImageView *m_BlackAlphaView;
 @property(nonatomic,copy)completeCallback m_callback;
 @property(nonatomic,assign)BOOL m_isHasFinishCallback;
 
@@ -106,7 +106,7 @@ static JMProgressHUD *mprogressHUD =nil;
 +(id)share{
     if(!mprogressHUD){
         mprogressHUD=[[JMProgressHUD alloc]init];
-        mprogressHUD.backgroundColor = COLOR_CREAR;
+        mprogressHUD.backgroundColor = kColor_Clear;
         [mprogressHUD funj_addblackView];
     }
     return mprogressHUD;
@@ -114,17 +114,17 @@ static JMProgressHUD *mprogressHUD =nil;
 -(id)initWithView:(UIView*)superView t:(MprogressType)type{
     if(self =[super initWithFrame:CGRectZero]){
         [self funj_reloadSuperView:superView t:type];
-        self.backgroundColor = COLOR_CREAR;
+        self.backgroundColor = kColor_Clear;
         [self funj_addblackView];
     }
     return self;
 }
 -(void)funj_addblackView{
-    _m_blackAlphaView =[UIImageView funj_getBlackAlphaView:CGRectZero];
-    _m_blackAlphaView.backgroundColor = COLOR_TEXT_BLACK;
-    _m_blackAlphaView.alpha = 0.7;
-    [self addSubview:_m_blackAlphaView];
-    [_m_blackAlphaView funj_setViewCornerLayer:JFilletMake(1, 10, COLOR_CREAR)];
+    _m_BlackAlphaView =[UIImageView funj_getBlackAlphaView:CGRectZero];
+    _m_BlackAlphaView.backgroundColor = kColor_Text_Black;
+    _m_BlackAlphaView.alpha = 0.7;
+    [self addSubview:_m_BlackAlphaView];
+    [_m_BlackAlphaView funj_setViewCornerLayer:JFilletMake(1, 10, kColor_Clear)];
 }
 -(void)funj_reloadSuperView:(UIView*)superView t:(MprogressType)type{
     _m_progressType = type;
@@ -132,7 +132,7 @@ static JMProgressHUD *mprogressHUD =nil;
 }
 -(UILabel*)m_titleLabel{
     if(!_m_titleLabel){
-        _m_titleLabel =[UILabel funj_getLabel:CGRectZero :JTextFCMakeAlign(PUBLIC_FONT_SIZE15, COLOR_WHITE,NSTextAlignmentCenter)];
+        _m_titleLabel =[UILabel funj_getLabel:CGRectZero :JTextFCMakeAlign(kFont_Size15, kColor_White,NSTextAlignmentCenter)];
         [self addSubview:_m_titleLabel];
         _m_titleLabel.numberOfLines = 2;
     }
@@ -182,16 +182,16 @@ static JMProgressHUD *mprogressHUD =nil;
         }else{
             CGFloat width =[JAppUtility funj_getTextWidthWithView:self.m_titleLabel]+40;
             if(IS_IPAD){
-                width = MIN(KWidth/3*2, width);
+                width = MIN(kWidth/3*2, width);
             }else{
-                width = KWidth>KHeight ? MIN(KWidth/3*2, width) : MIN(KWidth-60,width);
+                width = kWidth>kHeight ? MIN(kWidth/3*2, width) : MIN(kWidth-60,width);
             }
             self.frame = CGRectMake((self.m_superView.width-width)/2, (self.m_superView.height-70)/2, width, 70);
         }
         self.m_titleLabel.frame = CGRectMake(20, top, self.width-40, self.height-top);
     }
     self.m_time = time;
-    self.m_blackAlphaView.frame = self.bounds;
+    self.m_BlackAlphaView.frame = self.bounds;
     [self.m_superView addSubview:self];
     self.m_isHasFinishCallback = YES;
     self.m_callback = complete;

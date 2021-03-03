@@ -129,20 +129,20 @@
     
     
     // 4、创建彩色过滤器(彩色的用的不多)
-    CIFilter * color_filter = [CIFilter filterWithName:@"CIFalseColor"];
+    CIFilter * kColor_filter = [CIFilter filterWithName:@"CIFalseColor"];
     
     // 设置默认值
-    [color_filter setDefaults];
+    [kColor_filter setDefaults];
     
     // 5、KVC 给私有属性赋值
-    [color_filter setValue:outputImage forKey:@"inputImage"];
+    [kColor_filter setValue:outputImage forKey:@"inputImage"];
     
     // 6、需要使用 CIColor
-    [color_filter setValue:backgroundColor forKey:@"inputColor0"];
-    [color_filter setValue:mainColor forKey:@"inputColor1"];
+    [kColor_filter setValue:backgroundColor forKey:@"inputColor0"];
+    [kColor_filter setValue:mainColor forKey:@"inputColor1"];
     
     // 7、设置输出
-    CIImage *colorImage = [color_filter outputImage];
+    CIImage *colorImage = [kColor_filter outputImage];
     
     return [UIImage imageWithCIImage:colorImage];
 }

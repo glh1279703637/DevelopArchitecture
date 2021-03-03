@@ -20,7 +20,7 @@ class JQRScanCodeVC : JBaseViewController , AVCaptureMetadataOutputObjectsDelega
     private var m_captureRectArea : CGRect?
     private var m_timerScan : Timer?
     lazy private var m_scanResutRectImageView : UIImageView = {
-        let imageView = UIImageView(i: CGRect(x: 0, y: 0, width: 20, height: 20), bg: COLOR_ORANGE)
+        let imageView = UIImageView(i: CGRect(x: 0, y: 0, width: 20, height: 20), bg: kColor_Orange)
         _ = imageView.funj_addCornerRadius(10)
         self.view.addSubview(imageView)
         return imageView
@@ -28,8 +28,8 @@ class JQRScanCodeVC : JBaseViewController , AVCaptureMetadataOutputObjectsDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let width = min(KWidth, KHeight) / 2
-        self.m_captureRectArea = CGRect(x: (KWidth - width) / 2 , y: (KHeight - width) / 2, width: width, height: width)
+        let width = min(kWidth, kHeight) / 2
+        self.m_captureRectArea = CGRect(x: (kWidth - width) / 2 , y: (kHeight - width) / 2, width: width, height: width)
         
         funj_setupCaptureSession()
         funj_addBaseConfigView()
@@ -43,14 +43,14 @@ class JQRScanCodeVC : JBaseViewController , AVCaptureMetadataOutputObjectsDelega
     }
 
     func funj_addBaseConfigView() {
-        let backBt = UIButton(i: CGRect(x: 0, y: KStatusBarHeight, width: 60, height: 40), title: nil, textFC: JTextFC())
+        let backBt = UIButton(i: CGRect(x: 0, y: kStatusBarHeight, width: 60, height: 40), title: nil, textFC: JTextFC())
             .funj_add(bgImageOrColor: ["backBt"], isImage: true)
             .funj_add(targe: self, action: "funj_clickBackButton:", tag: 0)
         backBt.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 10)
         self.view.addSubview(backBt)
         
         if self.title?.count ?? 0 > 0 {
-            let titleLabel = UILabel(i: CGRect(x: self.m_captureRectArea!.origin.x - 30, y: KStatusBarHeight, width: self.m_captureRectArea!.size.width + 60, height: 50), title: self.title!, textFC: JTextFC(f: FONT_SIZE17, c: COLOR_WHITE, a: .center))
+            let titleLabel = UILabel(i: CGRect(x: self.m_captureRectArea!.origin.x - 30, y: kStatusBarHeight, width: self.m_captureRectArea!.size.width + 60, height: 50), title: self.title!, textFC: JTextFC(f: kFont_Size17, c: kColor_White, a: .center))
             self.view.addSubview(titleLabel) ; titleLabel.tag = 1001
         }
         let bounceImageView = UIImageView(i: self.m_captureRectArea!, image: "ZR_ScanFrame")
@@ -74,7 +74,7 @@ class JQRScanCodeVC : JBaseViewController , AVCaptureMetadataOutputObjectsDelega
             }
         })
         
-        let titleLabel2 = UILabel(i: CGRect(x: self.m_captureRectArea!.origin.x - 30 , y: self.m_captureRectArea!.origin.y + self.m_captureRectArea!.size.height + 30, width: self.m_captureRectArea!.size.width + 60, height: 50), title: kLocalStr("Scan the frame to the two-dimensional code, you can automatically scan"), textFC: JTextFC(f: FONT_SIZE16, c: COLOR_WHITE, a: .center))
+        let titleLabel2 = UILabel(i: CGRect(x: self.m_captureRectArea!.origin.x - 30 , y: self.m_captureRectArea!.origin.y + self.m_captureRectArea!.size.height + 30, width: self.m_captureRectArea!.size.width + 60, height: 50), title: kLocalStr("Scan the frame to the two-dimensional code, you can automatically scan"), textFC: JTextFC(f: kFont_Size16, c: kColor_White, a: .center))
         self.view.addSubview(titleLabel2) ; titleLabel2.tag = 1004
     }
     func funj_setupCaptureSession() {

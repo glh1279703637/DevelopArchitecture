@@ -18,7 +18,7 @@ class JMainPhotoPickerVC : JBaseTableViewVC, PHPhotoLibraryChangeObserver {
     var m_delegate : JMainPhotoPickerVCDelegate?
     
     lazy var m_tipLabel : UILabel = {
-        let tipLabel = UILabel(i: CGRect(x: 0, y: 0, width: 200, height: 30), title: "建议请优先选择所有照片", textFC: JTextFC(f: FONT_SIZE14, c: COLOR_ORANGE, a: .center))
+        let tipLabel = UILabel(i: CGRect(x: 0, y: 0, width: 200, height: 30), title: "建议请优先选择所有照片", textFC: JTextFC(f: kFont_Size14, c: kColor_Orange, a: .center))
         self.view.addSubview(tipLabel)
         return tipLabel
     }()
@@ -96,7 +96,7 @@ extension JMainPhotoPickerVC {
             let text = kLocalStr(String(format: "Please allow %@ to access all photos", appName!))
             let lo = (text as NSString).range(of: appName!).location
             let attri = contentLabel?.funj_updateAttributedText(text)
-            attri?.addAttributes([NSAttributedString.Key.foregroundColor : COLOR_ORANGE], range: NSRange(location: lo, length: appName!.count))
+            attri?.addAttributes([NSAttributedString.Key.foregroundColor : kColor_Orange], range: NSRange(location: lo, length: appName!.count))
             contentLabel?.attributedText = attri
             if statusAuthorized == .notDetermined {
                 m_tipLabel.isHidden = false
@@ -150,7 +150,7 @@ extension JMainPhotoPickerVC {
         return m_dataArr.count
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return kImageViewHeight(100 + kIS_IPAD_1 * 20 ) + 20
+        return kImageViewHeight(100 + kis_IPad_1 * 20 ) + 20
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -173,7 +173,7 @@ extension JMainPhotoPickerVC {
         let controller = JMainPhotoPickerVC.init()
         controller.m_delegate = delegate as? JMainPhotoPickerVCDelegate
         let nav = JBaseNavigationVC(rootViewController: controller)
-        nav.m_currentNavColor = .kCURRENTISWHITENAV_TAG
+        nav.m_currentNavColor = .kCURRENTISWHITENAV_Tag
         
         var setPresentView = false
         callback?(controller , &setPresentView)

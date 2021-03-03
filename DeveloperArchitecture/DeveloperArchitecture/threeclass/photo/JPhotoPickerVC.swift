@@ -37,21 +37,21 @@ extension JPhotoPickerVC {
     }
     func funj_addSubBottomBgView() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(i: "", image: nil, setButton: nil, callback: nil)
-        let bottomBgView = UIView(i: CGRect(x: 0, y: self.view.height - 50, width: self.view.width, height: 50), bg: COLOR_WHITE_DARK)
+        let bottomBgView = UIView(i: CGRect(x: 0, y: self.view.height - 50, width: self.view.width, height: 50), bg: kColor_White_Dark)
         self.view.addSubview(bottomBgView) ; bottomBgView.tag = 3023
         
-        let line = UIImageView(i_line: CGRect(x: 0, y: 0, width: KWidth, height: 1))
+        let line = UIImageView(i_line: CGRect(x: 0, y: 0, width: kWidth, height: 1))
         bottomBgView.addSubview(line)
         
         if JPhotosConfig.shared?.m_currentIsVideo ?? false == false {
-            let origareBt = UIButton(i: CGRect(x: 0, y: 0, width: 100, height:50 ), title:kLocalStr("Original") , textFC: JTextFC(f: FONT_SIZE13, c: COLOR_TEXT_BLACK_DARK))
+            let origareBt = UIButton(i: CGRect(x: 0, y: 0, width: 100, height:50 ), title:kLocalStr("Original") , textFC: JTextFC(f: kFont_Size13, c: kColor_Text_Black_Dark))
                 .funj_add(bgImageOrColor: ["photo_original_def","photo_original_sel"], isImage: true)
                 .funj_add(autoSelect: false)
                 .funj_updateContentImage(layout: .kLEFT_IMAGECONTENT, a: JAlignValue(h: 10, s: 10, f: 0))
                 .funj_add(targe: self, action: "funj_selectItemTo:", tag: 3024)
             bottomBgView.addSubview(origareBt)
         }
-        let sumBt = UIButton(i: CGRect(x: self.view.width - 100 , y: 0, width: 100, height: 50), title: kLocalStr("Confirm"), textFC: JTextFC(f: FONT_SIZE13, c: COLOR_TEXT_BLACK_DARK))
+        let sumBt = UIButton(i: CGRect(x: self.view.width - 100 , y: 0, width: 100, height: 50), title: kLocalStr("Confirm"), textFC: JTextFC(f: kFont_Size13, c: kColor_Text_Black_Dark))
             .funj_add(targe: self, action: "funj_selectFinishTo:", tag: 3025)
             .funj_updateContentImage(layout: .kRIGHT_CONTENTIMAGE, a: JAlignValue(h: 10, s: 0, f: 20))
         bottomBgView.addSubview(sumBt)
@@ -93,7 +93,7 @@ extension JPhotoPickerVC {
                     }
                 }
             } else {
-                JPhotoPickerInterface.funj_getPhotoWithAsset(phAsset: model.m_asset, deliveryMode: .highQualityFormat, width: KWidth) { [weak self] (image, dic, isDegraded) in
+                JPhotoPickerInterface.funj_getPhotoWithAsset(phAsset: model.m_asset, deliveryMode: .highQualityFormat, width: kWidth) { [weak self] (image, dic, isDegraded) in
                     if isDegraded == true { return }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
                         self?.funj_getDetailInfo(&saveImageDic, image: image, dic: dic, isDegraded: isDegraded, item: nil, index: i)
@@ -137,7 +137,7 @@ extension JPhotoPickerVC {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let vc = self.navigationController?.viewControllers.first as? JBaseViewController
-        let sub = KFilletSubHeight * (vc?.m_currentShowVCModel != .kCURRENTISPOPOVER ? 1 : 0)
+        let sub = kFilletSubHeight * (vc?.m_currentShowVCModel != .kCURRENTISPOPOVER ? 1 : 0)
         self.funj_reloadTableView(CGRectZero, table: CGRect(x: 0, y: 0, width: self.view.width, height: self.view.height - 50 - sub))
         let bottomBgView = self.view.viewWithTag(3023)
         bottomBgView?.top = self.view.height - 50 - sub
@@ -150,7 +150,7 @@ extension JPhotoPickerVC {
 extension JPhotoPickerVC {
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var width = (collectionView.width - 4 * 5) / 3
-        if kIS_IPAD { width  = (collectionView.width - 5 * 5) / 4}
+        if kis_IPad { width  = (collectionView.width - 5 * 5) / 4}
         return CGSize(width: width, height: kImageViewHeight(width))
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> JPhotoPickerCell {

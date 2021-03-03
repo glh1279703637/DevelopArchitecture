@@ -17,8 +17,8 @@ typealias kgetPhotoBytesCallback = ((_ totalBytes : String) ->())
 
 
 
-var kphotoPickerViewWidth : CGFloat { KWidth - 40 }
-var kphotoPickerViewHeight : CGFloat { KHeight - KNavigationBarBottom - 60 }
+var kphotoPickerViewWidth : CGFloat { kWidth - 40 }
+var kphotoPickerViewHeight : CGFloat { kHeight - kNavigationBarBottom - 60 }
 
 
 class JPhotoPickerInterface : JBaseInterfaceManager {

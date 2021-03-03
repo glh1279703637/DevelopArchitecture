@@ -11,7 +11,7 @@ import UIKit
 import MediaPlayer
 
 class JPhotosPreviewsCell : JBaseCollectionViewCell, UIScrollViewDelegate {
-    var m_bgScrollView : UIScrollView?
+    var m_BgScrollView : UIScrollView?
     var m_imageView : UIImageView?
     var m_player : AVPlayer?
     var m_playerLayer : AVPlayerLayer?
@@ -28,20 +28,20 @@ class JPhotosPreviewsCell : JBaseCollectionViewCell, UIScrollViewDelegate {
                 .funj_add(targe: self, action: "funj_selectToPlay:", tag: 0)
                 .funj_add(autoSelect: false)
         } else {
-            m_bgScrollView = UIScrollView(i: self.bounds, delegate: nil)
-            self.contentView.addSubview(m_bgScrollView!)
-            m_bgScrollView!.bouncesZoom = true;
-            m_bgScrollView!.maximumZoomScale = 2.5;
-            m_bgScrollView!.minimumZoomScale = 1.0;
-            m_bgScrollView!.isMultipleTouchEnabled = true;
-            m_bgScrollView!.delegate = self;
-            m_bgScrollView!.scrollsToTop = false;
-            m_bgScrollView!.showsHorizontalScrollIndicator = false;
-            m_bgScrollView!.showsVerticalScrollIndicator = false;
-            m_bgScrollView!.delaysContentTouches = false;
-            m_bgScrollView!.canCancelContentTouches = true;
-            m_bgScrollView!.alwaysBounceVertical = false;
-            m_bgScrollView?.addSubview(m_imageView!)
+            m_BgScrollView = UIScrollView(i: self.bounds, delegate: nil)
+            self.contentView.addSubview(m_BgScrollView!)
+            m_BgScrollView!.bouncesZoom = true;
+            m_BgScrollView!.maximumZoomScale = 2.5;
+            m_BgScrollView!.minimumZoomScale = 1.0;
+            m_BgScrollView!.isMultipleTouchEnabled = true;
+            m_BgScrollView!.delegate = self;
+            m_BgScrollView!.scrollsToTop = false;
+            m_BgScrollView!.showsHorizontalScrollIndicator = false;
+            m_BgScrollView!.showsVerticalScrollIndicator = false;
+            m_BgScrollView!.delaysContentTouches = false;
+            m_BgScrollView!.canCancelContentTouches = true;
+            m_BgScrollView!.alwaysBounceVertical = false;
+            m_BgScrollView?.addSubview(m_imageView!)
         }
     }
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -56,7 +56,7 @@ class JPhotosPreviewsCell : JBaseCollectionViewCell, UIScrollViewDelegate {
     }
     override func funj_setBaseCollectionData(_ data: Any) {
         m_dataModel = data as? JPhotoPickerModel
-        m_bgScrollView?.setZoomScale(1.0, animated: false)
+        m_BgScrollView?.setZoomScale(1.0, animated: false)
         JPhotoPickerInterface.funj_getPhotoWithAsset(phAsset: m_dataModel?.m_asset, deliveryMode: .opportunistic , width: m_imageView!.width) { [weak self] (image, dic, isDegraded) in
             self?.m_imageView?.image = image
         }

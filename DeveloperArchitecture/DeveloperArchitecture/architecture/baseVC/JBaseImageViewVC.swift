@@ -13,7 +13,7 @@ import CoreServices
 
 class JBaseImageViewVC : JBaseViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate ,JMainPhotoPickerVCDelegate {
     
-//    var m_cropFrame : CGRect = CGRect(x: 0, y: (KHeight - KWidth)/2, width: KWidth, height: KWidth)
+//    var m_cropFrame : CGRect = CGRect(x: 0, y: (kHeight - kWidth)/2, width: kWidth, height: kWidth)
     var m_currentIsLoadMultPhoto : Bool = false //当前是否支持上传多张图片
     var m_currentCanSelectMaxImageCount :Int = 10  //最多支持上传多少张图片
     

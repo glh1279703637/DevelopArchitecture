@@ -45,14 +45,14 @@
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath  {
-    return CGSizeMake(KWidth/3-10, 100);
+    return CGSizeMake(kWidth/3-10, 100);
 }
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section  {
     return UIEdgeInsetsMake(0, 0, 0, 0);//分别为上、左、下、右
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     JBaseCollectionViewCell * cell = (JBaseCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor=COLOR_WHITE_DARK;
+    cell.backgroundColor=kColor_White_Dark;
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(0, 0);//特别注意 横向滚动时，这两个值可能相反 导致第一页空格页

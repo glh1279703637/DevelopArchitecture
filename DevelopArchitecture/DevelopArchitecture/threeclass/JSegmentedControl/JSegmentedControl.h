@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger,SegmentType) {
 typedef void (^selectBt)(NSInteger index);
 
 @interface JSegmentedControl : JBaseView
-@property(nonatomic,strong) UIImageView *m_bgImageView;
+@property(nonatomic,strong) UIImageView *m_BgImageView;
 
 -(id)initWithFrame:(CGRect)frame :(NSArray*)titles :(selectBt)action;
 -(void)funj_setStyleBgView:(NSArray*)bgImageArray textColor:(NSArray*)textColorArray type:(SegmentType)type;

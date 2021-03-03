@@ -22,7 +22,7 @@ typedef void (^reloadToCollectionSolveDataCallback)(BOOL isHead,NSInteger page);
     flowfayout.minimumLineSpacing=2; \
     flowfayout.minimumInteritemSpacing=0; \
                                            \
-    UICollectionView * collectionView=[[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, KWidth,KHeight) collectionViewLayout:flowfayout];\
+    UICollectionView * collectionView=[[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, kWidth,kHeight) collectionViewLayout:flowfayout];\
     collectionView.showsHorizontalScrollIndicator=NO;\
     collectionView.showsVerticalScrollIndicator=NO;\
     collectionView.delegate=delegateVC;\

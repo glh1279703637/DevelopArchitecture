@@ -34,13 +34,13 @@
     controller.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
     
     if(!setPrentView){
-        size.width = MIN(size.width, KWidth-20);
-        size.height = MIN(size.height, KHeight-KStatusBarHeight-30);
-        controller.m_bgViews.frame = CGRectMake((KWidth-size.width)/2, (KHeight-size.height)/2, size.width, size.height);
-        controller.m_bgViews.layer.borderWidth=0;
-        controller.m_bgViews.layer.cornerRadius=10;
-        controller.m_bgViews.layer.masksToBounds=YES;
-        controller.m_bgViews.accessibilityFrame = controller.m_bgViews.frame;
+        size.width = MIN(size.width, kWidth-20);
+        size.height = MIN(size.height, kHeight-kStatusBarHeight-30);
+        controller.m_BgViews.frame = CGRectMake((kWidth-size.width)/2, (kHeight-size.height)/2, size.width, size.height);
+        controller.m_BgViews.layer.borderWidth=0;
+        controller.m_BgViews.layer.cornerRadius=10;
+        controller.m_BgViews.layer.masksToBounds=YES;
+        controller.m_BgViews.accessibilityFrame = controller.m_BgViews.frame;
     }
  
     [sourcePresent  presentViewController:controller animated:YES completion:nil];//弹出视图
@@ -48,57 +48,57 @@
     return controller;
     
 }
--(UIView*)m_bgViews{
-    if(!_m_bgViews){
-        _m_bgViews =[UIView funj_getView:CGRectMake(0,0,KWidth,KHeight) :COLOR_WHITE_DARK];
-        [_m_bgViews funj_whenTouchedDown:^(UIView *sender) {
+-(UIView*)m_BgViews{
+    if(!_m_BgViews){
+        _m_BgViews =[UIView funj_getView:CGRectMake(0,0,kWidth,kHeight) :kColor_White_Dark];
+        [_m_BgViews funj_whenTouchedDown:^(UIView *sender) {
             [sender endEditing:YES];
         }];
     }
-    return _m_bgViews;
+    return _m_BgViews;
 }
 -(void)funj_reloadBgViewFrames:(CGSize)size{
-    CGRect frame = CGRectMake((KWidth-size.width)/2, (KHeight-size.height)/2, size.width, size.height);
-    CGFloat addHeight = size.height- CGRectGetHeight(self.m_bgViews.accessibilityFrame)   ;
-    CGFloat addWidth = size.width- CGRectGetWidth(self.m_bgViews.accessibilityFrame) ;
-    CGRect frame2 = CGRectMake(CGRectGetMinX(self.m_bgContentView.accessibilityFrame)- addWidth/2, self.m_bgContentView.top, CGRectGetWidth(self.m_bgContentView.accessibilityFrame)+addWidth, CGRectGetHeight(self.m_bgContentView.accessibilityFrame)+addHeight);
+    CGRect frame = CGRectMake((kWidth-size.width)/2, (kHeight-size.height)/2, size.width, size.height);
+    CGFloat addHeight = size.height- CGRectGetHeight(self.m_BgViews.accessibilityFrame)   ;
+    CGFloat addWidth = size.width- CGRectGetWidth(self.m_BgViews.accessibilityFrame) ;
+    CGRect frame2 = CGRectMake(CGRectGetMinX(self.m_BgContentView.accessibilityFrame)- addWidth/2, self.m_BgContentView.top, CGRectGetWidth(self.m_BgContentView.accessibilityFrame)+addWidth, CGRectGetHeight(self.m_BgContentView.accessibilityFrame)+addHeight);
 
     if(!m_currentIsUpState){
-         self.m_bgViews.frame = frame;
-        self.m_bgContentView.frame = frame2;
+         self.m_BgViews.frame = frame;
+        self.m_BgContentView.frame = frame2;
     }
-    self.m_bgViews.accessibilityFrame =  frame;
-    self.m_bgContentView.accessibilityFrame = frame2;
+    self.m_BgViews.accessibilityFrame =  frame;
+    self.m_BgContentView.accessibilityFrame = frame2;
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = COLOR_CREAR;
+    self.view.backgroundColor = kColor_Clear;
     
-    UIImageView *bgImageView =[UIImageView funj_getBlackAlphaView:CGRectMake(0, 0, KWidth, KHeight)];
+    UIImageView *bgImageView =[UIImageView funj_getBlackAlphaView:CGRectMake(0, 0, kWidth, kHeight)];
      [self.view addSubview:bgImageView];
     
-    [self.view addSubview:self.m_bgViews];
+    [self.view addSubview:self.m_BgViews];
 
-    _m_titleLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 0, 40)  :JTextFCMakeAlign(PUBLIC_FONT_SIZE17,COLOR_TEXT_BLACK_DARK,NSTextAlignmentCenter)];
-    [self.m_bgViews addSubview:_m_titleLabel];
+    _m_titleLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 0, 40)  :JTextFCMakeAlign(kFont_Size17,kColor_Text_Black_Dark,NSTextAlignmentCenter)];
+    [self.m_BgViews addSubview:_m_titleLabel];
     
     __weak typeof(self) weakSelf = self;
-    _m_sumbitBt =[UIButton funj_getButtonBlocks:CGRectMake(0, 0, 80, 40) :nil :JTextFCMake(PUBLIC_FONT_SIZE14, COLOR_TEXT_GRAY_DARK) : nil  :50 :nil  :^(UIButton *button) {
+    _m_sumbitBt =[UIButton funj_getButtonBlocks:CGRectMake(0, 0, 80, 40) :nil :JTextFCMake(kFont_Size14, kColor_Text_Gray_Dark) : nil  :50 :nil  :^(UIButton *button) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf funj_clickBackButton:button];
     }];
-    [self.m_bgViews addSubview:_m_sumbitBt];
+    [self.m_BgViews addSubview:_m_sumbitBt];
     
-    _m_line =[UIImageView funj_getLineImageView:CGRectMake(0, _m_titleLabel.bottom, _m_titleLabel.width, 1)];
-    [self.m_bgViews addSubview:_m_line];
+    _m_Line =[UIImageView funj_getLineImageView:CGRectMake(0, _m_titleLabel.bottom, _m_titleLabel.width, 1)];
+    [self.m_BgViews addSubview:_m_Line];
     
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(funj_keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
  }
 
 -(void)funj_reloadTopNavView:(CGRect)titleframe :(CGRect)contentFrame/*top 必须是titleframe.bottom*/ :(NSString*)title  :(NSInteger)leftDelType :(NSString*)deleteStr :(NSString*)deleteImage{
-    titleframe.size.width = MIN(self.m_bgViews.width, titleframe.size.width);
-    contentFrame.size.width = MIN(contentFrame.size.width, self.m_bgViews.width);
+    titleframe.size.width = MIN(self.m_BgViews.width, titleframe.size.width);
+    contentFrame.size.width = MIN(contentFrame.size.width, self.m_BgViews.width);
     _m_titleLabel.frame = titleframe;
     _m_titleLabel.text = title;
     _m_sumbitBt.top = _m_titleLabel.top;
@@ -120,39 +120,39 @@
     if(!deleteStr && !deleteImage) deleteImage = @"coursecenter_delete_n";
     if(deleteImage)[_m_sumbitBt setImage:[UIImage imageNamed:deleteImage] forState:UIControlStateNormal];
     [_m_sumbitBt funj_addNormalDarkImage:@"ic_close_n"];
-    _m_titleLabel.font = self.m_currentShowVCModel == kCURRENTISPOPOVER ?PUBLIC_FONT_SIZE17:PUBLIC_FONT_BOLDSIZE20;
-    _m_titleLabel.textColor =self.m_currentShowVCModel == kCURRENTISPOPOVER ? COLOR_TEXT_BLACK_DARK :COLOR_WHITE;
-    _m_line.top = _m_titleLabel.bottom;_m_line.width = _m_titleLabel.width;
+    _m_titleLabel.font = self.m_currentShowVCModel == kCURRENTISPOPOVER ?kFont_Size17:kFont_BoldSize20;
+    _m_titleLabel.textColor =self.m_currentShowVCModel == kCURRENTISPOPOVER ? kColor_Text_Black_Dark :kColor_White;
+    _m_Line.top = _m_titleLabel.bottom;_m_Line.width = _m_titleLabel.width;
     
     if(!CGRectEqualToRect(contentFrame, CGRectZero)){
-        self.m_bgContentView.frame = contentFrame;
-        self.m_bgContentView.accessibilityFrame = contentFrame;
+        self.m_BgContentView.frame = contentFrame;
+        self.m_BgContentView.accessibilityFrame = contentFrame;
     }
     
     if(self.m_currentShowVCModel == kCURRENTISPRENTVIEW){
-        self.m_titleLabel.top = KStatusBarHeight;
-        _m_sumbitBt.top = KStatusBarHeight;
-        [_m_sumbitBt setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-        _m_line.hidden = YES;
+        self.m_titleLabel.top = kStatusBarHeight;
+        _m_sumbitBt.top = kStatusBarHeight;
+        [_m_sumbitBt setTitleColor:kColor_White forState:UIControlStateNormal];
+        _m_Line.hidden = YES;
         [self topNavView];
     }
 
 }
 -(UIView*)topNavView{
-    UIView *topNavView =[UIView funj_getView:CGRectMake(0, 0, KWidth, KNavigationBarBottom) :COLOR_WHITE_DARK];
-    [self.m_bgViews insertSubview:topNavView belowSubview:_m_titleLabel];
+    UIView *topNavView =[UIView funj_getView:CGRectMake(0, 0, kWidth, kNavigationBarBottom) :kColor_White_Dark];
+    [self.m_BgViews insertSubview:topNavView belowSubview:_m_titleLabel];
     return topNavView;
 }
--(UIScrollView*)m_bgContentView{
-    if(!_m_bgContentView){
-        _m_bgContentView =[UIScrollView funj_getScrollView:CGRectZero :self];
-        _m_bgContentView.bounces= NO;
-        [self.m_bgViews addSubview:_m_bgContentView];
-//        [_m_bgContentView funj_whenTouchedDown:^(UIView *sender) {
+-(UIScrollView*)m_BgContentView{
+    if(!_m_BgContentView){
+        _m_BgContentView =[UIScrollView funj_getScrollView:CGRectZero :self];
+        _m_BgContentView.bounces= NO;
+        [self.m_BgViews addSubview:_m_BgContentView];
+//        [_m_BgContentView funj_whenTouchedDown:^(UIView *sender) {
 //            [sender endEditing:YES];
 //        }];
     }
-    return _m_bgContentView;
+    return _m_BgContentView;
 }
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     self.m_currentSelectTextField = textField;
@@ -186,32 +186,32 @@
 - (void)funj_willShowKeyboardFromFrame:(CGRect)beginFrame toFrame:(CGRect)toFrame{
      if (toFrame.origin.y == [[UIScreen mainScreen] bounds].size.height) {//下
         if(!m_currentIsUpState) return;
-         if(self.m_bgViews.top != CGRectGetMinY(self.m_bgViews.accessibilityFrame)){
-             self.m_bgViews.frame = self.m_bgViews.accessibilityFrame;
+         if(self.m_BgViews.top != CGRectGetMinY(self.m_BgViews.accessibilityFrame)){
+             self.m_BgViews.frame = self.m_BgViews.accessibilityFrame;
          }
-         self.m_bgContentView.contentOffset = CGPointMake(self.m_bgContentView.contentOffset.x, self.m_bgContentView.contentOffset.y-loginUpHeight);
+         self.m_BgContentView.contentOffset = CGPointMake(self.m_BgContentView.contentOffset.x, self.m_BgContentView.contentOffset.y-loginUpHeight);
         m_currentIsUpState = NO;
-        self.m_bgContentView.frame = self.m_bgContentView.accessibilityFrame;
+        self.m_BgContentView.frame = self.m_BgContentView.accessibilityFrame;
     }else{//上
         if(m_currentIsUpState) return;
-        if(!self.m_currentDefaultPresentVC  && CGRectGetMinY(self.m_bgViews.accessibilityFrame) > KStatusBarHeight){
-            self.m_bgViews.top = KStatusBarHeight;
-            self.m_bgViews.height =MIN(CGRectGetMinY(toFrame)-self.m_bgViews.top, self.m_bgViews.height);
+        if(!self.m_currentDefaultPresentVC  && CGRectGetMinY(self.m_BgViews.accessibilityFrame) > kStatusBarHeight){
+            self.m_BgViews.top = kStatusBarHeight;
+            self.m_BgViews.height =MIN(CGRectGetMinY(toFrame)-self.m_BgViews.top, self.m_BgViews.height);
         }
         
-        CGPoint point = [self.m_bgContentView convertPoint:self.m_currentSelectTextField.origin fromView:self.m_currentSelectTextField.superview];
+        CGPoint point = [self.m_BgContentView convertPoint:self.m_currentSelectTextField.origin fromView:self.m_currentSelectTextField.superview];
  
-        self.m_bgContentView.accessibilityFrame = self.m_bgContentView.frame;
-        self.m_bgContentView.height = MIN(self.m_bgContentView.height, self.m_bgViews.height - self.m_bgContentView.top);
+        self.m_BgContentView.accessibilityFrame = self.m_BgContentView.frame;
+        self.m_BgContentView.height = MIN(self.m_BgContentView.height, self.m_BgViews.height - self.m_BgContentView.top);
         
-        if(self.m_bgContentView.contentSize.height - point.y - self.m_currentSelectTextField.height > self.m_bgContentView.height){
-            loginUpHeight = point.y - fabs(self.m_bgContentView.contentOffset.y);
+        if(self.m_BgContentView.contentSize.height - point.y - self.m_currentSelectTextField.height > self.m_BgContentView.height){
+            loginUpHeight = point.y - fabs(self.m_BgContentView.contentOffset.y);
         }else{
-            loginUpHeight = point.y - (self.m_bgContentView.height - ( self.m_bgContentView.contentSize.height - point.y )) + fabs(self.m_bgContentView.contentOffset.y) ;
-            loginUpHeight = MIN(point.y-fabs(self.m_bgContentView.contentOffset.y), loginUpHeight);
+            loginUpHeight = point.y - (self.m_BgContentView.height - ( self.m_BgContentView.contentSize.height - point.y )) + fabs(self.m_BgContentView.contentOffset.y) ;
+            loginUpHeight = MIN(point.y-fabs(self.m_BgContentView.contentOffset.y), loginUpHeight);
         }
         loginUpHeight = loginUpHeight<0?0:loginUpHeight;
-        self.m_bgContentView.contentOffset = CGPointMake(self.m_bgContentView.contentOffset.x, self.m_bgContentView.contentOffset.y+loginUpHeight);
+        self.m_BgContentView.contentOffset = CGPointMake(self.m_BgContentView.contentOffset.x, self.m_BgContentView.contentOffset.y+loginUpHeight);
         m_currentIsUpState = YES;
     }
 }

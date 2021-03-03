@@ -34,7 +34,7 @@ extension JBaseCollectionVC {
         return self.m_dataArr.count
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: KWidth, height: 100)
+        return CGSize(width: kWidth, height: 100)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kCellIndentifier, for: indexPath)
@@ -43,7 +43,7 @@ extension JBaseCollectionVC {
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
-        cell?.backgroundColor = COLOR_WHITE_DARK
+        cell?.backgroundColor = kColor_White_Dark
     }
 }
 
@@ -83,7 +83,7 @@ func kcreateCollectViewWithDelegate(_ delegate : AnyObject) -> UICollectionView 
     let flowlayout = JCollectionViewFlowLayout()
     flowlayout.minimumLineSpacing = 2
     flowlayout.minimumInteritemSpacing = 0
-    let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: KWidth, height: KHeight), collectionViewLayout: flowlayout)
+    let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: kWidth, height: kHeight), collectionViewLayout: flowlayout)
     collectionView.showsVerticalScrollIndicator = false
     collectionView.showsHorizontalScrollIndicator = false
     collectionView.delegate = (delegate as? UICollectionViewDelegate)

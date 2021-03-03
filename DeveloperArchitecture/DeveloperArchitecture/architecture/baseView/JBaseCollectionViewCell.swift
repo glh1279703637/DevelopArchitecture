@@ -12,7 +12,7 @@ import UIKit
 class JBaseCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = COLOR_BG_DARK
+        self.backgroundColor = kColor_Bg_Dark
         self.funj_addBaseCollectionView()
     }
     required init?(coder: NSCoder) {  fatalError("init(coder:) has not been implemented")}

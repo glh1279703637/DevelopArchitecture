@@ -15,9 +15,9 @@ let kCellIndentifier = "cellIndentifier"
 
 class JBaseTableViewVC : JBaseViewController, JSearchBarDelegate, UITableViewDelegate,UITableViewDataSource {
     lazy var m_topView : UIView = {
-        let topView = UIView(i: CGRect(x: 0, y: 0, width: KWidth, height: 0), bg: COLOR_WHITE_DARK)
+        let topView = UIView(i: CGRect(x: 0, y: 0, width: kWidth, height: 0), bg: kColor_White_Dark)
         self.view.addSubview(topView)
-        m_topTableViewLine = UIImageView(i_line: CGRect(x: 0, y: 0, width: KWidth, height: 1))
+        m_topTableViewLine = UIImageView(i_line: CGRect(x: 0, y: 0, width: kWidth, height: 1))
         topView.addSubview(m_topTableViewLine!)
         return topView
     }()
@@ -37,14 +37,14 @@ class JBaseTableViewVC : JBaseViewController, JSearchBarDelegate, UITableViewDel
     }
     
     lazy var m_searchBar : JSearchBar = {
-        let searchBar = JSearchBar(frame: CGRect(x: 0, y: 0, width: KWidth, height: 37))
+        let searchBar = JSearchBar(frame: CGRect(x: 0, y: 0, width: kWidth, height: 37))
         searchBar.m_searchDelegate = self
-        searchBar.m_filletValue = JFilletValue(w: 0.5, r: 37/2, c: COLOR_LINE_GRAY_DARK)
+        searchBar.m_filletValue = JFilletValue(w: 0.5, r: 37/2, c: kColor_Line_Gray_Dark)
         searchBar.isHidden = true
         searchBar.funj_reloadSearchState(needIcon: true, needCancel: true)
         m_topView.addSubview(searchBar)
         
-        m_blackImageView = UIImageView(i_blackAlpha: CGRect(x: 0, y: 0, width: KWidth, height: KHeight))
+        m_blackImageView = UIImageView(i_blackAlpha: CGRect(x: 0, y: 0, width: kWidth, height: kHeight))
         m_blackImageView?.isHidden = true
         self.view.addSubview(m_blackImageView!)
         m_blackImageView?.funj_whenLongPressed({ (view) in
@@ -60,7 +60,7 @@ class JBaseTableViewVC : JBaseViewController, JSearchBarDelegate, UITableViewDel
     }()
     lazy var m_defaultImageView : UIImageView = {
         let defaultImageView = UIImageView(i: CGRectZero, image: "uu_tableview_default_icon")
-        let contentLabel = UILabel(i: CGRect(x: 0, y: 0, width: 200, height: 20), title: "Here is a wilderness ...Nothing left", textFC: JTextFC(f: FONT_SIZE17, c: COLOR_TEXT_GRAY_DARK, a: .center))
+        let contentLabel = UILabel(i: CGRect(x: 0, y: 0, width: 200, height: 20), title: "Here is a wilderness ...Nothing left", textFC: JTextFC(f: kFont_Size17, c: kColor_Text_GRAY_Dark, a: .center))
         defaultImageView.addSubview(contentLabel)
         contentLabel.tag = 9993
         return defaultImageView
@@ -111,7 +111,7 @@ extension JBaseTableViewVC {
             m_blackImageView?.frame = CGRect(x: m_blackImageView!.left, y: point.y + m_searchBar.height, width: m_topView.width, height: tableViewFrame.height + (tableViewFrame.origin.y - (m_topTableViewLine?.top ?? 0)))
         }
         
-        let width : CGFloat = kIS_IPAD ? 300.0 : 200.0 ;
+        let width : CGFloat = kis_IPad ? 300.0 : 200.0 ;
         m_defaultImageView.frame = CGRect(x: (tableViewFrame.width - width)/2 , y: max(tableViewFrame.height/2 - width/2 - 60, 0), width: width, height: width)
         let contentLabel = m_defaultImageView.viewWithTag(9993)
         contentLabel?.frame = CGRect(x: (m_defaultImageView.width - (tableView?.width ?? 0))/2, y: m_defaultImageView.height + 10, width: tableView?.width ?? 0, height: 20)
@@ -324,7 +324,7 @@ extension JBaseTableViewVC {
 }
 
 func kcreateTableViewWithDelegate(_ delegate : AnyObject) -> UITableView {
-    let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: KWidth, height: KHeight), style: .plain)
+    let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: kWidth, height: kHeight), style: .plain)
     tableView.tag = 939003
     tableView.backgroundColor = UIColor.clear
     tableView.rowHeight = 100

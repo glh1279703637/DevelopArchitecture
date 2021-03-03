@@ -65,7 +65,7 @@
 }
 
 - (void)initView {
-    self.showImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight)];
+    self.showImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight)];
     self.showImgView.contentMode = UIViewContentModeScaleAspectFit;
     [self.showImgView setMultipleTouchEnabled:YES];
     [self.showImgView setUserInteractionEnabled:YES];
@@ -190,13 +190,13 @@
     }else{
         CGPathMoveToPoint(path, nil , 0, 0);
         CGPathAddLineToPoint(path, nil , 0, self.overlayView.frame.size.height);
-        CGPathAddLineToPoint(path, nil , KWidth/2, self.overlayView.frame.size.height);
-        CGPathAddLineToPoint(path, nil , KWidth/2, (self.overlayView.frame.size.height-self.ratioView.frame.size.height)/2+self.ratioView.frame.size.height);
-        CGPathAddArc(path, nil, KWidth/2, self.overlayView.frame.size.height/2, self.ratioView.frame.size.width/2, 0.5*M_PI , -0.5* M_PI, NO);
-        CGPathAddArc(path, nil, KWidth/2, self.overlayView.frame.size.height/2, self.ratioView.frame.size.width/2, -0.5* M_PI, 0.5*M_PI , NO);
-        CGPathAddLineToPoint(path, nil , KWidth/2, self.overlayView.frame.size.height);
-        CGPathAddLineToPoint(path, nil , KWidth, self.overlayView.frame.size.height);
-        CGPathAddLineToPoint(path, nil , KWidth, 0);
+        CGPathAddLineToPoint(path, nil , kWidth/2, self.overlayView.frame.size.height);
+        CGPathAddLineToPoint(path, nil , kWidth/2, (self.overlayView.frame.size.height-self.ratioView.frame.size.height)/2+self.ratioView.frame.size.height);
+        CGPathAddArc(path, nil, kWidth/2, self.overlayView.frame.size.height/2, self.ratioView.frame.size.width/2, 0.5*M_PI , -0.5* M_PI, NO);
+        CGPathAddArc(path, nil, kWidth/2, self.overlayView.frame.size.height/2, self.ratioView.frame.size.width/2, -0.5* M_PI, 0.5*M_PI , NO);
+        CGPathAddLineToPoint(path, nil , kWidth/2, self.overlayView.frame.size.height);
+        CGPathAddLineToPoint(path, nil , kWidth, self.overlayView.frame.size.height);
+        CGPathAddLineToPoint(path, nil , kWidth, 0);
     }
     
     maskLayer.path = path;

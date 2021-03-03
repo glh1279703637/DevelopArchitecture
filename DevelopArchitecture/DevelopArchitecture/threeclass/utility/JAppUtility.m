@@ -464,7 +464,7 @@
 +(void)funj_getTheTimeCountdownWithCode:(UIButton*)getCodeBt :(UIColor*)defaultBoardColor{
     getCodeBt.userInteractionEnabled = NO;
     getCodeBt.selected=YES;
-    getCodeBt.layer.borderColor = COLOR_LINE_GRAY_DARK.CGColor;
+    getCodeBt.layer.borderColor = kColor_Line_Gray_Dark.CGColor;
     __block int timeout=60; //倒计时时间
     __weak typeof(getCodeBt)weakBt = getCodeBt;
     __weak typeof(defaultBoardColor)weakColor = defaultBoardColor;

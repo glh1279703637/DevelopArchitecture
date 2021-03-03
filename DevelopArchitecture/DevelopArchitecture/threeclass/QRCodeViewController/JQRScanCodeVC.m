@@ -21,8 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CGFloat width = MIN(KWidth,KHeight)/2;
-    self.m_captureRectArea = CGRectMake((KWidth-width)/2, (KHeight-width)/2, width, width);
+    CGFloat width = MIN(kWidth,kHeight)/2;
+    self.m_captureRectArea = CGRectMake((kWidth-width)/2, (kHeight-width)/2, width, width);
     
     [self funj_setupCaptureSession];
     [self funj_addBaseConfigView];
@@ -35,19 +35,19 @@
 }
 -(UIImageView*)m_scanResutRectImageView{
     if(!_m_scanResutRectImageView){
-        _m_scanResutRectImageView =[UIImageView funj_getImageView:CGRectMake(0, 0, 20, 20) bgColor:COLOR_ORANGE];
+        _m_scanResutRectImageView =[UIImageView funj_getImageView:CGRectMake(0, 0, 20, 20) bgColor:kColor_Orange];
         [self.view addSubview:_m_scanResutRectImageView];
         [_m_scanResutRectImageView funj_setViewCornerRadius:10];
     }
     return _m_scanResutRectImageView;
 }
 -(void)funj_addBaseConfigView{
-    UIButton *backBt =[UIButton funj_getButtons:CGRectMake(0, KStatusBarHeight, 60, 40) :nil :JTextFCZero() :@[@"backBt"] :self :@"funj_clickBackButton:" :0 :nil];
+    UIButton *backBt =[UIButton funj_getButtons:CGRectMake(0, kStatusBarHeight, 60, 40) :nil :JTextFCZero() :@[@"backBt"] :self :@"funj_clickBackButton:" :0 :nil];
     backBt.imageEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 10);
     [self.view addSubview:backBt];
     
     if(self.title && self.title.length>0){
-        UILabel *titleLabel =[UILabel funj_getLabel:CGRectMake(self.m_captureRectArea.origin.x-30, KStatusBarHeight, self.m_captureRectArea.size.width+60, 50) :self.title :JTextFCMakeAlign(PUBLIC_FONT_SIZE17, COLOR_WHITE,NSTextAlignmentCenter)];
+        UILabel *titleLabel =[UILabel funj_getLabel:CGRectMake(self.m_captureRectArea.origin.x-30, kStatusBarHeight, self.m_captureRectArea.size.width+60, 50) :self.title :JTextFCMakeAlign(kFont_Size17, kColor_White,NSTextAlignmentCenter)];
         [self.view addSubview:titleLabel];titleLabel.tag= 1001;
     }
     
@@ -73,7 +73,7 @@
         }];
     }];
     
-    UILabel *titleLabel2 =[UILabel funj_getLabel:CGRectMake(self.m_captureRectArea.origin.x-30, self.m_captureRectArea.origin.y+self.m_captureRectArea.size.height+30, self.m_captureRectArea.size.width+60, 50) :LocalStr(@"Scan the frame to the two-dimensional code, you can automatically scan") :JTextFCMakeAlign(PUBLIC_FONT_SIZE16, COLOR_WHITE,NSTextAlignmentCenter)];
+    UILabel *titleLabel2 =[UILabel funj_getLabel:CGRectMake(self.m_captureRectArea.origin.x-30, self.m_captureRectArea.origin.y+self.m_captureRectArea.size.height+30, self.m_captureRectArea.size.width+60, 50) :LocalStr(@"Scan the frame to the two-dimensional code, you can automatically scan") :JTextFCMakeAlign(kFont_Size16, kColor_White,NSTextAlignmentCenter)];
     [self.view addSubview:titleLabel2];
     titleLabel2.tag= 1004;
 }

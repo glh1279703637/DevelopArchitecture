@@ -53,13 +53,13 @@ maddProperyValue(m_mbProgressHUD, JProgressHUD)
         }];
         self.navigationItem.leftBarButtonItems = @[backBt];
     }
-    self.view.backgroundColor=COLOR_WHITE_DARK;
+    self.view.backgroundColor=kColor_White_Dark;
     [self setNeedsStatusBarAppearanceUpdate];
     //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(funj_keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
 }
 -(UIButton*)funj_addBackButton:(NSString*)backImage{
-    UIButton *backBt =[UIButton funj_getButtons:CGRectMake(0, KStatusBarHeight, 50, 44) :nil  :JTextFCZero() :@[backImage?backImage:@"backBt"] :self  :@"funj_clickBackButton:" :8800 :nil];
+    UIButton *backBt =[UIButton funj_getButtons:CGRectMake(0, kStatusBarHeight, 50, 44) :nil  :JTextFCZero() :@[backImage?backImage:@"backBt"] :self  :@"funj_clickBackButton:" :8800 :nil];
     [self.view addSubview:backBt];
     return backBt;
 }

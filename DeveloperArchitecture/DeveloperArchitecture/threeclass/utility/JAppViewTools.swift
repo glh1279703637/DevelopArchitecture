@@ -21,14 +21,14 @@ struct JFilletValue {
     }
 }
 struct JTextFC {
-    var m_textFont : UIFont
-    var m_textColor : UIColor
+    var m_TextFont : UIFont
+    var m_TextColor : UIColor
     var m_selectTextColor : UIColor?
     var m_alignment : NSTextAlignment = .left
-    init(){ self.init(f: FONT_SIZE13, c: COLOR_TEXT_BLACK) }
+    init(){ self.init(f: kFont_Size13, c: kColor_Text_Black) }
     init(f : UIFont , c : UIColor){
-        m_textFont = f
-        m_textColor = c
+        m_TextFont = f
+        m_TextColor = c
     }
     init(f : UIFont , c : UIColor ,sc : UIColor) {
         self.init(f: f, c: c)
@@ -198,11 +198,11 @@ class JSearchBar : UIView, UITextFieldDelegate {
         }
         if needCancel {
             m_cancelButton = UIButton(frame: CGRect(x: self.frame.size.width - 60, y: 0, width: 60, height: self.frame.size.height))
-            m_cancelButton?.setTitleColor(COLOR_BLUE, for: .normal)
+            m_cancelButton?.setTitleColor(kColor_Blue, for: .normal)
             m_cancelButton?.setTitle(kLocalStr("Cancel"), for: .normal)
             m_cancelButton?.titleLabel?.adjustsFontSizeToFitWidth = true
             m_cancelButton?.addTarget(self, action: #selector(self.funj_searchCancelButtonClicked(_:)), for:.touchUpInside)
-            m_cancelButton?.backgroundColor = COLOR_WHITE_DARK
+            m_cancelButton?.backgroundColor = kColor_White_Dark
             m_cancelButton?.isHidden = !m_cancelAlreadyShow
             self.addSubview(m_cancelButton!)
         }
@@ -265,7 +265,7 @@ class JAlertController :UIAlertController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = COLOR_WHITE_DARK
+        self.view.backgroundColor = kColor_White_Dark
         _ = self.view.funj_addCornerRadius(15)
     }
 }
@@ -338,8 +338,8 @@ class JAppViewTools : NSObject {
                 callback?(i)
             }
             if buttonArr.count == 2 {
-                if i == 0 {action.setValue(COLOR_TEXT_GRAY_DARK, forKey: "titleTextColor")}
-                else {action.setValue(COLOR_ORANGE, forKey: "titleTextColor")}
+                if i == 0 {action.setValue(kColor_Text_GRAY_Dark, forKey: "titleTextColor")}
+                else {action.setValue(kColor_Orange, forKey: "titleTextColor")}
             }
             alertController.addAction(action)
         }
@@ -347,7 +347,7 @@ class JAppViewTools : NSObject {
         return alertController
     }
     class func funj_showSheetBlock(_ sourceView : UIView? ,title : String ,buttonArr : [String] ,callback :  kalertBlockCallback?) {
-        let type : UIAlertController.Style  = sourceView != nil ? .actionSheet :(kIS_IPAD ? .alert : .actionSheet)
+        let type : UIAlertController.Style  = sourceView != nil ? .actionSheet :(kis_IPad ? .alert : .actionSheet)
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: type)
         for i in 0..<buttonArr.count {
             let action = UIAlertAction(title: buttonArr[i], style: .default) { (action) in

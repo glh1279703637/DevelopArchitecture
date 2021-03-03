@@ -19,7 +19,7 @@
     if(self=[super init]){
         self.m_currentIsLoadMultPhoto=NO;
         self.m_currentCanSelectMaxImageCount=10;
-        self.m_cropFrame=  CGRectMake(0, (KHeight - KWidth)/2, KWidth, KWidth);
+        self.m_cropFrame=  CGRectMake(0, (kHeight - kWidth)/2, kWidth, kWidth);
     }
     return self;
 }
@@ -147,6 +147,7 @@
     }];
 }
 
+
 #pragma mark camera utility
 - (BOOL) funj_isCameraAvailable{
     return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
@@ -183,16 +184,16 @@
 #pragma mark image scale utility
 - (UIImage *)funj_imageByScalingToMaxSize:(UIImage *)sourceImage {
     
-    if (sourceImage.size.width < KWidth)
+    if (sourceImage.size.width < kWidth)
         return sourceImage;
     CGFloat btWidth = 0.0f;
     CGFloat btHeight = 0.0f;
     if (sourceImage.size.width > sourceImage.size.height) {
-        btHeight = KHeight;
-        btWidth = sourceImage.size.width * (KHeight / sourceImage.size.height);
+        btHeight = kHeight;
+        btWidth = sourceImage.size.width * (kHeight / sourceImage.size.height);
     } else {
-        btWidth = KWidth;
-        btHeight = sourceImage.size.height * (KWidth / sourceImage.size.width);
+        btWidth = kWidth;
+        btHeight = sourceImage.size.height * (kWidth / sourceImage.size.width);
     }
     CGSize targetSize = CGSizeMake(btWidth, btHeight);
     return [self funj_imageByScalingAndCroppingForSourceImage:sourceImage targetSize:targetSize];

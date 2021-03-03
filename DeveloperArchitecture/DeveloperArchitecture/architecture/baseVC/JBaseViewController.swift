@@ -38,8 +38,13 @@ public class JBaseViewController : UIViewController ,UIPopoverPresentationContro
     // 界面跳转push 或者present 时动画跳转
     var m_pushOrPresentAnimateClass : JBaseTransition.Type?
     
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        funj_reloadBaseConfig()
+    }
+    
     func funj_addBackButton(image : String?) -> UIButton{
-        let backBt = UIButton(i: CGRect(x: 0, y: KStatusBarHeight, width: 50, height: 44), title: nil, textFC: JTextFC())
+        let backBt = UIButton(i: CGRect(x: 0, y: kStatusBarHeight, width: 50, height: 44), title: nil, textFC: JTextFC())
             .funj_add(bgImageOrColor: image != nil ? [image as Any] : ["backBt"], isImage: true)
             .funj_add(targe: self, action: "funj_clickBackButton:", tag: 8800)
         self.view.addSubview(backBt)
@@ -143,7 +148,7 @@ extension JBaseViewController {
 
         return controller }
     
-    func funj_getPopoverVC(className : UIViewController.Type , target : UIView? , data : Any? = nil, isNav : Bool = false, size : CGSize , callback : ksetPopverBaseVC? = nil ) -> UIViewController? {
+    func funj_getPopoverVC(className : UIViewController.Type , target : UIView? , data : Any? = nil, isNav : Bool = false, size : CGSize , callback : ksetPopverBaseVC?) -> UIViewController? {
         if JHttpReqHelp.funj_checkNetworkType() == false { return nil}
         let controller = className.init() as UIViewController
         if let controller = controller as? JBaseViewController {
@@ -205,8 +210,7 @@ extension JBaseViewController {
     }
 }
 extension JBaseViewController {
-    public override func viewDidLoad() {
-        super.viewDidLoad()
+     func funj_reloadBaseConfig() {
 //        self.edgesForExtendedLayout = UIRectEdgeNone ////可以解决ios7.0的上移的问题
 //        self.extendedLayoutIncludesOpaqueBars = false //根view在bar不透明情况下，是否允许延伸(YES：允许延伸)
         self.modalPresentationCapturesStatusBarAppearance = false
@@ -214,7 +218,7 @@ extension JBaseViewController {
         if self.m_currentShowVCModel != .kCURRENTISSHOWDETAIL {
             let nav = self.navigationController as? JBaseNavigationVC
             var icon = "backBt"
-            if nav != nil && nav!.m_currentNavColor == .kCURRENTISWHITENAV_TAG {
+            if nav != nil && nav!.m_currentNavColor == .kCURRENTISWHITENAV_Tag {
                 icon = "backBt2"
             }
 
@@ -223,7 +227,7 @@ extension JBaseViewController {
             }, target: self, action: "funj_clickBackButton:")
             self.navigationItem.leftBarButtonItems = [backBt]
         }
-        self.view.backgroundColor = COLOR_WHITE_DARK
+        self.view.backgroundColor = kColor_White_Dark
         self.setNeedsStatusBarAppearanceUpdate()
 
 //        NotificationCenter.default.addObserver(self, selector: #selector(funj_keyboardWillChangeFrame(_ :)), name: UITextView.textDidChangeNotification  , object: nil)
@@ -289,16 +293,18 @@ extension JBaseViewController {
 
 
 
-//extension UIViewController {
-//    func funj_showProgressView() {}
-//    func funj_closeProgressView() {}
-//    func funj_setBaseControllerData(_ data : Any?){}
-//    func funj_setPresentIsPoperView(UIViewController,size : CGSize ,target : UIView) {}
+extension UIViewController {
+//    @objc func funj_showProgressView() {}
+//    @objc func funj_closeProgressView() {}
+//    @objc func funj_setBaseControllerData(_ data : Any?){}
+//    @objc func funj_setPresentIsPoperView(_ controller : UIViewController,size : CGSize ,target : UIView?)  {}
+
+//    @objc func funj_getPresentVC(className : UIViewController.Type , title : String? = nil , data : Any? = nil , isNav : Bool = false, callback : ksetBaseVC? = nil) -> UIViewController? { return self}
+//    @objc func funj_getPushVC(className : UIViewController.Type , title : String? = nil , data : Any? = nil , callback : ksetBaseVC? = nil ) -> UIViewController? { return self}
 //
-//    func funj_getPresentVC(className : AnyClass , title : String? , data : Any? , isNav : Bool) -> UIViewController { return self}
-//    func funj_getPushVC(className : AnyClass , title : String? , data : Any?) -> UIViewController { return self}
+//    @objc func func_replacePushVC(className : UIViewController.Type , title : String? = nil , data : Any? = nil , callback : ksetBaseVC? = nil) -> UIViewController? { return self}
 //
-//    func func_replacePushVC(className : AnyClass , title : String? , data : Any?) -> UIViewController { return self}
-//
+//    @objc func funj_getPopoverVC(className : UIViewController.Type , target : UIView? , data : Any? = nil, isNav : Bool = false, size : CGSize , callback : ksetPopverBaseVC?) -> UIViewController? { return self}
+    
 //    func funj_addVCCallback(_ callback : ksetBaseVC) -> UIViewController { return self}
-//}
+}

@@ -15,7 +15,7 @@
 @interface JPickView()<UIPickerViewDelegate,UIPickerViewDataSource>{
     callBackSelector m_callback;
     PickType m_pickType;
-    UIView *m_bgPickView;
+    UIView *m_BgPickView;
     
     NSArray *m_contentKey,*m_idKey;
 }
@@ -27,15 +27,15 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self=[super initWithFrame: frame]){
-        UIImageView *m_m_blackImageView=[UIImageView funj_getBlackAlphaView:CGRectMake(0, 0, KWidth, KHeight)];
-        //        [m_m_blackImageView funj_whenTouchedDown:^(UIView *sender) {
+        UIImageView *m_m_BlackImageView=[UIImageView funj_getBlackAlphaView:CGRectMake(0, 0, kWidth, kHeight)];
+        //        [m_m_BlackImageView funj_whenTouchedDown:^(UIView *sender) {
         //            [self removeFromSuperview];
         //        }];
-          m_m_blackImageView.tag = 70;
-        [self addSubview:m_m_blackImageView];
+          m_m_BlackImageView.tag = 70;
+        [self addSubview:m_m_BlackImageView];
         _m_resultDic=[[NSMutableDictionary alloc]init];
-        m_bgPickView=[UIView funj_getView:CGRectZero : COLOR_WHITE_DARK ];
-        [self addSubview:m_bgPickView];m_bgPickView.tag = 71;
+        m_BgPickView=[UIView funj_getView:CGRectZero : kColor_White_Dark ];
+        [self addSubview:m_BgPickView];m_BgPickView.tag = 71;
         [self  funj_addToolBar];
     }
     return self;
@@ -87,31 +87,31 @@
     CGFloat toolViewH = _m_pickerView.frame.size.height+kToobarHeight;
     CGFloat toolViewY ;
     toolViewY= [UIScreen mainScreen].bounds.size.height-toolViewH;
-    self.frame=CGRectMake(0, 0, KWidth, KHeight-KStatusBarHeight);
+    self.frame=CGRectMake(0, 0, kWidth, kHeight-kStatusBarHeight);
     CGFloat toolViewW = [UIScreen mainScreen].bounds.size.width;
-    m_bgPickView.frame = CGRectMake(toolViewX, toolViewY, toolViewW, toolViewH);
-    m_bgPickView .backgroundColor = COLOR_WHITE_DARK;
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:m_bgPickView.bounds byRoundingCorners:UIRectCornerTopRight | UIRectCornerTopLeft cornerRadii:CGSizeMake(10, 10)];
+    m_BgPickView.frame = CGRectMake(toolViewX, toolViewY, toolViewW, toolViewH);
+    m_BgPickView .backgroundColor = kColor_White_Dark;
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:m_BgPickView.bounds byRoundingCorners:UIRectCornerTopRight | UIRectCornerTopLeft cornerRadii:CGSizeMake(10, 10)];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
-    maskLayer.frame = m_bgPickView.bounds;
+    maskLayer.frame = m_BgPickView.bounds;
     maskLayer.path = maskPath.CGPath;
-    m_bgPickView.layer.mask = maskLayer;
+    m_BgPickView.layer.mask = maskLayer;
 }
 -(void)funj_setPickTitle:(NSString *)title :(NSArray *)contentName :(NSArray *)contentId{
-    UILabel *titleLabel =[m_bgPickView viewWithTag:3902];
+    UILabel *titleLabel =[m_BgPickView viewWithTag:3902];
     titleLabel.text = title;
     m_contentKey = contentName;m_idKey = contentId;
 }
 -(void)funj_addToolBar{
-    UILabel *titleLabel =[UILabel funj_getLabel:CGRectMake(80, 0, KWidth-80*2, kToobarHeight) :JTextFCMakeAlign(PUBLIC_FONT_SIZE17, COLOR_TEXT_BLACK_DARK, NSTextAlignmentCenter)];
-    [m_bgPickView addSubview:titleLabel];titleLabel.tag =3902;
+    UILabel *titleLabel =[UILabel funj_getLabel:CGRectMake(80, 0, kWidth-80*2, kToobarHeight) :JTextFCMakeAlign(kFont_Size17, kColor_Text_Black_Dark, NSTextAlignmentCenter)];
+    [m_BgPickView addSubview:titleLabel];titleLabel.tag =3902;
     
-    UIButton *closeBt =[UIButton funj_getButtons:CGRectMake(KWidth-80, 0, 80, kToobarHeight) :nil  :JTextFCZero() :@[@"backBt2_h"] :self  :@"remove" :74 :^(UIButton *button) {
+    UIButton *closeBt =[UIButton funj_getButtons:CGRectMake(kWidth-80, 0, 80, kToobarHeight) :nil  :JTextFCZero() :@[@"backBt2_h"] :self  :@"remove" :74 :^(UIButton *button) {
         button.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 0, 0 );
     }];
-    [m_bgPickView addSubview:closeBt];
-    UIImageView *line =[UIImageView funj_getLineImageView:CGRectMake(0, kToobarHeight-1, KWidth, 1)];
-    [m_bgPickView addSubview:line];
+    [m_BgPickView addSubview:closeBt];
+    UIImageView *line =[UIImageView funj_getLineImageView:CGRectMake(0, kToobarHeight-1, kWidth, 1)];
+    [m_BgPickView addSubview:line];
     
 }
 -(void)funj_addSubm_pickerView{
@@ -119,9 +119,9 @@
     _m_pickerView.backgroundColor=[UIColor lightGrayColor];
     _m_pickerView.delegate=self;
     _m_pickerView.dataSource=self;
-    _m_pickerView.backgroundColor=COLOR_WHITE_DARK;
-    _m_pickerView.frame=CGRectMake(0, kToobarHeight,KWidth, _m_pickerView.frame.size.height);
-    [m_bgPickView addSubview:_m_pickerView];
+    _m_pickerView.backgroundColor=kColor_White_Dark;
+    _m_pickerView.frame=CGRectMake(0, kToobarHeight,kWidth, _m_pickerView.frame.size.height);
+    [m_BgPickView addSubview:_m_pickerView];
     [_m_pickerView reloadAllComponents];
 }
 -(NSArray*)funj_fillWithCalendar:(PickType)type{
@@ -223,7 +223,7 @@
 }
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
     
-    return KWidth/MAX(1, self.plistArray.count);
+    return kWidth/MAX(1, self.plistArray.count);
 }
 
 -(void)funj_setDefaultPicker:(NSArray*)array{

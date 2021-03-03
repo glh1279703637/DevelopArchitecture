@@ -54,7 +54,7 @@
          
          NSInteger lo = [text rangeOfString:appName].location;
          NSMutableAttributedString *attri = [contentLabel funj_updateAttributedText:text];
-         [attri addAttributes:@{NSForegroundColorAttributeName:COLOR_ORANGE} range:NSMakeRange(lo, appName.length)];
+         [attri addAttributes:@{NSForegroundColorAttributeName:kColor_Orange} range:NSMakeRange(lo, appName.length)];
          contentLabel.attributedText = attri;
          if(statusAuthorized == PHAuthorizationStatusNotDetermined){
              self.m_tipLabel.hidden = NO;
@@ -162,7 +162,7 @@
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    [self funj_reloadBaseViewParameter:CGRectZero :CGRectMake(0, 0, self.view.width, self.view.height-KFilletSubHeight) :YES];
+    [self funj_reloadBaseViewParameter:CGRectZero :CGRectMake(0, 0, self.view.width, self.view.height-kFilletSubHeight) :YES];
     UILabel *contentLabel =[self.m_defaultImageView viewWithTag:9993];
     contentLabel.frame = CGRectMake(-self.m_defaultImageView.left+10, self.m_defaultImageView.height-40, self.view.width-20, 40);
     _m_tipLabel.top = self.view.height - 60;
@@ -175,7 +175,7 @@
 }
 -(UILabel *)m_tipLabel{
     if(!_m_tipLabel){
-        _m_tipLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 200, 30) :@"建议请优先选择所有照片" :JTextFCMakeAlign(PUBLIC_FONT_SIZE14, COLOR_ORANGE,NSTextAlignmentCenter)];
+        _m_tipLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 200, 30) :@"建议请优先选择所有照片" :JTextFCMakeAlign(kFont_Size14, kColor_Orange,NSTextAlignmentCenter)];
         [self.view addSubview:_m_tipLabel];
     }
     return _m_tipLabel;

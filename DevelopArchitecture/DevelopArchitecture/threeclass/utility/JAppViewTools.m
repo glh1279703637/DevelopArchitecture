@@ -83,8 +83,8 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
             if(callback)callback(delegate,i);
         }] ;
         if(button.count ==2){
-            if(i == 0 )[action setValue:COLOR_TEXT_GRAY_DARK forKey:@"titleTextColor"];
-            else [action setValue:COLOR_ORANGE forKey:@"titleTextColor"];
+            if(i == 0 )[action setValue:kColor_Text_Gray_Dark forKey:@"titleTextColor"];
+            else [action setValue:kColor_Orange forKey:@"titleTextColor"];
         }
         [alertController addAction:action];
     }
@@ -325,7 +325,7 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
 }
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.view.backgroundColor = COLOR_WHITE_DARK;
+    self.view.backgroundColor = kColor_White_Dark;
     [self.view funj_setViewCornerRadius:15];
 }
 @end
@@ -380,17 +380,17 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
         searchImage.frame = CGRectMake(0, 0, 30, 15);
         searchImage.contentMode = UIViewContentModeCenter;
         self.m_searchTF.leftViewMode = UITextFieldViewModeAlways;
-        UIView*bgview =[UIView funj_getView:CGRectMake(0, 0, 30, 15) :COLOR_CREAR];
+        UIView*bgview =[UIView funj_getView:CGRectMake(0, 0, 30, 15) :kColor_Clear];
         [bgview addSubview:searchImage];
         self.m_searchTF.leftView = bgview;
     }
     if(needCancel){
         _m_cancelButton =[[UIButton alloc]initWithFrame:CGRectMake(self.frame.size.width-60, 0, 60, self.frame.size.height)];
-        [_m_cancelButton setTitleColor:COLOR_BLUE forState:UIControlStateNormal];
+        [_m_cancelButton setTitleColor:kColor_Blue forState:UIControlStateNormal];
         [_m_cancelButton setTitle:LocalStr(@"Cancel") forState:UIControlStateNormal];
         _m_cancelButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         [_m_cancelButton addTarget:self action:NSSelectorFromString(@"funj_searchCancelButtonClicked:") forControlEvents:UIControlEventTouchUpInside];
-        _m_cancelButton.backgroundColor = COLOR_WHITE_DARK;
+        _m_cancelButton.backgroundColor = kColor_White_Dark;
         _m_cancelButton.hidden = YES;
         [self addSubview:_m_cancelButton];
     }

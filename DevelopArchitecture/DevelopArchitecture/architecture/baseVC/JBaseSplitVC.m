@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.maximumPrimaryColumnWidth = KWidthM;
+//    self.maximumPrimaryColumnWidth = kWidthM;
 //    self.preferredPrimaryColumnWidthFraction = 0.5;
  }
  

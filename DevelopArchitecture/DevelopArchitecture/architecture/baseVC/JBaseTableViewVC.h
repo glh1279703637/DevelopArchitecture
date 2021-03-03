@@ -18,7 +18,7 @@ typedef void (^reloadToSolveDataCallback)(BOOL isHead,BOOL isSearch, NSInteger p
 @interface JBaseTableViewVC: JBaseViewController<UITableViewDataSource,UITableViewDelegate,JSearchBarDelegate>
 @property(nonatomic,strong)UIView *m_topView;
 @property(nonatomic,strong)JSearchBar *m_searchBar;
-@property(nonatomic,strong)UIImageView *m_topTableViewLine,*m_blackImageView;
+@property(nonatomic,strong)UIImageView *m_topTableViewLine,*m_BlackImageView;
 @property(nonatomic,strong)UITableView *m_tableView;
 
 //自动适配cell高度
@@ -49,7 +49,7 @@ typedef void (^reloadToSolveDataCallback)(BOOL isHead,BOOL isSearch, NSInteger p
 @end
 
 #define  kcreateTableViewWithDelegate(delegateVC) ({\
-UITableView*tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, KWidth,KHeight) style:UITableViewStylePlain];\
+UITableView*tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kWidth,kHeight) style:UITableViewStylePlain];\
     tableView.tag = 939003;\
     tableView.backgroundColor=[UIColor clearColor];\
     tableView.rowHeight=100.0f;\

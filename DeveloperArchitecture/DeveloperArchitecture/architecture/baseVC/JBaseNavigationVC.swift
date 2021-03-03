@@ -9,31 +9,31 @@
 import Foundation
 import UIKit
 enum kcurrentNavColor {
-    case kCURRENTISNONE_TAG
-    case kCURRENTISBLUENAV_TAG
-    case kCURRENTISGRAYNAV_TAG
-    case kCURRENTISWHITENAV_TAG
+    case kCURRENTISNONE_Tag
+    case kCURRENTISBLUENAV_Tag
+    case kCURRENTISGRAYNAV_Tag
+    case kCURRENTISWHITENAV_Tag
 }
 
 class JBaseNavigationVC : UINavigationController, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
-    var m_currentNavColor : kcurrentNavColor = .kCURRENTISNONE_TAG {
+    var m_currentNavColor : kcurrentNavColor = .kCURRENTISNONE_Tag {
         willSet {
             let bar = self.navigationBar
             switch newValue {
-            case .kCURRENTISBLUENAV_TAG:
-                bar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : COLOR_WHITE , NSAttributedString.Key.font : FONT_BOLDSIZE20]
-                self.navigationBar.barTintColor = COLOR_BLUE
-                m_barBottomLine?.backgroundColor = COLOR_BLUE
-            case .kCURRENTISGRAYNAV_TAG:
-                bar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : COLOR_TEXT_BLACK_DARK , NSAttributedString.Key.font : FONT_BOLDSIZE20]
-                self.navigationBar.barTintColor = COLOR_WHITE_DARK
-                m_barBottomLine?.backgroundColor = COLOR_LINE_GRAY_DARK
-            case .kCURRENTISWHITENAV_TAG:
-                let image = JAppUtility.funj_imageWithColor(COLOR_BG_LIGHTGRAY_DARK, size: CGSize(width: 1, height: 1))
+            case .kCURRENTISBLUENAV_Tag:
+                bar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : kColor_White , NSAttributedString.Key.font : kFont_BoldSize20]
+                self.navigationBar.barTintColor = kColor_Blue
+                m_barBottomLine?.backgroundColor = kColor_Blue
+            case .kCURRENTISGRAYNAV_Tag:
+                bar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : kColor_Text_Black_Dark , NSAttributedString.Key.font : kFont_BoldSize20]
+                self.navigationBar.barTintColor = kColor_White_Dark
+                m_barBottomLine?.backgroundColor = kColor_Line_Gray_Dark
+            case .kCURRENTISWHITENAV_Tag:
+                let image = JAppUtility.funj_imageWithColor(kColor_Bg_Lightgray_Dark, size: CGSize(width: 1, height: 1))
                 bar.setBackgroundImage(image, for: .default)
                 bar.shadowImage = image
-                bar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : COLOR_TEXT_BLACK , NSAttributedString.Key.font : FONT_BOLDSIZE20]
-                m_barBottomLine?.backgroundColor = COLOR_BG_LIGHTGRAY_DARK
+                bar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : kColor_Text_Black , NSAttributedString.Key.font : kFont_BoldSize20]
+                m_barBottomLine?.backgroundColor = kColor_Bg_Lightgray_Dark
             default:break
             }
         }
@@ -43,7 +43,7 @@ class JBaseNavigationVC : UINavigationController, UINavigationControllerDelegate
     
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
-        m_currentNavColor =  .kCURRENTISWHITENAV_TAG
+        m_currentNavColor =  .kCURRENTISWHITENAV_Tag
         if (rootViewController is JBaseViewController) && (((rootViewController as? JBaseViewController)?.m_pushOrPresentAnimateClass) != nil) {
             self.transitioningDelegate = rootViewController as? UIViewControllerTransitioningDelegate
         }
@@ -58,7 +58,7 @@ class JBaseNavigationVC : UINavigationController, UINavigationControllerDelegate
         self.delegate = self
         
         let bar = UINavigationBar.appearance()
-        m_barBottomLine = UIImageView(i: CGRect(x: 0, y: bar.height, width: bar.width, height: 1), bgColor: COLOR_BLUE)
+        m_barBottomLine = UIImageView(i: CGRect(x: 0, y: bar.height, width: bar.width, height: 1), bgColor: kColor_Blue)
         bar.addSubview(m_barBottomLine!)
     }
     override func viewWillAppear(_ animated: Bool) {

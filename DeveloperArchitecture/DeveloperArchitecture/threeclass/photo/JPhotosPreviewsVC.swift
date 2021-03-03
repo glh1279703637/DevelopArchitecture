@@ -47,20 +47,20 @@ class JPhotosPreviewsVC : JBaseCollectionVC {
 
         }, target: self, action: "funj_selectToAdd:")
         
-        let bottomBgView = UIView(i: CGRect(x: 0, y: self.view.height - 50, width: self.view.width, height: 50), bg: COLOR_WHITE_DARK)
+        let bottomBgView = UIView(i: CGRect(x: 0, y: self.view.height - 50, width: self.view.width, height: 50), bg: kColor_White_Dark)
         self.view.addSubview(bottomBgView) ; bottomBgView.tag = 3023
         
-        let line = UIImageView(i_line: CGRect(x: 0, y: 0, width: KWidth, height: 1))
+        let line = UIImageView(i_line: CGRect(x: 0, y: 0, width: kWidth, height: 1))
         bottomBgView.addSubview(line)
         
         if JPhotosConfig.shared?.m_currentIsVideo ?? false {
-            let origareBt = UIButton(i: CGRect(x: 0, y: 0, width: 100, height: 50), title: kLocalStr("Original"), textFC: JTextFC(f: FONT_SIZE13, c: COLOR_TEXT_BLACK_DARK))
+            let origareBt = UIButton(i: CGRect(x: 0, y: 0, width: 100, height: 50), title: kLocalStr("Original"), textFC: JTextFC(f: kFont_Size13, c: kColor_Text_Black_Dark))
                 .funj_add(bgImageOrColor: ["photo_original_def","photo_original_sel"], isImage: true)
                 .funj_add(targe: self, action: "funj_selectItemTo:", tag: 3024)
                 .funj_add(autoSelect: false)
             bottomBgView.addSubview(origareBt)
         }
-        let sumBt = UIButton(i: CGRect(x: self.view.width - 100, y: 0, width: 100, height: 50), title: kLocalStr("Confirm"), textFC: JTextFC(f: FONT_SIZE13, c: COLOR_TEXT_BLACK_DARK))
+        let sumBt = UIButton(i: CGRect(x: self.view.width - 100, y: 0, width: 100, height: 50), title: kLocalStr("Confirm"), textFC: JTextFC(f: kFont_Size13, c: kColor_Text_Black_Dark))
             .funj_add(targe: self, action: "funj_selectFinishTo:", tag: 3025)
             .funj_updateContentImage(layout: .kRIGHT_CONTENTIMAGE, a: JAlignValue(h: 10, s: 0, f: 20))
         bottomBgView.addSubview(sumBt)
@@ -100,7 +100,7 @@ extension JPhotosPreviewsVC {
                     }
                 }
             } else {
-                JPhotoPickerInterface.funj_getPhotoWithAsset(phAsset: model?.m_asset, deliveryMode: .highQualityFormat, width: KWidth) { [weak self] (image, dic , isDegraded) in
+                JPhotoPickerInterface.funj_getPhotoWithAsset(phAsset: model?.m_asset, deliveryMode: .highQualityFormat, width: kWidth) { [weak self] (image, dic , isDegraded) in
                     if isDegraded { return }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                         self?.funj_getDetailInfo(&saveImageDic, image: image, dic: dic , isDegraded: isDegraded, item: nil, index: i)

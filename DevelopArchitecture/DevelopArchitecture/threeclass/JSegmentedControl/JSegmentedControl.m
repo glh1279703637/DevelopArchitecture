@@ -14,7 +14,7 @@
     NSArray *titleArray;
     selectBt m_action;
     
-    NSArray *_textColorArray;
+    NSArray *_TextColorArray;
     
     SegmentType m_type;
 }
@@ -26,20 +26,20 @@
     return self;
 }
 -(void)funj_setStyleBgView:(NSArray*)bgImageArray textColor:(NSArray*)textColorArray type:(SegmentType)type{
-    _textColorArray = textColorArray;
+    _TextColorArray = textColorArray;
     m_type = type;
     if(bgImageArray.count>0){
-        if(!_m_bgImageView){
-            _m_bgImageView=[UIImageView funj_getImageView:self.bounds image:nil];
-            [self setBgViewStyle:_m_bgImageView];
-            _m_bgImageView.userInteractionEnabled=YES;
-            [self addSubview:_m_bgImageView];
+        if(!_m_BgImageView){
+            _m_BgImageView=[UIImageView funj_getImageView:self.bounds image:nil];
+            [self setBgViewStyle:_m_BgImageView];
+            _m_BgImageView.userInteractionEnabled=YES;
+            [self addSubview:_m_BgImageView];
         }
         if([bgImageArray[0] isKindOfClass:[NSString class]]){
-            _m_bgImageView.alpha=0.5;
-            _m_bgImageView.image =[UIImage imageNamed:bgImageArray[0]];
+            _m_BgImageView.alpha=0.5;
+            _m_BgImageView.image =[UIImage imageNamed:bgImageArray[0]];
         }else{
-            _m_bgImageView.backgroundColor = bgImageArray[0];
+            _m_BgImageView.backgroundColor = bgImageArray[0];
             
         }
     }
@@ -73,7 +73,7 @@
 
 -(void)addSegBgView{
     for(int i=0;i<titleArray.count;i++){
-        UIButton *itemBt =[UIButton funj_getButton:CGRectMake(self.width/[titleArray count]*i, 0, self.width/[titleArray count], self.height) :titleArray[i] :JTextFCMaked(PUBLIC_FONT_SIZE17,_textColorArray[0],_textColorArray[1]) :nil :self  :@"funj_selectItemTo:" :i+30];
+        UIButton *itemBt =[UIButton funj_getButton:CGRectMake(self.width/[titleArray count]*i, 0, self.width/[titleArray count], self.height) :titleArray[i] :JTextFCMaked(kFont_Size17,_TextColorArray[0],_TextColorArray[1]) :nil :self  :@"funj_selectItemTo:" :i+30];
         [self addSubview:itemBt];
         
         [itemBt.titleLabel setAdjustsFontSizeToFitWidth:YES];

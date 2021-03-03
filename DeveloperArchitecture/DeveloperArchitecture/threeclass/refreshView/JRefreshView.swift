@@ -172,7 +172,7 @@ class JRefreshView: JBaseView {
     var m_refreshHeadle : JRefreshHeadle?
     var m_isHead : Bool = false {
         willSet {if newValue == true {
-            m_arrowLabel = UILabel(i: CGRect(x: m_arrowImageView.right + 10, y: m_arrowImageView.top, width: 0, height: m_arrowImageView.height), textFC: JTextFC(f: FONT_SIZE12, c: COLOR_TEXT_GRAY_DARK))
+            m_arrowLabel = UILabel(i: CGRect(x: m_arrowImageView.right + 10, y: m_arrowImageView.top, width: 0, height: m_arrowImageView.height), textFC: JTextFC(f: kFont_Size12, c: kColor_Text_GRAY_Dark))
                 self.addSubview(m_arrowLabel!)
         }}}
     var m_state : JRefreshState =  .kRefreshStateNone {

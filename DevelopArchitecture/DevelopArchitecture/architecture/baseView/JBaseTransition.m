@@ -38,7 +38,7 @@
 //            NSInteger isAddx = arc4random() % 3 ;
 //            NSInteger isAddy = arc4random() % 2 ;
 
-//            fromVC.view.transform = CGAffineTransformTranslate(fromVC.view.transform, (1-isAddx)* KWidth, (1-isAddy)*KHeight);
+//            fromVC.view.transform = CGAffineTransformTranslate(fromVC.view.transform, (1-isAddx)* kWidth, (1-isAddy)*kHeight);
 //            toVC.view.transform = CGAffineTransformMakeScale(1, 1);
         }];
     } completion:^(BOOL finished) {

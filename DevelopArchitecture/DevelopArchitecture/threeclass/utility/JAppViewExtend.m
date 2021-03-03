@@ -13,8 +13,8 @@
 @end
 @implementation UIResponder (JBaseResponder)
 -(void)funj_addNumberInputKeyAccesssoryTitleView{
-    UIView *inputAccessoryView =[UIView funj_getView:CGRectMake(0, 0, KWidth, 50) :UIColorFromARGB(0xD1D4D9,1)];
-    UIButton *sumBt =[UIButton funj_getButtonBlock:CGRectMake(KWidth-120, 0, 120, 50) :LocalStr(@"Confirm") :JTextFCMake(PUBLIC_FONT_BOLDSIZE17, COLOR_ORANGE) :nil  :0 :^(UIButton *button) {
+    UIView *inputAccessoryView =[UIView funj_getView:CGRectMake(0, 0, kWidth, 50) :UIColorFromARGB(0xD1D4D9,1)];
+    UIButton *sumBt =[UIButton funj_getButtonBlock:CGRectMake(kWidth-120, 0, 120, 50) :LocalStr(@"Confirm") :JTextFCMake(kFont_BoldSize17, kColor_Orange) :nil  :0 :^(UIButton *button) {
         [[JAppViewTools funj_getKeyWindow] endEditing:YES];
     }];
     [sumBt funj_updateContentImageLayout:kRIGHT_CONTENTIMAGE a:JAlignMake(0, 0, 20)];
@@ -143,7 +143,7 @@
     }
 }
 -(void)funj_setViewCornerRadius:(CGFloat)cornerRadius{
-    [self funj_setViewCornerLayer:JFilletMake(0, cornerRadius, COLOR_CREAR)];
+    [self funj_setViewCornerLayer:JFilletMake(0, cornerRadius, kColor_Clear)];
 }
 -(void)funj_setViewCornerLayer:(FilletValue)fillet{
     if(![self isKindOfClass:[UIView class]])return;
@@ -157,7 +157,7 @@
 -(void)funj_setViewShadowLayer{
     if(![self isKindOfClass:[UIView class]])return;
     UIView *view = (UIView*)self;
-    if([view.backgroundColor isEqual:COLOR_WHITE])view.layer.shadowColor = COLOR_TEXT_BLACK.CGColor;
+    if([view.backgroundColor isEqual:kColor_White])view.layer.shadowColor = kColor_Text_Black.CGColor;
     else view.layer.shadowColor = view.backgroundColor.CGColor;//shadowColor阴影颜色
     view.layer.masksToBounds = NO;
     view.layer.shadowOpacity = 0.5;//阴影透明度，默认0
@@ -246,7 +246,7 @@
     NSInteger index = 0;
     for(NSValue *value in selectArr){
         NSRange range = [value rangeValue];
-        [attri addAttributes:@{NSForegroundColorAttributeName:COLOR_ORANGE} range:range];
+        [attri addAttributes:@{NSForegroundColorAttributeName:kColor_Orange} range:range];
         UITextPosition* startPosition = [textView positionFromPosition:textView.beginningOfDocument offset:range.location];
         UITextPosition* endPosition = [textView positionFromPosition:textView.beginningOfDocument offset:range.location+range.length];
         UITextRange* textRange = [textView textRangeFromPosition:startPosition toPosition:endPosition];
@@ -494,12 +494,12 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
 @implementation UIBarButtonItem(JBarButtonItem)
 
 + (UIBarButtonItem *)funj_getNavPublicButton:(id)target icon:(NSString*)icon action:(NSString*)action {
-    UIButton *backButton=[UIButton funj_getButtons:CGRectMake(0, 0, 44, KNavigationBarHeight) :nil :JTextFCMake(nil, nil) :@[icon] :target :action :0 :nil];
+    UIButton *backButton=[UIButton funj_getButtons:CGRectMake(0, 0, 44, kNavigationBarHeight) :nil :JTextFCMake(nil, nil) :@[icon] :target :action :0 :nil];
     UIBarButtonItem* backBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:backButton];
     return backBarButtonItem;
 }
 + (UIBarButtonItem *)funj_getNavPublicButton:(id)target title:(NSString*)title action:(NSString*)action image:(NSString*)image :(clickCallBack) setButton {
-    UIButton *backButton=[UIButton funj_getButtons:CGRectMake(0, 0, 44, KNavigationBarHeight) :title :JTextFCMake([UIFont systemFontOfSize:14] , UIColorFromARGB(0x333333,1)) :image?@[image]:nil :target :action :0 :nil];
+    UIButton *backButton=[UIButton funj_getButtons:CGRectMake(0, 0, 44, kNavigationBarHeight) :title :JTextFCMake([UIFont systemFontOfSize:14] , UIColorFromARGB(0x333333,1)) :image?@[image]:nil :target :action :0 :nil];
     if(setButton)setButton(backButton);
     UIBarButtonItem* backBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:backButton];
     return backBarButtonItem;
@@ -552,7 +552,7 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
     if(textFC.alignment != NSTextAlignmentCenter){
         UIView *defaultView=[self funj_getView:CGRectMake(0, 0, 10, frame.size.height) :[UIColor clearColor]];
         textField.leftViewMode=UITextFieldViewModeAlways;
-        UIView*bgview =[UIView funj_getView:CGRectMake(0, 0, 10, frame.size.height) :COLOR_CREAR];
+        UIView*bgview =[UIView funj_getView:CGRectMake(0, 0, 10, frame.size.height) :kColor_Clear];
         [bgview addSubview:defaultView];
         textField.leftView=bgview;
     }
@@ -609,7 +609,7 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
     return lineView;
 }
 +(UIImageView*)funj_getBlackAlphaView:(CGRect)frame{
-    UIImageView *lineView=[self funj_getImageView:frame bgColor:COLOR_TEXT_BLACK_DARK];
+    UIImageView *lineView=[self funj_getImageView:frame bgColor:kColor_Text_Black_Dark];
     lineView.alpha = 0.3;
     lineView.userInteractionEnabled = YES;
     return lineView;
@@ -662,7 +662,7 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
     if(configCallback)configCallback(config);
     WKWebView* webView=[[WKWebView alloc]initWithFrame:frame configuration:config];
     webView.opaque = NO; //不设置这个值 页面背景始终是白色 设置webview clearColor时使用
-    webView.backgroundColor = COLOR_WHITE_DARK;
+    webView.backgroundColor = kColor_White_Dark;
     webView.navigationDelegate = delegate;
     webView.scrollView.delegate = delegate;
     webView.scrollView.showsVerticalScrollIndicator = NO;

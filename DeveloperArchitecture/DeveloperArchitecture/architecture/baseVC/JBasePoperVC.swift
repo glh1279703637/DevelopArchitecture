@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 extension JBasePoperVC {
-    class func funj_getPopoverVCs(sourceVC : UIViewController? = JAppViewTools.funj_getTopVC() , data : Any? = nil , size : CGSize = CGSize(width: KWidthMin - 100, height: KWidthMin - 100), callback : ksetPopverBaseVC? = nil) -> JBasePoperVC? {
+    class func funj_getPopoverVCs(sourceVC : UIViewController? = JAppViewTools.funj_getTopVC() , data : Any? = nil , size : CGSize = CGSize(width: kWidthMin - 100, height: kWidthMin - 100), callback : ksetPopverBaseVC? = nil) -> JBasePoperVC? {
         if JHttpReqHelp.funj_checkNetworkType() == false || sourceVC == nil { return nil}
         
         let controller = self.init()
@@ -24,11 +24,11 @@ extension JBasePoperVC {
         
         if setPresentView == false {
             var size = size
-            size.width = min(size.width, KWidth - 20)
-            size.height = min(size.height, KHeight - KStatusBarHeight - 30)
+            size.width = min(size.width, kWidth - 20)
+            size.height = min(size.height, kHeight - kStatusBarHeight - 30)
             
-            let bgView = controller.m_bgView
-            bgView.frame = CGRect(x: (KWidth - size.width)/2, y: (KHeight - size.height) / 2, width: size.width, height: size.height)
+            let bgView = controller.m_BgView
+            bgView.frame = CGRect(x: (kWidth - size.width)/2, y: (kHeight - size.height) / 2, width: size.width, height: size.height)
             bgView.layer.borderWidth = 0
             bgView.layer.cornerRadius = 10
             bgView.layer.masksToBounds = true
@@ -41,33 +41,33 @@ extension JBasePoperVC {
 }
 
 class JBasePoperVC : JBaseViewController {
-    lazy var m_bgView : UIView = {
-        let bgView = UIView(i: CGRect(x: 0, y: 0, width: KWidth, height: KHeight), bg: COLOR_WHITE)
+    lazy var m_BgView : UIView = {
+        let bgView = UIView(i: CGRect(x: 0, y: 0, width: kWidth, height: kHeight), bg: kColor_White)
         bgView.funj_whenTouchedDown { (sender) in
             sender.endEditing(true)
         }
         return bgView
     }()
-    lazy var m_bgScrollView : UIScrollView = {
-        let bgScrollView = UIScrollView(i: self.m_bgView.bounds, delegate: nil)
-        self.m_bgView.addSubview(bgScrollView)
+    lazy var m_BgScrollView : UIScrollView = {
+        let bgScrollView = UIScrollView(i: self.m_BgView.bounds, delegate: nil)
+        self.m_BgView.addSubview(bgScrollView)
         return bgScrollView
     }()
     
     var m_clickOutRectToBack : Bool  = true
     
-    private var m_bgImageView : UIImageView?
+    private var m_BgImageView : UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.clear
         
-        m_bgImageView = UIImageView(i_blackAlpha: self.view.bounds)
-        self.view.addSubview(m_bgImageView!)
-        m_bgImageView?.funj_whenTapped { [weak self ] ( _ ) in
+        m_BgImageView = UIImageView(i_blackAlpha: self.view.bounds)
+        self.view.addSubview(m_BgImageView!)
+        m_BgImageView?.funj_whenTapped { [weak self ] ( _ ) in
             if self?.m_clickOutRectToBack ?? false { self?.funj_clickBackButton() }
         }
-        self.view.addSubview(m_bgView)
+        self.view.addSubview(m_BgView)
         
     }
 }

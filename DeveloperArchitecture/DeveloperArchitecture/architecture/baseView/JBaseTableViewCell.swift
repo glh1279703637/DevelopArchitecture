@@ -17,7 +17,7 @@ class JBaseTableViewCell : UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        self.backgroundColor = COLOR_BG_DARK
+        self.backgroundColor = kColor_Bg_Dark
         self.funj_addBaseTableSubView()
     }
     required init?(coder: NSCoder) {  fatalError("init(coder:) has not been implemented")}
@@ -29,14 +29,16 @@ class JBaseTableViewCell : UITableViewCell {
     func funj_setBaseTableCellWithData(_ data : Any){
         
     }
+}
+extension JBaseTableViewCell {
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if self.selectionStyle != .none {
-            self.backgroundColor = highlighted ? COLOR_BG_LIGHTGRAY_DARK : COLOR_CREAR
+            self.backgroundColor = highlighted ? kColor_Bg_Lightgray_Dark : kColor_Clear
         }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         if self.selectionStyle != .none {
-            self.backgroundColor = selected ? COLOR_BG_LIGHTGRAY_DARK : COLOR_CREAR
+            self.backgroundColor = selected ? kColor_Bg_Lightgray_Dark : kColor_Clear
         }
     }
 }

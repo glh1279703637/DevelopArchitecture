@@ -17,10 +17,10 @@ enum SegmentType : Int {
 //typealias kalertBlockCallback = ((_ index :Int) -> ())
 
 class JSegmentedControl : JBaseView {
-    var m_bgImageView : UIImageView?
+    var m_BgImageView : UIImageView?
     private var m_titleArray :[String]?
     private var m_alertCallback : kalertBlockCallback?
-    private var m_textColorArray : [UIColor]?
+    private var m_TextColorArray : [UIColor]?
     private var m_type : SegmentType = .kSegmentTypeNone
     private var m_selectBgForBt : UIImageView?
     
@@ -32,21 +32,21 @@ class JSegmentedControl : JBaseView {
     required init?(coder: NSCoder) {fatalError("init(coder:) has not been implemented")}
     
     func funj_addStyleBgView(_ bgImageArray : [Any] ,textColor : [UIColor] , type : SegmentType) {
-        m_textColorArray = textColor
+        m_TextColorArray = textColor
         m_type = type
         if bgImageArray.count > 0 {
-            if m_bgImageView == nil {
-                m_bgImageView = UIImageView(i: self.bounds, image: nil)
-                self.funj_setBgViewStyle(view: m_bgImageView!)
-                m_bgImageView?.isUserInteractionEnabled = true
-                self.addSubview(m_bgImageView!)
+            if m_BgImageView == nil {
+                m_BgImageView = UIImageView(i: self.bounds, image: nil)
+                self.funj_setBgViewStyle(view: m_BgImageView!)
+                m_BgImageView?.isUserInteractionEnabled = true
+                self.addSubview(m_BgImageView!)
             }
         }
         if bgImageArray[0] is String {
-            m_bgImageView?.alpha = 0.5
-            m_bgImageView?.image = UIImage(named: bgImageArray[0] as! String)
+            m_BgImageView?.alpha = 0.5
+            m_BgImageView?.image = UIImage(named: bgImageArray[0] as! String)
         } else if bgImageArray[0] is UIColor{
-            m_bgImageView?.backgroundColor = bgImageArray[0] as? UIColor
+            m_BgImageView?.backgroundColor = bgImageArray[0] as? UIColor
         }
         if bgImageArray.count > 1 {
             if m_selectBgForBt == nil {
@@ -74,7 +74,7 @@ class JSegmentedControl : JBaseView {
     func funj_addSegBgView() {
         let width = self.width / CGFloat(m_titleArray!.count)
         for i in 0..<m_titleArray!.count  {
-            let itemBt = UIButton(i: CGRect(x: width * CGFloat(i), y: 0, width: width, height: self.height), title: m_titleArray?[i], textFC: JTextFC(f: FONT_SIZE17, c: m_textColorArray![0] , sc: m_textColorArray![1]))
+            let itemBt = UIButton(i: CGRect(x: width * CGFloat(i), y: 0, width: width, height: self.height), title: m_titleArray?[i], textFC: JTextFC(f: kFont_Size17, c: m_TextColorArray![0] , sc: m_TextColorArray![1]))
                 .funj_add(targe: self, action: "funj_selectItemTo:", tag: i + 30 )
             self.addSubview(itemBt)
             itemBt.titleLabel?.adjustsFontSizeToFitWidth = true

@@ -19,7 +19,7 @@
     headImageView.layer.masksToBounds = YES;
     headImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.contentView addSubview:headImageView];
-    titleLabel =[UILabel funj_getLabel:CGRectMake(headImageView.right+10, headImageView.top, kphotoPickerViewWidth-headImageView.right-40, headImageView.height) :JTextFCMake(PUBLIC_FONT_SIZE15, COLOR_TEXT_BLACK_DARK)];
+    titleLabel =[UILabel funj_getLabel:CGRectMake(headImageView.right+10, headImageView.top, kphotoPickerViewWidth-headImageView.right-40, headImageView.height) :JTextFCMake(kFont_Size15, kColor_Text_Black_Dark)];
     [self.contentView addSubview:titleLabel];
     
     UIImageView *line =[UIImageView funj_getLineImageView:CGRectMake(headImageView.right+10, headImageView.bottom+9, kphotoPickerViewWidth-30-headImageView.right-10, 1)];
@@ -27,7 +27,7 @@
 }
 -(void)funj_setBaseTableCellWithData:(JPhotosDataModel *)data{
     m_dataModel = data;
-    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:data.name attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:COLOR_TEXT_BLACK_DARK}];
+    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:data.name attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:kColor_Text_Black_Dark}];
     NSAttributedString *countString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"  (%zd)", data.count] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16], NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
     [nameString appendAttributedString:countString];
     titleLabel.attributedText = nameString;
@@ -59,7 +59,7 @@
     
     //VideoSendIcon
     if([JPhotosConfig share].m_currentIsVideo){
-        timeLabel =[UIButton funj_getButtons:CGRectMake(30, coverImageView.height-20, coverImageView.width-40, 15) :@"00:00"  :JTextFCMake(PUBLIC_FONT_SIZE10, [UIColor grayColor]) :@[@"VideoSendIcon"] :nil  :nil  :0 :^(UIButton *button) {
+        timeLabel =[UIButton funj_getButtons:CGRectMake(30, coverImageView.height-20, coverImageView.width-40, 15) :@"00:00"  :JTextFCMake(kFont_Size10, [UIColor grayColor]) :@[@"VideoSendIcon"] :nil  :nil  :0 :^(UIButton *button) {
             [button funj_updateContentImageLayout:kRIGHT_IMAGECONTENT a:JAlignMake(0, 10, 0)];
         }];
         [self.contentView addSubview:timeLabel];
@@ -72,9 +72,9 @@
     [selectBt funj_updateButtonSelectStyle:NO  :NO];
     
     if([JPhotosConfig share].m_isMultiplePhotos){
-        countLabel =[UILabel funj_getOneLabel:CGRectMake(5, coverImageView.height-20, 15, 15) :JTextFCMakeAlign(PUBLIC_FONT_SIZE10, COLOR_WHITE,NSTextAlignmentCenter)];
+        countLabel =[UILabel funj_getOneLabel:CGRectMake(5, coverImageView.height-20, 15, 15) :JTextFCMakeAlign(kFont_Size10, kColor_White,NSTextAlignmentCenter)];
         [self.contentView addSubview:countLabel];
-        [countLabel funj_setViewCornerLayer:JFilletMake(0, 15/2, COLOR_CREAR)];
+        [countLabel funj_setViewCornerLayer:JFilletMake(0, 15/2, kColor_Clear)];
         countLabel.backgroundColor = [UIColor redColor];
     }
 }

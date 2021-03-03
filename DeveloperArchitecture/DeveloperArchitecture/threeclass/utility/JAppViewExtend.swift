@@ -14,21 +14,21 @@ private var ktextFieldMaxLengthKey = "ktextFieldMaxLengthKey"
 private var ktextFieldInsertLengthKey = "ktextFieldInsertLengthKey"
 private var ktextFieldInsertTextInputType = "ktextFieldInsertTextInputType"
 
-struct kTEXTFINPUT_TYPE: OptionSet {
+struct kTextfinput_Type: OptionSet {
     let rawValue: Int
     
-    static let kALLINPUTCHAR_TAG        = kTEXTFINPUT_TYPE(rawValue: 1 << 0) //支持所有字符
-    static let kALLDIGITAL_TAG          = kTEXTFINPUT_TYPE(rawValue: 1 << 1)//数字
-    static let kALLLETTER_TAG           = kTEXTFINPUT_TYPE(rawValue: 1 << 2)//字母
-    static let kALLCHINESE_TAG          = kTEXTFINPUT_TYPE(rawValue: 1 << 3)//汉字
-    static let kALLINPUTPUNCTUATION_TAG = kTEXTFINPUT_TYPE(rawValue: 1 << 4)//标点字符，除了特殊无法存储字符
-    static let kALLNOEMOTICONS_TAG      = kTEXTFINPUT_TYPE(rawValue: 1 << 5)//除表情符号所有字符
+    static let kAllInputChar_Tag        = kTextfinput_Type(rawValue: 1 << 0) //支持所有字符
+    static let kAllDigital_Tag          = kTextfinput_Type(rawValue: 1 << 1)//数字
+    static let kAllLetter_Tag           = kTextfinput_Type(rawValue: 1 << 2)//字母
+    static let kAllChinese_Tag          = kTextfinput_Type(rawValue: 1 << 3)//汉字
+    static let kAllInputPunctuation_Tag = kTextfinput_Type(rawValue: 1 << 4)//标点字符，除了特殊无法存储字符
+    static let kAllNoEmoticons_Tag      = kTextfinput_Type(rawValue: 1 << 5)//除表情符号所有字符
 }
 
 extension UIResponder {//解决数字键盘无返回按钮的问题
     func funj_addNumberInputKeyAccesssoryTitleView() {
-        let inputAccessoryView = UIView(i: CGRect(x: 0, y: 0, width: KWidth, height: 50), bg: kARGBHex(0xD1D4D9, 1))
-        let sumBt = UIButton(i:CGRect(x: KWidth - 120 , y: 0, width: 120 , height: 50), title: kLocalStr("Confirm"), textFC: JTextFC(f: FONT_SIZE17, c: COLOR_ORANGE))
+        let inputAccessoryView = UIView(i: CGRect(x: 0, y: 0, width: kWidth, height: 50), bg: kARGBHex(0xD1D4D9, 1))
+        let sumBt = UIButton(i:CGRect(x: kWidth - 120 , y: 0, width: 120 , height: 50), title: kLocalStr("Confirm"), textFC: JTextFC(f: kFont_Size17, c: kColor_Orange))
             .funj_updateContentImage(layout: .kRIGHT_CONTENTIMAGE, a: JAlignValue(h: 0, s: 0, f: 20))
             .funj_addblock { (button) in
                 JAppViewTools.funj_getKeyWindow()?.endEditing(true)
@@ -37,21 +37,21 @@ extension UIResponder {//解决数字键盘无返回按钮的问题
         (self as? UITextField)?.inputAccessoryView = inputAccessoryView
         (self as? UITextView)?.inputAccessoryView = inputAccessoryView
     }
-    func funj_setTextFieldMaxLength(maxLength : Int , type : [kTEXTFINPUT_TYPE]) {
+    func funj_setTextFieldMaxLength(maxLength : Int , type : [kTextfinput_Type]) {
         let weakTV = self as? UITextView ; let weakTF = self as? UITextField
         if (weakTV == nil && weakTF == nil) || type.count <= 0  { return }
         let notiName = weakTF != nil ? UITextField.textDidChangeNotification : UITextView.textDidChangeNotification
-        NotificationCenter.default.addObserver(self, selector: #selector(funj_textFiledEditChangedToSubLength(_ :)), name: notiName, object: nil)
-        weakTF?.m_textFieldInsertTextInputType = type
-        weakTV?.m_textFieldInsertTextInputType = type
+        NotificationCenter.default.addObserver(self, selector: #selector(funj_TextFiledEditChangedToSubLength(_ :)), name: notiName, object: nil)
+        weakTF?.m_TextFieldInsertTextInputType = type
+        weakTV?.m_TextFieldInsertTextInputType = type
         
         let maxLength1 = maxLength > 0 ? maxLength : 1000
-        weakTF?.m_textFieldMaxLengthKey = maxLength1
-        weakTV?.m_textFieldMaxLengthKey = maxLength1
+        weakTF?.m_TextFieldMaxLengthKey = maxLength1
+        weakTV?.m_TextFieldMaxLengthKey = maxLength1
     }
-    @objc func funj_textFiledEditChangedToSubLength(_ noti : NSNotification){
+    @objc func funj_TextFiledEditChangedToSubLength(_ noti : NSNotification){
         let weakTV = self as? UITextView ; let weakTF = self as? UITextField
-        let typeArr = weakTF?.m_textFieldInsertTextInputType ?? weakTV?.m_textFieldInsertTextInputType
+        let typeArr = weakTF?.m_TextFieldInsertTextInputType ?? weakTV?.m_TextFieldInsertTextInputType
         if typeArr == nil { return }
         var toBeString = weakTV?.text ?? weakTF?.text
         
@@ -59,15 +59,15 @@ extension UIResponder {//解决数字键盘无返回按钮的问题
         
         for type in typeArr! {
             switch type {
-            case .kALLDIGITAL_TAG:
+            case .kAllDigital_Tag:
                 regexStr += "0-9"
-            case .kALLLETTER_TAG:
+            case .kAllLetter_Tag:
                 regexStr += "a-zA-Z"
-            case .kALLCHINESE_TAG:
+            case .kAllChinese_Tag:
                 regexStr += "\\u4E00-\\u9FC2"
-            case .kALLINPUTPUNCTUATION_TAG:
+            case .kAllInputPunctuation_Tag:
                 regexStr += ".,~`!@#$%^&*\\(\\)|\\{\\}\\[\\];:'\"/\\\\_"
-            case .kALLNOEMOTICONS_TAG:
+            case .kAllNoEmoticons_Tag:
                 regexStr += "\\u0020-\\u007E\\u00A0-\\u00BE\\u2E80-\\uA4CF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF\\u0080-\\u009F\\u2000-\\u201f\r\n"
             default: break
             }
@@ -77,7 +77,7 @@ extension UIResponder {//解决数字键盘无返回按钮的问题
             let regex = try! NSRegularExpression(pattern: regexStr, options: .caseInsensitive)
             toBeString = regex.stringByReplacingMatches(in: toBeString!, options: [], range: NSRange(location: 0, length: toBeString!.count), withTemplate: "")
         }
-        let numbers = weakTV?.m_textFieldMaxLengthKey ?? weakTF?.m_textFieldMaxLengthKey
+        let numbers = weakTV?.m_TextFieldMaxLengthKey ?? weakTF?.m_TextFieldMaxLengthKey
         if numbers ?? 0 <= 0 {
             weakTF?.text = toBeString; return
         }
@@ -86,7 +86,7 @@ extension UIResponder {//解决数字键盘无返回按钮的问题
             let selectedRange = (weakTV?.markedTextRange ?? weakTF?.markedTextRange) ?? UITextRange()
             let position = weakTV?.position(from: selectedRange.start, offset: 0) ?? weakTF?.position(from: selectedRange.start, offset: 0)
             if position == nil {//没有高亮选择的字，则对已输入的文字进行字数统计和限制
-                let localIndex = (weakTV?.m_textFieldInsertLengthKey ?? weakTF?.m_textFieldInsertLengthKey) ?? 0
+                let localIndex = (weakTV?.m_TextFieldInsertLengthKey ?? weakTF?.m_TextFieldInsertLengthKey) ?? 0
                 if toBeString!.count > numbers! {
                     if localIndex < 0 {
                         let firstStr = (toBeString as NSString?)?.substring(to: abs(localIndex))
@@ -105,8 +105,8 @@ extension UIResponder {//解决数字键盘无返回按钮的问题
                 }
             } else if weakTF?.beginningOfDocument != nil || weakTV?.beginningOfDocument != nil { //有高亮选择的字符串，则暂不对文字进行统计和限制
                 guard let localIndex = weakTF?.offset(from: (weakTF?.beginningOfDocument)!, to: position!) ?? weakTV?.offset(from: (weakTV?.beginningOfDocument)!, to: position!) else { return }
-                weakTV?.m_textFieldInsertLengthKey = localIndex * (localIndex == numbers ? 1 : -1)
-                weakTF?.m_textFieldInsertLengthKey = localIndex * (localIndex == numbers ? 1 : -1)
+                weakTV?.m_TextFieldInsertLengthKey = localIndex * (localIndex == numbers ? 1 : -1)
+                weakTF?.m_TextFieldInsertLengthKey = localIndex * (localIndex == numbers ? 1 : -1)
             }
         }else{
             if toBeString!.count > numbers! && (weakTF?.selectedTextRange?.start != nil || weakTV?.selectedTextRange?.start != nil) {
@@ -200,8 +200,8 @@ extension UIView {
 extension UILabel {
     convenience init(i frame : CGRect ,title : String? = nil,textFC : JTextFC? ){
         self.init(frame:frame)
-        self.font = textFC?.m_textFont ?? FONT_SIZE13
-        self.textColor = textFC?.m_textColor ?? COLOR_TEXT_BLACK
+        self.font = textFC?.m_TextFont ?? kFont_Size13
+        self.textColor = textFC?.m_TextColor ?? kColor_Text_Black
         self.textAlignment = textFC?.m_alignment ?? .left
         self.numberOfLines = 0
         self.text = title
@@ -216,8 +216,8 @@ extension UILabel {
             paragraphStyle.lineBreakMode = .byTruncatingTail
         }
         let attri = NSMutableAttributedString(string: title, attributes: [
-            NSAttributedString.Key.font : self.font ?? FONT_SIZE13,
-            NSAttributedString.Key.foregroundColor : self.textColor ?? COLOR_TEXT_BLACK,
+            NSAttributedString.Key.font : self.font ?? kFont_Size13,
+            NSAttributedString.Key.foregroundColor : self.textColor ?? kColor_Text_Black,
             NSAttributedString.Key.paragraphStyle:paragraphStyle])
         self.attributedText = attri
         return attri
@@ -225,20 +225,20 @@ extension UILabel {
 }
 
 extension UITextField {
-    var m_textFieldMaxLengthKey : Int? {
+    var m_TextFieldMaxLengthKey : Int? {
         get { return objc_getAssociatedObject(self, &ktextFieldMaxLengthKey) as? Int }
         set {objc_setAssociatedObject(self, &ktextFieldMaxLengthKey, newValue, .OBJC_ASSOCIATION_ASSIGN)}}
-    var m_textFieldInsertLengthKey : Int? {
+    var m_TextFieldInsertLengthKey : Int? {
         get { return objc_getAssociatedObject(self, &ktextFieldInsertLengthKey) as? Int }
         set {objc_setAssociatedObject(self, &ktextFieldInsertLengthKey, newValue, .OBJC_ASSOCIATION_ASSIGN)}}
-    var m_textFieldInsertTextInputType : [kTEXTFINPUT_TYPE]? {
-        get { return objc_getAssociatedObject(self, &ktextFieldInsertTextInputType) as? [kTEXTFINPUT_TYPE] }
+    var m_TextFieldInsertTextInputType : [kTextfinput_Type]? {
+        get { return objc_getAssociatedObject(self, &ktextFieldInsertTextInputType) as? [kTextfinput_Type] }
         set {objc_setAssociatedObject(self, &ktextFieldInsertTextInputType, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)}}
     
     convenience init(i frame : CGRect ,placeholder : String? ,textFC : JTextFC? ){
         self.init(frame:frame)
-        self.font = textFC?.m_textFont ?? FONT_SIZE13
-        self.textColor = textFC?.m_textColor ?? COLOR_TEXT_BLACK
+        self.font = textFC?.m_TextFont ?? kFont_Size13
+        self.textColor = textFC?.m_TextColor ?? kColor_Text_Black
         self.textAlignment = textFC?.m_alignment ?? .left
         self.placeholder = placeholder
         self.backgroundColor = .clear
@@ -262,20 +262,20 @@ extension UITextField {
 }
 
 extension UITextView {
-    var m_textFieldMaxLengthKey : Int? {
+    var m_TextFieldMaxLengthKey : Int? {
         get { return objc_getAssociatedObject(self, &ktextFieldMaxLengthKey) as? Int }
         set {objc_setAssociatedObject(self, &ktextFieldMaxLengthKey, newValue, .OBJC_ASSOCIATION_ASSIGN)}}
-    var m_textFieldInsertLengthKey : Int? {
+    var m_TextFieldInsertLengthKey : Int? {
         get { return objc_getAssociatedObject(self, &ktextFieldInsertLengthKey) as? Int }
         set {objc_setAssociatedObject(self, &ktextFieldInsertLengthKey, newValue, .OBJC_ASSOCIATION_ASSIGN)}}
-    var m_textFieldInsertTextInputType : [kTEXTFINPUT_TYPE]? {
-        get { return objc_getAssociatedObject(self, &ktextFieldInsertTextInputType) as? [kTEXTFINPUT_TYPE] }
+    var m_TextFieldInsertTextInputType : [kTextfinput_Type]? {
+        get { return objc_getAssociatedObject(self, &ktextFieldInsertTextInputType) as? [kTextfinput_Type] }
         set {objc_setAssociatedObject(self, &ktextFieldInsertTextInputType, newValue, .OBJC_ASSOCIATION_ASSIGN)}}
     
     convenience init(i frame : CGRect ,textFC : JTextFC? ){
         self.init(frame:frame)
-        self.font = textFC?.m_textFont ?? FONT_SIZE13
-        self.textColor = textFC?.m_textColor ?? COLOR_TEXT_BLACK
+        self.font = textFC?.m_TextFont ?? kFont_Size13
+        self.textColor = textFC?.m_TextColor ?? kColor_Text_Black
         self.textAlignment = textFC?.m_alignment ?? .left
         self.backgroundColor = .clear
     }
@@ -289,7 +289,7 @@ extension UITextView {
         
         var index = 0
         for range in selectArr {
-            attri.addAttributes([NSAttributedString.Key.foregroundColor : COLOR_ORANGE], range: range)
+            attri.addAttributes([NSAttributedString.Key.foregroundColor : kColor_Orange], range: range)
             let startPosition = self.position(from: self.beginningOfDocument, offset: range.location)
             let endPosition = self.position(from: self.beginningOfDocument, offset: range.location+range.length)
             if startPosition != nil && endPosition != nil {
@@ -330,7 +330,7 @@ extension UIImageView {
     }
     convenience init(i_blackAlpha blackAlphaFrame: CGRect){
         self.init(frame:blackAlphaFrame)
-        self.backgroundColor = COLOR_TEXT_BLACK_DARK
+        self.backgroundColor = kColor_Text_Black_Dark
         self.alpha = 0.3
         self.isUserInteractionEnabled = true
     }
@@ -342,12 +342,12 @@ extension UIButton {
         if title != nil {
             self.setTitle(title, for: .normal)
         }
-        self.setTitleColor(textFC.m_textColor ,for: .normal)
+        self.setTitleColor(textFC.m_TextColor ,for: .normal)
         if textFC.m_selectTextColor != nil {
-            self.setTitleColor(textFC.m_textColor ,for: .highlighted)
-            self.setTitleColor(textFC.m_textColor ,for: .selected)
+            self.setTitleColor(textFC.m_TextColor ,for: .highlighted)
+            self.setTitleColor(textFC.m_TextColor ,for: .selected)
         }
-        self.titleLabel?.font = textFC.m_textFont
+        self.titleLabel?.font = textFC.m_TextFont
     }
     // 设置
     func funj_add(bgImageOrColor :[Any]? , isImage : Bool) -> UIButton {
@@ -500,7 +500,7 @@ extension WKWebView {
         
         self.init(frame : frame , configuration : config)
         self.isOpaque = false //不设置这个值 页面背景始终是白色 设置webview clearColor时使用
-        self.backgroundColor = COLOR_WHITE_DARK
+        self.backgroundColor = kColor_White_Dark
         self.navigationDelegate = delegate as? WKNavigationDelegate
         self.scrollView.delegate = delegate as? UIScrollViewDelegate
         self.scrollView.showsVerticalScrollIndicator = false
@@ -534,7 +534,7 @@ extension WKWebView {
 extension UIBarButtonItem {
     convenience init(i title :String? = nil ,image : String? ,setButton setButtonCallback : kclickCallBack? = nil ,callback :kclickCallBack?) {
         let imageArr = image != nil ? [image!] : nil
-        let backButton = UIButton(i: CGRect(x: 0, y: 0, width: 44, height: KNavigationBarHeight), title: title, textFC: JTextFC(f: FONT_SIZE14, c: kARGBHex(0x333333, 1.0)))
+        let backButton = UIButton(i: CGRect(x: 0, y: 0, width: 44, height: kNavigationBarHeight), title: title, textFC: JTextFC(f: kFont_Size14, c: kARGBHex(0x333333, 1.0)))
             .funj_add(bgImageOrColor:imageArr , isImage: true)
             .funj_addblock(block: callback)
         setButtonCallback?(backButton)
@@ -542,7 +542,7 @@ extension UIBarButtonItem {
     }
     convenience init(i title :String? = nil ,image : String? ,setButton setButtonCallback : kclickCallBack? = nil ,target :Any ,action : String) {
         let imageArr = image != nil ? [image!] : nil
-        let backButton = UIButton(i: CGRect(x: 0, y: 0, width: 44, height: KNavigationBarHeight), title: title, textFC: JTextFC(f: FONT_SIZE14, c: kARGBHex(0x333333, 1.0)))
+        let backButton = UIButton(i: CGRect(x: 0, y: 0, width: 44, height: kNavigationBarHeight), title: title, textFC: JTextFC(f: kFont_Size14, c: kARGBHex(0x333333, 1.0)))
             .funj_add(bgImageOrColor:imageArr , isImage: true)
             .funj_add(targe: target, action: action, tag: 0)
         setButtonCallback?(backButton)

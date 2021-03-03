@@ -27,15 +27,15 @@ class JMoreTipView : JBaseView {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             let moreTip = JMoreTipView(title: "上滑查看更多课程", superV: superView)
-            moreTip.funj_reloadType(type: .kshowTopPostion, tipPoint: CGPoint(x: KWidth / 2, y: KHeight - 50 - 70), offset: 0)
+            moreTip.funj_reloadType(type: .kshowTopPostion, tipPoint: CGPoint(x: kWidth / 2, y: kHeight - 50 - 70), offset: 0)
 //            moreTip.funj_addAutoHiddenViews()
         }
     }
     init(title : String , superV : UIView) {
-        let size = JAppUtility.funj_getTextW_Height(title, textFont: FONT_SIZE14, layoutwidth: CGFloat(MAXFLOAT), layoutheight: 60)
+        let size = JAppUtility.funj_getTextW_Height(title, textFont: kFont_Size14, layoutwidth: CGFloat(MAXFLOAT), layoutheight: 60)
         let frame = CGRect(x: 0, y: 0, width: size.width + 50, height: 60)
         super.init(frame: frame)
-        let titleLabel = UILabel(i: CGRect(x: 10, y: 10, width: size.width + 30, height: 40), title: title, textFC: JTextFC(f: FONT_SIZE14, c: COLOR_WHITE, a: .center))
+        let titleLabel = UILabel(i: CGRect(x: 10, y: 10, width: size.width + 30, height: 40), title: title, textFC: JTextFC(f: kFont_Size14, c: kColor_White, a: .center))
         self.addSubview(titleLabel)
         superV.addSubview(self)
     }

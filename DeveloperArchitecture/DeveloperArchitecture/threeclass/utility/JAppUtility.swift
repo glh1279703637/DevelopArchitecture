@@ -102,7 +102,7 @@ public class JAppUtility : JBaseDataModel {
         // Compress by quality
         if image == nil { return nil}
         var sizeM = sizeM
-        if sizeM == -1 { sizeM = 0.4 + kIS_IPAD_1 * 0.3}
+        if sizeM == -1 { sizeM = 0.4 + kis_IPad_1 * 0.3}
         let maxLength = 1024 * 1024 * sizeM
         
         var compression : CGFloat = 1
@@ -320,7 +320,7 @@ public class JAppUtility : JBaseDataModel {
     class func funj_getTheTimeCountdownWithCode(_ getCodeBt :UIButton , defaultBoardColor: UIColor) {
         getCodeBt.isUserInteractionEnabled  = false
         getCodeBt.isSelected = true
-        getCodeBt.layer.borderColor = COLOR_LINE_GRAY_DARK.cgColor
+        getCodeBt.layer.borderColor = kColor_Line_Gray_Dark.cgColor
         
         var timeout = 60 //倒计时时间
         let timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.global())
