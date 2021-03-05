@@ -44,7 +44,7 @@ class JPhotoPickerCell : JBaseCollectionViewCell {
         
         if JPhotosConfig.shared?.m_isMultiplePhotos ?? false == false {
             m_countLabel = UILabel(i: CGRect(x: 5, y: m_coverImageView!.height - 20, width: 15, height: 15), title: nil, textFC: JTextFC(f: kFont_Size10, c: kColor_White, a:.center))
-            _ = m_countLabel?.funj_addCornerLayer(JFilletValue(w: 0, r: 15 / 2, c: kColor_Clear))
+                .funj_addCornerLayer(JFilletValue(w: 0, r: 15 / 2, c: kColor_Clear))
             self.contentView.addSubview(m_countLabel!)
             m_countLabel?.backgroundColor = kColor_Red
         }

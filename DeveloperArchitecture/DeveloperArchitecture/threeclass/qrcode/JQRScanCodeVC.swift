@@ -21,7 +21,7 @@ class JQRScanCodeVC : JBaseViewController , AVCaptureMetadataOutputObjectsDelega
     private var m_timerScan : Timer?
     lazy private var m_scanResutRectImageView : UIImageView = {
         let imageView = UIImageView(i: CGRect(x: 0, y: 0, width: 20, height: 20), bg: kColor_Orange)
-        _ = imageView.funj_addCornerRadius(10)
+        .funj_addCornerRadius(10)
         self.view.addSubview(imageView)
         return imageView
     }()

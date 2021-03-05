@@ -135,7 +135,10 @@ extension UIResponder {//解决数字键盘无返回按钮的问题
     }
 }
 
-
+protocol UIViewLayerPrintable{
+    func funj_addCornerLayer(_ fillet : JFilletValue?) -> Self
+    func funj_addCornerRadius(_ radius : CGFloat) -> Self
+}
 extension UIView {
     var origin : CGPoint {
         get{ return self.frame.origin }
@@ -168,12 +171,12 @@ extension UIView {
         get{ return self.frame.origin.y + self.frame.size.height }
     }
 }
-extension UIView {
+extension UIView  : UIViewLayerPrintable{
     convenience init(i frame : CGRect ,bg bgColor : UIColor){
         self.init(frame: frame)
         self.backgroundColor = bgColor
     }
-    func funj_addCornerLayer(_ fillet : JFilletValue?) -> UIView{
+    func funj_addCornerLayer(_ fillet : JFilletValue?) -> Self{
         if fillet == nil || self.isKind(of: UIView.self) == false { return self }
         self.layer.borderWidth = fillet!.m_borderWidth
         self.layer.cornerRadius = fillet!.m_cornerRadius
@@ -182,8 +185,8 @@ extension UIView {
             self.layer.masksToBounds = true
         }
         return self
-    }//funj_setViewCornerRadius
-    func funj_addCornerRadius(_ radius : CGFloat) -> UIView {
+    }
+    func funj_addCornerRadius(_ radius : CGFloat) -> Self {
         return self.funj_addCornerLayer(JFilletValue(w: 0, r: radius, c: nil))
     }
     func  funj_addGradientLayer(_ isX : Bool ,colorArr :[CGColor] ,locations: [NSNumber]) -> CAGradientLayer{

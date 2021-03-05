@@ -67,7 +67,7 @@ class JBaseTableViewVC : JBaseViewController, JSearchBarDelegate, UITableViewDel
     }()
     var m_reloadTableViewCallback : kreloadToSolveDataCallback?
     
-     func funj_getTabeleView() -> UIScrollView? {
+    func funj_getTabeleView() -> UIScrollView? {
         if self is JBaseCollectionVC {
             let collectionView =  self.value(forKeyPath: "m_collectionView") as? UIScrollView
             return collectionView

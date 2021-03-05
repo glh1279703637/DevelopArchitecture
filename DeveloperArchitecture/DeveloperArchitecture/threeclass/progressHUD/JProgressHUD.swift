@@ -112,7 +112,7 @@ class JMProgressHUD : UIView {
     
     func funj_addblackView (){
         m_blackAlphaView = UIImageView(i: self.bounds, bg: kColor_Text_Black)
-        _ = m_blackAlphaView?.funj_addCornerLayer(JFilletValue(w: 0, r: 10, c: kColor_Clear))
+        .funj_addCornerLayer(JFilletValue(w: 0, r: 10, c: kColor_Clear))
         m_blackAlphaView?.alpha = 0.7
         self.addSubview(m_blackAlphaView!)
     }
