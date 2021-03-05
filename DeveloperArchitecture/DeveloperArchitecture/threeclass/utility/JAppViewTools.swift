@@ -73,16 +73,16 @@ typealias kcompleteCallback = (() -> ())
 private var kbuttonAttribute = "kbuttonAttribute"
 
 class ButtonAttribute : NSObject {
-    var m_addProhibitActionTime : TimeInterval = 1.0 // 设置连续事件点击间隔时间 ，防止重复点击
-    var m_addProhibitActionTimeIsEnable : Bool = true // 设置连续事件点击 防止重复点击,YES:enable,NO:noenable
-    var m_saveBgColor : [UIColor]?
-    var m_clickBackCallback : kclickCallBack?
-    var m_isCanAction : Bool = false
-    var m_isDefalutNeedToSelectChange : Bool = true //是否需要改变点击后状态
-    var m_upSelectTime : TimeInterval = 0.0 //上次选择时间
-    var m_upSelectTimestamp : TimeInterval? //上次选择时间
-    var m_saveNormalDarkImage : UIImage? //正常图片 深色模式
-    var m_saveDarkImage : UIImage?
+    public var m_addProhibitActionTime : TimeInterval = 1.0 // 设置连续事件点击间隔时间 ，防止重复点击
+    public var m_addProhibitActionTimeIsEnable : Bool = true // 设置连续事件点击 防止重复点击,YES:enable,NO:noenable
+    fileprivate var m_saveBgColor : [UIColor]?
+    internal var m_clickBackCallback : kclickCallBack?
+    fileprivate var m_isCanAction : Bool = false
+    internal var m_isDefalutNeedToSelectChange : Bool = true //是否需要改变点击后状态
+    fileprivate var m_upSelectTime : TimeInterval = 0.0 //上次选择时间
+    fileprivate var m_upSelectTimestamp : TimeInterval? //上次选择时间
+    internal var m_saveNormalDarkImage : UIImage? //正常图片 深色模式
+    internal var m_saveDarkImage : UIImage?
 }
 
 //class JButton : UIButton {
@@ -166,12 +166,12 @@ extension UIButton {
 }
 
 class JSearchBar : UIView, UITextFieldDelegate {
-    var m_searchTF : UITextField?
-    var m_searchIcon : String = "main_search_n"
-    var m_cancelButton : UIButton?
-    var m_cancelAlreadyShow : Bool = false
-    var m_searchDelegate : JSearchBarDelegate?
-    var m_filletValue : JFilletValue{
+    public var m_searchTF : UITextField?
+    public var m_searchIcon : String = "main_search_n"
+    private var m_cancelButton : UIButton?
+    private var m_cancelAlreadyShow : Bool = false
+    public var m_searchDelegate : JSearchBarDelegate?
+    internal var m_filletValue : JFilletValue{
         set{_ = self.m_searchTF?.funj_addCornerLayer(newValue)}
         get{ return JFilletValue(w: 0, r: 0, c: nil)}
     }

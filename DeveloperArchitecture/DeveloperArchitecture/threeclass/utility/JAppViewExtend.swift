@@ -24,26 +24,26 @@ struct kTextfinput_Type: OptionSet {
     static let kAllInputPunctuation_Tag = kTextfinput_Type(rawValue: 1 << 4)//标点字符，除了特殊无法存储字符
     static let kAllNoEmoticons_Tag      = kTextfinput_Type(rawValue: 1 << 5)//除表情符号所有字符
 }
-protocol JResponderDelegate {
+protocol UIResponderExtApi {
     //解决数字键盘无返回按钮的问题
     func funj_addNumberInputKeyAccesssoryTitleView()
     
     func funj_setTextFieldMaxLength(maxLength : Int , type : [kTextfinput_Type])
 }
-protocol JViewDelegate{
+protocol UIViewExtApi{
     func funj_addCornerLayer(_ fillet : JFilletValue?) -> Self
     func funj_addCornerRadius(_ radius : CGFloat) -> Self
 }
-protocol JLabelDelegate {
+protocol UILabelExtApi {
     func funj_updateAttributedText(_ title : String) -> NSMutableAttributedString?
 }
 
-protocol JTextFieldDelegate {
+protocol UITextFieldExtApi {
     func funj_add(_ delegate : UITextFieldDelegate , tag : Int) -> UITextField
     func funj_add(_ keyboardType : UIKeyboardType , returnKeyType : UIReturnKeyType )  -> UITextField
 }
 
-protocol JButtonDelegate {
+protocol UIButtonExtApi {
     // 设置
     func funj_add(bgImageOrColor :[Any]? , isImage : Bool) -> UIButton
     //修改button的样式 是否需要点击高亮 是否需要点击时selected变化
@@ -62,7 +62,7 @@ protocol JButtonDelegate {
     func funj_updateContentImage(layout : JButtonContentImageLayout ,a align1 : JAlignValue) -> UIButton
 }
 
-protocol JWKWebviewDelegate {
+protocol WKWebviewExtApi {
     func funj_addScriptMessageHandler(strongSelf : WKScriptMessageHandler , nameArr : [String])
     
     func funj_removeScriptMessageHandler( nameArr : [String])
@@ -71,7 +71,7 @@ protocol JWKWebviewDelegate {
 }
 /// /// ///  /// /// /// /// //////////////////    /////////  ////////////   /////////   ////////////
 
-extension UIResponder :JResponderDelegate{
+extension UIResponder : UIResponderExtApi{
     //解决数字键盘无返回按钮的问题
     func funj_addNumberInputKeyAccesssoryTitleView() {
         let inputAccessoryView = UIView(i: CGRect(x: 0, y: 0, width: kWidth, height: 50), bg: kARGBHex(0xD1D4D9, 1))
@@ -214,7 +214,7 @@ extension UIView {
         get{ return self.frame.origin.y + self.frame.size.height }
     }
 }
-extension UIView  : JViewDelegate{
+extension UIView  : UIViewExtApi{
     convenience init(i frame : CGRect ,bg bgColor : UIColor){
         self.init(frame: frame)
         self.backgroundColor = bgColor
@@ -243,7 +243,7 @@ extension UIView  : JViewDelegate{
         return gradientLayer
     }
 }
-extension UILabel : JLabelDelegate{
+extension UILabel : UILabelExtApi{
     convenience init(i frame : CGRect ,title : String? = nil,textFC : JTextFC? ){
         self.init(frame:frame)
         self.font = textFC?.m_TextFont ?? kFont_Size13
@@ -270,7 +270,7 @@ extension UILabel : JLabelDelegate{
     }
 }
 
-extension UITextField :JTextFieldDelegate{
+extension UITextField :UITextFieldExtApi{
     var m_TextFieldMaxLengthKey : Int? {
         get { return objc_getAssociatedObject(self, &ktextFieldMaxLengthKey) as? Int }
         set {objc_setAssociatedObject(self, &ktextFieldMaxLengthKey, newValue, .OBJC_ASSOCIATION_ASSIGN)}}
@@ -382,7 +382,7 @@ extension UIImageView {
     }
 }
 
-extension UIButton : JButtonDelegate{
+extension UIButton : UIButtonExtApi{
     convenience init(i frame : CGRect ,title : String? ,textFC : JTextFC){
         self.init(frame:frame)
         if title != nil {
@@ -529,7 +529,7 @@ extension UIScrollView {
     }
 }
 
-extension WKWebView : JWKWebviewDelegate{
+extension WKWebView : WKWebviewExtApi{
     convenience init(i frame : CGRect ,delegate : AnyObject? ,url :String?,callback configCallback : ((_ config : WKWebViewConfiguration)->())? = nil ){
         let config = WKWebViewConfiguration()
         

@@ -15,7 +15,7 @@ typealias kfailureRequest = ((_ viewController : UIViewController?,_ error : Str
 
 var httpRequestHelpDic : [String : JHttpReqHelp]  = [:]
 
-protocol JHttpReqHelpDelegate {
+protocol JHttpReqHelpExtApi {
     
     static func funj_requestMessage(viewController : UIViewController?, _ subUrl : String ,parameter : [String : Any]?) -> JHttpReqHelp?
     
@@ -28,16 +28,16 @@ protocol JHttpReqHelpDelegate {
     func funj_add(model : AnyClass , callback : @escaping ksuccessModelRequest) -> JHttpReqHelp
 }
 
-class JHttpReqHelp : Operation , JHttpReqHelpDelegate{
-    var m_isHasViewController : Bool = false
-    var m_viewController : UIViewController?
-    var m_successCallback : ksuccessRequest?
-    var m_successModelCallback : ksuccessModelRequest?
-    var m_failureCallback : kfailureRequest?
-    var m_dataTask : URLSessionTask?
-    var m_httpKey : String?
+class JHttpReqHelp : Operation , JHttpReqHelpExtApi{
+    internal var m_isHasViewController : Bool = false
+    internal var m_viewController : UIViewController?
+    internal var m_successCallback : ksuccessRequest?
+    internal var m_successModelCallback : ksuccessModelRequest?
+    internal var m_failureCallback : kfailureRequest?
+    private var m_dataTask : URLSessionTask?
+    private var m_httpKey : String?
     
-    var m_dataModel : AnyClass?
+    private var m_dataModel : AnyClass?
     
     private var m_addVerify : Bool = false
     private var m_isMustLogin : Bool = false

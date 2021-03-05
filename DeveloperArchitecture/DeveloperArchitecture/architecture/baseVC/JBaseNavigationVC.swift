@@ -16,7 +16,7 @@ enum kcurrentNavColor {
 }
 
 class JBaseNavigationVC : UINavigationController, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
-    var m_currentNavColor : kcurrentNavColor = .kCURRENTISNONE_Tag {
+    public var m_currentNavColor : kcurrentNavColor = .kCURRENTISNONE_Tag {
         willSet {
             let bar = self.navigationBar
             switch newValue {
@@ -39,7 +39,7 @@ class JBaseNavigationVC : UINavigationController, UINavigationControllerDelegate
         }
     }
     
-    var m_barBottomLine : UIImageView?
+    public var m_barBottomLine : UIImageView?
     
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)

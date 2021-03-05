@@ -9,9 +9,16 @@
 import Foundation
 import UIKit
 
-class JProgressHUD: UIView {
-    var progressBgImageView : UIImageView?
-    var progressImageView : UIImageView?
+protocol JProgressHUDExtApi {
+    func funj_showProgressView(_ title : String?)
+    
+    func funj_stopProgressView()
+
+}
+
+class JProgressHUD: UIView ,JProgressHUDExtApi{
+    private var progressBgImageView : UIImageView?
+    private var progressImageView : UIImageView?
     
     lazy var m_titleLabel : UILabel = {
         let titleLabel = UILabel(i: CGRect(x: 0, y: 0, width: 0, height: 30), title: nil, textFC: JTextFC(f: kFont_Size17, c: kColor_Text_Black, a: .center))

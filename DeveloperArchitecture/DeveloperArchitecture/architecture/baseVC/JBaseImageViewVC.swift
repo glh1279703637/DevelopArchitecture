@@ -11,11 +11,17 @@ import UIKit
 import Photos
 import CoreServices
 
-class JBaseImageViewVC : JBaseViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate ,JMainPhotoPickerVCDelegate {
+protocol JBaseImageViewVCExtApi {
+    func funj_editPortraitImageView(_ sender : UIButton)
+    
+    func funj_recallSystemCameraOrPhotoLabrary(type : UIImagePickerController.SourceType)
+}
+
+class JBaseImageViewVC : JBaseViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate ,JMainPhotoPickerVCDelegate, JBaseImageViewVCExtApi {
     
 //    var m_cropFrame : CGRect = CGRect(x: 0, y: (kHeight - kWidth)/2, width: kWidth, height: kWidth)
-    var m_currentIsLoadMultPhoto : Bool = false //当前是否支持上传多张图片
-    var m_currentCanSelectMaxImageCount :Int = 10  //最多支持上传多少张图片
+    public var m_currentIsLoadMultPhoto : Bool = false //当前是否支持上传多张图片
+    public var m_currentCanSelectMaxImageCount :Int = 10  //最多支持上传多少张图片
     
     func funj_editPortraitImageView(_ sender : UIButton) {
         self.view.endEditing(true)

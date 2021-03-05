@@ -21,10 +21,10 @@ class JBaseTableViewVC : JBaseViewController, JSearchBarDelegate, UITableViewDel
         topView.addSubview(m_topTableViewLine!)
         return topView
     }()
-    var m_topTableViewLine : UIView?
-    var m_blackImageView : UIImageView?
-    var m_isCanDeleteTableItem : Bool  = false
-    var m_isReloadNewDataing : Bool = false
+    public var m_topTableViewLine : UIView?
+    public var m_blackImageView : UIImageView?
+    public var m_isCanDeleteTableItem : Bool  = false
+    public var m_isReloadNewDataing : Bool = false
     
     lazy var m_dataArr : [Any] = { return [] }()
     private lazy var m_saveQuestionHeightDic : [String : CGFloat] = { return [:] } ()
