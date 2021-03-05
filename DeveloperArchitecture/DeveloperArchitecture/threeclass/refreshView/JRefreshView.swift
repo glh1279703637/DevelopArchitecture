@@ -21,8 +21,21 @@ enum JRefreshState{
     case kRefreshStateDragEnd        //松手,开始加载。
     case kRefreshStateEnd        //回到原位，整个环节结束。
 }
+protocol JScrollViewDelegate {
+    func funj_addHeader(callback : @escaping JRefreshHeadle )
+    
+    func funj_addFooter(callback : @escaping JRefreshHeadle )
+    
+    func funj_startRefresh(refreshView : JRefreshView)
+    
+    func funj_stopRefresh()
+    
+    func funj_removeHeaderView()
+    
+    func funj_removeFooterView()
+}
 
-extension UIScrollView {
+extension UIScrollView : JScrollViewDelegate{
     func funj_addHeader(callback : @escaping JRefreshHeadle ) {
         if m_scrollViewModel.m_headView == nil {
             m_scrollViewModel.m_headView = JRefreshView(frame: CGRect(x: 0, y: -krefreshHeight, width: self.width, height: krefreshHeight))

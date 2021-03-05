@@ -15,11 +15,12 @@ enum TipPointPostion {
     case kshowBottomPostion
 }
 
+
 class JMoreTipView : JBaseView {
     private var m_tipType : TipPointPostion?
     private var m_tipPoint : CGPoint?
     
-    class func funj_addMainBottomSwipeView(superView : UIView) {
+    class func funj_addMainBottomSwipeView(superView : UIView) { //此为例子
 //        if (UserDefaults.standard.object(forKey: "funj_addMainBottomSwipeView") != nil) { return }
         
         UserDefaults.standard.set("", forKey: "funj_addMainBottomSwipeView")
@@ -31,6 +32,8 @@ class JMoreTipView : JBaseView {
 //            moreTip.funj_addAutoHiddenViews()
         }
     }
+    
+    
     init(title : String , superV : UIView) {
         let size = JAppUtility.funj_getTextW_Height(title, textFont: kFont_Size14, layoutwidth: CGFloat(MAXFLOAT), layoutheight: 60)
         let frame = CGRect(x: 0, y: 0, width: size.width + 50, height: 60)

@@ -40,8 +40,24 @@ enum kSCAType {
     }
 }
 
+protocol JCryptHelpDelegate {
+    //data数据转换为base64格式字符串 加密
+    static func funj_encryptBase64(_ content : String) -> String?
+    
+    //base64格式字符串转换为data 解密
+    static func funj_dencryptBase64(_ content : String) -> String?
+    
+    //md5 加密
+    static func funj_encryptMD5(_ content : String?) -> String?
+    
+    // MD5 SHA1 SHA256 SHA512 这4种本质都是摘要函数，不通在于长度  MD5 是 128 位，SHA1  是 160 位 ，SHA256  是 256 位
+    static func funj_shaCrypt(string: String?, cryptType: kSHAType, key: String?, lower: Bool ,base64 : Bool) -> String?
+    
+    static func funj_scaCrypt(string: String?, cryptType: kSCAType, key: String?, encode: Bool) -> String?
+}
 
-class JCryptHelp : JBaseDataModel {
+
+class JCryptHelp : JBaseDataModel , JCryptHelpDelegate{
     //data数据转换为base64格式字符串 加密
     class func funj_encryptBase64(_ content : String) -> String? {
         let encryData = content.data(using: .utf8)?.base64EncodedData()
@@ -71,7 +87,7 @@ class JCryptHelp : JBaseDataModel {
 }
 extension JCryptHelp{
     // MD5 SHA1 SHA256 SHA512 这4种本质都是摘要函数，不通在于长度  MD5 是 128 位，SHA1  是 160 位 ，SHA256  是 256 位
-    public static func funj_shaCrypt(string: String?, cryptType: kSHAType, key: String?, lower: Bool ,base64 : Bool) -> String? {
+    static func funj_shaCrypt(string: String?, cryptType: kSHAType, key: String?, lower: Bool ,base64 : Bool) -> String? {
         guard let cStr = string?.cString(using: String.Encoding.utf8) else {
             return nil
         }
@@ -109,7 +125,7 @@ extension JCryptHelp{
         free(buffer)
         return hash as String
     }
-    public static func funj_scaCrypt(string: String?, cryptType: kSCAType, key: String?, encode: Bool) -> String? {
+    static func funj_scaCrypt(string: String?, cryptType: kSCAType, key: String?, encode: Bool) -> String? {
 
         if string == nil {
             return nil

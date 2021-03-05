@@ -15,13 +15,20 @@ typealias kfailureRequest = ((_ viewController : UIViewController?,_ error : Str
 
 var httpRequestHelpDic : [String : JHttpReqHelp]  = [:]
 
-class JHttpReqHelp : Operation {
-//    open class var shared: JHttpReqHelp {
-//        get {
-//            if httpRequestHelp == nil {httpRequestHelp = JHttpReqHelp()}
-//            return httpRequestHelp!
-//        }
-//    }
+protocol JHttpReqHelpDelegate {
+    
+    static func funj_requestMessage(viewController : UIViewController?, _ subUrl : String ,parameter : [String : Any]?) -> JHttpReqHelp?
+    
+    func funj_requestMessage(_ urlStr : String ,parameter : [String : Any]?) -> JHttpReqHelp?
+    
+    func funj_add(success callback : @escaping ksuccessRequest) -> JHttpReqHelp
+    
+    func funj_add(fail callback: @escaping kfailureRequest) -> JHttpReqHelp
+    
+    func funj_add(model : AnyClass , callback : @escaping ksuccessModelRequest) -> JHttpReqHelp
+}
+
+class JHttpReqHelp : Operation , JHttpReqHelpDelegate{
     var m_isHasViewController : Bool = false
     var m_viewController : UIViewController?
     var m_successCallback : ksuccessRequest?
@@ -36,7 +43,7 @@ class JHttpReqHelp : Operation {
     private var m_isMustLogin : Bool = false
     private var m_isSuccessShow : Bool = false
     
-    class func funj_requestMessage(viewController : UIViewController?, _ subUrl : String ,parameter : [String : Any]?) -> JHttpReqHelp? {
+    static func funj_requestMessage(viewController : UIViewController?, _ subUrl : String ,parameter : [String : Any]?) -> JHttpReqHelp? {
         let urlStr = APP_URL_ROOT + subUrl
         let httpRequest = JHttpReqHelp.funj_getHttpHelp(url: urlStr, paramter: parameter)
         httpRequest?.m_viewController = viewController

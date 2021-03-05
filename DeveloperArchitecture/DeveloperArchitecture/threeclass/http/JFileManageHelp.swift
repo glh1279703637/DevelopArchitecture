@@ -7,7 +7,13 @@
 //
 
 import Foundation
-class JFileManageHelp : NSObject {
+protocol JFileManageHelpDelegate {
+    static func funj_saveLocalData(_ fileName : String , content : Any) -> Bool
+    
+    static func funj_getLocalData(_ fileName : String) -> Any?
+}
+
+class JFileManageHelp : NSObject , JFileManageHelpDelegate{
     class func funj_saveLocalData(_ fileName : String , content : Any) -> Bool {
         let path = JAppUtility.funj_getTempPath("savefile", fileName: nil)
         if JAppUtility.funj_isFileExit(path) == false {

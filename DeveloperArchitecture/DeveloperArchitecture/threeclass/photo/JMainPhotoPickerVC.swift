@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import PhotosUI
 protocol JMainPhotoPickerVCDelegate : NSObjectProtocol{
-    func funj_selectPhotosFinishToCallback(_ imageOrVideoArr : [Any] , isVideo : Bool)
+     func funj_selectPhotosFinishToCallback(_ imageOrVideoArr : [Any] , isVideo : Bool)
 }
 
 class JMainPhotoPickerVC : JBaseTableViewVC, PHPhotoLibraryChangeObserver {

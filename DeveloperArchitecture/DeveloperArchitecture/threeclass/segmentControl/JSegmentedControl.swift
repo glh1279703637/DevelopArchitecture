@@ -16,6 +16,12 @@ enum SegmentType : Int {
 }
 //typealias kalertBlockCallback = ((_ index :Int) -> ())
 
+protocol JSegmentedControlDelegate {
+    func funj_addStyleBgView(_ bgImageArray : [Any] ,textColor : [UIColor] , type : SegmentType)
+    
+    func funj_setSegmentSelectedIndex(_ index : Int)
+}
+
 class JSegmentedControl : JBaseView {
     var m_BgImageView : UIImageView?
     private var m_titleArray :[String]?

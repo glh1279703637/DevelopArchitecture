@@ -44,8 +44,8 @@ class JBaseNavigationVC : UINavigationController, UINavigationControllerDelegate
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         m_currentNavColor =  .kCURRENTISWHITENAV_Tag
-        if (rootViewController is JBaseViewController) && (((rootViewController as? JBaseViewController)?.m_pushOrPresentAnimateClass) != nil) {
-            self.transitioningDelegate = rootViewController as? UIViewControllerTransitioningDelegate
+        if let roomVC = rootViewController as? JBaseViewController , roomVC.m_pushOrPresentAnimateClass != nil {
+            self.transitioningDelegate = roomVC as? UIViewControllerTransitioningDelegate
         }
     }
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -93,8 +93,8 @@ extension JBaseNavigationVC {
         super.pushViewController(viewController, animated: animated)
     }
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        if (((viewController as? JBaseViewController)?.m_currentPushIsNeedinteractivePopGestureRecognizer) != nil) {
-            if viewController == navigationController.viewControllers.first {
+        if let vc = viewController as? JBaseViewController , vc.m_currentPushIsNeedinteractivePopGestureRecognizer == true{
+            if vc == navigationController.viewControllers.first {
                 navigationController.interactivePopGestureRecognizer?.isEnabled = false
             } else {
                 navigationController.interactivePopGestureRecognizer?.isEnabled = true
@@ -102,11 +102,9 @@ extension JBaseNavigationVC {
         }
     }
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let toVC = toVC as? JBaseViewController {
-            if toVC.m_pushOrPresentAnimateClass != nil {
-                let obj = toVC.m_pushOrPresentAnimateClass?.init()
-                return obj
-            }
+        if let toVC = toVC as? JBaseViewController , toVC.m_pushOrPresentAnimateClass != nil {
+            let obj = toVC.m_pushOrPresentAnimateClass?.init()
+            return obj
         }
         return nil
     }

@@ -25,9 +25,10 @@
     NSMutableString *keyStr=[[NSMutableString alloc]init];
     [mainKey enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [sql appendFormat:@"%@ %@,",key,obj];
-        [keyStr appendFormat:@"%@",key ];
+        [keyStr appendFormat:@"%@,",key ];
     }];
-    
+    if(keyStr.length > 0){[keyStr deleteCharactersInRange:NSMakeRange(keyStr.length-1, 1)];}
+
     [otherKey enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [sql appendFormat:@" %@ %@,",key,obj];
     }];

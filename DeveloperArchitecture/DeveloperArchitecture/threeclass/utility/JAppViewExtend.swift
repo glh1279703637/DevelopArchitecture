@@ -24,8 +24,55 @@ struct kTextfinput_Type: OptionSet {
     static let kAllInputPunctuation_Tag = kTextfinput_Type(rawValue: 1 << 4)//标点字符，除了特殊无法存储字符
     static let kAllNoEmoticons_Tag      = kTextfinput_Type(rawValue: 1 << 5)//除表情符号所有字符
 }
+protocol JResponderDelegate {
+    //解决数字键盘无返回按钮的问题
+    func funj_addNumberInputKeyAccesssoryTitleView()
+    
+    func funj_setTextFieldMaxLength(maxLength : Int , type : [kTextfinput_Type])
+}
+protocol JViewDelegate{
+    func funj_addCornerLayer(_ fillet : JFilletValue?) -> Self
+    func funj_addCornerRadius(_ radius : CGFloat) -> Self
+}
+protocol JLabelDelegate {
+    func funj_updateAttributedText(_ title : String) -> NSMutableAttributedString?
+}
 
-extension UIResponder {//解决数字键盘无返回按钮的问题
+protocol JTextFieldDelegate {
+    func funj_add(_ delegate : UITextFieldDelegate , tag : Int) -> UITextField
+    func funj_add(_ keyboardType : UIKeyboardType , returnKeyType : UIReturnKeyType )  -> UITextField
+}
+
+protocol JButtonDelegate {
+    // 设置
+    func funj_add(bgImageOrColor :[Any]? , isImage : Bool) -> UIButton
+    //修改button的样式 是否需要点击高亮 是否需要点击时selected变化
+    func funj_add(autoSelect isDefalutNeedToSelectChange : Bool ) -> UIButton
+    
+    func funj_add(t prohibitTime : TimeInterval , e enable :Bool) -> UIButton
+    
+    func funj_addblock(block : kclickCallBack?) -> UIButton
+    
+    func funj_add(normalDarkImage : String) -> UIButton
+    
+    func funj_add(targe : Any, action :String , tag : Int) -> UIButton
+    
+    func funj_updateContentImage(layout : JButtonContentImageLayout , spacing : CGFloat) -> UIButton
+    
+    func funj_updateContentImage(layout : JButtonContentImageLayout ,a align1 : JAlignValue) -> UIButton
+}
+
+protocol JWKWebviewDelegate {
+    func funj_addScriptMessageHandler(strongSelf : WKScriptMessageHandler , nameArr : [String])
+    
+    func funj_removeScriptMessageHandler( nameArr : [String])
+    
+    func funj_deallocWebView()
+}
+/// /// ///  /// /// /// /// //////////////////    /////////  ////////////   /////////   ////////////
+
+extension UIResponder :JResponderDelegate{
+    //解决数字键盘无返回按钮的问题
     func funj_addNumberInputKeyAccesssoryTitleView() {
         let inputAccessoryView = UIView(i: CGRect(x: 0, y: 0, width: kWidth, height: 50), bg: kARGBHex(0xD1D4D9, 1))
         let sumBt = UIButton(i:CGRect(x: kWidth - 120 , y: 0, width: 120 , height: 50), title: kLocalStr("Confirm"), textFC: JTextFC(f: kFont_Size17, c: kColor_Orange))
@@ -135,10 +182,6 @@ extension UIResponder {//解决数字键盘无返回按钮的问题
     }
 }
 
-protocol UIViewLayerPrintable{
-    func funj_addCornerLayer(_ fillet : JFilletValue?) -> Self
-    func funj_addCornerRadius(_ radius : CGFloat) -> Self
-}
 extension UIView {
     var origin : CGPoint {
         get{ return self.frame.origin }
@@ -171,7 +214,7 @@ extension UIView {
         get{ return self.frame.origin.y + self.frame.size.height }
     }
 }
-extension UIView  : UIViewLayerPrintable{
+extension UIView  : JViewDelegate{
     convenience init(i frame : CGRect ,bg bgColor : UIColor){
         self.init(frame: frame)
         self.backgroundColor = bgColor
@@ -200,7 +243,7 @@ extension UIView  : UIViewLayerPrintable{
         return gradientLayer
     }
 }
-extension UILabel {
+extension UILabel : JLabelDelegate{
     convenience init(i frame : CGRect ,title : String? = nil,textFC : JTextFC? ){
         self.init(frame:frame)
         self.font = textFC?.m_TextFont ?? kFont_Size13
@@ -227,7 +270,7 @@ extension UILabel {
     }
 }
 
-extension UITextField {
+extension UITextField :JTextFieldDelegate{
     var m_TextFieldMaxLengthKey : Int? {
         get { return objc_getAssociatedObject(self, &ktextFieldMaxLengthKey) as? Int }
         set {objc_setAssociatedObject(self, &ktextFieldMaxLengthKey, newValue, .OBJC_ASSOCIATION_ASSIGN)}}
@@ -339,7 +382,7 @@ extension UIImageView {
     }
 }
 
-extension UIButton {
+extension UIButton : JButtonDelegate{
     convenience init(i frame : CGRect ,title : String? ,textFC : JTextFC){
         self.init(frame:frame)
         if title != nil {
@@ -486,7 +529,7 @@ extension UIScrollView {
     }
 }
 
-extension WKWebView {
+extension WKWebView : JWKWebviewDelegate{
     convenience init(i frame : CGRect ,delegate : AnyObject? ,url :String?,callback configCallback : ((_ config : WKWebViewConfiguration)->())? = nil ){
         let config = WKWebViewConfiguration()
         

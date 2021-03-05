@@ -11,6 +11,7 @@ import UIKit
 class JMainViewController: JBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        var m_seaidosd : Int = 0
         
         let view : UIView = UIView(i: CGRectZero, bg: kColor_Red).funj_addCornerLayer(JFilletValue(w: 3, r: 3, c: kColor_Red))
         
@@ -18,13 +19,11 @@ class JMainViewController: JBaseViewController {
             
         }.funj_saveBgColor([kColor_Blue])
         
-        
-        repeat {
-            
-        } while  3 > 4
-        
-        
 
+
+        
+    }
+    func funj_reloadDataConfitesd (){
         
     }
 

@@ -30,10 +30,10 @@ public class JBaseViewController : UIViewController ,UIPopoverPresentationContro
     }()
     
     //当前是否通过 presentViewController 显示的VC  default is no
-    var m_currentShowVCModel : SHOWMODELTYPE?
+    var m_currentShowVCModel : SHOWMODELTYPE = .kCURRENTISNONE
     
     //当前是否需要通过手势返回上层的界面 default is yes
-    var m_currentPushIsNeedinteractivePopGestureRecognizer : Bool?
+    var m_currentPushIsNeedinteractivePopGestureRecognizer : Bool = true
     
     // 界面跳转push 或者present 时动画跳转
     var m_pushOrPresentAnimateClass : JBaseTransition.Type?
@@ -216,9 +216,8 @@ extension JBaseViewController {
         self.modalPresentationCapturesStatusBarAppearance = false
         
         if self.m_currentShowVCModel != .kCURRENTISSHOWDETAIL {
-            let nav = self.navigationController as? JBaseNavigationVC
             var icon = "backBt"
-            if nav != nil && nav!.m_currentNavColor == .kCURRENTISWHITENAV_Tag {
+            if let nav = self.navigationController as? JBaseNavigationVC , nav.m_currentNavColor == .kCURRENTISWHITENAV_Tag {
                 icon = "backBt2"
             }
 

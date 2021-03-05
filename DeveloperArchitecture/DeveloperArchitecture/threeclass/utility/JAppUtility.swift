@@ -13,7 +13,103 @@ import WebKit
 // MARK: - UIResponder
 // TODO: UIResponder
 // FIXME: UIResponder
-public class JAppUtility : JBaseDataModel {
+protocol JAppUtilityDelegate {
+    //获取temp中basepath 文件夹中的file文件路径
+    static func funj_getTempPath(_ basepath : String? , fileName : String?) -> String
+    
+    //将url转化成标准url
+    static func funj_getCompleteWebsiteURL(_ urlStr : String?) -> String?
+    
+    //判断文件是否存在
+    static func funj_isFileExit(_ path : String?) -> Bool
+    //创建文件目录
+    static func funj_createDirector(_ path : String?)  -> Bool
+    
+    //获取文本内容的高度，辅助前两个方法，用来返回控件高度 宽度；
+    static func funj_getTextW_Height(_ content : String? ,textFont : UIFont? , layoutwidth : CGFloat, layoutheight : CGFloat) -> CGSize
+    
+    //获得字符串的长度
+    static func funj_getTextWidthWithView(_ view : UIView) -> CGFloat
+    
+    // 通过控件返回控件高度；
+    static func funj_getAttriTextHeightWithView(_ view : UIView , maxHeight : CGFloat) -> CGFloat
+    
+    //图片 压缩算法 上传时候处理
+    static func funj_compressImage(_ image : UIImage? , sizeM : CGFloat) -> Data?
+    //通过颜色转图片
+    static func funj_imageWithColor(_ color : UIColor ,size : CGSize) -> UIImage?
+    
+    //判断字符串是否为整数类型
+    static func funj_isPureInt(_ string : String?) -> Bool
+    
+    //通过手机号获取 145***124等类型数据
+    static func funj_getHiddenMobile(_ mobile : String?) -> String?
+    
+    //判断手机号码，电话号码函数
+    static func funj_isMobileNumber(_ mobileNum : String? ) -> Bool
+    
+    //判断是字符串是否只含有数字、字母
+    static func funj_isCheckNameIsRight(_ name : String?) ->Bool
+    
+    //邮箱地址的正则表达式
+    static func funj_isValidateEmail(_ email : String?) ->Bool
+    
+    // 验证数据合法性 allName email name mobile code password surePassword answer isAgree
+    static func funj_isCheckMobile_Password_CodeIsRight(_ viewVC : UIViewController,data : Dictionary<String,String>) -> Bool
+    
+    //对象转化成字符串  nssarray->string or....
+    static func funj_stringFromObject(_ dict : Dictionary<String,Any>? ) -> String?
+    
+    //字符串转化成对象  string->nsarray or....
+    static func funj_objectFromString(_ string : String?) -> AnyObject?
+    
+    //获取当前时间
+    static func funj_getDateTime(_ formmat : String?) -> String
+    
+    //获取通过类名获取对象
+    static func funj_getObjectWithClass(_ className : AnyClass?) ->AnyObject?
+    
+    //获取验证码 的时间处理
+    static func funj_getTheTimeCountdownWithCode(_ getCodeBt :UIButton , defaultBoardColor: UIColor)
+    
+    //是否含有表情
+    static func funj_stringContainsEmoji(_ string : String?) -> Bool
+    
+    //汉字转化成拼音
+    static func funj_pinyinFromChineseString(_ string : String?) -> String?
+    
+    //上下震动效果 或者左右 width 左右偏移，height 上下偏移
+    static func funj_shakeAnimationForView(_ view : UIView , offset : CGSize )
+    
+    //color效果 放大缩小
+    static func funj_changeColorAnimationForView(_ view : UIView )
+    
+    //expand效果 放大缩小
+    static func funj_expandAnimationForView(_ view : UIView ,e : Double)
+    
+    //视图进入动画  type:kCATransitionPush  subtype:kCATransitionFromLeft
+    static func funj_transitionWithType(_ type : CATransitionType ,subType : CATransitionSubtype? ,view : UIView )
+    
+    // 去掉HTML标签
+    static func funj_filterHTML(_ html : String? ) -> String?
+    
+    //清除网页cookies
+    static func funj_clearWebViewCookies()
+    
+    //获取字串长度 专在shouldChangeCharactersInRange 使用 textfield texview
+    static func funj_getTextFieldLength(TFText : String , range : NSRange , string :String ,maxLength : Int) -> String?
+    
+    static func funj_checkAppStoreVersion(_ appleId : String?)
+    
+    /*本地通知 显示结果
+     *-- title
+     *-- subtitle
+     *-- content -- contentRightImage
+     */
+    static func funj_postLocalNotifation(title:String,subTitle:String,body:String,image:String?)
+}
+
+public class JAppUtility : JBaseDataModel , JAppUtilityDelegate{
     //获取temp中basepath 文件夹中的file文件路径
     class func funj_getTempPath(_ basepath : String? , fileName : String?) -> String{
         var temp = NSTemporaryDirectory()
@@ -470,7 +566,7 @@ public class JAppUtility : JBaseDataModel {
      *-- subtitle
      *-- content -- contentRightImage
      */
-    func funj_postLocalNotifation(title:String,subTitle:String,body:String,image:String?){
+    class func funj_postLocalNotifation(title:String,subTitle:String,body:String,image:String?){
         let content = UNMutableNotificationContent()
         content.title = title
         content.subtitle = subTitle
