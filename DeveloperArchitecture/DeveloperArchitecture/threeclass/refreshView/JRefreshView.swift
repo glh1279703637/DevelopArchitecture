@@ -21,7 +21,7 @@ enum JRefreshState{
     case kRefreshStateDragEnd        //松手,开始加载。
     case kRefreshStateEnd        //回到原位，整个环节结束。
 }
-protocol JScrollViewDelegate {
+protocol UIScrollViewExtApi {
     func funj_addHeader(callback : @escaping JRefreshHeadle )
     
     func funj_addFooter(callback : @escaping JRefreshHeadle )
@@ -35,7 +35,7 @@ protocol JScrollViewDelegate {
     func funj_removeFooterView()
 }
 
-extension UIScrollView : JScrollViewDelegate{
+extension UIScrollView : UIScrollViewExtApi{
     func funj_addHeader(callback : @escaping JRefreshHeadle ) {
         if m_scrollViewModel.m_headView == nil {
             m_scrollViewModel.m_headView = JRefreshView(frame: CGRect(x: 0, y: -krefreshHeight, width: self.width, height: krefreshHeight))
@@ -181,14 +181,14 @@ class JRefreshView: JBaseView {
         self.addSubview(arrowImageView)
         return arrowImageView
     }()
-    var m_arrowLabel : UILabel?
-    var m_refreshHeadle : JRefreshHeadle?
-    var m_isHead : Bool = false {
+    private var m_arrowLabel : UILabel?
+    internal var m_refreshHeadle : JRefreshHeadle?
+    fileprivate var m_isHead : Bool = false {
         willSet {if newValue == true {
             m_arrowLabel = UILabel(i: CGRect(x: m_arrowImageView.right + 10, y: m_arrowImageView.top, width: 0, height: m_arrowImageView.height), textFC: JTextFC(f: kFont_Size12, c: kColor_Text_GRAY_Dark))
                 self.addSubview(m_arrowLabel!)
         }}}
-    var m_state : JRefreshState =  .kRefreshStateNone {
+    internal var m_state : JRefreshState =  .kRefreshStateNone {
         willSet {
             if newValue == .kRefreshStateBeganDrag {
                 m_arrowLabel?.text = m_isHead == true ? kLocalStr("Pull down to refresh") : kLocalStr("Pull up to load more")

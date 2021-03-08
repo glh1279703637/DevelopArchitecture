@@ -11,8 +11,8 @@ import UIKit
 import AVFoundation
 
 class JPhotoPickerVC : JBaseCollectionVC {
-    var m_dataModel : JPhotosDataModel?
-    var m_isOrigalImage: Bool = false
+    internal var m_dataModel : JPhotosDataModel?
+    private var m_isOrigalImage: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

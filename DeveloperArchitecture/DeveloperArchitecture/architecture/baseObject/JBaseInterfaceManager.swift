@@ -9,7 +9,13 @@
 import Foundation
 import UIKit
 
-class JBaseInterfaceManager: NSObject {
+protocol JBaseInterfaceManagerExtApi {
+    static func funj_VerifyIsSuccessful(_ dict : [String : Any]? , isSuccessShow : Bool ,viewcontroller : UIViewController?) -> Bool
+    
+    static func funj_didLogoutAccount()
+}
+
+class JBaseInterfaceManager: NSObject ,JBaseInterfaceManagerExtApi{
     class func funj_VerifyIsSuccessful(_ dict : [String : Any]? , isSuccessShow : Bool ,viewcontroller : UIViewController?) -> Bool {
         let msg = dict?["msg"] as? String ?? ""
         let result = dict?["result"] as? Int ?? -1

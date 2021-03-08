@@ -13,16 +13,20 @@ protocol JMainPhotoPickerVCDelegate : NSObjectProtocol{
      func funj_selectPhotosFinishToCallback(_ imageOrVideoArr : [Any] , isVideo : Bool)
 }
 
+protocol JMainPhotoPickerVCExtApi {
+    static func funj_getPopoverPhotoPickerVC(_ delegate :UIViewController, callback : ksetPopverBaseVC?)
+}
+
 class JMainPhotoPickerVC : JBaseTableViewVC, PHPhotoLibraryChangeObserver {
     
-    var m_delegate : JMainPhotoPickerVCDelegate?
+    public var m_delegate : JMainPhotoPickerVCDelegate?
     
     lazy var m_tipLabel : UILabel = {
         let tipLabel = UILabel(i: CGRect(x: 0, y: 0, width: 200, height: 30), title: "建议请优先选择所有照片", textFC: JTextFC(f: kFont_Size14, c: kColor_Orange, a: .center))
         self.view.addSubview(tipLabel)
         return tipLabel
     }()
-    var m_timer : Timer?
+    private var m_timer : Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()

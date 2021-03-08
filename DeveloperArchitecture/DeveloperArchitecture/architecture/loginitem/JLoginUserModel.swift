@@ -10,7 +10,19 @@ import Foundation
 import UIKit
 import CoreData
 
-public class JLoginUserModel : JBaseDataModel {
+protocol JLoginUserModelExtApi {
+    static func funj_insertLoginUserMessage(_ data : Dictionary<String,Any>)
+    
+    static func funj_getLastLoginUserMessage() -> UserLoginDB?
+    
+    static func funj_getLastLoginTokenMessage() -> String
+    
+    static func funj_getIsLogining() -> Bool
+    
+    static func funj_deleteUserMessage(_ userId : String)
+}
+
+public class JLoginUserModel : JBaseDataModel,JLoginUserModelExtApi {
     static var m_userModel : UserLoginDB? = nil
 
     class func funj_insertLoginUserMessage(_ data : Dictionary<String,Any>) {

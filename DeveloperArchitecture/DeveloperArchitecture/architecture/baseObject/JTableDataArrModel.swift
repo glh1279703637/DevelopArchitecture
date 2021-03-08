@@ -8,7 +8,15 @@
 
 import Foundation
 
-class JTableDataArrModel : JBaseDataModel {
+protocol JTableDataArrModelExtApi {
+    func funj_setTypeForSection(_ section : Int , isOpen : Bool)
+    
+    func funj_getDataWithSecton(_ section : Int) ->[Any]
+    
+    func funj_getTypeWithSection(_ section : Int) -> Bool
+}
+
+class JTableDataArrModel : JBaseDataModel ,JTableDataArrModelExtApi{
     lazy var m_titleArr: [Any] = { return [] }()
     lazy var m_dataModelArr: [Any] = { return [] }()
     lazy var m_dataTypeArr: [String] = { return [] }()

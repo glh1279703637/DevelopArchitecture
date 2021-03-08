@@ -40,7 +40,7 @@ enum kSCAType {
     }
 }
 
-protocol JCryptHelpDelegate {
+protocol JCryptHelpExtApi {
     //data数据转换为base64格式字符串 加密
     static func funj_encryptBase64(_ content : String) -> String?
     
@@ -57,7 +57,7 @@ protocol JCryptHelpDelegate {
 }
 
 
-class JCryptHelp : JBaseDataModel , JCryptHelpDelegate{
+class JCryptHelp : JBaseDataModel , JCryptHelpExtApi{
     //data数据转换为base64格式字符串 加密
     class func funj_encryptBase64(_ content : String) -> String? {
         let encryData = content.data(using: .utf8)?.base64EncodedData()

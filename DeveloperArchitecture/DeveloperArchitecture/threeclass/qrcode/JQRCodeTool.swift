@@ -9,7 +9,19 @@
 import Foundation
 import UIKit
 
-class JQRCodeTool : NSObject {
+protocol JQRCodeToolExtApi {
+    //生成一张普通的二维码
+    static func funj_generateDefaultQRCode(_ content : String) -> UIImage?
+    
+    //生成一张带有logo的二维码（logoScaleToSuperView：相对于父视图的缩放比取值范围0-1；0，不显示，1，代表与父视图大小相同）
+    static func funj_generateLogoQRCode(_ content : String ,image : String ,  scale logoScaleToSuperView : CGFloat) -> UIImage?
+    
+    //生成一张彩色的二维码
+    static func funj_generateDefaultQRCode(_ content : String , bgColor : CIColor , mainColor : CIColor) -> UIImage?
+    
+}
+
+class JQRCodeTool : NSObject , JQRCodeToolExtApi{
     
     //生成一张普通的二维码
     class func funj_generateDefaultQRCode(_ content : String) -> UIImage? {

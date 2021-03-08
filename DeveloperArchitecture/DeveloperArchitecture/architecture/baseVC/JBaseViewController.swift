@@ -18,7 +18,30 @@ enum SHOWMODELTYPE {
     case kCURRENTISPOPOVER // pop
 }
 
-public class JBaseViewController : UIViewController ,UIPopoverPresentationControllerDelegate {
+protocol JBaseViewControllerExternal {
+    func funj_addBackButton(image : String?) -> UIButton
+    
+    func funj_showProgressView()
+    func funj_closeProgressView()
+    
+    func funj_setBaseControllerData(_ data : Any?)
+    func funj_setPresentIsPoperView(_ controller : UIViewController,size : CGSize ,target : UIView?)
+    
+    func funj_getPresentVC(className : UIViewController.Type , title : String? , data : Any? , isNav : Bool, callback : ksetBaseVC?) -> UIViewController?
+    
+    func funj_getPushVC(className : UIViewController.Type , title : String?  , data : Any?  , callback : ksetBaseVC? ) -> UIViewController?
+    
+    func func_replacePushVC(className : UIViewController.Type , title : String?  , data : Any? , callback : ksetBaseVC?) -> UIViewController?
+    
+    func funj_getPopoverVC(className : UIViewController.Type , target : UIView? , data : Any?, isNav : Bool, size : CGSize , callback : ksetPopverBaseVC?) -> UIViewController?
+    
+    func funj_clickBackButton(_ sender : UIButton? )
+    
+    func funj_keyboardWillChangeFrame(_ noti : NSNotification)
+    func funj_willShowKeyboardFromFrame(_ beginFrame : CGRect , to endFrame : CGRect)
+}
+
+public class JBaseViewController : UIViewController ,UIPopoverPresentationControllerDelegate ,JBaseViewControllerExternal{
     //用于传数据所用
     lazy var m_dataString : String = { return "" }()
     lazy var m_dataArray : [Any] = { return [] }()

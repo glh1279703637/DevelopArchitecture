@@ -13,7 +13,7 @@ import WebKit
 // MARK: - UIResponder
 // TODO: UIResponder
 // FIXME: UIResponder
-protocol JAppUtilityDelegate {
+protocol JAppUtilityExtApi {
     //获取temp中basepath 文件夹中的file文件路径
     static func funj_getTempPath(_ basepath : String? , fileName : String?) -> String
     
@@ -109,7 +109,7 @@ protocol JAppUtilityDelegate {
     static func funj_postLocalNotifation(title:String,subTitle:String,body:String,image:String?)
 }
 
-public class JAppUtility : JBaseDataModel , JAppUtilityDelegate{
+public class JAppUtility : JBaseDataModel , JAppUtilityExtApi{
     //获取temp中basepath 文件夹中的file文件路径
     class func funj_getTempPath(_ basepath : String? , fileName : String?) -> String{
         var temp = NSTemporaryDirectory()

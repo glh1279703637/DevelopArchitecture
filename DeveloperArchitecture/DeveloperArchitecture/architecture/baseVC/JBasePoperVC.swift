@@ -8,7 +8,12 @@
 
 import Foundation
 import UIKit
-extension JBasePoperVC {
+
+protocol JBasePoperVCExtApi {
+    static func funj_getPopoverVCs(sourceVC : UIViewController? , data : Any? , size : CGSize, callback : ksetPopverBaseVC? ) -> JBasePoperVC?
+}
+
+extension JBasePoperVC : JBasePoperVCExtApi{
     class func funj_getPopoverVCs(sourceVC : UIViewController? = JAppViewTools.funj_getTopVC() , data : Any? = nil , size : CGSize = CGSize(width: kWidthMin - 100, height: kWidthMin - 100), callback : ksetPopverBaseVC? = nil) -> JBasePoperVC? {
         if JHttpReqHelp.funj_checkNetworkType() == false || sourceVC == nil { return nil}
         

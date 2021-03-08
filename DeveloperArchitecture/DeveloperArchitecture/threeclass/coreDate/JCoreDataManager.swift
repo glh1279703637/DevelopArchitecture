@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-protocol JCoreDataManagerDelegate {
+protocol JCoreDataManagerExtApi {
     func funj_insertMessageContext<NSFetchRequestResult>(_ fetchRequest : NSFetchRequest<NSFetchRequestResult> ,_ dict : Dictionary<String,String>,mainDic : Dictionary<String,String>?)
     
     func funj_getMessageContext(_ fetchRequest : NSFetchRequest<NSFetchRequestResult> ,_ dict : Dictionary<String,String>?)  ->[Any]
@@ -19,7 +19,7 @@ protocol JCoreDataManagerDelegate {
     func funj_deleteMessageContext(_ fetchRequest:NSFetchRequest<NSFetchRequestResult>,dict : Dictionary<String,String>)
 }
 
-public class JCoreDataManager: NSObject ,JCoreDataManagerDelegate{
+public class JCoreDataManager: NSObject ,JCoreDataManagerExtApi{
     //单例
     static let shared = JCoreDataManager()
 
