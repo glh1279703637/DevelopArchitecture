@@ -49,8 +49,8 @@ extension Button: STXImageCacheCompatible {}
 public struct XMWebImageFrame {
     public var m_image: UIImage?
     public var m_duration: TimeInterval = 0.0
-    init(inage: UIImage, duration: TimeInterval) {
-        m_image = inage
+    init(image: UIImage, duration: TimeInterval) {
+        m_image = image
         m_duration = duration
     }
 

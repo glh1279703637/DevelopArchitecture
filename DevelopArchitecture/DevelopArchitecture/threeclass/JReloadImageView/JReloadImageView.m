@@ -15,8 +15,15 @@
     imageUrl = [imageUrl stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
     if(!([imageUrl.lowercaseString hasPrefix:@"http://"] || [imageUrl.lowercaseString hasPrefix:@"https://"])) return nil;
     
-    //    imageUrl=[imageUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-
+//    if([UIImageView funj_isHasChinese:imageUrl.lastPathComponent]){
+//        imageUrl=[imageUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+//    }
+    if([imageUrl rangeOfString:@"|"].length>0){
+        imageUrl =[imageUrl stringByReplacingOccurrencesOfString:@"|" withString:@"%7C"];
+    }
+    if([imageUrl rangeOfString:@" "].length>0){
+        imageUrl =[imageUrl stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    }
     return imageUrl;
 }
 
