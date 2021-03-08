@@ -42,7 +42,7 @@ extension STXImageCache where Base: ImageView {
             let count = CGImageSourceGetCount(source)
             if count <= 1 {
                 image = Image(data: data!)
-            } else {
+            } else {/// jeffrey 添加动画功能
                 var animatedImages: Array<UIImage> = []
                 var duration: TimeInterval = 0.0;
                 
@@ -76,6 +76,7 @@ extension STXImageCache where Base: ImageView {
         self.base.image = image
 #endif
     }
+    /// jeffrey
     func xm_frameDurationAtIndex(index: Int, source: CGImageSource)  -> TimeInterval {
         guard let dict = CGImageSourceCopyPropertiesAtIndex(source, index, nil) as? Dictionary<AnyHashable, Any> else {
             return 0.1
@@ -92,14 +93,29 @@ extension STXImageCache where Base: ImageView {
         return delayTimeUnclampedProp
     }
 }
-
+/// jeffrey
 extension UIImageView {
     func funj_setInternetImage(_ url : String ,placeholder : String?) {
         funj_setInternetImage(url, placeholder: placeholder, callback: nil)
     }
     func funj_setInternetImage(_ url : String ,placeholder : String? ,callback : STXImageCacheCompletion?) {
-        guard let url = URL(string: url) else { return  }//be safe
+        guard let url1 = URL(string: funj_checkHttpUrl(url)) else { return  }//be safe
         
-        self.stx.image(atURL: url, placeholder: placeholder != nil ? UIImage(named: placeholder!) : nil , forceRefresh: false, progress: nil, completion: callback)
+        self.stx.image(atURL: url1, placeholder: placeholder != nil ? UIImage(named: placeholder!) : nil , forceRefresh: false, progress: nil, completion: callback)
     }
+}
+
+
+func funj_checkHttpUrl(_ url : String?) -> String {
+    if url == nil || url!.count <= 5 { return ""}
+    if (url!.lowercased().hasPrefix("http://") || url!.lowercased().hasPrefix("https://")) == false { return ""}
+    
+    var url1 = url!
+    if let s = url1.range(of: "|") , s.isEmpty == false {
+         url1 = url1.replacingOccurrences(of: "|", with: "%7C")
+    }
+    if let s = url!.range(of: " ") , s.isEmpty == false {
+         url1 = url1.replacingOccurrences(of: " ", with: "%20")
+    }
+    return url1
 }
