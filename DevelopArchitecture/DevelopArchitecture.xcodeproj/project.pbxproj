@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0016323825F62C5100392719 /* JRunLoopManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0016323625F62C5100392719 /* JRunLoopManager.m */; };
 		0042DDE4239613AC00FC6A08 /* JMoreTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0042DDE2239613AC00FC6A08 /* JMoreTipView.m */; };
 		006C21EA24EF7D2D00820D0F /* JNetworkPingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 006C21E524EF7D2D00820D0F /* JNetworkPingManager.m */; };
 		006C21EB24EF7D2D00820D0F /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 006C21E824EF7D2D00820D0F /* AFNetworkReachabilityManager.m */; };
@@ -138,6 +139,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0016323625F62C5100392719 /* JRunLoopManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRunLoopManager.m; sourceTree = "<group>"; };
+		0016323725F62C5100392719 /* JRunLoopManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRunLoopManager.h; sourceTree = "<group>"; };
 		0042DDE2239613AC00FC6A08 /* JMoreTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMoreTipView.m; sourceTree = "<group>"; };
 		0042DDE3239613AC00FC6A08 /* JMoreTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMoreTipView.h; sourceTree = "<group>"; };
 		006C21E424EF7D2D00820D0F /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
@@ -393,6 +396,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0016323525F62C5100392719 /* JRunLoop */ = {
+			isa = PBXGroup;
+			children = (
+				0016323725F62C5100392719 /* JRunLoopManager.h */,
+				0016323625F62C5100392719 /* JRunLoopManager.m */,
+			);
+			path = JRunLoop;
+			sourceTree = "<group>";
+		};
 		0042DDE1239613AC00FC6A08 /* TipInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -580,6 +592,7 @@
 		00DB809D2341A862005E15EA /* threeclass */ = {
 			isa = PBXGroup;
 			children = (
+				0016323525F62C5100392719 /* JRunLoop */,
 				00CC064F23D0099500D5C766 /* JWhenTapped */,
 				0042DDE1239613AC00FC6A08 /* TipInfo */,
 				00728F78237550CD0094EDD7 /* Refreshview */,
@@ -1155,6 +1168,7 @@
 				00DB81B12341A863005E15EA /* SDWebImageDownloaderConfig.m in Sources */,
 				00DB817C2341A863005E15EA /* JBaseCollectionVC.m in Sources */,
 				00DB818C2341A863005E15EA /* XRefresh.m in Sources */,
+				0016323825F62C5100392719 /* JRunLoopManager.m in Sources */,
 				00DB81A42341A863005E15EA /* SDWebImageDownloader.m in Sources */,
 				00DB81B42341A863005E15EA /* SDWebImageDownloaderOperation.m in Sources */,
 				00DB81CD2341A863005E15EA /* UIApplication+MemoryLeak.m in Sources */,

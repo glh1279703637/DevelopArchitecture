@@ -125,7 +125,7 @@ extension JPhotoPickerVC {
             }
             JPhotosConfig.shared?.m_selectCallback?(saveArr , JPhotosConfig.shared?.m_currentIsVideo ?? false)
 
-            self.m_currentShowVCModel = .kCURRENTISPRENTVIEW
+            self.m_currentShowVCModel = .kcurrentIsprentview
             self.modalTransitionStyle = .crossDissolve
             self.funj_clickBackButton()
         }
@@ -137,7 +137,7 @@ extension JPhotoPickerVC {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let vc = self.navigationController?.viewControllers.first as? JBaseViewController
-        let sub = kFilletSubHeight * (vc?.m_currentShowVCModel != .kCURRENTISPOPOVER ? 1 : 0)
+        let sub = kFilletSubHeight * (vc?.m_currentShowVCModel != .kcurrentIsPopover ? 1 : 0)
         self.funj_reloadTableView(CGRectZero, table: CGRect(x: 0, y: 0, width: self.view.width, height: self.view.height - 50 - sub))
         let bottomBgView = self.view.viewWithTag(3023)
         bottomBgView?.top = self.view.height - 50 - sub

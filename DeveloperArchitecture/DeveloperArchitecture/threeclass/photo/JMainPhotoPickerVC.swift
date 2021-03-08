@@ -183,10 +183,10 @@ extension JMainPhotoPickerVC {
         callback?(controller , &setPresentView)
         if setPresentView == false {
             controller.funj_setPresentIsPoperView(nav, size: CGSize(width: kphotoPickerViewWidth, height: kphotoPickerViewHeight), target: nil)
-            controller.m_currentShowVCModel = .kCURRENTISPOPOVER
+            controller.m_currentShowVCModel = .kcurrentIsPopover
         } else {
             nav.modalPresentationStyle = .fullScreen
-            controller.m_currentShowVCModel = .kCURRENTISPRENTVIEW
+            controller.m_currentShowVCModel = .kcurrentIsprentview
         }
         
         delegate.present(nav, animated: true, completion: nil)

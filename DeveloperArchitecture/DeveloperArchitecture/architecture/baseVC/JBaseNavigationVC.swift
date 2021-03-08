@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 enum kcurrentNavColor {
-    case kCURRENTISNONE_Tag
+    case kcurrentIsNone_Tag
     case kCURRENTISBLUENAV_Tag
     case kCURRENTISGRAYNAV_Tag
     case kCURRENTISWHITENAV_Tag
 }
 
 class JBaseNavigationVC : UINavigationController, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
-    public var m_currentNavColor : kcurrentNavColor = .kCURRENTISNONE_Tag {
+    public var m_currentNavColor : kcurrentNavColor = .kcurrentIsNone_Tag {
         willSet {
             let bar = self.navigationBar
             switch newValue {

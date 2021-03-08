@@ -20,7 +20,7 @@ extension JBasePoperVC : JBasePoperVCExtApi{
         let controller = self.init()
 
         controller.funj_setBaseControllerData(data)
-        controller.m_currentShowVCModel = .kCURRENTISPOPOVER
+        controller.m_currentShowVCModel = .kcurrentIsPopover
         
         var setPresentView = false
         callback?(controller , &setPresentView)
@@ -39,7 +39,7 @@ extension JBasePoperVC : JBasePoperVCExtApi{
             bgView.layer.masksToBounds = true
 //            bgView.accessibilityFrame = bgView.frame
         } else {
-            controller.m_currentShowVCModel = .kCURRENTISPRENTVIEW
+            controller.m_currentShowVCModel = .kcurrentIsprentview
         }
         sourceVC?.present(controller, animated: true, completion: nil)
         return controller }

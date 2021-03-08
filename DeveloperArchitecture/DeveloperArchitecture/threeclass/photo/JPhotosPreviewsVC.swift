@@ -148,7 +148,7 @@ extension JPhotosPreviewsVC {
                 }
             }
             JPhotosConfig.shared?.m_selectCallback?(saveArr , JPhotosConfig.shared?.m_currentIsVideo ?? false )
-            self.m_currentShowVCModel = .kCURRENTISPRENTVIEW
+            self.m_currentShowVCModel = .kcurrentIsprentview
             self.modalTransitionStyle = .crossDissolve
             self.funj_clickBackButton()
         }
