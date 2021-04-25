@@ -464,7 +464,7 @@
 			path = jsonProperty;
 			sourceTree = "<group>";
 		};
-		00C6D3FE26257D3400CA7692 /* Model */ = {
+		00C6D3FE26257D3400CA7692 /* YYModel */ = {
 			isa = PBXGroup;
 			children = (
 				00C6D40226257D3400CA7692 /* NSObject+YYModel.h */,
@@ -472,7 +472,7 @@
 				00C6D3FF26257D3400CA7692 /* YYClassInfo.h */,
 				00C6D40126257D3400CA7692 /* YYClassInfo.m */,
 			);
-			path = Model;
+			path = YYModel;
 			sourceTree = "<group>";
 		};
 		00CC064F23D0099500D5C766 /* JWhenTapped */ = {
@@ -595,7 +595,6 @@
 		00DB808D2341A862005E15EA /* baseObject */ = {
 			isa = PBXGroup;
 			children = (
-				00C6D3FE26257D3400CA7692 /* Model */,
 				00DB80922341A862005E15EA /* JBaseDataModel.h */,
 				00DB808F2341A862005E15EA /* JBaseDataModel.m */,
 				00DB808E2341A862005E15EA /* JBaseInterfaceManager.h */,
@@ -627,6 +626,7 @@
 		00DB809D2341A862005E15EA /* threeclass */ = {
 			isa = PBXGroup;
 			children = (
+				00C6D3FE26257D3400CA7692 /* YYModel */,
 				009E8A722633A3F10070A76B /* jsonProperty */,
 				0016323525F62C5100392719 /* JRunLoop */,
 				00CC064F23D0099500D5C766 /* JWhenTapped */,
