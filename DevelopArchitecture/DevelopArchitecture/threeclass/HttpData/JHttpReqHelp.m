@@ -12,6 +12,7 @@
 #import "JBaseDataModel.h"
 #import "JBaseViewController.h"
 #import "JBaseInterfaceManager.h"
+#import "NSObject+YYModel.h"
 static NSMutableDictionary *saveRequestDic = nil;
 
 @interface JHttpReqHelp(){
@@ -22,8 +23,10 @@ static NSMutableDictionary *saveRequestDic = nil;
 
 @property(nonatomic,strong) NSMutableURLRequest*m_httpRequest;
 @property(nonatomic,copy)successRequest m_successCallback;
+@property(nonatomic,copy)successRequestm m_successCallbackm;
 @property(nonatomic,copy)failureRequest m_failureCallback;
 @property(nonatomic,copy)NSString *m_modleClassName;
+@property(nonatomic,copy)NSString *m_rootRequestURL;
 
 @property(nonatomic,assign)BOOL m_isSuccessShow,m_isMustLogin,m_addVerify;
 @end
@@ -35,13 +38,15 @@ static NSMutableDictionary *saveRequestDic = nil;
     JHttpReqHelp *httpRequest=[[JHttpReqHelp alloc]init];
     return httpRequest;
 }
-- (JHttpReqHelp*)funj_requestMessageToServer:(UIViewController*)viewController url:(NSString*)suffixUrl values:(NSDictionary *)parameter success:(successRequest)success failure:(failureRequest)failure{
-     self.m_viewController = viewController;
+- (JHttpReqHelp*)funj_setRootURL:(NSString*)rootURL{
+    self.m_rootRequestURL = rootURL;
+    return self;
+}
+- (JHttpReqHelp*)funj_requestToServer:(UIViewController*)viewController url:(NSString*)suffixUrl v:(NSDictionary*)parameter{
+    self.m_viewController = viewController;
     self.isDefaultHasVC = viewController!=nil;
-    self.m_successCallback = success;
-    self.m_failureCallback = failure;
  
-    NSMutableString *urlStr=[[NSMutableString  alloc]initWithString:APP_URL_ROOT];
+    NSMutableString *urlStr = [[NSMutableString  alloc]initWithString:self.m_rootRequestURL?self.m_rootRequestURL:APP_URL_ROOT];
     
     _m_httpRequest=[[NSMutableURLRequest alloc]init];
     [self.m_httpRequest setTimeoutInterval:10];
@@ -60,33 +65,10 @@ static NSMutableDictionary *saveRequestDic = nil;
     
     return self;
 }
-- (JHttpReqHelp*)funj_requestInfoToServer:(UIViewController*)viewController url:(NSString*)fullUrl values:(NSDictionary *)parameter success:(successRequest)success{
+//上传图片 model是数据模型一个类名的字符串
+- (JHttpReqHelp*)funj_requestImageToServers:(UIViewController*)viewController url:(NSString*)suffixUrl v:(NSDictionary *)parameter image:(UIImage *)image forKey:(NSString *)imagekey :(NSString*)flag{
     self.m_viewController = viewController;
     self.isDefaultHasVC = viewController!=nil;
-    self.m_successCallback = success;
-    self.m_failureCallback = nil;
- 
-    NSMutableString *urlStr=[[NSMutableString  alloc]initWithString:fullUrl];
-    
-    _m_httpRequest=[[NSMutableURLRequest alloc]init];
-    [self.m_httpRequest setTimeoutInterval:10];
-    NSArray *array =[self solverParameterToConnect:parameter];
-    [self.m_httpRequest setURL:[NSURL URLWithString:urlStr]];
-    
-    if([array count]>0){
-        [self.m_httpRequest setHTTPMethod:@"POST"];
-        NSString *strs=[array componentsJoinedByString:@"&"];
-        [self.m_httpRequest setHTTPBody:[strs dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    [self funj_dataTaskMessage];
-    
-    return self;
-}
-- (JHttpReqHelp*)funj_requestImageToServers:(UIViewController*)viewController url:(NSString*)suffixUrl values:(NSDictionary *)parameter image:(UIImage *)image forKey:(NSString *)imagekey :(NSString*)flag success:(successRequest)success failure:(failureRequest)failure{
-    self.m_viewController = viewController;
-    self.isDefaultHasVC = viewController!=nil;
-    self.m_successCallback = success;
-    self.m_failureCallback = failure;
  
     NSMutableString *urlStr=[[NSMutableString  alloc]initWithString:APP_URL_ROOT];
     if([suffixUrl length]>0){
@@ -164,11 +146,10 @@ static NSMutableDictionary *saveRequestDic = nil;
 }
 
 //上传音频
-- (JHttpReqHelp*)funj_requestVoiceToServer:(UIViewController*)viewController :(NSString*)suffixUrl values:(NSDictionary *)parameter fileUrl:(NSURL *)fileUrl forKey:(NSString *)voicekey success:(successRequest)success failure:(failureRequest)failure{
+//上传音频 model是数据模型一个类名的字符串
+- (JHttpReqHelp*)funj_requestVoiceToServer:(UIViewController*)viewController url:(NSString*)suffixUrl v:(NSDictionary *)parameter fileUrl:(NSURL *)fileUrl forKey:(NSString *)voicekey{
     self.m_viewController = viewController;
     self.isDefaultHasVC = viewController!=nil;
-    self.m_successCallback = success;
-    self.m_failureCallback = failure;
  
     NSMutableString *urlStr=[[NSMutableString  alloc]initWithString:APP_URL_ROOT];
     if([suffixUrl length]>0){
@@ -322,49 +303,44 @@ static NSMutableDictionary *saveRequestDic = nil;
     NSError *parseError=nil;
     id jsonObject=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&parseError];
     CLog(@"%@ => %@",self.m_httpRequest.URL.absoluteString,jsonObject);
-    if(jsonObject!=nil && parseError==nil)
-    {
+    if(jsonObject!=nil && parseError==nil){
         if([jsonObject isKindOfClass:[NSDictionary class]]){
             
             if(![self funj_VerifyIsSuccessful:jsonObject])return;
 
-            if([jsonObject objectForKey:@"data"] &&
-               [[jsonObject objectForKey:@"data"] isKindOfClass:[NSArray class]]){
-                if(self.m_successCallback){
-                    NSMutableDictionary *dics =[self funj_createNewSolver:jsonObject];
-                    NSArray *array= [dics objectForKey:@"data"];
-                    [dics removeObjectForKey:@"data"];
-                    
-                    array=self.m_modleClassName?[self requestDataWithModle:self.m_modleClassName data:array]:array;
-                    
-                    if(self.m_httpRequest.accessibilityLabel){
-                        [dics setObject:self.m_httpRequest.accessibilityLabel forKey:@"flag"];
-                        self.m_successCallback(self.m_viewController,array,dics);
+            NSMutableDictionary *dics = jsonObject;
+            NSArray *array = [dics objectForKey:@"data"];
+            id dataModel = nil;
+            if([array isKindOfClass:[NSDictionary class]] || [array isKindOfClass:[NSArray class]]){
+                if(self.m_modleClassName && self.m_modleClassName.length > 0){
+                    if([array isKindOfClass:[NSArray class]]){
+                        array = [self funj_solverArrayData:array];
                     }else{
-                        self.m_successCallback(self.m_viewController,array,dics);
+                        dataModel = [self funj_solverDicData:(NSDictionary *)array];
+                        array = @[];
+                    }
+                }else{
+                    dics =[self funj_createNewSolver:jsonObject];
+                    if([array isKindOfClass:[NSArray class]]){
+                        array= [dics objectForKey:@"data"];
+                        [dics removeObjectForKey:@"data"];
+                    }else{
+                        array = @[];
                     }
                 }
-            }else if([jsonObject objectForKey:@"data"] &&
-                     [[jsonObject objectForKey:@"data"] isKindOfClass:[NSDictionary class]]){
-                if(self.m_successCallback){
-                    NSMutableDictionary *dics =[self funj_createNewSolver:jsonObject];
-                    
-                    NSArray *array =nil;
-                    
-                    if( [dics objectForKey:@"data"]){
-                        array = self.m_modleClassName?[self requestDataWithModleDic:self.m_modleClassName data:[dics objectForKey:@"data"]]:nil;
-                    }
-
-                    if(self.m_httpRequest.accessibilityLabel){
-                        [dics setObject:self.m_httpRequest.accessibilityLabel forKey:@"flag"];
-                        self.m_successCallback(self.m_viewController,array,dics);
-                    }else{
-                        self.m_successCallback(self.m_viewController,array,dics);
-                    }
+                if(self.m_httpRequest.accessibilityLabel && [dics isKindOfClass:[NSMutableDictionary class]]){
+                    [dics setObject:self.m_httpRequest.accessibilityLabel forKey:@"flag"];
                 }
             }else{
-                NSMutableDictionary *dics =[self funj_createNewSolver:jsonObject];
-                if(self.m_successCallback)self.m_successCallback(self.m_viewController,nil,dics);
+                dics =[self funj_createNewSolver:jsonObject];
+                array = nil;
+            }
+            
+            if(self.m_successCallback){
+                self.m_successCallback(self.m_viewController, array, dics);
+            }
+            if(self.m_successCallbackm){
+                self.m_successCallbackm(self.m_viewController, array, dataModel);
             }
         }
     } else {
@@ -375,27 +351,18 @@ static NSMutableDictionary *saveRequestDic = nil;
         }
     }
     if(self.m_httpRequest.URL.absoluteString)[saveRequestDic removeObjectForKey:self.m_httpRequest.URL.absoluteString];
-    
 }
 
 
--(NSArray *)requestDataWithModle:(NSString*)modle data:(NSArray*)array
-{
+-(NSArray *)funj_solverArrayData:(NSArray*)array{
     NSMutableArray *allData = [[NSMutableArray alloc] initWithCapacity:array.count];
-    for (id data in array) {
-        id currentModel = [[NSClassFromString(modle) alloc] initWithContent:data];
-        [allData addObject:currentModel];
-    }
+    [allData addObjectsFromArray:[NSArray modelArrayWithClass:NSClassFromString(self.m_modleClassName) json:array]];
     return allData;
 }
--(NSArray *)requestDataWithModleDic:(NSString*)modle data:(NSDictionary*)data
-{
+-(id)funj_solverDicData:(NSDictionary*)data{
     if(!data)return nil;
-    NSMutableArray *allData = [[NSMutableArray alloc] init];
-    id currentModel = [[NSClassFromString(modle) alloc] initWithContent:data];
-    [allData addObject:currentModel];
-    
-    return allData;
+    id currentModel = [NSClassFromString(self.m_modleClassName) modelWithDictionary:data];
+    return currentModel;
 }
 +(BOOL)funj_checkNetworkType{
     if(![[AFNetworkReachabilityManager sharedManager] isReachable]){
@@ -411,13 +378,21 @@ static NSMutableDictionary *saveRequestDic = nil;
     self.m_isSuccessShow = isSuccessShow;
     return self;
 }
+-(JHttpReqHelp*)funj_addSuccess:(successRequest)success{
+    self.m_successCallback = success;
+    return self;
+}
+-(JHttpReqHelp*)funj_addFailure:(failureRequest)failure{
+    self.m_failureCallback = failure;
+    return self;
+}
 -(BOOL)funj_VerifyIsSuccessful:(NSDictionary*)data{
     if(!self.m_addVerify)return YES;
-    
     return [JBaseInterfaceManager funj_VerifyIsSuccessful:data show:self.m_isSuccessShow callVC:(self.m_isMustLogin?self.m_viewController:nil)];
 }
--(JHttpReqHelp*)funj_addModleClass:(NSString*)className{
+-(JHttpReqHelp*)funj_addModleClass:(NSString*)className c:(successRequestm)success{
     self.m_modleClassName = className;
+    self.m_successCallbackm = success;
     return self;
 }
 -(NSMutableDictionary*)funj_createNewSolver:(NSMutableDictionary*)data{
@@ -429,7 +404,6 @@ static NSMutableDictionary *saveRequestDic = nil;
     }else if([data isKindOfClass:[NSString class]]){
         saveData1 = data;
     }
-
     return saveData1;
 }
 -(void)funj_solverDataIsEffective:(NSMutableDictionary*)saveData :(NSDictionary*)data{

@@ -53,7 +53,8 @@
         [JLoginUserModel funj_insertLoginUserMessage:@{@"userId":[dic objectForKey:@"userId"],@"isLogining":@"0"}];
 //        [[NSNotificationCenter defaultCenter]postNotificationName:kUpdateUserIdentityNoti object:@"out"];
         UIViewController *vcs =[JAppViewTools funj_getTopViewcontroller];
-        [[JHttpReqHelp share]funj_requestMessageToServer:vcs url:@"usr/loginOut" values:dic2 success:^(JBaseViewController* vc,NSArray *dataArr, NSDictionary *dataDic) {
+        [[[JHttpReqHelp share] funj_requestToServer:vcs url:@"usr/loginOut" v:dic2]
+            funj_addSuccess:^(id viewController, NSArray *dataArr, NSDictionary *dataDic) {
             [JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] message:LocalStr(@"You have successfully logged out") complete:^{
                 if([dataDic integerWithKey:@"result"] ==-100){
                     if(viewController){
@@ -64,7 +65,7 @@
                     }
                 }
             } time:1.0];
-        } failure:nil];
+        }];
     }
     
 }

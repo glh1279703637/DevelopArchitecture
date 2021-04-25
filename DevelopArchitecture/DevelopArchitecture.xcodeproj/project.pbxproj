@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0007509426344C2A008808A0 /* JUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0007509326344C2A008808A0 /* JUserInfoModel.m */; };
 		0016323825F62C5100392719 /* JRunLoopManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0016323625F62C5100392719 /* JRunLoopManager.m */; };
 		0042DDE4239613AC00FC6A08 /* JMoreTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0042DDE2239613AC00FC6A08 /* JMoreTipView.m */; };
 		006C21EA24EF7D2D00820D0F /* JNetworkPingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 006C21E524EF7D2D00820D0F /* JNetworkPingManager.m */; };
 		006C21EB24EF7D2D00820D0F /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 006C21E824EF7D2D00820D0F /* AFNetworkReachabilityManager.m */; };
 		00728F7D237550CD0094EDD7 /* JRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00728F7A237550CD0094EDD7 /* JRefreshView.m */; };
 		00728F81237555700094EDD7 /* reloading_fresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00728F802375556F0094EDD7 /* reloading_fresh@2x.png */; };
+		009E8A752633A3F10070A76B /* JJsonProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 009E8A732633A3F10070A76B /* JJsonProperty.m */; };
+		00C6D40326257D3400CA7692 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C6D40026257D3400CA7692 /* NSObject+YYModel.m */; };
+		00C6D40426257D3400CA7692 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C6D40126257D3400CA7692 /* YYClassInfo.m */; };
 		00CC065523D009D600D5C766 /* JWhenTappedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CC065423D009D600D5C766 /* JWhenTappedView.m */; };
 		00DB805F23418C88005E15EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DB805D23418C88005E15EA /* Main.storyboard */; };
 		00DB806123418C88005E15EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DB806023418C88005E15EA /* Assets.xcassets */; };
@@ -139,6 +143,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0007509226344C2A008808A0 /* JUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JUserInfoModel.h; sourceTree = "<group>"; };
+		0007509326344C2A008808A0 /* JUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JUserInfoModel.m; sourceTree = "<group>"; };
 		0016323625F62C5100392719 /* JRunLoopManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRunLoopManager.m; sourceTree = "<group>"; };
 		0016323725F62C5100392719 /* JRunLoopManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRunLoopManager.h; sourceTree = "<group>"; };
 		0042DDE2239613AC00FC6A08 /* JMoreTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMoreTipView.m; sourceTree = "<group>"; };
@@ -151,6 +157,12 @@
 		00728F7B237550CD0094EDD7 /* JRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRefreshView.h; sourceTree = "<group>"; };
 		00728F802375556F0094EDD7 /* reloading_fresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reloading_fresh@2x.png"; sourceTree = "<group>"; };
 		0075312E251C4CD6001E0B6D /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		009E8A732633A3F10070A76B /* JJsonProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJsonProperty.m; sourceTree = "<group>"; };
+		009E8A742633A3F10070A76B /* JJsonProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJsonProperty.h; sourceTree = "<group>"; };
+		00C6D3FF26257D3400CA7692 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
+		00C6D40026257D3400CA7692 /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
+		00C6D40126257D3400CA7692 /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
+		00C6D40226257D3400CA7692 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
 		00CC065323D009D600D5C766 /* JWhenTappedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWhenTappedView.h; sourceTree = "<group>"; };
 		00CC065423D009D600D5C766 /* JWhenTappedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWhenTappedView.m; sourceTree = "<group>"; };
 		00D19D592373FF3A0080AE80 /* DevelopArchitecture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DevelopArchitecture.entitlements; sourceTree = "<group>"; };
@@ -443,6 +455,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		009E8A722633A3F10070A76B /* jsonProperty */ = {
+			isa = PBXGroup;
+			children = (
+				009E8A742633A3F10070A76B /* JJsonProperty.h */,
+				009E8A732633A3F10070A76B /* JJsonProperty.m */,
+			);
+			path = jsonProperty;
+			sourceTree = "<group>";
+		};
+		00C6D3FE26257D3400CA7692 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				00C6D40226257D3400CA7692 /* NSObject+YYModel.h */,
+				00C6D40026257D3400CA7692 /* NSObject+YYModel.m */,
+				00C6D3FF26257D3400CA7692 /* YYClassInfo.h */,
+				00C6D40126257D3400CA7692 /* YYClassInfo.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		00CC064F23D0099500D5C766 /* JWhenTapped */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,6 +595,7 @@
 		00DB808D2341A862005E15EA /* baseObject */ = {
 			isa = PBXGroup;
 			children = (
+				00C6D3FE26257D3400CA7692 /* Model */,
 				00DB80922341A862005E15EA /* JBaseDataModel.h */,
 				00DB808F2341A862005E15EA /* JBaseDataModel.m */,
 				00DB808E2341A862005E15EA /* JBaseInterfaceManager.h */,
@@ -578,6 +611,8 @@
 			children = (
 				00DB80952341A862005E15EA /* JLoginUserModel.h */,
 				00DB80962341A862005E15EA /* JLoginUserModel.m */,
+				0007509226344C2A008808A0 /* JUserInfoModel.h */,
+				0007509326344C2A008808A0 /* JUserInfoModel.m */,
 			);
 			path = loginUserInfo;
 			sourceTree = "<group>";
@@ -592,11 +627,12 @@
 		00DB809D2341A862005E15EA /* threeclass */ = {
 			isa = PBXGroup;
 			children = (
+				009E8A722633A3F10070A76B /* jsonProperty */,
 				0016323525F62C5100392719 /* JRunLoop */,
 				00CC064F23D0099500D5C766 /* JWhenTapped */,
 				0042DDE1239613AC00FC6A08 /* TipInfo */,
 				00728F78237550CD0094EDD7 /* Refreshview */,
-				00DB809E2341A862005E15EA /* RequestHttpData */,
+				00DB809E2341A862005E15EA /* HttpData */,
 				00DB80AA2341A862005E15EA /* XRefresh */,
 				00DB80AE2341A862005E15EA /* QRCodeViewController */,
 				00DB80B32341A862005E15EA /* JSegmentedControl */,
@@ -618,7 +654,7 @@
 			path = threeclass;
 			sourceTree = "<group>";
 		};
-		00DB809E2341A862005E15EA /* RequestHttpData */ = {
+		00DB809E2341A862005E15EA /* HttpData */ = {
 			isa = PBXGroup;
 			children = (
 				00DB80A92341A862005E15EA /* JFileManageHelp.h */,
@@ -628,7 +664,7 @@
 				006C21E324EF7D2D00820D0F /* NetworkToolKit */,
 				00DB80A42341A862005E15EA /* TWRDownloadManager */,
 			);
-			path = RequestHttpData;
+			path = HttpData;
 			sourceTree = "<group>";
 		};
 		00DB80A42341A862005E15EA /* TWRDownloadManager */ = {
@@ -1077,6 +1113,7 @@
 				00DB81782341A863005E15EA /* JBaseCollectionViewCell.m in Sources */,
 				00DB81832341A863005E15EA /* JLoginUserModel.m in Sources */,
 				00DB81B32341A863005E15EA /* SDImageFrame.m in Sources */,
+				0007509426344C2A008808A0 /* JUserInfoModel.m in Sources */,
 				00DB81D42341A863005E15EA /* MarqueeLabel.m in Sources */,
 				00DB81A32341A863005E15EA /* SDWebImageManager.m in Sources */,
 				00DB81E92341A863005E15EA /* NSDictionary+JSON.m in Sources */,
@@ -1098,6 +1135,7 @@
 				00DB81E12341A863005E15EA /* JPhotoPickerInterface.m in Sources */,
 				00DB81992341A863005E15EA /* FMDatabaseAdditions.m in Sources */,
 				00DB81B92341A863005E15EA /* SDWebImageCacheKeyFilter.m in Sources */,
+				00C6D40326257D3400CA7692 /* NSObject+YYModel.m in Sources */,
 				00DB81982341A863005E15EA /* FMDatabaseQueue.m in Sources */,
 				00DB81B62341A863005E15EA /* SDImageCacheDefine.m in Sources */,
 				00DB818B2341A863005E15EA /* TWRDownloadObject.m in Sources */,
@@ -1147,9 +1185,11 @@
 				00DB81E22341A863005E15EA /* JPhotosPreviewsVC.m in Sources */,
 				00DB81862341A863005E15EA /* JMainViewController.m in Sources */,
 				00DB81CC2341A863005E15EA /* UIViewController+MemoryLeak.m in Sources */,
+				009E8A752633A3F10070A76B /* JJsonProperty.m in Sources */,
 				00DB81BF2341A863005E15EA /* UIImage+Metadata.m in Sources */,
 				00DB81AF2341A863005E15EA /* SDDiskCache.m in Sources */,
 				006C21EA24EF7D2D00820D0F /* JNetworkPingManager.m in Sources */,
+				00C6D40426257D3400CA7692 /* YYClassInfo.m in Sources */,
 				00DB81A52341A863005E15EA /* SDImageLoader.m in Sources */,
 				00DB81842341A863005E15EA /* SceneDelegate.m in Sources */,
 				00DB81772341A863005E15EA /* JBaseView.m in Sources */,

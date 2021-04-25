@@ -11,6 +11,8 @@
 @interface JFileManageHelp : NSObject
 //临时存储数据到文件类
 +(id)shareFile;
--(id)funj_getLocaleDataWithName:(NSString*)fileName  model:(NSString*)model;
--(BOOL)funj_saveToLocaleData:(NSString*)fileName data:(id)content model:(NSString*)model;
+
+-(BOOL)funj_saveToLocaleData:(NSString*)fileName data:(id)content;
+-(id)funj_getLocaleDataWithName:(NSString*)fileName;
+
 @end
