@@ -17,7 +17,7 @@
 
 
 //获取temp中basepath 文件夹中的file文件路径
-+(NSString*)funj_getTempPath:(NSString*)basepath :(NSString*)file;
++(NSString*)funj_getTempPath:(NSString*)basepath name:(NSString*)fileName;
 //获取application document路径  file ＝nil 时为docoument
 + (NSString *)funj_getDocumentPathWithFile:(NSString*)file;
 //将url转化成标准url
@@ -31,9 +31,9 @@
 
 
 //获取文本内容的高度，辅助前两个方法，用来返回控件高度；
-+ (CGFloat)funj_getTextHeight:(NSString *)content textFont:(UIFont *)font viewWidth:(CGFloat)layoutwidth;
++ (CGFloat)funj_getTextHeight:(NSString *)content f:(UIFont *)font w:(CGFloat)layoutwidth;
 //获得字符串的长度
-+(CGFloat) funj_getTextWidth:(NSString *)text textFont:(UIFont *)font;
++(CGFloat) funj_getTextWidth:(NSString *)text f:(UIFont *)font;
 
 // 通过控件返回控件高度；
 + (CGFloat)funj_getTextHeightWithView:(UIView*)view m:(CGFloat)maxHeight;
@@ -44,11 +44,11 @@
 //图片压缩算法
 //+ (UIImage *)funj_imageByScalingForSourceImage:(UIImage *)sourceImage targetViewSize:(CGSize)targetViewSize;
 //图片 压缩算法 上传时候处理
-+(NSData *)funj_compressImageWithMaxLength:(UIImage*)image :(CGFloat)sizeM;
++(NSData *)funj_compressImageWithMaxLength:(UIImage*)image s:(CGFloat)sizeM;
 
-//+ (UIImage*)funj_imageFromScreenShotView:(UIView*)view :(NSArray*)removeViews :(CGRect)shotRect;
+//+ (UIImage*)funj_imageFromScreenShotView:(UIView*)view reView:(NSArray*)removeViews r:(CGRect)shotRect;
 //颜色生成图片
-+(UIImage *)funj_imageWithColor:(UIColor *)color :(CGSize)size;
++(UIImage *)funj_imageWithColor:(UIColor *)color s:(CGSize)size;
 
 ////颜色转成16进制
 //+ (NSString *) funj_hexFromUIColor: (UIColor*) color;
@@ -67,7 +67,7 @@
 //邮箱地址的正则表达式
 + (BOOL)funj_isValidateEmail:(NSString *)email;
 // 验证数据合法性 allName email name mobile code password surePassword answer isAgree
-+(BOOL)funj_isCheckMobile_Password_CodeIsRight:(UIViewController*)viewController :(NSDictionary*)data;
++(BOOL)funj_isCheckMobile_Password_CodeIsRight:(UIViewController*)viewController d:(NSDictionary*)data;
 
 //对象转化成字符串  nssarray->string or....
 +(NSString*)funj_stringFromObject:(id)object;
@@ -80,7 +80,7 @@
 //通过字符串获取一个类对象 @"UIImage"->image对象
 +(id)getObjectWithClass:(NSString*)className;
 //获取验证码 的时间处理
-+(void)funj_getTheTimeCountdownWithCode:(UIButton*)getCodeBt :(UIColor*)defaultBoardColor;
++(void)funj_getTheTimeCountdownWithCode:(UIButton*)getCodeBt c:(UIColor*)defaultBoardColor;
 
 //表情处理
 + (BOOL)funj_stringContainsEmoji:(NSString *)string;
@@ -90,20 +90,20 @@
 + (NSString *)funj_pinyinFromChineseString:(NSString *)string;
 
 //上下震动效果 或者左右 width 左右偏移，height 上下偏移
-+ (void)funj_shakeAnimationForView:(UIView *)view :(CGSize)offset;
++ (void)funj_shakeAnimationForView:(UIView *)view offset:(CGSize)offset;
 //color效果 放大缩小
 + (void)funj_changeColorAnimationForView:(UIView *)view;
 //expand效果 放大缩小
 + (void)funj_expandAnimationForView:(UIView *)view;
 //视图进入动画  type:kCATransitionPush  subtype:kCATransitionFromLeft
-+ (void) funj_transitionWithType:(NSString *) type WithSubtype:(NSString *) subtype ForView : (UIView *) view;
++ (void) funj_transitionWithType:(NSString *) type subtype:(NSString *)subtype forView : (UIView *) view;
 
 // 去掉HTML标签
 + (NSString *)funj_filterHTML:(NSString *)html;
 //清除网页cookies
 +(void)funj_clearWebViewCookies;
 //获取字串长度 专在shouldChangeCharactersInRange 使用 textfield texview
-+(NSString*)funj_getTextFieldLength:(NSString*)textFieldText  :(NSRange)range :(NSString*)string :(NSInteger)maxLength;
++(NSString*)funj_getTextFieldLength:(NSString*)textFieldText  r:(NSRange)range t:(NSString*)string maxLen:(NSInteger)maxLength;
 +(void)funj_checkAppStoreVersion:(NSString*)appleId;
 
 /*发送本地的通知 显示结果

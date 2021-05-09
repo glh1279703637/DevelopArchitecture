@@ -21,7 +21,7 @@ typedef void (^selectBt)(NSInteger index);
 @interface JSegmentedControl : JBaseView
 @property(nonatomic,strong) UIImageView *m_BgImageView;
 
--(id)initWithFrame:(CGRect)frame :(NSArray*)titles :(selectBt)action;
+-(id)initWithFrame:(CGRect)frame t:(NSArray*)titles c:(selectBt)action;
 -(void)funj_setStyleBgView:(NSArray*)bgImageArray textColor:(NSArray*)textColorArray type:(SegmentType)type;
 -(void)funj_setSegmentSelectedIndex:(NSInteger)index;
 @end

@@ -35,29 +35,29 @@
 }
 -(UIImageView*)m_scanResutRectImageView{
     if(!_m_scanResutRectImageView){
-        _m_scanResutRectImageView =[UIImageView funj_getImageView:CGRectMake(0, 0, 20, 20) bgColor:kColor_Orange];
+        _m_scanResutRectImageView =[UIImageView funj_getImageView:CGRectMake(0, 0, 20, 20) bg:kColor_Orange];
         [self.view addSubview:_m_scanResutRectImageView];
         [_m_scanResutRectImageView funj_setViewCornerRadius:10];
     }
     return _m_scanResutRectImageView;
 }
 -(void)funj_addBaseConfigView{
-    UIButton *backBt =[UIButton funj_getButtons:CGRectMake(0, kStatusBarHeight, 60, 40) :nil :JTextFCZero() :@[@"backBt"] :self :@"funj_clickBackButton:" :0 :nil];
+    UIButton *backBt =[UIButton funj_getButtons:CGRectMake(0, kStatusBarHeight, 60, 40) t:nil fc:JTextFCZero() img:@[@"backBt"] d:self a:@"funj_clickBackButton:" tag:0 set:nil];
     backBt.imageEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 10);
     [self.view addSubview:backBt];
     
     if(self.title && self.title.length>0){
-        UILabel *titleLabel =[UILabel funj_getLabel:CGRectMake(self.m_captureRectArea.origin.x-30, kStatusBarHeight, self.m_captureRectArea.size.width+60, 50) :self.title :JTextFCMakeAlign(kFont_Size17, kColor_White,NSTextAlignmentCenter)];
+        UILabel *titleLabel =[UILabel funj_getLabel:CGRectMake(self.m_captureRectArea.origin.x-30, kStatusBarHeight, self.m_captureRectArea.size.width+60, 50) t:self.title fc:JTextFCMakeAlign(kFont_Size17, kColor_White,NSTextAlignmentCenter)];
         [self.view addSubview:titleLabel];titleLabel.tag= 1001;
     }
     
-    UIImageView *bounceImageView =[UIImageView funj_getImageView:self.m_captureRectArea image:@"ZR_ScanFrame.png"];
+    UIImageView *bounceImageView =[UIImageView funj_getImageView:self.m_captureRectArea img:@"ZR_ScanFrame.png"];
     [self.view addSubview:bounceImageView];bounceImageView.tag= 1002;
     
     CGRect frame = self.m_captureRectArea;
     CGFloat width = 30*frame.size.width/509;
     frame = CGRectMake(width+frame.origin.x, frame.origin.y+width, frame.size.width-2*width, frame.size.height-2*width);
-    UIImageView *lineImageView =[UIImageView funj_getImageView:frame image:@"ZR_ScanLine.png"];
+    UIImageView *lineImageView =[UIImageView funj_getImageView:frame img:@"ZR_ScanLine.png"];
     lineImageView.accessibilityFrame = frame;
     lineImageView.height = 0;
     [self.view addSubview:lineImageView];lineImageView.tag= 1003;
@@ -73,7 +73,7 @@
         }];
     }];
     
-    UILabel *titleLabel2 =[UILabel funj_getLabel:CGRectMake(self.m_captureRectArea.origin.x-30, self.m_captureRectArea.origin.y+self.m_captureRectArea.size.height+30, self.m_captureRectArea.size.width+60, 50) :LocalStr(@"Scan the frame to the two-dimensional code, you can automatically scan") :JTextFCMakeAlign(kFont_Size16, kColor_White,NSTextAlignmentCenter)];
+    UILabel *titleLabel2 =[UILabel funj_getLabel:CGRectMake(self.m_captureRectArea.origin.x-30, self.m_captureRectArea.origin.y+self.m_captureRectArea.size.height+30, self.m_captureRectArea.size.width+60, 50) t:LocalStr(@"Scan the frame to the two-dimensional code, you can automatically scan") fc:JTextFCMakeAlign(kFont_Size16, kColor_White,NSTextAlignmentCenter)];
     [self.view addSubview:titleLabel2];
     titleLabel2.tag= 1004;
 }
@@ -83,7 +83,7 @@
     if(device){
         AVCaptureDeviceInput * input = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
         if(!input) {// Handling the error appropriately.
-            [JAppViewTools funj_showAlertBlock:self :nil :LocalStr(@"Please set APP to access your camera \nSettings> Privacy> Camera") :@[LocalStr(@"Confirm")] :^(id strongSelf, NSInteger index) {
+            [JAppViewTools funj_showAlertBlock:self t:nil msg:LocalStr(@"Please set APP to access your camera \nSettings> Privacy> Camera") items:@[LocalStr(@"Confirm")] c:^(id strongSelf, NSInteger index) {
                 NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
                 [[UIApplication sharedApplication] openURL:url  options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @NO} completionHandler:nil];
             }];
@@ -124,10 +124,10 @@
         [self.m_session startRunning];
     }
 
-    [self funj_changeDeviceVideoZoomFactor:device :6  :2];
-    [self funj_changeDeviceVideoZoomFactor:device :18  :1];
+    [self funj_changeDeviceVideoZoomFactor:device t:6  factor:2];
+    [self funj_changeDeviceVideoZoomFactor:device t:18  factor:1];
 }
--(void)funj_changeDeviceVideoZoomFactor:(AVCaptureDevice*)device :(CGFloat)time :(CGFloat)factor{
+-(void)funj_changeDeviceVideoZoomFactor:(AVCaptureDevice*)device t:(CGFloat)time factor:(CGFloat)factor{
     LRWeakSelf(device);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         LRStrongSelf(device);

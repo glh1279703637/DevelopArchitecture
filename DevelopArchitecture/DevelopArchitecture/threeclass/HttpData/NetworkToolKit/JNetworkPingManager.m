@@ -67,7 +67,7 @@ static JNetworkPingManager *networkPingManager = nil;
     if(self.m_countPingError % 5 == 0){
         self.m_countPingErrorShow ++;
         
-        [JAppViewTools funj_showTextToast:[[JAppViewTools funj_getTopViewcontroller]view] message:@"网络可能存在异常，请注意切换更新网络"];
+        [JAppViewTools funj_showTextToast:[[JAppViewTools funj_getTopViewcontroller]view] msg:@"网络可能存在异常，请注意切换更新网络"];
         if(self.m_countPingErrorShow >= 2){
             CLog(@"stop: %@",  error);
             return;
@@ -86,11 +86,11 @@ static JNetworkPingManager *networkPingManager = nil;
         NSInteger countSub = self.m_countPingSendToReceive;
         self.m_countTotalPingSend = 0;self.m_countPingSendToReceive = 0;
         if(countSub >= 18){
-            [JAppViewTools funj_showTextToast:[[JAppViewTools funj_getTopViewcontroller] view] message:@"当前的网络非常差"];
+            [JAppViewTools funj_showTextToast:[[JAppViewTools funj_getTopViewcontroller] view] msg:@"当前的网络非常差"];
         }else if(countSub >= 12){
-            [JAppViewTools funj_showTextToast:[[JAppViewTools funj_getTopViewcontroller] view] message:@"当前的网络很差"];
+            [JAppViewTools funj_showTextToast:[[JAppViewTools funj_getTopViewcontroller] view] msg:@"当前的网络很差"];
         }else if(countSub >=7){
-            [JAppViewTools funj_showTextToast:[[JAppViewTools funj_getTopViewcontroller] view] message:@"当前的网络有点差"];
+            [JAppViewTools funj_showTextToast:[[JAppViewTools funj_getTopViewcontroller] view] msg:@"当前的网络有点差"];
         }
     }
     self.m_countPingSendToReceive ++;

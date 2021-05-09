@@ -36,16 +36,16 @@ typedef void (^reloadToSolveDataCallback)(BOOL isHead,BOOL isSearch, NSInteger p
 @property(nonatomic,strong)NSMutableArray *m_dataArr,*m_searchDataArr;
 @property(nonatomic,strong)NSMutableSet *m_dataSet,*m_searchDataSet;
 
--(void)funj_reloadBaseViewParameter:(CGRect)topViewFrame :(CGRect)tableViewFrame :(BOOL)searchBarHidden;//重新设置tablew、searchbar 等视图的坐标与大小
+-(void)funj_reloadBaseViewParameter:(CGRect)topViewFrame f:(CGRect)tableViewFrame hidden:(BOOL)searchBarHidden;//重新设置tablew、searchbar 等视图的坐标与大小
 
 -(void)funj_searchBarState:(BOOL)isShowBlack;//searchbar 相关的方法
 -(void)funj_reloadTableViewToSolveData:(reloadToSolveDataCallback)callback;
 
--(void)funj_solverToSetData:(NSArray*)data :(NSMutableSet*)targetArr;
--(void)funj_solverToSubRepeatData:(NSArray*)data :(NSMutableArray*)targetArr :(NSString*)key;
--(void)funj_solverToSubRepeatData:(NSArray*)data :(NSMutableArray*)targetArr :(NSString*)key :(NSString*)model;
+-(void)funj_solverToSetData:(NSArray*)data d:(NSMutableSet*)targetArr;
+-(void)funj_solverToSubRepeatData:(NSArray*)data d:(NSMutableArray*)targetArr k:(NSString*)key;
+-(void)funj_solverToSubRepeatData:(NSArray*)data d:(NSMutableArray*)targetArr key:(NSString*)key m:(NSString*)model;
 
--(void)funj_addCellCallbackHeight:(JBaseTableViewCell*)cell :(NSString*)idKey;
+-(void)funj_addCellCallbackHeight:(JBaseTableViewCell*)cell k:(NSString*)idKey;
 @end
 
 #define  kcreateTableViewWithDelegate(delegateVC) ({\

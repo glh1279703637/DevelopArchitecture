@@ -39,17 +39,17 @@ typedef void (^alertBlockCallback)(id strongSelf, NSInteger index);
 
 @interface JAppViewTools : NSObject
 //显示toast文字
-+ (void)funj_showTextToast:(UIView *)containerview message:(NSString *)msgtxt;
++ (void)funj_showTextToast:(UIView *)containerview msg:(NSString *)msgtxt;
 
 //显示toast文字
 //动画完成后，执行 [target method] 方法
-+ (void)funj_showTextToast:(UIView *)containerview message:(NSString *)msgtxt complete:(void (^)(void))complete time:(CGFloat)time;
++ (void)funj_showTextToast:(UIView *)containerview msg:(NSString *)msgtxt complete:(void (^)(void))complete time:(CGFloat)time;
 
 //显示只带有一个ok按钮的提示框
-+ (void)funj_showAlertBlock:(id)delegate :(NSString *)msgtxt;
-+ (void)funj_showAlertBlocks:(id)delegate :(NSString *)title :(NSString *)msgtxt :(alertBlockCallback)callback;
-+ (UIAlertController*)funj_showAlertBlock:(id)delegate :(NSString *)title :(NSString *)msgtxt :(NSArray*)button :(alertBlockCallback)callback;
-+(void)funj_showSheetBlock:(id)target :(UIView*)sourceView :(NSString*)title :(NSArray *)buttonArr block:(alertBlockCallback)callback ;
++ (void)funj_showAlertBlock:(id)delegate msg:(NSString *)msgtxt;
++ (void)funj_showAlertBlocks:(id)delegate t:(NSString *)title msg:(NSString *)msgtxt c:(alertBlockCallback)callback;
++ (UIAlertController*)funj_showAlertBlock:(id)delegate t:(NSString *)title msg:(NSString *)msgtxt items:(NSArray*)button c:(alertBlockCallback)callback;
++(void)funj_showSheetBlock:(id)target s:(UIView*)sourceView t:(NSString*)title items:(NSArray *)buttonArr c:(alertBlockCallback)callback ;
 //获取最顶层vc
 +(UIViewController*)funj_getTopViewcontroller;
 +(UIView*)funj_getKeyWindow;
@@ -99,7 +99,7 @@ typedef void (^clickCallBack)(UIButton*button);
 @property(nonatomic,assign)id<JSearchBarDelegate>searchDelegate;
 @property(nonatomic,assign)FilletValue m_filletValue;
 
--(void)funj_reloadSearchState:(BOOL)needIcon :(BOOL)needCancel;
+-(void)funj_reloadSearchState:(BOOL)needIcon need:(BOOL)needCancel;
 -(void)funj_removeCancelButton;
 @end
 

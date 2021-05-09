@@ -15,11 +15,11 @@
 }
 -(void)funj_addBaseTableSubView{
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    headImageView =[UIImageView funj_getImageView:CGRectMake(10, 10, (90+IS_IPAD*40), kImageViewHeight(90+IS_IPAD*40)) image:@""];
+    headImageView =[UIImageView funj_getImageView:CGRectMake(10, 10, (90+IS_IPAD*40), kImageViewHeight(90+IS_IPAD*40)) img:@""];
     headImageView.layer.masksToBounds = YES;
     headImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.contentView addSubview:headImageView];
-    titleLabel =[UILabel funj_getLabel:CGRectMake(headImageView.right+10, headImageView.top, kphotoPickerViewWidth-headImageView.right-40, headImageView.height) :JTextFCMake(kFont_Size15, kColor_Text_Black_Dark)];
+    titleLabel =[UILabel funj_getLabel:CGRectMake(headImageView.right+10, headImageView.top, kphotoPickerViewWidth-headImageView.right-40, headImageView.height) fc:JTextFCMake(kFont_Size15, kColor_Text_Black_Dark)];
     [self.contentView addSubview:titleLabel];
     
     UIImageView *line =[UIImageView funj_getLineImageView:CGRectMake(headImageView.right+10, headImageView.bottom+9, kphotoPickerViewWidth-30-headImageView.right-10, 1)];
@@ -32,7 +32,7 @@
     [nameString appendAttributedString:countString];
     titleLabel.attributedText = nameString;
     LRWeakSelf(self);
-    [JPhotoPickerInterface funj_getPhotoWithAsset:[m_dataModel.fetchResult lastObject] :PHImageRequestOptionsDeliveryModeFastFormat photoWidth:80 completion:^(UIImage * _Nonnull image, NSDictionary * _Nonnull dic, BOOL isDegraded) {
+    [JPhotoPickerInterface funj_getPhotoWithAsset:[m_dataModel.fetchResult lastObject] type:PHImageRequestOptionsDeliveryModeFastFormat photoWidth:80 completion:^(UIImage * _Nonnull image, NSDictionary * _Nonnull dic, BOOL isDegraded) {
         LRStrongSelf(self);
         self->headImageView.image = image;
     }];
@@ -52,27 +52,27 @@
 -(void)funj_addBaseCollectionView{
     CGFloat width =  self.width;
 
-    coverImageView =[UIImageView funj_getImageView:CGRectMake(0,0,width, kImageViewHeight(width)) image:@""];
+    coverImageView =[UIImageView funj_getImageView:CGRectMake(0,0,width, kImageViewHeight(width)) img:@""];
     coverImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.contentView addSubview:coverImageView];
     coverImageView.layer.masksToBounds = YES;
     
     //VideoSendIcon
     if([JPhotosConfig share].m_currentIsVideo){
-        timeLabel =[UIButton funj_getButtons:CGRectMake(30, coverImageView.height-20, coverImageView.width-40, 15) :@"00:00"  :JTextFCMake(kFont_Size10, [UIColor grayColor]) :@[@"VideoSendIcon"] :nil  :nil  :0 :^(UIButton *button) {
+        timeLabel =[UIButton funj_getButtons:CGRectMake(30, coverImageView.height-20, coverImageView.width-40, 15) t:@"00:00"  fc:JTextFCMake(kFont_Size10, [UIColor grayColor]) img:@[@"VideoSendIcon"] d:nil  a:nil  tag:0 set:^(UIButton *button) {
             [button funj_updateContentImageLayout:kRIGHT_IMAGECONTENT a:JAlignMake(0, 10, 0)];
         }];
         [self.contentView addSubview:timeLabel];
     }
     
-    selectBt =[UIButton funj_getButtons:CGRectMake(coverImageView.width-60, 0, 60, 60) :nil  :JTextFCZero() :@[@"photo_def_photoPickerVc",@"photo_sel_photoPickerVc"] :self  :@"funj_selectToAdd:" :0 :nil];
+    selectBt =[UIButton funj_getButtons:CGRectMake(coverImageView.width-60, 0, 60, 60) t:nil  fc:JTextFCZero() img:@[@"photo_def_photoPickerVc",@"photo_sel_photoPickerVc"] d:self  a:@"funj_selectToAdd:" tag:0 set:nil];
     [self.contentView addSubview:selectBt];
     selectBt.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     selectBt.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
-    [selectBt funj_updateButtonSelectStyle:NO  :NO];
+    [selectBt funj_updateButtonSelectStyle:NO  ischange:NO];
     
     if([JPhotosConfig share].m_isMultiplePhotos){
-        countLabel =[UILabel funj_getOneLabel:CGRectMake(5, coverImageView.height-20, 15, 15) :JTextFCMakeAlign(kFont_Size10, kColor_White,NSTextAlignmentCenter)];
+        countLabel =[UILabel funj_getOneLabel:CGRectMake(5, coverImageView.height-20, 15, 15) fc:JTextFCMakeAlign(kFont_Size10, kColor_White,NSTextAlignmentCenter)];
         [self.contentView addSubview:countLabel];
         [countLabel funj_setViewCornerLayer:JFilletMake(0, 15/2, kColor_Clear)];
         countLabel.backgroundColor = [UIColor redColor];
@@ -86,7 +86,7 @@
     selectBt.selected = data.isSelected;
     countLabel.hidden = data.indexCount <=0;
     LRWeakSelf(self);
-    [JPhotoPickerInterface funj_getPhotoWithAsset:data.asset :PHImageRequestOptionsDeliveryModeFastFormat photoWidth:coverImageView.width completion:^(UIImage * _Nonnull image, NSDictionary * _Nonnull dic, BOOL isDegraded) {
+    [JPhotoPickerInterface funj_getPhotoWithAsset:data.asset type:PHImageRequestOptionsDeliveryModeFastFormat photoWidth:coverImageView.width completion:^(UIImage * _Nonnull image, NSDictionary * _Nonnull dic, BOOL isDegraded) {
         LRStrongSelf(self);
         self->coverImageView.image = image;
     }];

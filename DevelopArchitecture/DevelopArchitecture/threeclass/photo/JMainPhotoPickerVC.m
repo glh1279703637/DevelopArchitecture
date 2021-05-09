@@ -16,7 +16,7 @@
 @end
 
 @implementation JMainPhotoPickerVC
-+(void)funj_getPopoverPhotoPickerVC:(JBaseViewController*)controller :(setPopverBaseVC)callback{
++(void)funj_getPopoverPhotoPickerVC:(JBaseViewController*)controller set:(setPopverBaseVC)callback{
     if(![JHttpReqHelp funj_checkNetworkType])return  ;
     JMainPhotoPickerVC *viewController=[[JMainPhotoPickerVC alloc]init];
     viewController.m_delegate = controller;
@@ -26,7 +26,7 @@
     int setPrentView = 0;
     if(callback)callback(viewController,&setPrentView);
     if(!setPrentView){
-        [viewController funj_setPresentIsPoperView:nav :CGSizeMake(kphotoPickerViewWidth , kphotoPickerViewHeight) :nil];
+        [viewController funj_setPresentIsPoperView:nav size:CGSizeMake(kphotoPickerViewWidth , kphotoPickerViewHeight) t:nil];
         viewController.m_currentShowVCModel = kCURRENTISPOPOVER;
     }else{
         nav.modalPresentationStyle = UIModalPresentationFullScreen;//配置present类型
@@ -113,7 +113,7 @@
             self->_m_tipLabel = nil;
         });
     }else if(statusAuthorized == PHAuthorizationStatusNotDetermined && _m_tipLabel){
-        [JAppUtility funj_shakeAnimationForView:_m_tipLabel :CGSizeMake(0, 8)];
+        [JAppUtility funj_shakeAnimationForView:_m_tipLabel offset:CGSizeMake(0, 8)];
     }else{
         LRWeakSelf(self);
         dispatch_main_async_safe(^{LRStrongSelf(self);
@@ -151,7 +151,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     JPhotosDataModel *model = self.m_dataArr[indexPath.row];
-    [self funj_getPushCallbackVCWithController:@"JPhotoPickerVC" title:model.name :model.name  :^(JBaseViewController *vc) {
+    [self funj_getPushCallbackVCWithController:@"JPhotoPickerVC" t:model.name d:model.name set:^(JBaseViewController *vc) {
         JPhotoPickerVC *pickVC = (JPhotoPickerVC*)vc;
         pickVC.m_dataModel = model;
     }];
@@ -162,20 +162,20 @@
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    [self funj_reloadBaseViewParameter:CGRectZero :CGRectMake(0, 0, self.view.width, self.view.height-kFilletSubHeight) :YES];
+    [self funj_reloadBaseViewParameter:CGRectZero f:CGRectMake(0, 0, self.view.width, self.view.height-kFilletSubHeight) hidden:YES];
     UILabel *contentLabel =[self.m_defaultImageView viewWithTag:9993];
     contentLabel.frame = CGRectMake(-self.m_defaultImageView.left+10, self.m_defaultImageView.height-40, self.view.width-20, 40);
     _m_tipLabel.top = self.view.height - 60;
     _m_tipLabel.left = (self.view.width - 200)/2;
 }
--(void)funj_reloadDefaultItems:(BOOL)isVideo :(BOOL)isMulti :(NSInteger)maxPhotos{
+-(void)funj_reloadDefaultItems:(BOOL)isVideo isMul:(BOOL)isMulti max:(NSInteger)maxPhotos{
     [JPhotosConfig share].m_currentIsVideo = isVideo;
     [JPhotosConfig share].m_isMultiplePhotos = isMulti;
     [JPhotosConfig share].m_maxCountPhotos = isMulti?maxPhotos:1;
 }
 -(UILabel *)m_tipLabel{
     if(!_m_tipLabel){
-        _m_tipLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 200, 30) :@"建议请优先选择所有照片" :JTextFCMakeAlign(kFont_Size14, kColor_Orange,NSTextAlignmentCenter)];
+        _m_tipLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 200, 30) t:@"建议请优先选择所有照片" fc:JTextFCMakeAlign(kFont_Size14, kColor_Orange,NSTextAlignmentCenter)];
         [self.view addSubview:_m_tipLabel];
     }
     return _m_tipLabel;

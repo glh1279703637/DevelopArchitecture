@@ -20,9 +20,9 @@ typedef NS_ENUM(NSInteger,TipPointPostion) {
 
 +(void)funj_addMainBottomSwipeView:(UIView*)superView;
 
--(id)initWithTitle:(NSString*)title :(UIView*)superView;
+-(id)initWithTitle:(NSString*)title supView:(UIView*)superView;
 
--(void)funj_reloadType :(TipPointPostion)type :(CGPoint)tipPoint :(CGFloat)Offset;
+-(void)funj_reloadType:(TipPointPostion)type p:(CGPoint)tipPoint offset:(CGFloat)Offset;
 
 -(void)funj_addAutoHiddenViews;
 @end

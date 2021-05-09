@@ -15,7 +15,7 @@
 //根据key 删除内容
 +(BOOL)funj_deleteDataFromTable:(NSString*)name deleteKey:(NSDictionary*)key;
 // 在表中添加新项column:@{key:text}
-+(BOOL)funj_AddTableColumns:(NSString*)table :(NSDictionary*)column;
++(BOOL)funj_AddTableColumns:(NSString*)table column:(NSDictionary*)column;
 // 显示所有内容 showkey:@[name,age]
 +(NSArray*)funj_showAllDataFromTable:(NSString*)name showKey:(NSArray*)showKey;
 /**
@@ -30,5 +30,5 @@
 //判断是否有这条记录
 +(BOOL)funj_isHasData:(NSString*)tableName key:(NSDictionary*)data;
 //根据key 倒序获取 最新一条记录
-+(NSDictionary*)funj_searchTopFirstFromTable:(NSString*)name :(NSArray*)showKey searchKey:(NSString*)key;
++(NSDictionary*)funj_searchTopFirstFromTable:(NSString*)name key:(NSArray*)showKey searchKey:(NSString*)key;
 @end

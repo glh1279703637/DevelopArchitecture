@@ -14,17 +14,17 @@
 
 @implementation JAppUtility
 
-+(NSString*)funj_getTempPath:(NSString*)basepath :(NSString*)file{
++(NSString*)funj_getTempPath:(NSString*)basepath name:(NSString*)fileName{
     NSString *temp=NSTemporaryDirectory();
     if(basepath)temp= [temp stringByAppendingString:basepath];
-    if(file)temp= [temp stringByAppendingPathComponent:file];
+    if(fileName)temp= [temp stringByAppendingPathComponent:fileName];
     return temp;
 }
-+ (NSString *)funj_getDocumentPathWithFile:(NSString*)file{
++ (NSString *)funj_getDocumentPathWithFile:(NSString*)fileName{
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentdir=[paths objectAtIndex:0];
-    if(file){
-        return [documentdir stringByAppendingPathComponent:file];
+    if(fileName){
+        return [documentdir stringByAppendingPathComponent:fileName];
     }
     return documentdir;
 }
@@ -78,7 +78,7 @@
 }
 
 
-+ (CGFloat)funj_getTextHeight:(NSString *)content textFont:(UIFont *)textFont viewWidth:(CGFloat)layoutwidth{
++ (CGFloat)funj_getTextHeight:(NSString *)content f:(UIFont *)textFont w:(CGFloat)layoutwidth{
     CGSize textSize = CGSizeMake(layoutwidth,CGFLOAT_MAX);
     
     if(!textFont || !content || [content isKindOfClass:[NSNull class]]) return 0;
@@ -86,7 +86,7 @@
     
     return textSize.height+3;
 }
-+(CGFloat) funj_getTextWidth:(NSString *)text textFont:(UIFont *)font {
++(CGFloat) funj_getTextWidth:(NSString *)text f:(UIFont *)font {
     
     CGSize textSize =CGSizeMake(MAXFLOAT, 60);
     if(!font || !text || [text isKindOfClass:[NSNull class]]) return 0;
@@ -189,7 +189,7 @@
 //    return newImage;
 //}
 //图片 压缩算法 上传时候处理
-+(NSData *)funj_compressImageWithMaxLength:(UIImage*)image :(CGFloat)sizeM{
++(NSData *)funj_compressImageWithMaxLength:(UIImage*)image s:(CGFloat)sizeM{
     // Compress by quality
     if(sizeM == -1) sizeM = 0.4 + IS_IPAD * 0.3;
     NSInteger maxLength = 1024 * 1024 * sizeM;
@@ -236,7 +236,7 @@
     return data;
 }
 
-+(UIImage *)funj_imageWithColor:(UIColor *)color :(CGSize)size{
++(UIImage *)funj_imageWithColor:(UIColor *)color s:(CGSize)size{
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
     // create a 1 by 1 pixel context
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
@@ -248,7 +248,7 @@
 
     return image;
 }
-//+ (UIImage*)funj_imageFromScreenShotView:(UIView*)view :(NSArray*)removeViews :(CGRect)shotRect{
+//+ (UIImage*)funj_imageFromScreenShotView:(UIView*)view reView:(NSArray*)removeViews r:(CGRect)shotRect{
 //    CGFloat scale = [UIScreen mainScreen].scale;
 //    shotRect.size.width *= scale;shotRect.size.height *= scale;
 //    UIGraphicsBeginImageContextWithOptions(shotRect.size,NO, scale);
@@ -361,7 +361,7 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:email];
 }
-+(BOOL)funj_isCheckMobile_Password_CodeIsRight:(UIViewController*)viewController :(NSDictionary*)data{
++(BOOL)funj_isCheckMobile_Password_CodeIsRight:(UIViewController*)viewController d:(NSDictionary*)data{
     NSString *allName = data[@"allName"];
     NSString *email = data[@"email"];
     NSString *name = data[@"name"];
@@ -423,7 +423,7 @@
         title = LocalStr(@"Please click to confirm the user agreement");
     }
     if(title){
-        if(viewController)[JAppViewTools funj_showAlertBlock:viewController :nil :title :0 :nil];
+        if(viewController)[JAppViewTools funj_showAlertBlock:viewController t:nil msg:title items:nil c:nil];
         return NO;
     }
     return YES;
@@ -461,7 +461,7 @@
     
     return  [[NSClassFromString(className) alloc]init];
 }
-+(void)funj_getTheTimeCountdownWithCode:(UIButton*)getCodeBt :(UIColor*)defaultBoardColor{
++(void)funj_getTheTimeCountdownWithCode:(UIButton*)getCodeBt c:(UIColor*)defaultBoardColor{
     getCodeBt.userInteractionEnabled = NO;
     getCodeBt.selected=YES;
     getCodeBt.layer.borderColor = kColor_Line_Gray_Dark.CGColor;
@@ -519,7 +519,7 @@
     mutableString = (NSMutableString *)[mutableString stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:[NSLocale currentLocale]];
     return [mutableString stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
-+ (void)funj_shakeAnimationForView:(UIView *)view :(CGSize)offset{
++ (void)funj_shakeAnimationForView:(UIView *)view offset:(CGSize)offset{
     CALayer *viewLayer = view.layer;
     CGPoint position = viewLayer.position;
     CGPoint left = CGPointMake(position.x - offset.width, position.y-offset.height);
@@ -562,7 +562,7 @@
     
     [viewLayer addAnimation:animation forKey:nil];
 }
-+ (void) funj_transitionWithType:(NSString *) type WithSubtype:(NSString *) subtype ForView : (UIView *) view{
++ (void) funj_transitionWithType:(NSString *) type subtype:(NSString *)subtype forView : (UIView *) view{
     //创建CATransition对象
     CATransition *animation = [CATransition animation];
     //设置运动时间
@@ -605,7 +605,7 @@
     [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{ }];
 }
 
-+(NSString*)funj_getTextFieldLength:(NSString*)textFieldText  :(NSRange)range :(NSString*)string :(NSInteger)maxLength{
++(NSString*)funj_getTextFieldLength:(NSString*)textFieldText  r:(NSRange)range t:(NSString*)string maxLen:(NSInteger)maxLength{
     if(textFieldText.length+string.length>maxLength){
         int insertLength = (int)maxLength-(int)textFieldText.length;
         insertLength = insertLength<=0?0:insertLength;
@@ -641,7 +641,7 @@
                             sumbitArr = @[@"确定"];
                         }
                         NSInteger indexCount = sumbitArr.count - 1;
-                        [JAppViewTools funj_showAlertBlock:[JAppViewTools funj_getTopViewcontroller] :nil :releaseNotes :sumbitArr :^(id strongSelf, NSInteger index) {
+                        [JAppViewTools funj_showAlertBlock:[JAppViewTools funj_getTopViewcontroller] t:nil msg:releaseNotes items:sumbitArr c:^(id strongSelf, NSInteger index) {
                             if(index == indexCount){
 //                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:AppstoreURL] options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @NO} completionHandler:nil];
                             }

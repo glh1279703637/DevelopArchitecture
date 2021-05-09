@@ -27,10 +27,10 @@
     return imageUrl;
 }
 
--(void)funj_setInternetImage:(NSString*)imageUrl :(NSString*)placeholderImage{
-    [self funj_setInternetImageBlock:imageUrl :placeholderImage :nil];
+-(void)funj_setInternetImage:(NSString*)imageUrl ph:(NSString*)placeholderImage{
+    [self funj_setInternetImageBlock:imageUrl ph:placeholderImage c:nil];
 }
--(void)funj_setInternetImageBlock:(NSString*)imageUrl :(NSString*)placeholderImage  :(SDExternalCompletionBlock)completedBlocks{
+-(void)funj_setInternetImageBlock:(NSString*)imageUrl ph:(NSString*)placeholderImage  c:(SDExternalCompletionBlock)completedBlocks{
     imageUrl = [self funj_checkUrl:imageUrl];
     UIImage *defaultimage=nil;
     if(placeholderImage && placeholderImage.length>0){

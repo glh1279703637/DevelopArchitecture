@@ -27,7 +27,7 @@ typedef void (^callBackSelector)(NSDictionary*result,BOOL isFinish);
 
 -(instancetype)initWithPlistArray:(NSArray<NSArray*> *)plistarray callback:(callBackSelector)callback;
 
--(void)funj_setPickTitle:(NSString *)title :(NSArray *)contentName :(NSArray *)contentId;
+-(void)funj_setPickTitle:(NSString *)title cname:(NSArray *)contentName cid:(NSArray *)contentId;
 -(void)funj_setDefaultPicker:(NSArray*)array;
 
 -(void)show;

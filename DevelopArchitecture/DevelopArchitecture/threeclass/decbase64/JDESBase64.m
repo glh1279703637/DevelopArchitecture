@@ -19,12 +19,12 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 
 @implementation JDESBase64
 
-+ (NSString *)funj_encryptionWithbase64:(NSString *)text :(NSString*)key{
++ (NSString *)funj_encryptionWithbase64:(NSString *)text k:(NSString*)key{
     if (text && ![text isEqualToString:LocalStr_None]) {
         
           NSData *data = [text dataUsingEncoding:NSUTF8StringEncoding];
         //IOS 自带DES加密 Begin
-        data = [self funj_DESEncrypt:data WithKey:[self encryptionKey:key]];
+        data = [self funj_DESEncrypt:data k:[self encryptionKey:key]];
         //IOS 自带DES加密 End
         return [self funj_base64EncodedStringFrom:data];
     }
@@ -33,12 +33,12 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     }
 }
 
-+ (NSString *)funj_decryptionFromBase64:(NSString *)base64 :(NSString*)key{
++ (NSString *)funj_decryptionFromBase64:(NSString *)base64 k:(NSString*)key{
     if (base64 && ![base64 isEqualToString:LocalStr_None]) {
  
         NSData *data = [self funj_dataWithBase64EncodedString:base64];
         //IOS 自带DES解密 Begin
-        data = [self funj_DESDecrypt:data WithKey:[self encryptionKey:key]];
+        data = [self funj_DESDecrypt:data k:[self encryptionKey:key]];
         //IOS 自带DES加密 End
         return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     }
@@ -66,7 +66,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
  返回参数 : (NSData *)
  备注信息 : 此函数不可用于过长文本
  **********************************************************/
-+ (NSData *)funj_DESEncrypt:(NSData *)data WithKey:(NSString *)key
++ (NSData *)funj_DESEncrypt:(NSData *)data k:(NSString *)key
 {
     char keyPtr[kCCKeySizeAES256+1];
     bzero(keyPtr, sizeof(keyPtr));
@@ -103,7 +103,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
  返回参数 : (NSData *)
  备注信息 : 此函数不可用于过长文本
  **********************************************************/
-+ (NSData *)funj_DESDecrypt:(NSData *)data WithKey:(NSString *)key
++ (NSData *)funj_DESDecrypt:(NSData *)data k:(NSString *)key
 {
     char keyPtr[kCCKeySizeAES256+1];
     bzero(keyPtr, sizeof(keyPtr));
@@ -245,7 +245,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     
     return [[NSString alloc] initWithBytesNoCopy:characters length:length encoding:NSASCIIStringEncoding freeWhenDone:YES];
 }
-+ (NSString *)funj_hmacsha1:(NSString *)data secret:(NSString *)key {
++ (NSString *)funj_hmacsha1:(NSString *)data k:(NSString *)key {
     
     const char *cKey  = [key cStringUsingEncoding:NSASCIIStringEncoding];
     const char *cData = [data cStringUsingEncoding:NSASCIIStringEncoding];

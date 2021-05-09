@@ -74,7 +74,7 @@ maddShareValue(config, JPhotosConfig)
     }
     if (completion && albumArr.count > 0) completion(albumArr);
 }
-+ (void)funj_getPhotoWithAsset:(PHAsset*)phAsset :(PHImageRequestOptionsDeliveryMode)deliveryMode photoWidth:(CGFloat)photoWidth completion:(void (^)(UIImage *image, NSDictionary *dic, BOOL isDegraded))completion {
++ (void)funj_getPhotoWithAsset:(PHAsset*)phAsset type:(PHImageRequestOptionsDeliveryMode)deliveryMode photoWidth:(CGFloat)photoWidth completion:(void (^)(UIImage *image, NSDictionary *dic, BOOL isDegraded))completion {
  
     photoWidth = MIN(kphotoPickerViewWidth, photoWidth);
     CGFloat aspectRatio = phAsset.pixelWidth / (CGFloat)phAsset.pixelHeight;

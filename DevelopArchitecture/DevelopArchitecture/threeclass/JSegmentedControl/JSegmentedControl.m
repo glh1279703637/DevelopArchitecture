@@ -18,7 +18,7 @@
     
     SegmentType m_type;
 }
--(id)initWithFrame:(CGRect)frame :(NSArray*)titles :(selectBt)action{
+-(id)initWithFrame:(CGRect)frame t:(NSArray*)titles c:(selectBt)action{
     if(self = [super initWithFrame:frame]){
         titleArray=titles;
         m_action=action;
@@ -30,7 +30,7 @@
     m_type = type;
     if(bgImageArray.count>0){
         if(!_m_BgImageView){
-            _m_BgImageView=[UIImageView funj_getImageView:self.bounds image:nil];
+            _m_BgImageView=[UIImageView funj_getImageView:self.bounds img:nil];
             [self setBgViewStyle:_m_BgImageView];
             _m_BgImageView.userInteractionEnabled=YES;
             [self addSubview:_m_BgImageView];
@@ -46,7 +46,7 @@
     
     if(bgImageArray.count>1){
         if(!selectBgForBt){
-            selectBgForBt=[UIImageView funj_getImageView:CGRectMake(1, 1, self.width/[titleArray count]-2, self.height-2) image:nil];
+            selectBgForBt=[UIImageView funj_getImageView:CGRectMake(1, 1, self.width/[titleArray count]-2, self.height-2) img:nil];
             [self addSubview:selectBgForBt];
             [self setBgViewStyle:selectBgForBt];
         }
@@ -73,11 +73,11 @@
 
 -(void)addSegBgView{
     for(int i=0;i<titleArray.count;i++){
-        UIButton *itemBt =[UIButton funj_getButton:CGRectMake(self.width/[titleArray count]*i, 0, self.width/[titleArray count], self.height) :titleArray[i] :JTextFCMaked(kFont_Size17,_TextColorArray[0],_TextColorArray[1]) :nil :self  :@"funj_selectItemTo:" :i+30];
+        UIButton *itemBt =[UIButton funj_getButton:CGRectMake(self.width/[titleArray count]*i, 0, self.width/[titleArray count], self.height) t:titleArray[i] fc:JTextFCMaked(kFont_Size17,_TextColorArray[0],_TextColorArray[1]) bg:nil d:self  a:@"funj_selectItemTo:" tag:i+30];
         [self addSubview:itemBt];
         
         [itemBt.titleLabel setAdjustsFontSizeToFitWidth:YES];
-        [itemBt funj_updateButtonSelectStyle:NO  :NO];
+        [itemBt funj_updateButtonSelectStyle:NO  ischange:NO];
     }
     [self funj_setSegmentSelectedIndex:0];
     

@@ -46,7 +46,7 @@ static JMainViewController *mainVC=nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIButton *buttonBt =[UIButton funj_getButtonBlock:CGRectMake(50, 80, 80, 50) :@"点击" :JTextFCMake(kFont_Size15, kColor_Orange) :@[kColor_Blue] :0 :^(UIButton *button) {
+    UIButton *buttonBt =[UIButton funj_getButtonBlock:CGRectMake(50, 80, 80, 50) t:@"点击" fc:JTextFCMake(kFont_Size15, kColor_Orange) bg:@[kColor_Blue] tag:0 c:^(UIButton *button) {
 //        self.m_currentIsLoadMultPhoto = YES;
 //        self.m_currentCanSelectMaxImageCount = 10;
 //        self.m_cropFrame = CGRectMake((kWidth/2/2), kHeight/2/2, kWidth/2, kHeight/2);

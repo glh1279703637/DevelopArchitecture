@@ -12,7 +12,7 @@
 @interface JTableDataArrModel : JBaseDataModel
 @property(nonatomic,strong)NSMutableArray *m_titleArr,*m_dataModelArr,*m_dataTypeArr,*m_otherMarkArr;
 
--(void)funj_setTableShowTypeForSection:(NSInteger)section :(BOOL)isOpen;
+-(void)funj_setTableShowTypeForSection:(NSInteger)section o:(BOOL)isOpen;
 -(NSArray*)funj_getShowDataWithSection:(NSInteger)section;
 -(BOOL)funj_getDataTypeWithSection:(NSInteger)section;
 @end

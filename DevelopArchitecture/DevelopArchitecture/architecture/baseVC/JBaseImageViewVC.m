@@ -30,15 +30,15 @@
 - (void)funj_editPortraitImageView:(id )button {
     [self.view endEditing: YES];
     if(self.m_currentCanSelectMaxImageCount<=0){
-        [JAppViewTools funj_showAlertBlock:self :@"Info" :LocalStr(@"The number of images has reached the maximum limit") :0 :nil];
+        [JAppViewTools funj_showAlertBlock:self t:@"Info" msg:LocalStr(@"The number of images has reached the maximum limit") items:nil c:nil];
         return ;
     }
-    [JAppViewTools funj_showSheetBlock:self  :button :LocalStr(@"Choose photos") :@[LocalStr(@"Photo"),LocalStr(@"Select from album")] block:^(JBaseImageViewVC* strongSelf, NSInteger buttonIndex) {
+    [JAppViewTools funj_showSheetBlock:self  s:button t:LocalStr(@"Choose photos") items:@[LocalStr(@"Photo"),LocalStr(@"Select from album")] c:^(JBaseImageViewVC* strongSelf, NSInteger buttonIndex) {
         if (buttonIndex == 0) {// 拍照
             if ([strongSelf funj_isCameraAvailable] && [strongSelf funj_doesCameraSupportTakingPhotos]) {
                 AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
                 if (authStatus == AVAuthorizationStatusRestricted || authStatus ==AVAuthorizationStatusDenied){
-                    [JAppViewTools funj_showAlertBlock:strongSelf :nil :LocalStr(@"Please set APP to access your camera \nSettings> Privacy> Camera") :@[LocalStr(@"Confirm")] :^(JBaseImageViewVC* strongSelf, NSInteger index) {
+                    [JAppViewTools funj_showAlertBlock:strongSelf t:nil msg:LocalStr(@"Please set APP to access your camera \nSettings> Privacy> Camera") items:@[LocalStr(@"Confirm")] c:^(JBaseImageViewVC* strongSelf, NSInteger index) {
                         NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
                         [[UIApplication sharedApplication] openURL:url  options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @NO} completionHandler:nil];
                         [strongSelf funj_clickBackButton:nil];
@@ -52,9 +52,9 @@
             // 从相册中选取
             if ([strongSelf funj_isPhotoLibraryAvailable]) {
                 LRWeakSelf(strongSelf);
-                [JMainPhotoPickerVC funj_getPopoverPhotoPickerVC:strongSelf  :^(JBaseViewController *vc, int *isPresentView) {
+                [JMainPhotoPickerVC funj_getPopoverPhotoPickerVC:strongSelf  set:^(JBaseViewController *vc, int *isPresentView) {
                     LRStrongSelf(strongSelf);
-                    [(JMainPhotoPickerVC*)vc funj_reloadDefaultItems:NO  :strongSelf.m_currentIsLoadMultPhoto :strongSelf.m_currentCanSelectMaxImageCount];
+                    [(JMainPhotoPickerVC*)vc funj_reloadDefaultItems:NO  isMul:strongSelf.m_currentIsLoadMultPhoto max:strongSelf.m_currentCanSelectMaxImageCount];
                 }];
             }
         }
@@ -119,7 +119,7 @@
 //                NSMutableArray *imageArray = [NSMutableArray array];
 //                for (int i = 0; i < imageOrVideoArr.count; i++) {
 //                    UIImage *temImage = imageOrVideoArr[i];
-//                    NSData* data = [JAppUtility funj_compressImageWithMaxLength:temImage :-1];
+//                    NSData* data = [JAppUtility funj_compressImageWithMaxLength:temImage s:-1];
 //                    [imageArray addObject:[UIImage imageWithData:data]];
 //                }
             }

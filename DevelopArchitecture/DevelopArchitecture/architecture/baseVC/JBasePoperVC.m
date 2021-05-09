@@ -19,7 +19,7 @@
 @implementation JBasePoperVC
 @synthesize m_currentIsUpState;
 
-+(JBasePoperVC*)funj_getPopoverVCs:(NSString *)className :(UIViewController*)sourcePresent :(id)data :(CGSize)size :(setPopverBaseVC)callback{
++(JBasePoperVC*)funj_getPopoverVCs:(NSString *)className sourceVC:(UIViewController*)sourcePresent d:(id)data s:(CGSize)size set:(setPopverBaseVC)callback{
     NSAssert(sourcePresent, @"sourcePresent can't nil");
     if(![JHttpReqHelp funj_checkNetworkType])return nil;
     JBasePoperVC *controller=[[NSClassFromString(className) alloc]init];
@@ -50,7 +50,7 @@
 }
 -(UIView*)m_BgViews{
     if(!_m_BgViews){
-        _m_BgViews =[UIView funj_getView:CGRectMake(0,0,kWidth,kHeight) :kColor_White_Dark];
+        _m_BgViews =[UIView funj_getView:CGRectMake(0,0,kWidth,kHeight) bg:kColor_White_Dark];
         [_m_BgViews funj_whenTouchedDown:^(UIView *sender) {
             [sender endEditing:YES];
         }];
@@ -80,11 +80,11 @@
     
     [self.view addSubview:self.m_BgViews];
 
-    _m_titleLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 0, 40)  :JTextFCMakeAlign(kFont_Size17,kColor_Text_Black_Dark,NSTextAlignmentCenter)];
+    _m_titleLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 0, 40)  fc:JTextFCMakeAlign(kFont_Size17,kColor_Text_Black_Dark,NSTextAlignmentCenter)];
     [self.m_BgViews addSubview:_m_titleLabel];
     
     __weak typeof(self) weakSelf = self;
-    _m_sumbitBt =[UIButton funj_getButtonBlocks:CGRectMake(0, 0, 80, 40) :nil :JTextFCMake(kFont_Size14, kColor_Text_Gray_Dark) : nil  :50 :nil  :^(UIButton *button) {
+    _m_sumbitBt =[UIButton funj_getButtonBlocks:CGRectMake(0, 0, 80, 40) t:nil fc:JTextFCMake(kFont_Size14, kColor_Text_Gray_Dark) img: nil  tag:50 set:nil  c:^(UIButton *button) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf funj_clickBackButton:button];
     }];
@@ -96,7 +96,7 @@
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(funj_keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
  }
 
--(void)funj_reloadTopNavView:(CGRect)titleframe :(CGRect)contentFrame/*top 必须是titleframe.bottom*/ :(NSString*)title  :(NSInteger)leftDelType :(NSString*)deleteStr :(NSString*)deleteImage{
+-(void)funj_reloadTopNavView:(CGRect)titleframe f:(CGRect)contentFrame/*top 必须是titleframe.bottom*/ t:(NSString*)title  lType:(NSInteger)leftDelType dStr:(NSString*)deleteStr dImg:(NSString*)deleteImage{
     titleframe.size.width = MIN(self.m_BgViews.width, titleframe.size.width);
     contentFrame.size.width = MIN(contentFrame.size.width, self.m_BgViews.width);
     _m_titleLabel.frame = titleframe;
@@ -139,13 +139,13 @@
 
 }
 -(UIView*)topNavView{
-    UIView *topNavView =[UIView funj_getView:CGRectMake(0, 0, kWidth, kNavigationBarBottom) :kColor_White_Dark];
+    UIView *topNavView =[UIView funj_getView:CGRectMake(0, 0, kWidth, kNavigationBarBottom) bg:kColor_White_Dark];
     [self.m_BgViews insertSubview:topNavView belowSubview:_m_titleLabel];
     return topNavView;
 }
 -(UIScrollView*)m_BgContentView{
     if(!_m_BgContentView){
-        _m_BgContentView =[UIScrollView funj_getScrollView:CGRectZero :self];
+        _m_BgContentView =[UIScrollView funj_getScrollView:CGRectZero d:self];
         _m_BgContentView.bounces= NO;
         [self.m_BgViews addSubview:_m_BgContentView];
 //        [_m_BgContentView funj_whenTouchedDown:^(UIView *sender) {

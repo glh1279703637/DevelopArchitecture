@@ -23,7 +23,7 @@ typedef void (^failureRequest)(UIViewController*viewController,NSString* error);
 - (JHttpReqHelp*)funj_requestToServer:(UIViewController*)viewController url:(NSString*)suffixUrl v:(NSDictionary*)parameter;
 
 //上传图片 model是数据模型一个类名的字符串
-- (JHttpReqHelp*)funj_requestImageToServers:(UIViewController*)viewController url:(NSString*)suffixUrl v:(NSDictionary *)parameter image:(UIImage *)image forKey:(NSString *)imagekey :(NSString*)flag;
+- (JHttpReqHelp*)funj_requestImageToServers:(UIViewController*)viewController url:(NSString*)suffixUrl v:(NSDictionary *)parameter image:(UIImage *)image forKey:(NSString *)imagekey flag:(NSString*)flag;
 //上传音频 model是数据模型一个类名的字符串
 - (JHttpReqHelp*)funj_requestVoiceToServer:(UIViewController*)viewController url:(NSString*)suffixUrl v:(NSDictionary *)parameter fileUrl:(NSURL *)fileUrl forKey:(NSString *)voicekey;
 

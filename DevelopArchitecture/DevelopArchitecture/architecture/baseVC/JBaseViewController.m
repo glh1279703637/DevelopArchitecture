@@ -48,7 +48,7 @@ maddProperyValue(m_mbProgressHUD, JProgressHUD)
         if(nav && [nav isKindOfClass:[JBaseNavigationVC class]] && nav.m_currentNavColor == kCURRENTISWHITENAV_TAG){
             icon = @"backBt2";
         }
-        UIBarButtonItem *backBt =[UIBarButtonItem funj_getNavPublicButton:self  title:nil  action:@"funj_clickBackButton:" image:icon  :^(UIButton *button) {
+        UIBarButtonItem *backBt =[UIBarButtonItem funj_getNavPublicButton:self  t:nil  a:@"funj_clickBackButton:" img:icon set :^(UIButton *button) {
             button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         }];
         self.navigationItem.leftBarButtonItems = @[backBt];
@@ -59,7 +59,7 @@ maddProperyValue(m_mbProgressHUD, JProgressHUD)
 
 }
 -(UIButton*)funj_addBackButton:(NSString*)backImage{
-    UIButton *backBt =[UIButton funj_getButtons:CGRectMake(0, kStatusBarHeight, 50, 44) :nil  :JTextFCZero() :@[backImage?backImage:@"backBt"] :self  :@"funj_clickBackButton:" :8800 :nil];
+    UIButton *backBt =[UIButton funj_getButtons:CGRectMake(0, kStatusBarHeight, 50, 44) t:nil  fc:JTextFCZero() img:@[backImage?backImage:@"backBt"] d:self  a:@"funj_clickBackButton:" tag:8800 set:nil];
     [self.view addSubview:backBt];
     return backBt;
 }
@@ -197,11 +197,11 @@ maddProperyValue(m_mbProgressHUD, JProgressHUD)
 -(void)funj_setBaseControllerData:(id)data{ }
 
 
--(JBaseViewController*)funj_getPresentVCWithController:(NSString*)className title:(NSString*)title :(id)data :(BOOL)isNav{
-    JBaseViewController *controller=[self funj_getPresentCallbackVCWithController:className title:title :data :isNav :nil];
+-(JBaseViewController*)funj_getPresentVCWithController:(NSString*)className t:(NSString*)title d:(id)data isNav:(BOOL)isNav{
+    JBaseViewController *controller=[self funj_getPresentCallbackVCWithController:className t:title d:data isNav:isNav set:nil];
     return controller;
 }
--(JBaseViewController*)funj_getPresentCallbackVCWithController:(NSString*)className title:(NSString*)title :(id)data :(BOOL)isNav :(setBaseVC)callback{
+-(JBaseViewController*)funj_getPresentCallbackVCWithController:(NSString*)className t:(NSString*)title d:(id)data isNav:(BOOL)isNav set:(setBaseVC)callback{
     if(![JHttpReqHelp funj_checkNetworkType])return nil;
     JBaseViewController *controller=[[NSClassFromString(className) alloc]init];
     if(!controller)return nil;
@@ -226,11 +226,11 @@ maddProperyValue(m_mbProgressHUD, JProgressHUD)
     return controller;
 }
 
--(JBaseViewController*)funj_getPushVCWithController:(NSString*)className title:(NSString*)title :(id)data{
-    JBaseViewController *controller=[self funj_getPushCallbackVCWithController:className title:title :data :nil];
+-(JBaseViewController*)funj_getPushVCWithController:(NSString*)className t:(NSString*)title d:(id)data{
+    JBaseViewController *controller=[self funj_getPushCallbackVCWithController:className t:title d:data set:nil];
     return controller;
 }
--(JBaseViewController*)funj_getPushCallbackVCWithController:(NSString*)className title:(NSString*)title :(id)datas :(setBaseVC)callback{
+-(JBaseViewController*)funj_getPushCallbackVCWithController:(NSString*)className t:(NSString*)title d:(id)datas set:(setBaseVC)callback{
     if(![JHttpReqHelp funj_checkNetworkType])return nil;
     JBaseViewController *controller=[[NSClassFromString(className) alloc]init];
     controller.title=title;
@@ -244,7 +244,7 @@ maddProperyValue(m_mbProgressHUD, JProgressHUD)
     return controller;
 }
 
--(JBaseViewController*)funj_replacePushCallbackVCWithController:(NSString*)className title:(NSString*)title :(id)data :(setBaseVC)callback{
+-(JBaseViewController*)funj_replacePushCallbackVCWithController:(NSString*)className t:(NSString*)title d:(id)data set:(setBaseVC)callback{
     if(![JHttpReqHelp funj_checkNetworkType])return nil;
     UINavigationController *vcs = [self isKindOfClass:[UINavigationController class]] ? (UINavigationController*)self : self.navigationController;
     NSMutableArray *array =[[NSMutableArray alloc]initWithArray:vcs.childViewControllers];
@@ -270,11 +270,11 @@ maddProperyValue(m_mbProgressHUD, JProgressHUD)
     [vcs setViewControllers:array animated:NO];
     return controller;
 }
--(JBaseViewController*)funj_getShowSplitDetailVC:(NSString *)className title:(NSString*)title  :(id)data :(BOOL)isNav{
-    JBaseViewController *controller =[self funj_getShowSplitDetailVC:className title:title :data :isNav :nil];
+-(JBaseViewController*)funj_getShowSplitDetailVC:(NSString *)className t:(NSString*)title  d:(id)data isNav:(BOOL)isNav{
+    JBaseViewController *controller =[self funj_getShowSplitDetailVC:className t:title d:data isNav:isNav set:nil];
     return controller;
 }
--(JBaseViewController*)funj_getShowSplitDetailVC:(NSString *)className title:(NSString*)title  :(id)data :(BOOL)isNav :(setBaseVC)callback{
+-(JBaseViewController*)funj_getShowSplitDetailVC:(NSString *)className t:(NSString*)title  d:(id)data isNav:(BOOL)isNav set:(setBaseVC)callback{
     if(![JHttpReqHelp funj_checkNetworkType])return nil;
     JBaseViewController *controller=[[NSClassFromString(className) alloc]init];
     if(!controller)return nil;
@@ -297,7 +297,7 @@ maddProperyValue(m_mbProgressHUD, JProgressHUD)
     }
     return controller;
 }
--(JBaseViewController*)funj_getPopoverVC:(NSString *)className :(UIView*)target  :(id)data :(CGSize)size  :(BOOL)isNav :(setPopverBaseVC)callback{
+-(JBaseViewController*)funj_getPopoverVC:(NSString *)className target:(UIView*)target  d:(id)data size:(CGSize)size isNav:(BOOL)isNav set:(setPopverBaseVC)callback{
     if(![JHttpReqHelp funj_checkNetworkType])return nil;
     JBaseViewController *controller=[[NSClassFromString(className) alloc]init];
     if(!controller)return nil;
@@ -312,7 +312,7 @@ maddProperyValue(m_mbProgressHUD, JProgressHUD)
     int setPrentView = 0;
     if(callback)callback(controller,&setPrentView);
     if(!setPrentView){
-        [self funj_setPresentIsPoperView:isNav?nav:controller :size :target];
+        [self funj_setPresentIsPoperView:isNav?nav:controller size:size t:target];
     }else{
         if(isNav) nav.modalPresentationStyle = UIModalPresentationFullScreen;//配置present类型
         else controller.modalPresentationStyle = UIModalPresentationFullScreen;//配置present类型
@@ -327,7 +327,7 @@ maddProperyValue(m_mbProgressHUD, JProgressHUD)
     return controller;
     
 }
--(void)funj_setPresentIsPoperView:(UIViewController*)controller :(CGSize)size :(UIView*)target{
+-(void)funj_setPresentIsPoperView:(UIViewController*)controller size:(CGSize)size t:(UIView*)target{
     controller.modalPresentationStyle = UIModalPresentationPopover;//配置推送类型
     controller.preferredContentSize = size;//设置弹出视图大小必须好推送类型相
     UIPopoverPresentationController *pover = controller.popoverPresentationController;

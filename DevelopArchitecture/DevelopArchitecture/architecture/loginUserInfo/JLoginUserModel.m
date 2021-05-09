@@ -56,7 +56,7 @@ static NSMutableDictionary * userDic =nil;
     if([userDic count] >0){
         return userDic;
     }
-    NSDictionary *dic= [JOperationDB funj_searchTopFirstFromTable:kUserLoginDB :[self getItems] searchKey:@"serverTime"];
+    NSDictionary *dic= [JOperationDB funj_searchTopFirstFromTable:kUserLoginDB key:[self getItems] searchKey:@"serverTime"];
     [userDic addEntriesFromDictionary:dic];
     return (dic && [dic count]>0) ? userDic : [NSMutableDictionary dictionary];
 }
@@ -77,7 +77,7 @@ static NSMutableDictionary * userDic =nil;
         });
     }
     
-    NSMutableDictionary*dic = (NSMutableDictionary*)[JOperationDB funj_searchTopFirstFromTable:kUserLoginDB :@[@"token",@"isLogining"] searchKey:@"serverTime"];
+    NSMutableDictionary*dic = (NSMutableDictionary*)[JOperationDB funj_searchTopFirstFromTable:kUserLoginDB key:@[@"token",@"isLogining"] searchKey:@"serverTime"];
     if(dic && [dic count]>0){
         if(![[dic objectForKey:@"isLogining"]isEqualToString:@"1"]){
             [dic setObject:@"" forKey:@"token"];

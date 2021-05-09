@@ -61,7 +61,7 @@ static NSMutableSet *leakedObjectPtrs;
     
     [leakedObjectPtrs addObject:proxy.objectPtr];
     __weak typeof(object) weakObject = object;
-    [JAppViewTools funj_showAlertBlock:self :@"Memory Leak" :[NSString stringWithFormat:@"%@", proxy.viewStack] :@[@"Retain Cycle"] :^(MLeakedObjectProxy* strongSelf, NSInteger index) {
+    [JAppViewTools funj_showAlertBlock:self t:@"Memory Leak" msg:[NSString stringWithFormat:@"%@", proxy.viewStack] items:@[@"Retain Cycle"] c:^(MLeakedObjectProxy* strongSelf, NSInteger index) {
         __strong typeof(weakObject) strongObject = weakObject;
         [MLeakedObjectProxy funj_selectAlertToIndex:strongObject];
     }];
@@ -72,7 +72,7 @@ static NSMutableSet *leakedObjectPtrs;
     NSArray *viewStack = _viewStack;
     dispatch_async(dispatch_get_main_queue(), ^{
         [leakedObjectPtrs removeObject:objectPtr];
-        [JAppViewTools funj_showAlertBlock:[JAppViewTools funj_getTopViewcontroller] :@"Object Deallocated" :[NSString stringWithFormat:@"%@", viewStack] :@[@"Retain Cycle"] :nil];
+        [JAppViewTools funj_showAlertBlock:[JAppViewTools funj_getTopViewcontroller] t:@"Object Deallocated" msg:[NSString stringWithFormat:@"%@", viewStack] items:@[@"Retain Cycle"] c:nil];
     });
 }
 
@@ -97,7 +97,7 @@ static NSMutableSet *leakedObjectPtrs;
                     NSArray *shiftedRetainCycle = [self shiftArray:retainCycle toIndex:index];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [JAppViewTools funj_showAlertBlock:self :@"Retain Cycle" :[NSString stringWithFormat:@"%@", shiftedRetainCycle] :@[@"Retain Cycle"] :nil];
+                        [JAppViewTools funj_showAlertBlock:self t:@"Retain Cycle" msg:[NSString stringWithFormat:@"%@", shiftedRetainCycle] items:@[@"Retain Cycle"] c:nil];
                     });
                     hasFound = YES;
                     break;
@@ -111,7 +111,7 @@ static NSMutableSet *leakedObjectPtrs;
         }
         if (!hasFound) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [JAppViewTools funj_showAlertBlock:self :@"Retain Cycle" :@"Fail to find a retain cycle" :@[@"Retain Cycle"] :nil];
+                [JAppViewTools funj_showAlertBlock:self t:@"Retain Cycle" msg:@"Fail to find a retain cycle" items:@[@"Retain Cycle"] c:nil];
             });
         }
     });

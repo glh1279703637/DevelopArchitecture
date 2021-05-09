@@ -60,7 +60,7 @@ typedef void (^selectPhotoCallback)(NSArray*imageOrVideoArr,BOOL isVideo);
 //获得相册/相册数组
 + (void)funj_getAllAlbums:(BOOL)isGetVideo completion:(void (^)(NSArray<JPhotosDataModel *> *))completion;
 //获得照片
-+ (void)funj_getPhotoWithAsset:(PHAsset*)phAsset :(PHImageRequestOptionsDeliveryMode)deliveryMode photoWidth:(CGFloat)photoWidth completion:(void (^)(UIImage *image, NSDictionary *dic, BOOL isDegraded))completion ;
++ (void)funj_getPhotoWithAsset:(PHAsset*)phAsset type:(PHImageRequestOptionsDeliveryMode)deliveryMode photoWidth:(CGFloat)photoWidth completion:(void (^)(UIImage *image, NSDictionary *dic, BOOL isDegraded))completion ;
 + (void)funj_getVideoWithAsset:(PHAsset*)asset completion:(void (^)(AVPlayerItem * _Nullable, NSDictionary * _Nullable))completion;
 
 + (void)funj_getPhotoBytesWithPhotoArray:(NSArray *)photoArray completion:(void (^)(NSString *totalBytes))completion;

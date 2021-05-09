@@ -13,8 +13,8 @@
 @end
 @implementation UIResponder (JBaseResponder)
 -(void)funj_addNumberInputKeyAccesssoryTitleView{
-    UIView *inputAccessoryView =[UIView funj_getView:CGRectMake(0, 0, kWidth, 50) :UIColorFromARGB(0xD1D4D9,1)];
-    UIButton *sumBt =[UIButton funj_getButtonBlock:CGRectMake(kWidth-120, 0, 120, 50) :LocalStr(@"Confirm") :JTextFCMake(kFont_BoldSize17, kColor_Orange) :nil  :0 :^(UIButton *button) {
+    UIView *inputAccessoryView =[UIView funj_getView:CGRectMake(0, 0, kWidth, 50) bg:UIColorFromARGB(0xD1D4D9,1)];
+    UIButton *sumBt =[UIButton funj_getButtonBlock:CGRectMake(kWidth-120, 0, 120, 50) t:LocalStr(@"Confirm") fc:JTextFCMake(kFont_BoldSize17, kColor_Orange) bg:nil  tag:0 c:^(UIButton *button) {
         [[JAppViewTools funj_getKeyWindow] endEditing:YES];
     }];
     [sumBt funj_updateContentImageLayout:kRIGHT_CONTENTIMAGE a:JAlignMake(0, 0, 20)];
@@ -164,7 +164,7 @@
     view.layer.shadowOffset = CGSizeMake(3,3);//shadowOffset阴影偏移,x向右偏移4，y向下偏移4，默认(0, -3),这个跟shadowRadius配合使用
     view.layer.shadowRadius = 4;//阴影半径，默认3
 }
--(CAGradientLayer*)funj_setViewGradientLayer:(BOOL)isX :(NSArray<UIColor*>*)colorArr :(NSArray*)locations{
+-(CAGradientLayer*)funj_setViewGradientLayer:(BOOL)isX bg:(NSArray<UIColor*>*)colorArr location:(NSArray*)locations{
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     UIView *view = (UIView*)self;
     gradientLayer.frame = view.bounds;
@@ -219,7 +219,7 @@
 
 @implementation UITextView(JTextView)
 
-+ (UITextView *)funj_getTextView:(CGRect)frame :(TextFC)textFC{
++ (UITextView *)funj_getTextView:(CGRect)frame fc:(TextFC)textFC{
     JTextView *textView=[[JTextView alloc]initWithFrame:frame];
     if(textFC.textColor){
         textView.textColor=textFC.textColor;
@@ -230,13 +230,13 @@
     
     return textView;
 }
-+ (UITextView *)funj_getTextViewFillet:(CGRect)frame  :(TextFC)textFC :(FilletValue)fillet{
-    UITextView *textView=[self funj_getTextView:frame  :textFC];
++ (UITextView *)funj_getTextViewFillet:(CGRect)frame  fc:(TextFC)textFC f:(FilletValue)fillet{
+    UITextView *textView=[self funj_getTextView:frame  fc:textFC];
     [textView funj_setViewCornerLayer:fillet];
     return textView;
 }
-+(UITextView *)funj_getLinkAttriTextView:(CGRect)frame :(NSString*)content attr:(NSDictionary<NSAttributedStringKey, id> *)attrs :(NSArray*)selectArr/*@[NSRange]*/ a:(id)target{
-    UITextView *textView=[self funj_getTextView:frame  :JTextFCZero()];
++(UITextView *)funj_getLinkAttriTextView:(CGRect)frame c:(NSString*)content attr:(NSDictionary<NSAttributedStringKey, id> *)attrs select:(NSArray*)selectArr/*@[NSRange]*/ a:(id)target{
+    UITextView *textView=[self funj_getTextView:frame  fc:JTextFCZero()];
     textView.scrollEnabled = NO;
     textView.editable = NO;textView.backgroundColor =[UIColor clearColor];
     NSMutableAttributedString *attri =[[NSMutableAttributedString alloc]initWithString:content attributes:attrs];
@@ -252,7 +252,7 @@
         UITextRange* textRange = [textView textRangeFromPosition:startPosition toPosition:endPosition];
         CGRect frame = [textView firstRectForRange:textRange];
         frame.origin.y -= 5;frame.size.height += 10;
-        UIButton *actionBt =[UIButton funj_getButtons:frame :nil  :JTextFCZero() :nil :target :@"funj_selectLinkAttriTo:" :10100+(index++) :nil];
+        UIButton *actionBt =[UIButton funj_getButtons:frame t:nil  fc:JTextFCZero() img:nil d:target a:@"funj_selectLinkAttriTo:" tag:10100+(index++) set:nil];
         [textView addSubview:actionBt];
     }
     textView.attributedText = attri;
@@ -264,7 +264,7 @@
 
 @implementation UILabel(JLabels)
 
-+ (UILabel *)funj_getLabel:(CGRect)frame :(NSString*)title :(TextFC)textFC{
++ (UILabel *)funj_getLabel:(CGRect)frame t:(NSString*)title fc:(TextFC)textFC{
     UILabel *label=[[UILabel alloc]initWithFrame:frame];
     if(textFC.textFont){
         [label setFont:textFC.textFont];
@@ -283,13 +283,13 @@
     label.backgroundColor=[UIColor clearColor];
     return label;
 }
-+ (UILabel *)funj_getLabel:(CGRect)frame :(TextFC)textFC{
-    UILabel *label=[self funj_getLabel :frame:nil :textFC];
++ (UILabel *)funj_getLabel:(CGRect)frame fc:(TextFC)textFC{
+    UILabel *label=[self funj_getLabel:frame t:nil fc:textFC];
     return label;
     
 }
-+ (UILabel *)funj_getOneLabel:(CGRect)frame :(TextFC)textFC{
-    UILabel *label=[self funj_getLabel:frame :nil :textFC];
++ (UILabel *)funj_getOneLabel:(CGRect)frame fc:(TextFC)textFC{
+    UILabel *label=[self funj_getLabel:frame t:nil fc:textFC];
     label.numberOfLines=1;
     [label setAdjustsFontSizeToFitWidth:YES];
     return label;
@@ -317,10 +317,10 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
     return align;
 }
 
--(void)funj_setBlockToButton:(NSArray*)saveBgImageOrColor :(clickCallBack)block{}
+-(void)funj_setBlockToButton:(NSArray*)saveBgImageOrColor c:(clickCallBack)block{}
 
 //是否需要点击高亮 是否需要点击时selected变化
--(void)funj_updateButtonSelectStyle:(BOOL)isNeedSelectHightColor :(BOOL)isDefalutNeedToSelectChange{}
+-(void)funj_updateButtonSelectStyle:(BOOL)isNeedSelectHightColor ischange:(BOOL)isDefalutNeedToSelectChange{}
 //点击button事件后，还原原来的状态。主要是添加 点击button 图片的变化作用，有点击效果
 -(void)funj_resetButtonNormalState{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -404,41 +404,41 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
     }
 }
 
-+(UIButton*)funj_getButton:(CGRect)frame :(NSString*)title :(TextFC)textFC :(NSArray*)bgImageOrColor :(id)delegate :(NSString*)action :(NSInteger)tags{
++(UIButton*)funj_getButton:(CGRect)frame t:(NSString*)title fc:(TextFC)textFC bg:(NSArray*)bgImageOrColor d:(id)delegate a:(NSString*)action tag:(NSInteger)tags{
     
-    return [self funj_getButtonItems:frame :title :textFC :bgImageOrColor :NO :delegate :action :tags :nil];
+    return [self funj_getButtonItems:frame t:title fc:textFC bg:bgImageOrColor isImg:NO d:delegate a:action tag:tags c:nil];
 }
-+(UIButton*)funj_getButtonBlock:(CGRect)frame :(NSString*)title :(TextFC)textFC :(NSArray*)bgImageOrColor :(NSInteger)tags :(clickCallBack)block{
++(UIButton*)funj_getButtonBlock:(CGRect)frame t:(NSString*)title fc:(TextFC)textFC bg:(NSArray*)bgImageOrColor tag:(NSInteger)tags c:(clickCallBack)block{
     
-    return [self funj_getButtonItems:frame :title :textFC :bgImageOrColor :NO :nil :nil :tags :block];
+    return [self funj_getButtonItems:frame t:title fc:textFC bg:bgImageOrColor isImg:NO d:nil a:nil tag:tags c:block];
     
 }
-+(UIButton*)funj_getButtons:(CGRect)frame :(NSString*)title :(TextFC)textFC  :(NSArray*)image :(id)delegate :(NSString*)action :(NSInteger)tags :(clickCallBack)setButton{
-    UIButton *button=[self funj_getButtonItems:frame :title :textFC :image :YES :delegate :action :tags :nil];
++(UIButton*)funj_getButtons:(CGRect)frame t:(NSString*)title fc:(TextFC)textFC  img:(NSArray*)image d:(id)delegate a:(NSString*)action tag:(NSInteger)tags set:(clickCallBack)setButton{
+    UIButton *button=[self funj_getButtonItems:frame t:title fc:textFC bg:image isImg:YES d:delegate a:action tag:tags c:nil];
     if(setButton)setButton(button);
     return button;
 }
 
-+(UIButton*)funj_getButtonBlocks:(CGRect)frame :(NSString*)title :(TextFC)textFC :(NSArray*)image :(NSInteger)tags :(clickCallBack)setButton :(clickCallBack)block{
++(UIButton*)funj_getButtonBlocks:(CGRect)frame t:(NSString*)title fc:(TextFC)textFC img:(NSArray*)image tag:(NSInteger)tags set:(clickCallBack)setButton c:(clickCallBack)block{
     
-    UIButton*button =[self funj_getButtonItems:frame :title :textFC :image :YES :nil :nil :tags :block ];
+    UIButton*button =[self funj_getButtonItems:frame t:title fc:textFC bg:image isImg:YES d:nil a:nil tag:tags c:block ];
     if(setButton)setButton(button);
     return button;
     
 }
-+(UIButton*)funj_getButtonFillet:(CGRect)frame :(NSString*)title :(TextFC)textFC :(NSArray*)bgImageOrColor :(id)delegate :(NSString*)action :(NSInteger)tags :(FilletValue)fillet{
-    UIButton *button= [self funj_getButtonItems:frame :title :textFC :bgImageOrColor :NO :delegate :action :tags :nil];
++(UIButton*)funj_getButtonFillet:(CGRect)frame t:(NSString*)title fc:(TextFC)textFC bg:(NSArray*)bgImageOrColor d:(id)delegate a:(NSString*)action tag:(NSInteger)tags f:(FilletValue)fillet{
+    UIButton *button= [self funj_getButtonItems:frame t:title fc:textFC bg:bgImageOrColor isImg:NO d:delegate a:action tag:tags c:nil];
     [button funj_setViewCornerLayer:fillet];
     return button;
 }
 
-+(UIButton*)funj_getButtonBlockFillet:(CGRect)frame :(NSString*)title :(TextFC)textFC :(NSArray*)bgImageOrColor :(NSInteger)tags :(FilletValue)fillet :(clickCallBack)block{
-    UIButton *button= [self funj_getButtonItems:frame :title :textFC :bgImageOrColor :NO :nil :nil :tags :block];
++(UIButton*)funj_getButtonBlockFillet:(CGRect)frame t:(NSString*)title fc:(TextFC)textFC bg:(NSArray*)bgImageOrColor tag:(NSInteger)tags f:(FilletValue)fillet c:(clickCallBack)block{
+    UIButton *button= [self funj_getButtonItems:frame t:title fc:textFC bg:bgImageOrColor isImg:NO d:nil a:nil tag:tags c:block];
     [button funj_setViewCornerLayer:fillet];
     return button;
 }
 
-+(UIButton*)funj_getButtonItems:(CGRect)frame :(NSString*)title :(TextFC)textFC :(NSArray*)bgImageOrColor :(BOOL)isImage  :(id)delegate :(NSString*)action  :(NSInteger)tags :(clickCallBack)block{
++(UIButton*)funj_getButtonItems:(CGRect)frame t:(NSString*)title fc:(TextFC)textFC bg:(NSArray*)bgImageOrColor isImg:(BOOL)isImage  d:(id)delegate a:(NSString*)action  tag:(NSInteger)tags c:(clickCallBack)block{
     JButton *button=[[JButton alloc]initWithFrame:frame];
     if(title && ![title isKindOfClass:[NSNull class]]){
         [button setTitle:title forState:UIControlStateNormal];
@@ -479,7 +479,7 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
     button.tag=tags;
     
     //  [button addTarget:button action:NSSelectorFromString(@"clickButton:") forControlEvents:UIControlEventTouchUpInside];
-    [button funj_setBlockToButton:bgImageOrColor :block];
+    [button funj_setBlockToButton:bgImageOrColor c:block];
     
     if(action){
         [button addTarget:delegate action:NSSelectorFromString(action) forControlEvents:UIControlEventTouchUpInside];
@@ -493,13 +493,13 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
 
 @implementation UIBarButtonItem(JBarButtonItem)
 
-+ (UIBarButtonItem *)funj_getNavPublicButton:(id)target icon:(NSString*)icon action:(NSString*)action {
-    UIButton *backButton=[UIButton funj_getButtons:CGRectMake(0, 0, 44, kNavigationBarHeight) :nil :JTextFCMake(nil, nil) :@[icon] :target :action :0 :nil];
++ (UIBarButtonItem *)funj_getNavPublicButton:(id)target img:(NSString*)icon a:(NSString*)action {
+    UIButton *backButton=[UIButton funj_getButtons:CGRectMake(0, 0, 44, kNavigationBarHeight) t:nil fc:JTextFCMake(nil, nil) img:@[icon] d:target a:action tag:0 set:nil];
     UIBarButtonItem* backBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:backButton];
     return backBarButtonItem;
 }
-+ (UIBarButtonItem *)funj_getNavPublicButton:(id)target title:(NSString*)title action:(NSString*)action image:(NSString*)image :(clickCallBack) setButton {
-    UIButton *backButton=[UIButton funj_getButtons:CGRectMake(0, 0, 44, kNavigationBarHeight) :title :JTextFCMake([UIFont systemFontOfSize:14] , UIColorFromARGB(0x333333,1)) :image?@[image]:nil :target :action :0 :nil];
++ (UIBarButtonItem *)funj_getNavPublicButton:(id)target t:(NSString*)title a:(NSString*)action img:(NSString*)image set:(clickCallBack) setButton {
+    UIButton *backButton=[UIButton funj_getButtons:CGRectMake(0, 0, 44, kNavigationBarHeight) t:title fc:JTextFCMake([UIFont systemFontOfSize:14] , UIColorFromARGB(0x333333,1)) img:image?@[image]:nil d:target a:action tag:0 set:nil];
     if(setButton)setButton(backButton);
     UIBarButtonItem* backBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:backButton];
     return backBarButtonItem;
@@ -510,24 +510,24 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
 
 @implementation UIView(Jview)
 
-+(UIView*)funj_getView:(CGRect)frame :(UIColor*)bgColor{
++(UIView*)funj_getView:(CGRect)frame bg:(UIColor*)bgColor{
     UIView *view=[[UIView alloc]initWithFrame:frame];
     view.backgroundColor=bgColor;
     return view;
 }
-+(UIView*)funj_getViewFillet:(CGRect)frame :(UIColor*)bgColor :(FilletValue)fillet{
-    UIView *view=[self funj_getView:frame :bgColor];
++(UIView*)funj_getViewFillet:(CGRect)frame bg:(UIColor*)bgColor f:(FilletValue)fillet{
+    UIView *view=[self funj_getView:frame bg:bgColor];
     [view funj_setViewCornerLayer:fillet];
     return view;
 }
 @end
 
 @implementation UITextField(JTextField)
-+(UITextField*)funj_getTextField:(CGRect)frame :(NSString*)placeholder :(TextFC)textFC :(id)delegate :(NSInteger)tag{
-    UITextField *textField=[self funj_getTextField:frame :placeholder :textFC :delegate :tag :UIKeyboardTypeDefault :UIReturnKeyDefault];
++(UITextField*)funj_getTextField:(CGRect)frame pg:(NSString*)placeholder fc:(TextFC)textFC d:(id)delegate tag:(NSInteger)tag{
+    UITextField *textField=[self funj_getTextField:frame pg:placeholder fc:textFC d:delegate tag:tag keyType:UIKeyboardTypeDefault returnType:UIReturnKeyDefault];
     return textField;
 }
-+(UITextField*)funj_getTextField:(CGRect)frame :(NSString*)placeholder :(TextFC)textFC :(id)delegate :(NSInteger)tag :(UIKeyboardType)keyboardType :(UIReturnKeyType)returnKeyType{
++(UITextField*)funj_getTextField:(CGRect)frame ph:(NSString*)placeholder fc:(TextFC)textFC d:(id)delegate tag:(NSInteger)tag keyType:(UIKeyboardType)keyboardType returnType:(UIReturnKeyType)returnKeyType{
     JTextField *textField=[[JTextField alloc]initWithFrame:frame];
     textField.borderStyle=UITextBorderStyleNone;
     textField.tag=tag;
@@ -550,9 +550,9 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
     textField.keyboardType=keyboardType;
     textField.returnKeyType=returnKeyType;
     if(textFC.alignment != NSTextAlignmentCenter){
-        UIView *defaultView=[self funj_getView:CGRectMake(0, 0, 10, frame.size.height) :[UIColor clearColor]];
+        UIView *defaultView=[self funj_getView:CGRectMake(0, 0, 10, frame.size.height) bg:[UIColor clearColor]];
         textField.leftViewMode=UITextFieldViewModeAlways;
-        UIView*bgview =[UIView funj_getView:CGRectMake(0, 0, 10, frame.size.height) :kColor_Clear];
+        UIView*bgview =[UIView funj_getView:CGRectMake(0, 0, 10, frame.size.height) bg:kColor_Clear];
         [bgview addSubview:defaultView];
         textField.leftView=bgview;
     }
@@ -560,14 +560,14 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
     return textField;
 }
 
-+(UITextField*)funj_getTextFieldFillet:(CGRect)frame :(NSString*)placeholder :(TextFC)textFC  :(id)delegate :(NSInteger)tag :(FilletValue)fillet{
-    UITextField *textField=[self funj_getTextField:frame :placeholder :textFC :delegate :tag :UIKeyboardTypeDefault :UIReturnKeyDefault];
++(UITextField*)funj_getTextFieldFillet:(CGRect)frame ph:(NSString*)placeholder fc:(TextFC)textFC  d:(id)delegate tag:(NSInteger)tag f:(FilletValue)fillet{
+    UITextField *textField=[self funj_getTextField:frame ph:placeholder fc:textFC d:delegate tag:tag keyType:UIKeyboardTypeDefault returnType:UIReturnKeyDefault];
     [textField funj_setViewCornerLayer:fillet];
     return textField;
 }
 
-+(UITextField*)funj_getTextFieldFillet:(CGRect)frame :(NSString*)placeholder :(TextFC)textFC  :(id)delegate :(NSInteger)tag :(FilletValue)fillet :(UIKeyboardType)keyboardType :(UIReturnKeyType)returnKeyType{
-    UITextField *textField=[self funj_getTextField:frame :placeholder :textFC :delegate :tag :keyboardType :returnKeyType];
++(UITextField*)funj_getTextFieldFillet:(CGRect)frame ph:(NSString*)placeholder fc:(TextFC)textFC  d:(id)delegate tag:(NSInteger)tag f:(FilletValue)fillet keyType:(UIKeyboardType)keyboardType returnType:(UIReturnKeyType)returnKeyType{
+    UITextField *textField=[self funj_getTextField:frame ph:placeholder fc:textFC d:delegate tag:tag keyType:keyboardType returnType:returnKeyType];
     [textField funj_setViewCornerLayer:fillet];
     
     return textField;
@@ -579,14 +579,14 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
 
 @implementation UIImageView(JImageView)
 
-+(UIImageView*)funj_getImageView:(CGRect)frame image:(NSString*)image{
++(UIImageView*)funj_getImageView:(CGRect)frame img:(NSString*)image{
     UIImageView *imageView=[[UIImageView alloc]initWithFrame:frame];
     if(image && image.length>0){
         imageView.image=[UIImage imageNamed:image];
     }
     return imageView;
 }
-+(UIImageView*)funj_getImageViewFillet:(CGRect)frame image:(NSString*)image :(FilletValue)fillet{
++(UIImageView*)funj_getImageViewFillet:(CGRect)frame img:(NSString*)image f:(FilletValue)fillet{
     UIImageView *imageView=[[UIImageView alloc]initWithFrame:frame];
     if(image && image.length>0){
         imageView.image=[UIImage imageNamed:image];
@@ -594,7 +594,7 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
     [imageView funj_setViewCornerLayer:fillet];
     return imageView;
 }
-+(UIImageView*)funj_getImageView:(CGRect)frame bgColor:(UIColor*)bgColor{
++(UIImageView*)funj_getImageView:(CGRect)frame bg:(UIColor*)bgColor{
     UIImageView *imageView=[[UIImageView alloc]initWithFrame:frame];
     if(bgColor){
         imageView.backgroundColor=bgColor;
@@ -604,12 +604,12 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
 
 
 +(UIImageView*)funj_getLineImageView:(CGRect)frame{
-    UIImageView *lineView=[self funj_getImageView:frame image:nil];
+    UIImageView *lineView=[self funj_getImageView:frame img:nil];
     lineView.backgroundColor=UIColorFromARGB(0xE1E1E1,1);
     return lineView;
 }
 +(UIImageView*)funj_getBlackAlphaView:(CGRect)frame{
-    UIImageView *lineView=[self funj_getImageView:frame bgColor:kColor_Text_Black_Dark];
+    UIImageView *lineView=[self funj_getImageView:frame bg:kColor_Text_Black_Dark];
     lineView.alpha = 0.3;
     lineView.userInteractionEnabled = YES;
     return lineView;
@@ -619,7 +619,7 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
 
 @implementation UIScrollView(JScrollView)
 
-+ (UIScrollView*)funj_getScrollView:(CGRect)frame :(id)delegate{
++ (UIScrollView*)funj_getScrollView:(CGRect)frame d:(id)delegate{
     UIScrollView* bgScrollView=[[UIScrollView alloc]initWithFrame:frame];
     if(@available(iOS 11.0,*)){
         bgScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -637,16 +637,16 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
         [self.configuration.userContentController removeScriptMessageHandlerForName:name];
     }
 }
--(void)funj_addScriptMessageHandler:(id<WKScriptMessageHandler>)strongSelf :(NSArray*)names{
-    [self funj_removeScriptMessageHandler:names];
-    for(NSString*name in names){
+-(void)funj_addScriptMessageHandler:(id<WKScriptMessageHandler>)strongSelf a:(NSArray*)actionNames{
+    [self funj_removeScriptMessageHandler:actionNames];
+    for(NSString*name in actionNames){
         [self.configuration.userContentController addScriptMessageHandler:strongSelf name:name];
     }
 }
-+ (WKWebView*)funj_getWKWebView:(CGRect)frame :(id)delegate :(NSString*)url{
-    return [self funj_getWKWebView:frame :delegate :url :nil];
++ (WKWebView*)funj_getWKWebView:(CGRect)frame d:(id)delegate url:(NSString*)url{
+    return [self funj_getWKWebView:frame d:delegate url:url set:nil];
 }
-+ (WKWebView*)funj_getWKWebView:(CGRect)frame :(id)delegate :(NSString*)url :(void (^)(WKWebViewConfiguration *config))configCallback{
++ (WKWebView*)funj_getWKWebView:(CGRect)frame d:(id)delegate url:(NSString*)url set:(void (^)(WKWebViewConfiguration *config))configCallback{
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     
     NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'); document.getElementsByTagName('head')[0].appendChild(meta);";  //禁止缩放

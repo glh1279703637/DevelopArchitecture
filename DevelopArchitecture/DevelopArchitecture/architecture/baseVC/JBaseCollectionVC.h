@@ -14,7 +14,7 @@ typedef void (^reloadToCollectionSolveDataCallback)(BOOL isHead,NSInteger page);
 
 @interface JBaseCollectionVC : JBaseTableViewVC<JSearchBarDelegate>
 @property(nonatomic,strong)UICollectionView *m_collectionView;
--(void)funj_addCellCallbackHeight:(JBaseCollectionViewCell*)cell :(NSString*)idKey;
+-(void)funj_addCellCallbackHeight:(JBaseCollectionViewCell*)cell k:(NSString*)idKey;
 @end
 
 #define kcreateCollectViewWithDelegate(delegateVC) ({ \

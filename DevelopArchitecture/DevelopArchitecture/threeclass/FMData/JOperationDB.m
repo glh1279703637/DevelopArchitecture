@@ -67,7 +67,7 @@
     return NO;
     
 }
-+(BOOL)funj_AddTableColumns:(NSString*)table :(NSDictionary*)column{
++(BOOL)funj_AddTableColumns:(NSString*)table column:(NSDictionary*)column{
     FMDatabase*db = [FMDatabase databaseWithPath:kdocumentDBPath];
     
     if (![db open]) {
@@ -262,7 +262,7 @@
     return NO;
     
 }
-+(NSDictionary*)funj_searchTopFirstFromTable:(NSString*)name :(NSArray*)showKey searchKey:(NSString*)key{
++(NSDictionary*)funj_searchTopFirstFromTable:(NSString*)name key:(NSArray*)showKey searchKey:(NSString*)key{
     FMDatabase*db = [FMDatabase databaseWithPath:kdocumentDBPath];
     
     if (![db open]) {

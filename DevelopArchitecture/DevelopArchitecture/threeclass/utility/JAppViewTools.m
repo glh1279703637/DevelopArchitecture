@@ -55,23 +55,23 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
 
 
 //提示信息显示后消失
-+ (void)funj_showTextToast:(UIView *)containerview message:(NSString *)msgtxt{
-    [self funj_showTextToast:containerview message:msgtxt complete:nil time:2];
++ (void)funj_showTextToast:(UIView *)containerview msg:(NSString *)msgtxt{
+    [self funj_showTextToast:containerview msg:msgtxt complete:nil time:2];
 }
-+ (void)funj_showTextToast:(UIView *)containerview message:(NSString *)msgtxt complete:(void (^)(void))complete time:(CGFloat)time{
++ (void)funj_showTextToast:(UIView *)containerview msg:(NSString *)msgtxt complete:(void (^)(void))complete time:(CGFloat)time{
     JMProgressHUD *progressHUD =[JMProgressHUD share];
     [progressHUD funj_reloadSuperView:containerview t:kprogressType_OnlyText];
     [progressHUD funj_showProgressViews:msgtxt t:time complete:complete];
 }
 
 //显示只带有一个ok按钮的提示框
-+ (void)funj_showAlertBlock:(id)delegate :(NSString *)msgtxt{
-    [self funj_showAlertBlock:(id)delegate :nil :msgtxt :@[NSLocalizedString(@"Confirm",nil)] :nil ];
++ (void)funj_showAlertBlock:(id)delegate msg:(NSString *)msgtxt{
+    [self funj_showAlertBlock:(id)delegate t:nil msg:msgtxt items:@[NSLocalizedString(@"Confirm",nil)] c:nil ];
 }
-+ (void)funj_showAlertBlocks:(id)delegate :(NSString *)title :(NSString *)msgtxt :(alertBlockCallback)callback{
-    [self funj_showAlertBlock:(id)delegate :title :msgtxt :@[NSLocalizedString(@"Cancel",nil),NSLocalizedString(@"Confirm",nil)] :callback ];
++ (void)funj_showAlertBlocks:(id)delegate t:(NSString *)title msg:(NSString *)msgtxt c:(alertBlockCallback)callback{
+    [self funj_showAlertBlock:(id)delegate t:title msg:msgtxt items:@[NSLocalizedString(@"Cancel",nil),NSLocalizedString(@"Confirm",nil)] c:callback ];
 }
-+ (UIAlertController*)funj_showAlertBlock:(id)delegate :(NSString *)title :(NSString *)msgtxt :(NSArray*)button :(alertBlockCallback)callback{
++ (UIAlertController*)funj_showAlertBlock:(id)delegate t:(NSString *)title msg:(NSString *)msgtxt items:(NSArray*)button c:(alertBlockCallback)callback{
     title=title?title:NSLocalizedString(@"Info",nil);
     msgtxt=(!msgtxt || [msgtxt isKindOfClass:[NSNull class]]) ?@"":msgtxt;
     
@@ -95,7 +95,7 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
     }
     return alertController;
 }
-+(void)funj_showSheetBlock:(id)target :(UIView*)sourceView :(NSString*)title :(NSArray *)buttonArr block:(alertBlockCallback)callback{
++(void)funj_showSheetBlock:(id)target s:(UIView*)sourceView t:(NSString*)title items:(NSArray *)buttonArr c:(alertBlockCallback)callback{
     UIAlertControllerStyle type = sourceView ? UIAlertControllerStyleActionSheet : (IS_IPAD ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet);
     JAlertController *alertController=[JAlertController alertControllerWithTitle:title message:nil preferredStyle:type];
     LRWeakSelf(target);
@@ -198,7 +198,7 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
 }
 
 //修改button的样式 是否需要点击高亮 是否需要点击时selected变化
--(void)funj_updateButtonSelectStyle:(BOOL)isNeedSelectHightColor :(BOOL)isDefalutNeedToSelectChange{
+-(void)funj_updateButtonSelectStyle:(BOOL)isNeedSelectHightColor ischange:(BOOL)isDefalutNeedToSelectChange{
     _m_isNeedSelectHightColor = isNeedSelectHightColor;
     _m_isDefalutNeedToSelectChange = isDefalutNeedToSelectChange;
 }
@@ -217,7 +217,7 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
     self.m_addProhibitActionTime = time;
     self.m_addProhibitActionTimeIsEnable = enable;
 }
--(void)funj_setBlockToButton:(NSArray*)saveBgImageOrColor :(clickCallBack)block{
+-(void)funj_setBlockToButton:(NSArray*)saveBgImageOrColor c:(clickCallBack)block{
     self.m_clickBack=block;
     [self setM_saveBgImageOrColor:saveBgImageOrColor];
 }
@@ -374,13 +374,13 @@ TextFC JTextFCMakeAlign(UIFont *textFont,UIColor *textColor,NSTextAlignment alig
     self.m_searchTF.layer.borderColor = m_filletValue.borderColor.CGColor;
     self.m_searchTF.layer.borderWidth = m_filletValue.borderWidth;
 }
--(void)funj_reloadSearchState:(BOOL)needIcon :(BOOL)needCancel{
+-(void)funj_reloadSearchState:(BOOL)needIcon need:(BOOL)needCancel{
     if(needIcon){
         UIImageView *searchImage =[[UIImageView alloc]initWithImage:[UIImage imageNamed:self.m_searchIcon]];
         searchImage.frame = CGRectMake(0, 0, 30, 15);
         searchImage.contentMode = UIViewContentModeCenter;
         self.m_searchTF.leftViewMode = UITextFieldViewModeAlways;
-        UIView*bgview =[UIView funj_getView:CGRectMake(0, 0, 30, 15) :kColor_Clear];
+        UIView*bgview =[UIView funj_getView:CGRectMake(0, 0, 30, 15) bg:kColor_Clear];
         [bgview addSubview:searchImage];
         self.m_searchTF.leftView = bgview;
     }

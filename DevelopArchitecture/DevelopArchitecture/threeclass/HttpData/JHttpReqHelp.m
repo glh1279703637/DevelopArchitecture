@@ -66,7 +66,7 @@ static NSMutableDictionary *saveRequestDic = nil;
     return self;
 }
 //上传图片 model是数据模型一个类名的字符串
-- (JHttpReqHelp*)funj_requestImageToServers:(UIViewController*)viewController url:(NSString*)suffixUrl v:(NSDictionary *)parameter image:(UIImage *)image forKey:(NSString *)imagekey :(NSString*)flag{
+- (JHttpReqHelp*)funj_requestImageToServers:(UIViewController*)viewController url:(NSString*)suffixUrl v:(NSDictionary *)parameter image:(UIImage *)image forKey:(NSString *)imagekey flag:(NSString*)flag{
     self.m_viewController = viewController;
     self.isDefaultHasVC = viewController!=nil;
  
@@ -86,7 +86,7 @@ static NSMutableDictionary *saveRequestDic = nil;
     //结束符 AaB03x--
     NSString *endMPboundary=[[NSString alloc]initWithFormat:@"%@--",MPboundary];
     //得到图片的data
-    NSData* data = [JAppUtility funj_compressImageWithMaxLength:image :-1];
+    NSData* data = [JAppUtility funj_compressImageWithMaxLength:image s:-1];
 
     //http body的字符串
     NSMutableString *body=[[NSMutableString alloc]init];
@@ -346,7 +346,7 @@ static NSMutableDictionary *saveRequestDic = nil;
     } else {
         if(self.m_failureCallback){
             CLog(@"%@ => %@",self.m_httpRequest.URL.absoluteString,[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
-            if([JAppViewTools funj_getKeyWindow])[JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] message:LocalStr(@"The server is abnormal. Please try again later")];
+            if([JAppViewTools funj_getKeyWindow])[JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] msg:LocalStr(@"The server is abnormal. Please try again later")];
             self.m_failureCallback(self.m_viewController,LocalStr(@"The server is abnormal. Please try again later") );
         }
     }
@@ -366,7 +366,7 @@ static NSMutableDictionary *saveRequestDic = nil;
 }
 +(BOOL)funj_checkNetworkType{
     if(![[AFNetworkReachabilityManager sharedManager] isReachable]){
-        [JAppViewTools funj_showTextToast:[UIApplication sharedApplication].keyWindow message:LocalStr(@"The current network is not available, please check your network settings") complete:nil time:1];
+        [JAppViewTools funj_showTextToast:[UIApplication sharedApplication].keyWindow msg:LocalStr(@"The current network is not available, please check your network settings") complete:nil time:1];
         return NO;
     }
     return YES;
@@ -400,13 +400,13 @@ static NSMutableDictionary *saveRequestDic = nil;
     NSMutableDictionary *saveData1 = nil;
     if([data isKindOfClass:[NSDictionary class]]){
         saveData1 =[[NSMutableDictionary alloc]init];
-        [self funj_solverDataIsEffective:saveData1 :data];
+        [self funj_solverDataIsEffective:saveData1 c:data];
     }else if([data isKindOfClass:[NSString class]]){
         saveData1 = data;
     }
     return saveData1;
 }
--(void)funj_solverDataIsEffective:(NSMutableDictionary*)saveData :(NSDictionary*)data{
+-(void)funj_solverDataIsEffective:(NSMutableDictionary*)saveData c:(NSDictionary*)data{
     for(NSString *key in data.allKeys){
         id object = [data objectForKey:key];
         if(![object isKindOfClass:[NSNull class]]){

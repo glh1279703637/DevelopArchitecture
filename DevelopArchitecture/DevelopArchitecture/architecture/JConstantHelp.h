@@ -166,12 +166,12 @@ return _##m_dataArr;}
 
 
 #define addConfigSumBit(selfs,superView,left,top,width,title,cornerRadius,tag)({\
-    UIButton *sumBt=[UIButton funj_getButton:CGRectMake(left, top, width,45) :title :JTextFCMake(kFont_Size17, kColor_White) :@[kColor_White] :selfs  :@"funj_selectSumbitTo:" :tag]; \
+    UIButton *sumBt=[UIButton funj_getButton:CGRectMake(left, top, width,45) t:title fc:JTextFCMake(kFont_Size17, kColor_White) bg:@[kColor_White] d:selfs  a:@"funj_selectSumbitTo:" tag:tag]; \
     [(JButton*)sumBt funj_resetProhibitActionTime:2 e:NO];\
     [superView addSubview:sumBt]; \
     [sumBt funj_setViewCornerLayer:JFilletMake(0, cornerRadius, kColor_White)]; \
     sumBt.layer.shadowColor = kColor_Blue.CGColor; \
-    [sumBt funj_setViewGradientLayer:YES :@[kColor_Orange,kColor_Shallow_Orange] :@[@0.4, @1]]; \
+    [sumBt funj_setViewGradientLayer:YES bg:@[kColor_Orange,kColor_Shallow_Orange] location:@[@0.4, @1]]; \
     (sumBt);})
 
 

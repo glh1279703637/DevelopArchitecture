@@ -22,15 +22,15 @@
 -(void)funj_addBaseCollectionView{
 
     
-    imageView =[UIImageView funj_getImageView:self.bounds image:nil];
+    imageView =[UIImageView funj_getImageView:self.bounds img:nil];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     if([JPhotosConfig share].m_currentIsVideo){
          [self.contentView addSubview:imageView];
-        playButton =[UIButton funj_getButtons:self.bounds :nil  :JTextFCZero() :@[@"MMVideoPreviewPlay"] :self  :@"funj_selectToPlay:" :0 :nil];
+        playButton =[UIButton funj_getButtons:self.bounds t:nil  fc:JTextFCZero() img:@[@"MMVideoPreviewPlay"] d:self  a:@"funj_selectToPlay:" tag:0 set:nil];
          [self.contentView addSubview:playButton];
-        [playButton funj_updateButtonSelectStyle:NO  :NO];
+        [playButton funj_updateButtonSelectStyle:NO  ischange:NO];
     }else{
-        m_BgScrollView =[UIScrollView funj_getScrollView:self.bounds :nil];
+        m_BgScrollView =[UIScrollView funj_getScrollView:self.bounds d:nil];
         [self.contentView addSubview:m_BgScrollView];
         m_BgScrollView.bouncesZoom = YES;
         m_BgScrollView.maximumZoomScale = 2.5;
@@ -65,7 +65,7 @@
     m_data = data;
     [m_BgScrollView setZoomScale:1.0 animated:NO];
     LRWeakSelf(self);
-    [JPhotoPickerInterface funj_getPhotoWithAsset:data.asset :PHImageRequestOptionsDeliveryModeOpportunistic photoWidth:imageView.width  completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+    [JPhotoPickerInterface funj_getPhotoWithAsset:data.asset type:PHImageRequestOptionsDeliveryModeOpportunistic photoWidth:imageView.width  completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
         LRStrongSelf(self);
         self->imageView.image = photo;
     }];

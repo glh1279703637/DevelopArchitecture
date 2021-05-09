@@ -36,7 +36,7 @@
     self.delegate=self;
 
     UINavigationBar *bar = [UINavigationBar appearance];
-    _m_barBottomLine =[UIImageView funj_getImageView:CGRectMake(0, bar.height, bar.width, 1) bgColor:kColor_Blue];
+    _m_barBottomLine =[UIImageView funj_getImageView:CGRectMake(0, bar.height, bar.width, 1) bg:kColor_Blue];
     [bar addSubview:_m_barBottomLine];
  }
 -(void)viewWillAppear:(BOOL)animated{
@@ -61,8 +61,8 @@
             _m_barBottomLine.backgroundColor = kColor_Line_Gray_Dark;
         }break;
         case kCURRENTISGRAYNAV_TAG:{
-            [self.navigationBar setBackgroundImage:[JAppUtility funj_imageWithColor:kColor_Bg_LightGray_Dark :CGSizeMake(1, 1)] forBarMetrics:UIBarMetricsDefault];
-            [self.navigationBar setShadowImage:[JAppUtility funj_imageWithColor:kColor_Bg_LightGray_Dark  :CGSizeMake(1, 1)]];
+            [self.navigationBar setBackgroundImage:[JAppUtility funj_imageWithColor:kColor_Bg_LightGray_Dark s:CGSizeMake(1, 1)] forBarMetrics:UIBarMetricsDefault];
+            [self.navigationBar setShadowImage:[JAppUtility funj_imageWithColor:kColor_Bg_LightGray_Dark  s:CGSizeMake(1, 1)]];
             [self.navigationBar setTitleTextAttributes:@{ NSForegroundColorAttributeName : kColor_Text_Black,NSFontAttributeName:kFont_BoldSize20}];
             _m_barBottomLine.backgroundColor = kColor_Bg_LightGray_Dark;
         }break;

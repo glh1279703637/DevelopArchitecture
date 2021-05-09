@@ -32,14 +32,14 @@ static char *refreshPageDic = "jrefreshPageDic";
 
 -(id)initWithFrame:(CGRect)frame{
     if(self =[super initWithFrame:frame]){
-        _m_arrowImageView =[UIImageView funj_getImageView:CGRectMake((CGRectGetWidth(frame)-30)/2, (CGRectGetHeight(frame)-30)/2, 30, 30) image:@"reloading_fresh"];
+        _m_arrowImageView =[UIImageView funj_getImageView:CGRectMake((CGRectGetWidth(frame)-30)/2, (CGRectGetHeight(frame)-30)/2, 30, 30) img:@"reloading_fresh"];
         [self addSubview:self.m_arrowImageView];
     }
     return self;
 }
 -(void)setM_isHead:(BOOL)m_isHead{
     _m_isHead = m_isHead;
-    _m_arrowLabel =[UILabel funj_getLabel:CGRectMake(_m_arrowImageView.right+10, _m_arrowImageView.top, 0, _m_arrowImageView.height) :JTextFCMake(kFont_Size12, kColor_Text_Gray_Dark)];
+    _m_arrowLabel =[UILabel funj_getLabel:CGRectMake(_m_arrowImageView.right+10, _m_arrowImageView.top, 0, _m_arrowImageView.height) fc:JTextFCMake(kFont_Size12, kColor_Text_Gray_Dark)];
     [self addSubview:self.m_arrowLabel];
 }
 -(void)setM_state:(JRefreshState)m_state{
@@ -96,7 +96,7 @@ static char *refreshPageDic = "jrefreshPageDic";
 @end
 
 @implementation UIScrollView(JRefreshView)
--(void)funj_setPageWithType:(NSInteger)type :(NSInteger)page{
+-(void)funj_setPageWithType:(NSInteger)type p:(NSInteger)page{
     [self.m_refreshPageDic setObject:@(page) forKey:@(type)];
 }
 -(void)funj_resetPageWithType:(NSInteger)type{

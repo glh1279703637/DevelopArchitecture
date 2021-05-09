@@ -54,21 +54,21 @@ typedef void (^setPopverBaseVC) (JBaseViewController *vc,int * isPresentView);
 
 -(void)funj_setBaseControllerData:(id)data;
 
--(void)funj_setPresentIsPoperView:(UIViewController*)controller :(CGSize)size :(UIView*)target;
+-(void)funj_setPresentIsPoperView:(UIViewController*)controller size:(CGSize)size t:(UIView*)target;
 
 //将data 转换成m_datastring ,m_dataarray ,m_datadic的方法
--(JBaseViewController*)funj_getPresentVCWithController:(NSString*)className title:(NSString*)title :(id)data :(BOOL)isNav;
--(JBaseViewController*)funj_getPresentCallbackVCWithController:(NSString*)className title:(NSString*)title :(id)data :(BOOL)isNav :(setBaseVC)callback;
+-(JBaseViewController*)funj_getPresentVCWithController:(NSString*)className t:(NSString*)title d:(id)data isNav:(BOOL)isNav;
+-(JBaseViewController*)funj_getPresentCallbackVCWithController:(NSString*)className t:(NSString*)title d:(id)data isNav:(BOOL)isNav set:(setBaseVC)callback;
 
--(JBaseViewController*)funj_getPushVCWithController:(NSString*)className title:(NSString*)title :(id)data;
--(JBaseViewController*)funj_getPushCallbackVCWithController:(NSString*)className title:(NSString*)title :(id)data :(setBaseVC)callback;
+-(JBaseViewController*)funj_getPushVCWithController:(NSString*)className t:(NSString*)title d:(id)data;
+-(JBaseViewController*)funj_getPushCallbackVCWithController:(NSString*)className t:(NSString*)title d:(id)data set:(setBaseVC)callback;
 
--(JBaseViewController*)funj_replacePushCallbackVCWithController:(NSString*)className title:(NSString*)title :(id)data :(setBaseVC)callback;
+-(JBaseViewController*)funj_replacePushCallbackVCWithController:(NSString*)className t:(NSString*)title d:(id)data set:(setBaseVC)callback;
 
--(JBaseViewController*)funj_getShowSplitDetailVC:(NSString *)className title:(NSString*)title  :(id)data :(BOOL)isNav;
--(JBaseViewController*)funj_getShowSplitDetailVC:(NSString *)className title:(NSString*)title  :(id)data :(BOOL)isNav :(setBaseVC)callback;
+-(JBaseViewController*)funj_getShowSplitDetailVC:(NSString *)className t:(NSString*)title  d:(id)data isNav:(BOOL)isNav;
+-(JBaseViewController*)funj_getShowSplitDetailVC:(NSString *)className t:(NSString*)title  d:(id)data isNav:(BOOL)isNav set:(setBaseVC)callback;
 
--(JBaseViewController*)funj_getPopoverVC:(NSString *)className :(UIView*)target  :(id)data :(CGSize)size  :(BOOL)isNav :(setPopverBaseVC)callback;
+-(JBaseViewController*)funj_getPopoverVC:(NSString *)className target:(UIView*)target  d:(id)data size:(CGSize)size isNav:(BOOL)isNav set:(setPopverBaseVC)callback;
 
 -(void)funj_clickBackButton:(UIButton*)sender;
 @end

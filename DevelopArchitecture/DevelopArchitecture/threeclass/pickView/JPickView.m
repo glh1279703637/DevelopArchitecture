@@ -34,7 +34,7 @@
           m_m_BlackImageView.tag = 70;
         [self addSubview:m_m_BlackImageView];
         _m_resultDic=[[NSMutableDictionary alloc]init];
-        m_BgPickView=[UIView funj_getView:CGRectZero : kColor_White_Dark ];
+        m_BgPickView=[UIView funj_getView:CGRectZero bg: kColor_White_Dark ];
         [self addSubview:m_BgPickView];m_BgPickView.tag = 71;
         [self  funj_addToolBar];
     }
@@ -97,16 +97,16 @@
     maskLayer.path = maskPath.CGPath;
     m_BgPickView.layer.mask = maskLayer;
 }
--(void)funj_setPickTitle:(NSString *)title :(NSArray *)contentName :(NSArray *)contentId{
+-(void)funj_setPickTitle:(NSString *)title cname:(NSArray *)contentName cid:(NSArray *)contentId{
     UILabel *titleLabel =[m_BgPickView viewWithTag:3902];
     titleLabel.text = title;
     m_contentKey = contentName;m_idKey = contentId;
 }
 -(void)funj_addToolBar{
-    UILabel *titleLabel =[UILabel funj_getLabel:CGRectMake(80, 0, kWidth-80*2, kToobarHeight) :JTextFCMakeAlign(kFont_Size17, kColor_Text_Black_Dark, NSTextAlignmentCenter)];
+    UILabel *titleLabel =[UILabel funj_getLabel:CGRectMake(80, 0, kWidth-80*2, kToobarHeight) fc:JTextFCMakeAlign(kFont_Size17, kColor_Text_Black_Dark, NSTextAlignmentCenter)];
     [m_BgPickView addSubview:titleLabel];titleLabel.tag =3902;
     
-    UIButton *closeBt =[UIButton funj_getButtons:CGRectMake(kWidth-80, 0, 80, kToobarHeight) :nil  :JTextFCZero() :@[@"backBt2_h"] :self  :@"remove" :74 :^(UIButton *button) {
+    UIButton *closeBt =[UIButton funj_getButtons:CGRectMake(kWidth-80, 0, 80, kToobarHeight) t:nil  fc:JTextFCZero() img:@[@"backBt2_h"] d:self  a:@"remove" tag:74 set:^(UIButton *button) {
         button.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 0, 0 );
     }];
     [m_BgPickView addSubview:closeBt];
@@ -193,8 +193,8 @@
     }else{
         title = content;
     }
-    width=[JAppUtility funj_getTextWidth:title textFont:[UIFont systemFontOfSize:20]]+10;
-    UILabel *label=[UILabel funj_getLabel:CGRectMake(0, 0, width,30) :title:JTextFCMakeAlign([UIFont systemFontOfSize:20] ,nil, NSTextAlignmentCenter)];
+    width=[JAppUtility funj_getTextWidth:title f:[UIFont systemFontOfSize:20]]+10;
+    UILabel *label=[UILabel funj_getLabel:CGRectMake(0, 0, width,30) t:title fc:JTextFCMakeAlign([UIFont systemFontOfSize:20] ,nil, NSTextAlignmentCenter)];
     return label;
 }
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{

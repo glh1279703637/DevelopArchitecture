@@ -36,7 +36,7 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
 
 -(UIView*)m_topView{
     if(!_m_topView){
-        _m_topView =[UIView funj_getView:CGRectMake(0, 0, kWidth, 0) :kColor_White_Dark];
+        _m_topView =[UIView funj_getView:CGRectMake(0, 0, kWidth, 0) bg:kColor_White_Dark];
         [self.view addSubview: _m_topView];
         _m_topTableViewLine =[UIImageView funj_getLineImageView:CGRectMake(0, 0, kWidth, 1)];
         [_m_topView addSubview:_m_topTableViewLine];
@@ -49,7 +49,7 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
         _m_searchBar.searchDelegate = self;
         _m_searchBar.m_filletValue = JFilletMake(0.5, 37/2, kColor_Line_Gray_Dark);
         _m_searchBar.hidden = YES;
-        [_m_searchBar funj_reloadSearchState:YES :YES];
+        [_m_searchBar funj_reloadSearchState:YES need:YES];
         [_m_topView addSubview:_m_searchBar];
         
         _m_BlackImageView=[UIImageView funj_getBlackAlphaView:CGRectMake(0, 0, kWidth, kHeight)];
@@ -97,13 +97,13 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
  }
 
 -(void)addNoDataDefaultView{
-     m_defaultImageView=[UIImageView funj_getImageView:CGRectZero image:@"uu_tableview_default_icon"];
+     m_defaultImageView=[UIImageView funj_getImageView:CGRectZero img:@"uu_tableview_default_icon"];
     
-    UILabel *contentLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 200, 20) :LocalStr(@"Here is a wilderness ...Nothing left") :JTextFCMakeAlign(kFont_Size17,kColor_Text_Gray_Dark,NSTextAlignmentCenter)];
+    UILabel *contentLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 200, 20) t:LocalStr(@"Here is a wilderness ...Nothing left") fc:JTextFCMakeAlign(kFont_Size17,kColor_Text_Gray_Dark,NSTextAlignmentCenter)];
     [m_defaultImageView addSubview:contentLabel];
     contentLabel.tag = 9993;
 }
--(void)funj_reloadBaseViewParameter:(CGRect)m_topViewFrame :(CGRect)tableViewFrame :(BOOL)searchBarHidden{
+-(void)funj_reloadBaseViewParameter:(CGRect)m_topViewFrame f:(CGRect)tableViewFrame hidden:(BOOL)searchBarHidden{
     if(!CGRectEqualToRect(m_topViewFrame, CGRectZero)){
          self.m_topView.frame=m_topViewFrame;
          self.m_topTableViewLine.frame=CGRectMake(_m_topTableViewLine.left, _m_topView.height-1, _m_topView.width, _m_topTableViewLine.height);
@@ -202,12 +202,12 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [JAppViewTools funj_showAlertBlocks:self  :nil :LocalStr(@"Do you want to delete? ") :^(id strongSelf, NSInteger index) {
+        [JAppViewTools funj_showAlertBlocks:self  t:nil msg:LocalStr(@"Do you want to delete? ") c:^(id strongSelf, NSInteger index) {
             
         }];
     }
 }
--(void)funj_addCellCallbackHeight:(JBaseTableViewCell*)cell :(NSString*)idKey{
+-(void)funj_addCellCallbackHeight:(JBaseTableViewCell*)cell k:(NSString*)idKey{
     __weak typeof(self) weakSelf = self;
      cell.m_callbackHeight = ^(NSString*idKey,CGFloat height) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -260,7 +260,7 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
 -(void)funj_searchBarState:(BOOL)isShowBlack{
      _m_BlackImageView.hidden=!isShowBlack;
 }
--(void)funj_solverToSetData:(NSArray*)data :(NSMutableSet*)targetArr{
+-(void)funj_solverToSetData:(NSArray*)data d:(NSMutableSet*)targetArr{
     if(!targetArr){
         targetArr = self.m_isSearchTableViewList ? self.m_searchDataSet : self.m_dataSet;
     }
@@ -278,10 +278,10 @@ maddProperyValue(m_saveQuestionHeightDic, NSMutableDictionary)
     self.m_defaultImageView.hidden = targetArr.count;
     [self funj_reloadData];
 }
--(void)funj_solverToSubRepeatData:(NSArray*)data :(NSMutableArray*)targetArr :(NSString*)key{
-    [self funj_solverToSubRepeatData:data :targetArr :key :nil];
+-(void)funj_solverToSubRepeatData:(NSArray*)data d:(NSMutableArray*)targetArr key:(NSString*)key{
+    [self funj_solverToSubRepeatData:data d:targetArr key:key m:nil];
 }
--(void)funj_solverToSubRepeatData:(NSArray*)data :(NSMutableArray*)targetArr :(NSString*)key :(NSString*)model{
+-(void)funj_solverToSubRepeatData:(NSArray*)data d:(NSMutableArray*)targetArr key:(NSString*)key m:(NSString*)model{
     //    if(!data || [data count]<=0 || !key || key.length<=0) return;
     if(!targetArr){
         targetArr = self.m_isSearchTableViewList ? self.m_searchDataArr : self.m_dataArr;

@@ -12,8 +12,8 @@
 
 @interface UIImageView (JReloadImageView)
 //具有缓存图片的同时也具有保存图片的功能
--(void)funj_setInternetImage:(NSString*)imageUrl :(NSString*)placeholderImage;
+-(void)funj_setInternetImage:(NSString*)imageUrl ph:(NSString*)placeholderImage;
 
--(void)funj_setInternetImageBlock:(NSString*)imageUrl :(NSString*)placeholderImage  :(SDExternalCompletionBlock)completedBlocks;
+-(void)funj_setInternetImageBlock:(NSString*)imageUrl ph:(NSString*)placeholderImage  c:(SDExternalCompletionBlock)completedBlocks;
 
 @end

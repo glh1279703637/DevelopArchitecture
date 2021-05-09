@@ -175,7 +175,7 @@
         }
     }
 
-    path =[JAppUtility funj_getTempPath:nil  :@"aaa.txt"];
+    path =[JAppUtility funj_getTempPath:nil  name:@"aaa.txt"];
     [string writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
     
 }
@@ -374,14 +374,14 @@
         [saveArr  addObject:myStr];
     }
     NSString *strss =[saveArr componentsJoinedByString:@"\n"];
-    path =[JAppUtility funj_getTempPath:nil  :@"aaa.txt"];
+    path =[JAppUtility funj_getTempPath:nil  name:@"aaa.txt"];
     [strss writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    path =[JAppUtility funj_getTempPath:nil  :@"aaa2.txt"];
+    path =[JAppUtility funj_getTempPath:nil  name:@"aaa2.txt"];
     strss =[saveKeyDic.allKeys componentsJoinedByString:@"\n"];
     
     [strss writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
     
-    path =[JAppUtility funj_getTempPath:nil  :@"aaa3.txt"];
+    path =[JAppUtility funj_getTempPath:nil  name:@"aaa3.txt"];
     [saveArr removeAllObjects];
     [saveValueDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, NSArray*  _Nonnull obj, BOOL * _Nonnull stop) {
         [saveArr addObject:key];
@@ -408,7 +408,7 @@
         }
     }
     
-    path =[JAppUtility funj_getTempPath:nil  :@"aaa6.txt"];
+    path =[JAppUtility funj_getTempPath:nil  name:@"aaa6.txt"];
     NSString* strss =[currentLocalDataArr componentsJoinedByString:@"\n"];
     [strss writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
     CLog(@"-- %@",path);

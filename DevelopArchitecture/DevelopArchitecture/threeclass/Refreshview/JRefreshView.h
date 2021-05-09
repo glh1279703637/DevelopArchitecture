@@ -25,7 +25,7 @@ typedef void (^JRefreshHeadle)(NSInteger page);
 @property (nonatomic, strong,nullable)JRefreshView  *m_footView;
 
 @property(nonatomic,assign)NSInteger m_currentPageType;
--(void)funj_setPageWithType:(NSInteger)type :(NSInteger)page;//由于同一个刷新，u但是多个page时使用
+-(void)funj_setPageWithType:(NSInteger)type p:(NSInteger)page;//由于同一个刷新，u但是多个page时使用
 -(void)funj_resetPageWithType:(NSInteger)type;
 -(NSInteger)funj_getPageWithType:(NSInteger)type; //同上
 -(NSInteger)funj_getPage;

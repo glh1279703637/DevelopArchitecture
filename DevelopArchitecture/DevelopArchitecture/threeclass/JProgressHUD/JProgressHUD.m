@@ -21,9 +21,9 @@ static JProgressHUD *progressHUD =nil;
     if(self =[super init]){
         self.frame = CGRectMake(0,0,kWidth,kHeight);
         self.backgroundColor = kColor_Clear;
-        progressBgImageView =[UIImageView funj_getImageView:CGRectMake((kWidth-202/2.5)/2, (kHeight-202/2.5)/2, 202/2.5, 202/2.5) image:@"reloadProgress_center"];
+        progressBgImageView =[UIImageView funj_getImageView:CGRectMake((kWidth-202/2.5)/2, (kHeight-202/2.5)/2, 202/2.5, 202/2.5) img:@"reloadProgress_center"];
         [self addSubview:progressBgImageView];
-        progressImageView =[UIImageView funj_getImageView:CGRectMake((progressBgImageView.frame.size.width-188/2.5)/2, (progressBgImageView.frame.size.height-188/2.5)/2, 188/2.5, 188/2.5) image:@"reloadProgress_route"];
+        progressImageView =[UIImageView funj_getImageView:CGRectMake((progressBgImageView.frame.size.width-188/2.5)/2, (progressBgImageView.frame.size.height-188/2.5)/2, 188/2.5, 188/2.5) img:@"reloadProgress_route"];
         [progressBgImageView addSubview:progressImageView];
         self.tag = NSNotFound-1;
 
@@ -35,7 +35,7 @@ static JProgressHUD *progressHUD =nil;
 
 -(UILabel*)m_titleLabel{
     if(!_m_titleLabel){
-        _m_titleLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 0, 30) :JTextFCMakeAlign(kFont_Size17, kColor_Text_Black, NSTextAlignmentCenter)];
+        _m_titleLabel =[UILabel funj_getLabel:CGRectMake(0, 0, 0, 30) fc:JTextFCMakeAlign(kFont_Size17, kColor_Text_Black, NSTextAlignmentCenter)];
         [self addSubview:_m_titleLabel];
     }
     return _m_titleLabel;
@@ -132,7 +132,7 @@ static JMProgressHUD *mprogressHUD =nil;
 }
 -(UILabel*)m_titleLabel{
     if(!_m_titleLabel){
-        _m_titleLabel =[UILabel funj_getLabel:CGRectZero :JTextFCMakeAlign(kFont_Size15, kColor_White,NSTextAlignmentCenter)];
+        _m_titleLabel =[UILabel funj_getLabel:CGRectZero fc:JTextFCMakeAlign(kFont_Size15, kColor_White,NSTextAlignmentCenter)];
         [self addSubview:_m_titleLabel];
         _m_titleLabel.numberOfLines = 2;
     }

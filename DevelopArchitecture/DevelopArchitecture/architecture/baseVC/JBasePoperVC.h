@@ -27,7 +27,7 @@
 -(void)funj_reloadBgViewFrames:(CGSize)size;
 
 
--(void)funj_reloadTopNavView:(CGRect)titleframe :(CGRect)contentFrame/*top 必须是titleframe.bottom*/ :(NSString*)title  :(NSInteger)leftDelType :(NSString*)deleteStr :(NSString*)deleteImage;
+-(void)funj_reloadTopNavView:(CGRect)titleframe f:(CGRect)contentFrame/*top 必须是titleframe.bottom*/ t:(NSString*)title  lType:(NSInteger)leftDelType dStr:(NSString*)deleteStr dImg:(NSString*)deleteImage;
 
-+(JBasePoperVC*)funj_getPopoverVCs:(NSString *)className :(UIViewController*)sourcePresent :(id)data :(CGSize)size :(setPopverBaseVC)callback;
++(JBasePoperVC*)funj_getPopoverVCs:(NSString *)className sourceVC:(UIViewController*)sourcePresent d:(id)data s:(CGSize)size set:(setPopverBaseVC)callback;
 @end

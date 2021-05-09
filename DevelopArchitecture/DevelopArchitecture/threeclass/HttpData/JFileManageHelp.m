@@ -26,14 +26,14 @@ static JFileManageHelp *fileManage=nil;
 
 -(BOOL)funj_saveToLocaleData:(NSString*)fileName data:(id)content{
     [self funj_checkIsFile];
-    NSString *path = [JAppUtility funj_getTempPath:@"savefile" :fileName];
+    NSString *path = [JAppUtility funj_getTempPath:@"savefile" name:fileName];
     id data = [self funj_solverToSaveFile:content a:YES];
     BOOL res = [self funj_saveDataToFile:data p:path];
     return res;
 }
 -(id)funj_getLocaleDataWithName:(NSString*)fileName{
     [self funj_checkIsFile];
-    NSString *path = [JAppUtility funj_getTempPath:@"savefile" :fileName];
+    NSString *path = [JAppUtility funj_getTempPath:@"savefile" name:fileName];
     id data = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     if(data){ return  data ;}
     
@@ -80,8 +80,8 @@ static JFileManageHelp *fileManage=nil;
     return res;
 }
 -(void)funj_checkIsFile{
-    if(![JAppUtility funj_isFileExit:[JAppUtility funj_getTempPath:@"savefile":nil]]){
-        [JAppUtility funj_createDirector:[JAppUtility funj_getTempPath:@"savefile":nil]];
+    if(![JAppUtility funj_isFileExit:[JAppUtility funj_getTempPath:@"savefile" name:nil]]){
+        [JAppUtility funj_createDirector:[JAppUtility funj_getTempPath:@"savefile" name:nil]];
     }
 }
 

@@ -39,26 +39,26 @@ maddProperyValue(m_selectDataArr, NSMutableArray);
     });
 }
 -(void)funj_addSubBottomBgView{
-    self.navigationItem.rightBarButtonItem =[UIBarButtonItem funj_getNavPublicButton:self  title:nil  action:@"funj_selectToAdd:" image:@"photo_def_photoPickerVc" :^(UIButton *button) {
+    self.navigationItem.rightBarButtonItem =[UIBarButtonItem funj_getNavPublicButton:self  t:nil  a:@"funj_selectToAdd:" img:@"photo_def_photoPickerVc" set:^(UIButton *button) {
         [button setImage:[UIImage imageNamed:@"photo_sel_photoPickerVc"] forState:UIControlStateSelected];
-        [button funj_updateButtonSelectStyle:NO  :NO];
+        [button funj_updateButtonSelectStyle:NO  ischange:NO];
      }];
     
-    UIView *bottomBgView =[UIView funj_getView:CGRectMake(0, self.view.height-50, self.view.width, 50) :kColor_White_Dark];
+    UIView *bottomBgView =[UIView funj_getView:CGRectMake(0, self.view.height-50, self.view.width, 50) bg:kColor_White_Dark];
     [self.view addSubview:bottomBgView];bottomBgView.tag = 3023;
     
     UIImageView *line =[UIImageView funj_getLineImageView:CGRectMake(0, 0, kWidth, 1)];
     [bottomBgView addSubview:line];
     
     if(![JPhotosConfig share].m_currentIsVideo){
-        UIButton *origareBt =[UIButton funj_getButtons:CGRectMake(0, 0, 100, 50) :LocalStr(@"Original") :JTextFCMake(kFont_Size13, kColor_Text_Black_Dark) :@[@"photo_original_def",@"photo_original_sel"] :self  :@"funj_selectItemTo:" :3024 :^(UIButton *button) {
+        UIButton *origareBt =[UIButton funj_getButtons:CGRectMake(0, 0, 100, 50) t:LocalStr(@"Original") fc:JTextFCMake(kFont_Size13, kColor_Text_Black_Dark) img:@[@"photo_original_def",@"photo_original_sel"] d:self  a:@"funj_selectItemTo:" tag:3024 set:^(UIButton *button) {
             [button funj_updateContentImageLayout:kLEFT_IMAGECONTENT a:JAlignMake(10, 10, 0)];
-            [button funj_updateButtonSelectStyle:NO  :NO];
+            [button funj_updateButtonSelectStyle:NO  ischange:NO];
         }];
         [bottomBgView addSubview:origareBt];
     }
     
-    UIButton *sumBt =[UIButton funj_getButtons:CGRectMake(self.view.width-100, 0, 100, 50) :LocalStr(@"Confirm") :JTextFCMake(kFont_Size13, kColor_Text_Black_Dark) : nil :self  :@"funj_selectFinishTo:" :3025 :^(UIButton *button) {
+    UIButton *sumBt =[UIButton funj_getButtons:CGRectMake(self.view.width-100, 0, 100, 50) t:LocalStr(@"Confirm") fc:JTextFCMake(kFont_Size13, kColor_Text_Black_Dark) img: nil d:self  a:@"funj_selectFinishTo:" tag:3025 set:^(UIButton *button) {
         [button funj_updateContentImageLayout:kRIGHT_CONTENTIMAGE a:JAlignMake(10, 0, 20)];
     }];
     [bottomBgView addSubview:sumBt];
@@ -90,7 +90,7 @@ maddProperyValue(m_selectDataArr, NSMutableArray);
 }
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    [self funj_reloadBaseViewParameter:CGRectZero :CGRectMake(0, 0, self.view.width, self.view.height-50) :YES];
+    [self funj_reloadBaseViewParameter:CGRectZero f:CGRectMake(0, 0, self.view.width, self.view.height-50) hidden:YES];
     UIView *bottomBgView =[self.view viewWithTag:3023];
     bottomBgView.top = self.view.height-50;
     bottomBgView.width = self.view.width;
@@ -122,23 +122,23 @@ maddProperyValue(m_selectDataArr, NSMutableArray);
             [JPhotoPickerInterface funj_getVideoWithAsset:model.asset completion:^(AVPlayerItem * _Nullable item, NSDictionary * _Nullable dic) {
                 LRStrongSelf(self);
                 dispatch_main_async_safe(^{
-                    [self funj_getDetailInfo:saveImageDic :nil :dic  :YES :item :i];
+                    [self funj_getDetailInfo:saveImageDic img:nil d:dic  isDegrad:YES item:item index:i];
                 });
             }];
         }else{
-            [JPhotoPickerInterface funj_getPhotoWithAsset:model.asset :PHImageRequestOptionsDeliveryModeHighQualityFormat photoWidth:kWidth completion:^(UIImage * _Nonnull image, NSDictionary * _Nonnull dic, BOOL isDegraded) {
+            [JPhotoPickerInterface funj_getPhotoWithAsset:model.asset type:PHImageRequestOptionsDeliveryModeHighQualityFormat photoWidth:kWidth completion:^(UIImage * _Nonnull image, NSDictionary * _Nonnull dic, BOOL isDegraded) {
                 LRStrongSelf(self);
                 if (isDegraded) {
                     return;
                 }
                 dispatch_main_async_safe(^{
-                    [self funj_getDetailInfo:saveImageDic :image :dic  :isDegraded :nil :i];
+                    [self funj_getDetailInfo:saveImageDic img:image d:dic  isDegrad:isDegraded item:nil index:i];
                 });
             }];
         }
     }
 }
--(void)funj_getDetailInfo:(NSMutableDictionary*)saveImageDic :(UIImage*)image :(NSDictionary*)dic :(BOOL) isDegraded :(AVPlayerItem*)item :(NSInteger)index{
+-(void)funj_getDetailInfo:(NSMutableDictionary*)saveImageDic img:(UIImage*)image d:(NSDictionary*)dic isDegrad:(BOOL) isDegraded item:(AVPlayerItem*)item index:(NSInteger)index{
     if([JPhotosConfig share].m_currentIsVideo){
         if(item)[saveImageDic setObject:item forKey:@(index)];
     }else{
@@ -164,7 +164,7 @@ maddProperyValue(m_selectDataArr, NSMutableArray);
     if(sender.selected && self.m_selectDataArr.count >= [JPhotosConfig share].m_maxCountPhotos){
         sender.selected = NO;
         sender.selected = NO;
-        [JAppViewTools funj_showTextToast:self.view message:[NSString stringWithFormat:LocalStr(@"You can only choose %zd photos"),[JPhotosConfig share].m_maxCountPhotos]];
+        [JAppViewTools funj_showTextToast:self.view msg:[NSString stringWithFormat:LocalStr(@"You can only choose %zd photos"),[JPhotosConfig share].m_maxCountPhotos]];
         return ;
     }
     int index = (self.m_collectionView.contentOffset.x+10)/self.m_collectionView.width;

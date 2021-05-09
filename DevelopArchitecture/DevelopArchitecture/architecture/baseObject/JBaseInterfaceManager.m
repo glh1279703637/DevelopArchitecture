@@ -14,9 +14,9 @@
     if([data integerWithKey:@"result"]==0 ){
         if(isSuccessShow){
             if(msg.length>15){
-                [JAppViewTools funj_showAlertBlock:self :nil :msg :0 :nil];
+                [JAppViewTools funj_showAlertBlock:self t:nil msg:msg items:nil  c:nil];
             }else  if(msg.length > 0){
-                [JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] message:msg];
+                [JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] msg:msg];
             }
         }
         return YES;
@@ -24,21 +24,21 @@
         [self funj_didLogoutAccount:viewcontroller];
         
         if(viewcontroller && [viewcontroller isKindOfClass:[JBaseViewController class]]){
-            [JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] message:LocalStr(@"You are not logged in") complete:^{
+            [JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] msg:LocalStr(@"You are not logged in") complete:^{
                 if([data integerWithKey:@"result"]==2 && viewcontroller){
-                    [(JBaseViewController*)viewcontroller funj_getPresentVCWithController:@"JLogin_Register_ForgetItVC" title:nil :nil :NO];
+                    [(JBaseViewController*)viewcontroller funj_getPresentVCWithController:@"JLogin_Register_ForgetItVC" t:nil d:nil isNav:NO];
                 }
             } time:1.0];
             
         }else{
-            [JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] message:LocalStr(@"You are not logged in")];
+            [JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] msg:LocalStr(@"You are not logged in")];
         }
         return NO;
     } else/* if([data integerWithKey:@"result"]==1 )*/{
         if(msg.length>15){
-            [JAppViewTools funj_showAlertBlock:self :nil :msg :0 :nil];
+            [JAppViewTools funj_showAlertBlock:self t:nil msg:msg items:nil  c:nil];
         }else if(msg.length>0){
-            [JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] message:msg];
+            [JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] msg:msg];
         }
         return NO;
     }
@@ -55,7 +55,7 @@
         UIViewController *vcs =[JAppViewTools funj_getTopViewcontroller];
         [[[JHttpReqHelp share] funj_requestToServer:vcs url:@"usr/loginOut" v:dic2]
             funj_addSuccess:^(id viewController, NSArray *dataArr, NSDictionary *dataDic) {
-            [JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] message:LocalStr(@"You have successfully logged out") complete:^{
+            [JAppViewTools funj_showTextToast:[JAppViewTools funj_getKeyWindow] msg:LocalStr(@"You have successfully logged out") complete:^{
                 if([dataDic integerWithKey:@"result"] ==-100){
                     if(viewController){
                         JBaseViewController *objectVc = [[NSClassFromString(@"JSelectLoginStyleVC") alloc]init];

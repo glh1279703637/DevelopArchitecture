@@ -14,7 +14,7 @@ maddProperyValue(m_dataModelArr, NSMutableArray)
 maddProperyValue(m_dataTypeArr, NSMutableArray)
 maddProperyValue(m_otherMarkArr, NSMutableArray)
 
--(void)funj_setTableShowTypeForSection:(NSInteger)section :(BOOL)isOpen{
+-(void)funj_setTableShowTypeForSection:(NSInteger)section o:(BOOL)isOpen{
     if(section>=[_m_dataTypeArr count]){
         [_m_dataTypeArr addObject:isOpen?@"YES":@"NO" ];
     }else{

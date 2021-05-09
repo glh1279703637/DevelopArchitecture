@@ -18,7 +18,7 @@
  返回参数 : (NSString *)    base64格式字符串
  备注信息 :
  **********************************************************/
-+ (NSString *)funj_encryptionWithbase64:(NSString *)text :(NSString*)key;
++ (NSString *)funj_encryptionWithbase64:(NSString *)text k:(NSString*)key;
 
 /************************************************************
  函数名称 : + (NSString *)funj_decryptionFromBase64:(NSString *)base64
@@ -28,7 +28,7 @@
  返回参数 : (NSString *)    文本
  备注信息 :
  **********************************************************/
-+ (NSString *)funj_decryptionFromBase64:(NSString *)base64 :(NSString*)key;
++ (NSString *)funj_decryptionFromBase64:(NSString *)base64 k:(NSString*)key;
 
 
 #pragma detail
@@ -41,7 +41,7 @@
  返回参数 : (NSData *)
  备注信息 : 此函数不可用于过长文本
  **********************************************************/
-+ (NSData *)funj_DESEncrypt:(NSData *)data WithKey:(NSString *)key;
++ (NSData *)funj_DESEncrypt:(NSData *)data k:(NSString *)key;
 
 /************************************************************
  函数名称 : + (NSData *)funj_DESEncrypt:(NSData *)data WithKey:(NSString *)key
@@ -52,7 +52,7 @@
  返回参数 : (NSData *)
  备注信息 : 此函数不可用于过长文本
  **********************************************************/
-+ (NSData *)funj_DESDecrypt:(NSData *)data WithKey:(NSString *)key;
++ (NSData *)funj_DESDecrypt:(NSData *)data k:(NSString *)key;
 
 /************************************************************
  函数名称 : + (NSData *)funj_dataWithBase64EncodedString:(NSString *)string
@@ -74,5 +74,5 @@
  **********************************************************/
 + (NSString *)funj_base64EncodedStringFrom:(NSData *)data;
 
-+ (NSString *)funj_hmacsha1:(NSString *)data secret:(NSString *)key;
++ (NSString *)funj_hmacsha1:(NSString *)data k:(NSString *)key;
 @end
