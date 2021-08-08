@@ -60,10 +60,6 @@
     return NO;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return NO;
-}
-
 - (void)initView {
     self.showImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight)];
     self.showImgView.contentMode = UIViewContentModeScaleAspectFit;

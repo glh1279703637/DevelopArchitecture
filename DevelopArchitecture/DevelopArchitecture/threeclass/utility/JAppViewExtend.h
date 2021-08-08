@@ -150,11 +150,11 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot);
 //获取textfield
 +(UITextField*)funj_getTextField:(CGRect)frame ph:(NSString*)placeholder fc:(TextFC)textFC d:(id)delegate tag:(NSInteger)tag;
 
-+(UITextField*)funj_getTextField:(CGRect)frame pg:(NSString*)placeholder fc:(TextFC)textFC d:(id)delegate tag:(NSInteger)tag keyType:(UIKeyboardType)keyboardType returnType:(UIReturnKeyType)returnKeyType;
++(UITextField*)funj_getTextField:(CGRect)frame ph:(NSString*)placeholder fc:(TextFC)textFC d:(id)delegate tag:(NSInteger)tag keyType:(UIKeyboardType)keyboardType returnType:(UIReturnKeyType)returnKeyType;
 
 +(UITextField*)funj_getTextFieldFillet:(CGRect)frame ph:(NSString*)placeholder fc:(TextFC)textFC d:(id)delegate tag:(NSInteger)tag f:(FilletValue)fillet;
 
-+(UITextField*)funj_getTextFieldFillet:(CGRect)frame pg:(NSString*)placeholder fc:(TextFC)textFC d:(id)delegate tag:(NSInteger)tag f:(FilletValue)fillet keyType:(UIKeyboardType)keyboardType returnType:(UIReturnKeyType)returnKeyType;
++(UITextField*)funj_getTextFieldFillet:(CGRect)frame ph:(NSString*)placeholder fc:(TextFC)textFC d:(id)delegate tag:(NSInteger)tag f:(FilletValue)fillet keyType:(UIKeyboardType)keyboardType returnType:(UIReturnKeyType)returnKeyType;
 @end
 
 

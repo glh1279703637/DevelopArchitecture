@@ -9,7 +9,7 @@
 #import "JBaseTableViewCell.h"
 #import "JBaseCollectionViewCell.h"
 @class  JPhotoPickerModel;
-typedef void (^selectPhotoItemCallback)(UIButton*sender ,JPhotoPickerModel*model);
+typedef void (^selectPhotoItemCallback)(UIButton *sender ,JPhotoPickerModel*model);
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -523,8 +523,8 @@ AlignValue JAlignMake(CGFloat head,CGFloat spacing,CGFloat foot){
 @end
 
 @implementation UITextField(JTextField)
-+(UITextField*)funj_getTextField:(CGRect)frame pg:(NSString*)placeholder fc:(TextFC)textFC d:(id)delegate tag:(NSInteger)tag{
-    UITextField *textField=[self funj_getTextField:frame pg:placeholder fc:textFC d:delegate tag:tag keyType:UIKeyboardTypeDefault returnType:UIReturnKeyDefault];
++(UITextField*)funj_getTextField:(CGRect)frame ph:(NSString*)placeholder fc:(TextFC)textFC d:(id)delegate tag:(NSInteger)tag{
+    UITextField *textField=[self funj_getTextField:frame ph:placeholder fc:textFC d:delegate tag:tag keyType:UIKeyboardTypeDefault returnType:UIReturnKeyDefault];
     return textField;
 }
 +(UITextField*)funj_getTextField:(CGRect)frame ph:(NSString*)placeholder fc:(TextFC)textFC d:(id)delegate tag:(NSInteger)tag keyType:(UIKeyboardType)keyboardType returnType:(UIReturnKeyType)returnKeyType{
